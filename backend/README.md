@@ -40,8 +40,7 @@ npm run dev
 
 ## API Planned Endpoints
 
-`POST: /find-routes/` **Subjected to changes**
-
+`GET: /find-routes/` **Subjected to changes**
 
 **Request body**
 
