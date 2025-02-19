@@ -74,10 +74,11 @@
   align-items: flex-start;
   flex-direction: column;
   padding: 16px;
+  overflow-x: hidden;
 }
 
 .app-container {
-  width: 100%;
+  width: 98%;
   height: 100%;
   display: flex;
   justify-content: center;
