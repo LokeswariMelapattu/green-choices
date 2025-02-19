@@ -24,7 +24,7 @@ const Checkout = ({ deliveryDetails, orderSummary, deliveryRoutes }) => {
                 </div>
             </div>
             <div className="map-content">
-                <MapComponent routes={deliveryRoutes} />
+                <MapComponent source={"Toronto, Canada"} destination={"Sydney, Australia"} />
             </div>
         </div>
     );
