@@ -10,12 +10,6 @@
     display: block;
 }
 
-.dummyMap {
-    background-color: lightblue;
-    height: 320px;
-    width: 740px;
-}
-
 .deliveryContainer {
     display: flex;
     gap: 20px;
@@ -32,7 +26,12 @@
     border-radius: 10px;
     max-width: 250px !important;
     margin: auto;
-    background-color: #bebebe;
+    background-color: #E8EDF2;
+    cursor: pointer;
+}
+
+.selectedDelivery {
+    border: 3px solid #089218;
 }
 
 .option-left {
@@ -73,7 +72,7 @@
     padding: 30px 20px;
     border: 1px solid transparent;
     border-radius: 10px;
-    background-color: #afb4b6;
+    background-color: #E8EDF2;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -132,7 +131,7 @@
 }
 
 .carbonMeterContainer {
-    background-color: #afb4b6;
+    background-color: #E8EDF2;
     padding: 10px;
     border: 1px solid transparent;
     border-radius: 10px;

@@ -52,7 +52,7 @@ const MapComponent = ({ source, destination }) => {
             <MapContainer
                 center={[49.525255, -26.850275]} // Center the map on Tampere
                 zoom={10}
-                style={{ height: "60vh", width: "96%" }}
+                style={{ height: "60vh", width: "90%" }}
             >
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -88,7 +88,7 @@ const MapComponent = ({ source, destination }) => {
                 >
                     <Popup>{`Destination`}</Popup>
                 </Marker>
-                
+
                 <MapRouting routes={routes} />
             </MapContainer>
         )

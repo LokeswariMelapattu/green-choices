@@ -9,11 +9,10 @@ import CarbonEmissionMeter from './ui/CarbonEmissionMeter';
 const CheckOut2 = () => {
     return (
         <Box className="headingSection">
-            <Grid container spacing={2}>
+            <Grid container>
                 <Grid item md={9}>
                     <h2 className="checkoutHeading">Checkout</h2>
-                    {/* <MapComponent source={"Toronto, Canada"} destination={"Sydney, Australia"} /> */}
-                    <div className="dummyMap"></div>
+                    <MapComponent source={"Toronto, Canada"} destination={"Sydney, Australia"} />
                     <DeliveryOptions />
 
                     <Grid container className='routeOuterContainer'>
@@ -25,7 +24,7 @@ const CheckOut2 = () => {
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid item md={3}>
+                <Grid item md={3} >
                     <h2>Comparison</h2>
                 </Grid>
             </Grid>
