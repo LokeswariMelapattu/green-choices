@@ -1,0 +1,80 @@
+.headingSection {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.checkoutHeading {
+    text-align: left;
+    width: 100%;
+    display: block;
+}
+
+.dummyMap {
+    background-color: lightblue;
+    height: 320px;
+    width: 740px;
+}
+
+.deliveryOption {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 10px !important;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    max-width: 280px !important;
+    margin: auto;
+    background-color: #bebebe;
+}
+
+.option-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option-right .option-details {
+    margin: 2px 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.option-price {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 2px;
+}
+
+.deliveryContainer {
+    display: flex;
+    gap: 20px;
+}
+
+/* Route Details */
+
+.routeSection {
+    width: 60%;
+}
+
+.routeContainer {
+    padding: 10px;
+}
+
+.route {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: auto;
+    align-items: center;
+}
+
+.routeDetails {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    justify-content: center;
+}

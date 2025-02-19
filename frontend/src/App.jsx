@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Checkout from './components/CheckOut';
+import CheckOut2 from './components/CheckOut2';
 
 export default function App() {
 
@@ -30,11 +31,12 @@ const deliveryRoutes = [
 
 return (
   <div className="app-container">
-    <Checkout 
+    {/* <Checkout 
         deliveryDetails={deliveryDetails}
         orderSummary={orderSummary}
         deliveryRoutes={deliveryRoutes}
-    />
+    /> */}
+    <CheckOut2 />
   </div>
 )
 }
