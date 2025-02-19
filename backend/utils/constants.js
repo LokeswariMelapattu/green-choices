@@ -1,5 +1,5 @@
 const CONFIG = {
-    MAX_ROUTES: 5,
+    MAX_ROUTES: 3,
     MIN_ROUTES: 1,
 };
 
