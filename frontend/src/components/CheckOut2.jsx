@@ -4,6 +4,7 @@ import "../styles/checkout.css";
 import MapComponent from './MapComponent';
 import RouteDetails from './ui/RouteDetails';
 import DeliveryOptions from './ui/DeliveryOptions';
+import CarbonEmissionMeter from './ui/CarbonEmissionMeter';
 
 const CheckOut2 = () => {
     return (
@@ -14,8 +15,15 @@ const CheckOut2 = () => {
                     {/* <MapComponent source={"Toronto, Canada"} destination={"Sydney, Australia"} /> */}
                     <div className="dummyMap"></div>
                     <DeliveryOptions />
-                    <RouteDetails />
 
+                    <Grid container className='routeOuterContainer'>
+                        <Grid item md={7}>
+                            <RouteDetails />
+                        </Grid>
+                        <Grid item md={4} className='carbonMeterContainer'>
+                            <CarbonEmissionMeter />
+                        </Grid>
+                    </Grid>
                 </Grid>
                 <Grid item md={3}>
                     <h2>Comparison</h2>
