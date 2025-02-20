@@ -13,6 +13,7 @@ const MapComponent = ({ source, destination }) => {
     const [routes, setRoutes] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [sourceGeoLocation, setSourceGeoLocation] = useState(null);
 
     useEffect(() => {
         const fetchRoutes = async () => {
@@ -34,6 +35,7 @@ const MapComponent = ({ source, destination }) => {
 
                 const data = await response.json();
                 setRoutes(data);
+                //setSourceGeoLocation(data.routes[0].segments[0].fromGeoLocation);
             } catch (err) {
                 setError(err.message);
             } finally {
@@ -50,7 +52,6 @@ const MapComponent = ({ source, destination }) => {
     return (
         (!loading &&
             <MapContainer
-                center={[49.525255, -26.850275]} // Center the map on Tampere
                 zoom={10}
                 style={{ height: "60vh", width: "90%" }}
             >
@@ -61,7 +62,7 @@ const MapComponent = ({ source, destination }) => {
 
                 <Marker
                     key={1}
-                    position={[43.6511, -79.3832]}
+                    position={[51.5074, -0.1278]}
                     icon={L.icon({
                         iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
                         iconSize: [25, 41],
@@ -76,7 +77,7 @@ const MapComponent = ({ source, destination }) => {
 
                 <Marker
                     key={2}
-                    position={[-33.8688, 151.2093]}
+                    position={[1.3521, 103.8198]}
                     icon={L.icon({
                         iconUrl: "https://unpkg.com/leaflet@1.7.1/dist/images/marker-icon.png",
                         iconSize: [25, 41],

@@ -14,29 +14,34 @@ const MapRouting = ({ routes }) => {
         let allBounds = [];
         let maxCarbonRouteIndex = 0;
         let maxCarbonSum = 0;
+        let minCarbonSum = Infinity;
+
+        let routeCarbonSums = [];
 
         routes.routes.forEach((route, routeIndex) => {
             let totalCarbon = route.segments.reduce((sum, segment) => sum + (segment.carbonEmissions[0] || 0), 0);
-            if (totalCarbon < maxCarbonSum) {
-                maxCarbonSum = totalCarbon;
-                maxCarbonRouteIndex = routeIndex;
-            }
+            routeCarbonSums[routeIndex] = totalCarbon;
+        
+            if (totalCarbon < minCarbonSum) minCarbonSum = totalCarbon;
+            if (totalCarbon > maxCarbonSum) maxCarbonSum = totalCarbon;
         });
 
         routes.routes.forEach((route, routeIndex) => {
+            if(routeIndex < 4){
+                let totalCarbon = routeCarbonSums[routeIndex];
+                console.log(totalCarbon);
+                let color = "yellow"; // Default for middle carbon routes
+
+                if (totalCarbon === minCarbonSum) color = "green"; // Least carbon emission
+                else if (totalCarbon === maxCarbonSum) color = "red"; // Highest carbon emission
+
             route.segments.forEach((segment, segmentIndex) => {
                 let fromCoords = segment.fromGeoLocation;
                 let toCoords = segment.toGeoLocation;
     
                 // Skip if coordinates are missing
                 if (!fromCoords || !toCoords) return;
-    
-                let color = "green"; // Default for highest carbon emission route
-                if (routeIndex !== maxCarbonRouteIndex) {
-                    if (segment.transportModes.includes("plane")) color = "red";
-                    else if (segment.transportModes.includes("sea")) color = "blue";
-                    else color = "gray"; // Default for other routes
-                }
+
                 // Create polyline
                 let polyline = L.polyline([fromCoords, toCoords], {
                     color: color,
@@ -53,9 +58,9 @@ const MapRouting = ({ routes }) => {
                     <b>Route ${routeIndex + 1} - Segment ${segmentIndex + 1}</b><br>
                     <b>From:</b> ${segment.from} <br>
                     <b>To:</b> ${segment.to} <br>
-                    <b>Distance:</b> ${segment.distances.join(" km / ")} km<br>
-                    <b>Duration:</b> ${segment.durations.join(" hrs / ")} hrs<br>
-                    <b>Cost:</b> $${segment.costs.join(" / $")}
+                    <b>Distance:</b> ${segment.distances[0]} km<br>
+                    <b>Duration:</b> ${segment.durations[0]} hrs<br>
+                    <b>Cost:</b> $${segment.costs[0]}
                 `);
         
                 // Show popup on hover
@@ -68,8 +73,10 @@ const MapRouting = ({ routes }) => {
                     map.closePopup(popup);
                 });
             });
+        }
         });
-    
+
+        
         // Fit map to include all route segments
         if (allBounds.length > 0) {
             map.fitBounds(allBounds, { padding: [50, 50] });
