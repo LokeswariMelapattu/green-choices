@@ -175,3 +175,78 @@
 .linearGauge p {
     margin: 0;
 }
+
+/* Order Summar */
+.boxBorder {
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.deliveryOrderDetails {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.greyText {
+    font-size: 14px;
+    color: #4F7096;
+}
+
+.carbonText {
+    font-size: 14px;
+    color: #01CE34;
+}
+
+.orderSubTotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.orderShipping {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.orderSummaryContainer {
+    padding: 10px;
+    background: #E8EDF2;
+    border-radius: 10px;
+    margin-top: 80px;
+}
+
+.promoCodeInput {
+    width: 90%;
+    min-width: 160px;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #F7FAFC;
+}
+
+.promoCodeInput::placeholder {
+    color: #4F7096;
+    font-size: 16px;
+}
+
+.paymentBtn {
+    background-color: #089218;
+    color: white;
+    width: 100%;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.promoContainer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+}

@@ -6,6 +6,7 @@ import RouteDetails from './ui/RouteDetails';
 import DeliveryOptions from './ui/DeliveryOptions';
 import CarbonEmissionMeter from './ui/CarbonEmissionMeter';
 import ComparisonGauge from './ui/ComparisonGauge';
+import OrderSummary from './ui/OrderSummary';
 
 const CheckOut2 = () => {
     return (
@@ -26,8 +27,9 @@ const CheckOut2 = () => {
                     </Grid>
                 </Grid>
                 <Grid item md={3} >
-                    <h2>Comparison</h2>
+                    <h2 style={{ fontSize: "20px" }}>Comparison</h2>
                     <ComparisonGauge />
+                    <OrderSummary />
                 </Grid>
             </Grid>
         </Box>

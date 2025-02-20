@@ -32,15 +32,6 @@ const ComparisonGauge = () => {
     });
     return (
         <div className='linearGaugeContainer'>
-            {/* <div className='linearGauge'>
-                <p>Option A</p>
-                <p>
-                    <img src={leafIcon} className='deliveryIcon' />
-                    <span> 1000 Kg CO2</span>
-                </p>
-            </div>
-
-            <AgGauge options={options} style={{ height: "60px" }} /> */}
             {deliveryOptions.map((option, index) => (
 
                 <div key={index} className="linearGaugeItem">
