@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { mockMarineRoute, mockAirRouteToUSA, mockMarineRouteToUSA } from "../data/routes";
 
 
-const MapRouting = ({ routes }) => {
+const MapRouting = ({ routes, setSelectedOption }) => {
     const map = useMap(); // Access the map instance using the useMap hook
     //map.setView([60.1695, 24.9354], 3);
 
@@ -15,8 +15,8 @@ const MapRouting = ({ routes }) => {
         let maxCarbonRouteIndex = 0;
         let maxCarbonSum = 0;
         let minCarbonSum = Infinity;
-
         let routeCarbonSums = [];
+        let routeOptionIndex = 0;
 
         routes.routes.forEach((route, routeIndex) => {
             let totalCarbon = route.segments.reduce((sum, segment) => sum + (segment.carbonEmissions[0] || 0), 0);
@@ -27,7 +27,8 @@ const MapRouting = ({ routes }) => {
         });
 
         routes.routes.forEach((route, routeIndex) => {
-            if(routeIndex < 4){
+            if(routeIndex == 0 || routeIndex == 2 || routeIndex == 3 ){
+                let tempIndex = routeOptionIndex;
                 let totalCarbon = routeCarbonSums[routeIndex];
                 console.log(totalCarbon);
                 let color = "yellow"; // Default for middle carbon routes
@@ -52,10 +53,19 @@ const MapRouting = ({ routes }) => {
     
                 // Store bounds for fitting map
                 allBounds.push(fromCoords, toCoords);
+
+                // Add hover effect to increase weight
+                polyline.on("mouseover", function () {
+                    polyline.setStyle({ weight: 5, opacity: 1 });
+                });
+
+                polyline.on("mouseout", function () {
+                    polyline.setStyle({ weight: 3, opacity: 0.7 });
+                });
     
                 // Add popup with segment details
                 let popup = L.popup().setContent(`
-                    <b>Route ${routeIndex + 1} - Segment ${segmentIndex + 1}</b><br>
+                    <b>Route </b> ${tempIndex + 1} <br>
                     <b>From:</b> ${segment.from} <br>
                     <b>To:</b> ${segment.to} <br>
                     <b>Distance:</b> ${segment.distances[0]} km<br>
@@ -72,7 +82,13 @@ const MapRouting = ({ routes }) => {
                 polyline.on("mouseout", function () {
                     map.closePopup(popup);
                 });
+
+                polyline.on("click", () => {
+                    setSelectedOption(tempIndex);
+                    console.log(tempIndex);
+                });
             });
+            routeOptionIndex++;
         }
         });
 

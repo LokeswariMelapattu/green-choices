@@ -9,7 +9,7 @@ import { USA, China, mockMarineRouteToUSA, mockAirRouteToUSA } from "../data/rou
 //const Routing = ({ markers, routeType }) => {
 
 
-const MapComponent = ({ source, destination }) => {
+const MapComponent = ({ source, destination, setSelectedOption }) => {
     const [routes, setRoutes] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -90,7 +90,7 @@ const MapComponent = ({ source, destination }) => {
                     <Popup>{`Destination`}</Popup>
                 </Marker>
 
-                <MapRouting routes={routes} />
+                <MapRouting routes={routes} setSelectedOption={setSelectedOption}/>
             </MapContainer>
         )
     );

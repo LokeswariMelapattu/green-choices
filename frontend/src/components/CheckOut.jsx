@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Grid2, Box, Grid } from "@mui/material";
 import "../styles/checkout.css";
 import MapComponent from './MapComponent';
@@ -9,13 +9,16 @@ import ComparisonGauge from './ui/ComparisonGauge';
 import OrderSummary from './ui/OrderSummary';
 
 const CheckOut2 = () => {
+    const [selectedOption, setSelectedOption] = useState(2); // Track selected delivery option
+
     return (
         <Box className="headingSection">
             <Grid container>
                 <Grid item md={9}>
                     <h2 className="checkoutHeading">Checkout</h2>
-                    <MapComponent source={"Singapore, Singapore"} destination={"London, UK"} />
-                    <DeliveryOptions />
+                    <MapComponent source={"Singapore, Singapore"} destination={"London, UK"} setSelectedOption={setSelectedOption} />
+                    <DeliveryOptions selectedOption={selectedOption} 
+                        setSelectedOption={setSelectedOption} />
 
                     <Grid container className='routeOuterContainer'>
                         <Grid item md={7}>

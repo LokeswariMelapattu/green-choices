@@ -6,13 +6,13 @@ import { Grid } from '@mui/material';
 import "../../styles/checkout.css"
 
 const deliveryOptions = [
-    { name: "Option A", price: "$10.00", time: "8 days", emissions: "1000 Kg CO2" },
+    { name: "Option A", price: "$20.00", time: "2 days", emissions: "2000 Kg CO2" },
     { name: "Option B", price: "$15.00", time: "5 days", emissions: "1500 Kg CO2" },
-    { name: "Option C", price: "$20.00", time: "2 days", emissions: "2000 Kg CO2" }
+    { name: "Option C", price: "$10.00", time: "8 days", emissions: "1000 Kg CO2" },
 ];
 
-const DeliveryOptions = () => {
-    const [selectedOption, setSelectedOption] = useState(2);
+const DeliveryOptions = ({ selectedOption, setSelectedOption }) => {
+    //const [selectedOption, setSelectedOption] = useState(2);
     return (
         <div className='deliveryOptionsSection'>
             <h3 className='subHeading'>Delivery Options</h3>
