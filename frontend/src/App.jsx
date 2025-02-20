@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import './App.css'
-import Checkout from './components/CheckOut';
-import CheckOut2 from './components/CheckOut2';
+import CheckOut from './components/CheckOut';
 import "@fontsource/public-sans/300.css";
 import "@fontsource/public-sans/400.css";
 import "@fontsource/public-sans/500.css";
@@ -37,12 +36,7 @@ const deliveryRoutes = [
 
 return (
   <div className="app-container">
-    {/* <Checkout 
-        deliveryDetails={deliveryDetails}
-        orderSummary={orderSummary}
-        deliveryRoutes={deliveryRoutes}
-    /> */}
-    <CheckOut2 />
+    <CheckOut />
   </div>
 )
 }

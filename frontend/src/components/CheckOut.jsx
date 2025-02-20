@@ -1,34 +1,37 @@
-import { Card, CardHeader, CardContent } from "../components/ui/Card";
-import MapComponent from "../components/MapComponent";
+import React from 'react'
+import { Grid2, Box, Grid } from "@mui/material";
+import "../styles/checkout.css";
+import MapComponent from './MapComponent';
+import RouteDetails from './ui/RouteDetails';
+import DeliveryOptions from './ui/DeliveryOptions';
+import CarbonEmissionMeter from './ui/CarbonEmissionMeter';
+import ComparisonGauge from './ui/ComparisonGauge';
 
-
-const Checkout = ({ deliveryDetails, orderSummary, deliveryRoutes }) => {
+const CheckOut2 = () => {
     return (
-        <div className="content">
-            <div className="content-details">
-                <div className="address">
-                    <h2 className="text-xl font-semibold">Shipping Address</h2>
-                    <p className="font-semibold">{deliveryDetails.name}</p>
-                    <p>{deliveryDetails.phone}</p>
-                    <p className="text-orange-600">{deliveryDetails.address}</p>
-                    <p>{deliveryDetails.city}, {deliveryDetails.postalCode}, {deliveryDetails.country}</p>
-                </div>
-                <div className="summary">
-                    <h2 className="text-xl font-semibold">Order Summary</h2>
-                    <p><strong>Item(s) total:</strong> {orderSummary.itemsTotal}€</p>
-                    <p><strong>Shipping:</strong> {orderSummary.shippingCost === 0 ? "FREE" : `${orderSummary.shippingCost}€`}</p>
-                    <p className="text-lg font-bold">Total: {orderSummary.total}€</p>
-                    <button className="bg-orange text-white rounded-md w-full mt-4">
-                        Order and Pay
-                    </button>
-                </div>
-            </div>
-            <div className="map-content">
-                <MapComponent source={"Toronto, Canada"} destination={"Sydney, Australia"} />
-            </div>
-        </div>
-    );
-};
+        <Box className="headingSection">
+            <Grid container>
+                <Grid item md={9}>
+                    <h2 className="checkoutHeading">Checkout</h2>
+                    <MapComponent source={"Singapore, Singapore"} destination={"London, UK"} />
+                    <DeliveryOptions />
 
+                    <Grid container className='routeOuterContainer'>
+                        <Grid item md={7}>
+                            <RouteDetails />
+                        </Grid>
+                        <Grid item md={4} className='carbonMeterContainer'>
+                            <CarbonEmissionMeter />
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid item md={3} >
+                    <h2>Comparison</h2>
+                    <ComparisonGauge />
+                </Grid>
+            </Grid>
+        </Box>
+    )
+}
 
-export default Checkout;
+export default CheckOut2

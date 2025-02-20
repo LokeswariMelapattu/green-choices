@@ -155,3 +155,23 @@
 .tick-line {
     display: none;
 }
+
+/* Linear Gauge */
+.linearGaugeItem {
+    background: #E8EDF2;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 15px 0px;
+}
+
+.linearGauge {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.linearGauge p {
+    margin: 0;
+}
