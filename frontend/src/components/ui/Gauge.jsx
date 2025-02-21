@@ -2,11 +2,11 @@ import React from 'react'
 import "../../styles/checkout.css"
 import { GaugeComponent } from 'react-gauge-component';
 
-const Gauge = () => {
+const Gauge = ({ value }) => {
     return (
         <GaugeComponent
             style={{ width: '210px' }}
-            value={50}
+            value={value}
             type="radial"
             showLabels={false}
             arc={{

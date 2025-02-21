@@ -9,46 +9,8 @@ import { USA, China, mockMarineRouteToUSA, mockAirRouteToUSA } from "../data/rou
 //const Routing = ({ markers, routeType }) => {
 
 
-const MapComponent = ({ source, destination, setSelectedOption }) => {
-    const [routes, setRoutes] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-    const [sourceGeoLocation, setSourceGeoLocation] = useState(null);
-
-    useEffect(() => {
-        const fetchRoutes = async () => {
-            try {
-                const response = await fetch("http://localhost:3000/find-routes", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        source: source,
-                        destination: destination
-                    })
-                });
-
-                if (!response.ok) {
-                    throw new Error("Failed to fetch data");
-                }
-
-                const data = await response.json();
-                setRoutes(data);
-                //setSourceGeoLocation(data.routes[0].segments[0].fromGeoLocation);
-            } catch (err) {
-                setError(err.message);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchRoutes();
-    }, []);
-
-    if (loading) return <p>Loading routes...</p>;
-    if (error) return <p>Error: {error}</p>;
-
+const MapComponent = ({ routes, loading, setSelectedOption }) => {
+   
     return (
         (!loading &&
             <MapContainer

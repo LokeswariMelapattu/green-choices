@@ -26,8 +26,8 @@ const MapRouting = ({ routes, setSelectedOption }) => {
             if (totalCarbon > maxCarbonSum) maxCarbonSum = totalCarbon;
         });
 
-        routes.routes.forEach((route, routeIndex) => {
-            if(routeIndex == 0 || routeIndex == 2 || routeIndex == 3 ){
+        routes.routes.forEach((route, routeIndex) => { 
+          if(routeIndex == 0 || routeIndex == 2 || routeIndex == 3 ){
                 let tempIndex = routeOptionIndex;
                 let totalCarbon = routeCarbonSums[routeIndex];
                 console.log(totalCarbon);
@@ -68,6 +68,7 @@ const MapRouting = ({ routes, setSelectedOption }) => {
                     <b>Route </b> ${tempIndex + 1} <br>
                     <b>From:</b> ${segment.from} <br>
                     <b>To:</b> ${segment.to} <br>
+                    <b>Transport:</b> ${segment.transportModes[0]} <br>
                     <b>Distance:</b> ${segment.distances[0]} km<br>
                     <b>Duration:</b> ${segment.durations[0]} hrs<br>
                     <b>Cost:</b> $${segment.costs[0]}
@@ -89,7 +90,7 @@ const MapRouting = ({ routes, setSelectedOption }) => {
                 });
             });
             routeOptionIndex++;
-        }
+      }
         });
 
         

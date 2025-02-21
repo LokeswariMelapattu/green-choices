@@ -1,56 +1,61 @@
-import React, { useState } from 'react'
-import { AgGauge } from "ag-charts-react";
+import React, { useState } from 'react';
+import { AgGauge } from 'ag-charts-react';
 import leafIcon from "../../icons/leaf.svg";
 import "ag-charts-enterprise";
+import { LOW_EMISSION, HIGH_EMISSION } from '../../data/constants';
 
-const deliveryOptions = [
-    { name: "Option A", price: "$10.00", time: "8 days", emissions: "1000 Kg CO2" },
-    { name: "Option B", price: "$15.00", time: "5 days", emissions: "1500 Kg CO2" },
-    { name: "Option C", price: "$20.00", time: "2 days", emissions: "2000 Kg CO2" }
-];
-
-const ComparisonGauge = () => {
+const ComparisonGauge = ({ routes }) => {
     const [options, setOptions] = useState({
-        type: "linear-gauge",
-        direction: "horizontal",
+        type: 'linear-gauge',
+        direction: 'horizontal',
         background: { fill: 'transparent' },
-        value: 100,
         scale: {
-            min: 0,
-            max: 100,
-            label: { enabled: false }
+            min: {LOW_EMISSION}, // Set minimum value to 200
+            max: 600, // Set maximum value to 1000
+            label: { enabled: false },
         },
         cornerRadius: 99,
-        cornerMode: "container",
+        cornerMode: 'container',
         segmentation: {
             enabled: false,
-            interval: {
-                count: 10,
-            },
+            interval: { count: 10 },
             spacing: 2,
         },
     });
+
     return (
-        <div className='linearGaugeContainer'>
-            {deliveryOptions.map((option, index) => (
+        <div className="linearGaugeContainer">
+            {routes.routes.map((option, index) => {
+                if (index === 0 || index === 2 || index === 3) { // Displaying certain options
+                    const emissions = option.metrics.carbonEmissions.minimum; // Get emissions from the route
 
-                <div key={index} className="linearGaugeItem">
-                    <div className="linearGauge">
-                        <p>{option.name}</p>
-                        <p>
-                            <img src={leafIcon} className="deliveryIcon" alt="CO2 Icon" />
-                            <span> {option.emissions}</span>
-                        </p>
-                    </div>
+                    // Normalize the emissions within the range of 200 - 1000
+                    const normalizedEmissions = Math.min(Math.max(emissions, 200), 1000);
 
-                    <AgGauge
-                        options={options}
-                        style={{ height: "60px", width: "100%" }}
-                    />
-                </div>
-            ))}
+                    return (
+                        <div key={index} className="linearGaugeItem">
+                            <div className="linearGauge">
+                                <p>Option {index + 1}</p> {/* Display option number */}
+                                <p>
+                                    <img src={leafIcon} className="deliveryIcon" alt="CO2 Icon" />
+                                    <span>{emissions} Kg CO2</span>
+                                </p>
+                            </div>
+
+                            <AgGauge
+                                options={{
+                                    ...options,
+                                    value: normalizedEmissions, // Set the normalized emissions value
+                                }}
+                                style={{ height: "60px", width: "100%" }}
+                            />
+                        </div>
+                    );
+                }
+                return null; // Skip other options if not the desired ones
+            })}
         </div>
-    )
-}
+    );
+};
 
-export default ComparisonGauge
+export default ComparisonGauge;
