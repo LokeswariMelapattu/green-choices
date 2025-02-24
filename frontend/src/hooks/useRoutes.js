@@ -6,9 +6,10 @@ const useRoutes = () => {
   const [totalEmissions, setTotalEmissions] = useState([]);
 
   useEffect(() => {
-    const fetchRoutes = async () => {
+    //Default values for source and destination cities and countries please change it after implementation for checkout page and others
+    const fetchRoutes = async (sourceCity = "New York", sourceCountry = "USA", destinationCity = "Warsaw", destinationCountry = "Poland") => {
       try {
-        const response = await fetch('/mock-data.json');
+        const response = await fetch(`http://localhost:3000/find-routes/?sourceCountry=${sourceCountry}&destinationCountry=${destinationCountry}&sourceCity=${sourceCity}&destinationCity=${destinationCity}`);
         const data = await response.json();
         setRoutes(data);
         if (data.routes.length > 0) {
@@ -33,7 +34,6 @@ const useRoutes = () => {
         console.error('Error fetching routes:', error);
       }
     };
-
     fetchRoutes();
   }, []);
 
