@@ -8,6 +8,8 @@ const ERROR_MESSAGES = {
     sourceCityNotFound: "Source city not found in the database",
     noRoutesFound: "No routes found between the specified cities",
     notEnoughRoutes: "Unable to find the minimum distinct routes between the specified cities",
+    routeNotReceived: "Didn't receive a route",
+    routeNotSaved: "Unable to save route"
 };
 
 module.exports = {
