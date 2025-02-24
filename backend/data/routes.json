@@ -1,19 +1,9 @@
 {
   "New York, USA": [
     {
-      "destination": "Valencia, Spain",
-      "mode": ["sea"],
-      "cost": [900],
-      "duration": [9],
-      "distance": [5800],
-      "carbon_emission": [110],
-      "geo_location": [40.7128, -74.0060],
-      "destination_geo_location": [39.4699, -0.3763]
-    },
-    {
       "destination": "Madrid, Spain",
       "geo_location": [40.7128, -74.006],
-      "mode": ["plane"],
+      "mode": ["sea", "plane"],
       "cost": [700, 1000],
       "duration": [15, 5],
       "distance": [5500, 5000],
@@ -65,35 +55,13 @@
     },
     {
       "destination": "Sydney, Australia",
-      "mode": ["sea"],
+      "mode": ["sea", "plane"],
       "cost": [1500, 1800],
       "duration": [25, 15],
       "distance": [9000, 8500],
       "carbon_emission": [200, 150],
       "destination_geo_location": [-33.8688, 151.2093],
       "source_geo_location": [34.0522, -118.2437]
-    }
-  ],
-  "Barcelona, Spain": [
-    {
-      "destination": "London, UK",
-      "mode": ["plane"],
-      "cost": [800, 1200],
-      "duration": [7, 3],
-      "distance": [4000, 3500],
-      "carbon_emission": [150, 100],
-      "geo_location": [41.3851, 2.1734],
-      "destination_geo_location": [51.5074, -0.1278]
-    },
-    {
-      "destination": "Athens, Greece",
-      "mode": ["sea"],
-      "cost": [700],
-      "duration": [7],
-      "distance": [2100],
-      "carbon_emission": [90],
-      "geo_location": [41.3851, 2.1734],
-      "destination_geo_location": [37.9838, 23.7275]
     }
   ],
   "Madrid, Spain": [
@@ -210,16 +178,6 @@
   ],
   "London, UK": [
     {
-      "destination": "Barcelona, Spain",
-      "mode": ["sea"],
-      "cost": [500],
-      "duration": [5],
-      "distance": [1100],
-      "carbon_emission": [60],
-      "geo_location": [51.5074, -0.1278],
-      "destination_geo_location": [41.3851, 2.1734]
-    },
-    {
       "destination": "Berlin, Germany",
       "mode": ["road", "plane"],
       "cost": [300, 400],
@@ -320,29 +278,18 @@
   ],
   "Toronto, Canada": [
     {
-      "destination": "New York, USA",
-      "mode": ["road"],
-      "cost": [200],
-      "duration": [8],
-      "distance": [800],
-      "carbon_emission": [50],
-      "geo_location": [43.6511, -79.3832],
-      "destination_geo_location": [40.7128, -74.0060]
-    },
-    {
       "destination": "Tokyo, Japan",
-      "mode": ["plane"],
+      "mode": ["sea", "plane"],
       "cost": [1200, 1500],
       "duration": [20, 10],
       "distance": [8500, 8000],
       "carbon_emission": [150, 100],
       "destination_geo_location": [35.6895, 139.6917],
       "source_geo_location": [43.6511, -79.3832]
-
     },
     {
       "destination": "Singapore, Singapore",
-      "mode": ["sea"],
+      "mode": ["sea", "plane"],
       "cost": [1800, 2000],
       "duration": [24, 12],
       "distance": [9500, 9000],
@@ -364,7 +311,7 @@
   "Hong Kong, China": [
     {
       "destination": "Beijing, China",
-      "mode": ["plane"],
+      "mode": ["road", "sea", "plane"],
       "cost": [1200, 600, 1600],
       "duration": [8, 12, 2],
       "distance": [100, 50, 100],
@@ -376,7 +323,7 @@
   "Tokyo, Japan": [
     {
       "destination": "Sydney, Australia",
-      "mode": ["sea"],
+      "mode": ["sea", "plane"],
       "cost": [600, 800],
       "duration": [5, 10],
       "distance": [3000, 3500],
@@ -513,38 +460,8 @@
   ],
   "Singapore, Singapore": [
     {
-      "destination": "Colombo, Sri Lanka",
-      "mode": ["sea"],
-      "cost": [600],
-      "duration": [6],
-      "distance": [2700],
-      "carbon_emission": [60],
-      "geo_location": [1.3521, 103.8198],
-      "destination_geo_location": [6.9271, 79.8612]
-    },
-    {
-      "destination": "Mumbai, India",
-      "mode": ["plane"],
-      "cost": [600, 800],
-      "duration": [8, 4],
-      "distance": [3500, 3000],
-      "carbon_emission": [100, 50],
-      "geo_location": [1.3521, 103.8198],
-      "destination_geo_location": [19.076, 72.8777]
-    },
-    {
-      "destination": "Kuala Lumpur, Malaysia",
-      "mode": ["road", "sea", "plane"],
-      "cost": [300, 200, 400],
-      "duration": [6, 2, 4],
-      "distance": [1500, 500, 1000],
-      "carbon_emission": [60, 30, 15],
-      "geo_location": [1.3521, 103.8198],
-      "destination_geo_location": [3.139, 101.6869]
-    },
-    {
       "destination": "Sydney, Australia",
-      "mode": ["plane"],
+      "mode": ["sea", "plane"],
       "cost": [500, 700],
       "duration": [6, 8],
       "distance": [2000, 2500],
@@ -620,7 +537,7 @@
     },
     {
       "destination": "Dubai, UAE",
-      "mode": ["plane", "sea"],
+      "mode": ["sea", "plane"],
       "cost": [600, 800],
       "duration": [8, 4],
       "distance": [3500, 3000],
@@ -640,7 +557,7 @@
     },
     {
       "destination": "Singapore, Singapore",
-      "mode": ["sea"],
+      "mode": ["sea", "plane"],
       "cost": [500, 700],
       "duration": [6, 8],
       "distance": [2000, 2500],
@@ -710,18 +627,6 @@
       "destination_geo_location": [40.7128, -74.006],
       "source_geo_location": [25.276987, 55.296249]
     },
-    {
-      "destination": "Genoa, Italy",
-      "mode": ["sea"],
-      "cost": [1200],
-      "duration": [15],
-      "distance": [7000],
-      "carbon_emission": [140],
-      "geo_location": [25.276987, 55.296249],
-      "destination_geo_location": [44.4056, 8.9463]
-    }
-  ],
-  "Genoa, Italy": [
     {
       "destination": "London, UK",
       "mode": ["sea", "plane"],
@@ -892,7 +797,7 @@
   "Beijing, China": [
     {
       "destination": "Moscow, Russia",
-      "mode": ["road"],
+      "mode": ["road", "plane"],
       "cost": [1200, 1600],
       "duration": [36, 12],
       "distance": [9000, 8000],
