@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { mockMarineRoute, mockAirRouteToUSA, mockMarineRouteToUSA } from "../data/routes";
 
 
-const MapRouting = ({ routes }) => {
+const MapRouting = ({ routes, setSelectedOption }) => {
     const map = useMap(); // Access the map instance using the useMap hook
     //map.setView([60.1695, 24.9354], 3);
 
@@ -14,29 +14,35 @@ const MapRouting = ({ routes }) => {
         let allBounds = [];
         let maxCarbonRouteIndex = 0;
         let maxCarbonSum = 0;
+        let minCarbonSum = Infinity;
+        let routeCarbonSums = [];
+        let routeOptionIndex = 0;
 
         routes.routes.forEach((route, routeIndex) => {
             let totalCarbon = route.segments.reduce((sum, segment) => sum + (segment.carbonEmissions[0] || 0), 0);
-            if (totalCarbon < maxCarbonSum) {
-                maxCarbonSum = totalCarbon;
-                maxCarbonRouteIndex = routeIndex;
-            }
+            routeCarbonSums[routeIndex] = totalCarbon;
+        
+            if (totalCarbon < minCarbonSum) minCarbonSum = totalCarbon;
+            if (totalCarbon > maxCarbonSum) maxCarbonSum = totalCarbon;
         });
 
-        routes.routes.forEach((route, routeIndex) => {
+        routes.routes.forEach((route, routeIndex) => { 
+          if(routeIndex == 0 || routeIndex == 2 || routeIndex == 3 ){
+                let tempIndex = routeOptionIndex;
+                let totalCarbon = routeCarbonSums[routeIndex];
+                console.log(totalCarbon);
+                let color = "yellow"; // Default for middle carbon routes
+
+                if (totalCarbon === minCarbonSum) color = "green"; // Least carbon emission
+                else if (totalCarbon === maxCarbonSum) color = "red"; // Highest carbon emission
+
             route.segments.forEach((segment, segmentIndex) => {
                 let fromCoords = segment.fromGeoLocation;
                 let toCoords = segment.toGeoLocation;
     
                 // Skip if coordinates are missing
                 if (!fromCoords || !toCoords) return;
-    
-                let color = "green"; // Default for highest carbon emission route
-                if (routeIndex !== maxCarbonRouteIndex) {
-                    if (segment.transportModes.includes("plane")) color = "red";
-                    else if (segment.transportModes.includes("sea")) color = "blue";
-                    else color = "gray"; // Default for other routes
-                }
+
                 // Create polyline
                 let polyline = L.polyline([fromCoords, toCoords], {
                     color: color,
@@ -47,15 +53,25 @@ const MapRouting = ({ routes }) => {
     
                 // Store bounds for fitting map
                 allBounds.push(fromCoords, toCoords);
+
+                // Add hover effect to increase weight
+                polyline.on("mouseover", function () {
+                    polyline.setStyle({ weight: 5, opacity: 1 });
+                });
+
+                polyline.on("mouseout", function () {
+                    polyline.setStyle({ weight: 3, opacity: 0.7 });
+                });
     
                 // Add popup with segment details
                 let popup = L.popup().setContent(`
-                    <b>Route ${routeIndex + 1} - Segment ${segmentIndex + 1}</b><br>
+                    <b>Route </b> ${tempIndex + 1} <br>
                     <b>From:</b> ${segment.from} <br>
                     <b>To:</b> ${segment.to} <br>
-                    <b>Distance:</b> ${segment.distances.join(" km / ")} km<br>
-                    <b>Duration:</b> ${segment.durations.join(" hrs / ")} hrs<br>
-                    <b>Cost:</b> $${segment.costs.join(" / $")}
+                    <b>Transport:</b> ${segment.transportModes[0]} <br>
+                    <b>Distance:</b> ${segment.distances[0]} km<br>
+                    <b>Duration:</b> ${segment.durations[0]} hrs<br>
+                    <b>Cost:</b> $${segment.costs[0]}
                 `);
         
                 // Show popup on hover
@@ -67,9 +83,17 @@ const MapRouting = ({ routes }) => {
                 polyline.on("mouseout", function () {
                     map.closePopup(popup);
                 });
+
+                polyline.on("click", () => {
+                    setSelectedOption(tempIndex);
+                    console.log(tempIndex);
+                });
             });
+            routeOptionIndex++;
+      }
         });
-    
+
+        
         // Fit map to include all route segments
         if (allBounds.length > 0) {
             map.fitBounds(allBounds, { padding: [50, 50] });

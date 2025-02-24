@@ -1,0 +1,252 @@
+.headingSection {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.checkoutHeading {
+    text-align: left;
+    width: 100%;
+    display: block;
+}
+
+.deliveryContainer {
+    display: flex;
+    gap: 20px;
+    margin: 0 !important;
+}
+
+.deliveryOption {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 10px !important;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    max-width: 250px !important;
+    margin: auto;
+    background-color: #E8EDF2;
+    cursor: pointer;
+}
+
+.selectedDelivery {
+    border: 3px solid #089218;
+}
+
+.option-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.option-right {
+    font-size: 14px;
+}
+
+.option-right .option-details {
+    margin: 2px 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.option-price {
+    padding-bottom: 0;
+    padding-top: 0;
+    margin-bottom: 2px;
+}
+
+.deliveryIcon {
+    height: 12px;
+}
+
+/* Route Details */
+
+.routeSection {
+    width: 95%;
+}
+
+.routeContainer {
+    padding: 30px 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    background-color: #E8EDF2;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.route {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    height: auto;
+    align-items: center;
+    font-size: 14px;
+}
+
+.routeDetails {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    padding: 10px 30px;
+    justify-content: center;
+    font-size: 14px;
+}
+
+.horizontal-line {
+    width: 50px;
+    height: 2px;
+    background-color: #575A5D;
+    margin: auto;
+}
+
+.mode,
+.time,
+.carbon {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    align-items: center;
+    height: 40px;
+    gap: 5px;
+}
+
+.routeIcon {
+    height: 15px;
+}
+
+.subHeading {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+/* Carbon Meter Section */
+.carbonMeterSection {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.carbonMeterContainer {
+    background-color: #E8EDF2;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    margin-top: 6% !important;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.routeOuterContainer {
+    width: 80%;
+}
+
+/* Gauge */
+
+.value-text,
+.tick-value,
+.tick-line {
+    display: none;
+}
+
+/* Linear Gauge */
+.linearGaugeItem {
+    background: #E8EDF2;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin: 15px 0px;
+}
+
+.linearGauge {
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.linearGauge p {
+    margin: 0;
+}
+
+/* Order Summar */
+.boxBorder {
+    border: 1px solid #000000;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+.deliveryOrderDetails {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 16px;
+}
+
+.greyText {
+    font-size: 14px;
+    color: #4F7096;
+}
+
+.carbonText {
+    font-size: 14px;
+    color: #01CE34;
+}
+
+.orderSubTotal {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-top: 15px;
+}
+
+.orderShipping {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+}
+
+.orderSummaryContainer {
+    padding: 10px;
+    background: #E8EDF2;
+    border-radius: 10px;
+    margin-top: 80px;
+}
+
+.promoCodeInput {
+    width: 90%;
+    min-width: 160px;
+    border-radius: 12px;
+    padding: 20px;
+    border: 1px solid #F7FAFC;
+}
+
+.promoCodeInput::placeholder {
+    color: #4F7096;
+    font-size: 16px;
+}
+
+.paymentBtn {
+    background-color: #089218;
+    color: white;
+    width: 100%;
+    border-radius: 12px;
+    padding: 12px;
+}
+
+.promoContainer {
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-around;
+}
