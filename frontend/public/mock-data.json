@@ -1,0 +1,375 @@
+{
+  "source": "Los Angeles, USA",
+  "destination": "Warsaw, Poland",
+  "routesFound": 5,
+  "routes": [
+    {
+      "routeNumber": 5,
+      "segments": [
+        {
+          "from": "Los Angeles, USA",
+          "to": "New York, USA",
+          "fromGeoLocation": [34.0522, -118.2437],
+          "toGeoLocation": [40.7128, -74.006],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 500],
+          "durations": [40, 6],
+          "distances": [4500, 4000],
+          "carbonEmissions": [100, 50]
+        },
+        {
+          "from": "New York, USA",
+          "to": "London, UK",
+          "fromGeoLocation": [40.7128, -74.006],
+          "toGeoLocation": [51.5074, -0.1278],
+          "transportModes": ["sea", "plane"],
+          "costs": [800, 1200],
+          "durations": [7, 3],
+          "distances": [4000, 3500],
+          "carbonEmissions": [150, 100]
+        },
+        {
+          "from": "London, UK",
+          "to": "Berlin, Germany",
+          "fromGeoLocation": [51.5074, -0.1278],
+          "toGeoLocation": [52.52, 13.405],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 400],
+          "durations": [8, 2],
+          "distances": [2000, 1500],
+          "carbonEmissions": [60, 30]
+        },
+        {
+          "from": "Berlin, Germany",
+          "to": "Warsaw, Poland",
+          "fromGeoLocation": [52.52, 13.405],
+          "toGeoLocation": [52.2297, 21.0122],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 200],
+          "durations": [6, 1],
+          "distances": [1200, 1000],
+          "carbonEmissions": [40, 20]
+        }
+      ],
+      "metrics": {
+        "cost": {
+          "minimum": 1600,
+          "maximum": 2400
+        },
+        "duration": {
+          "minimum": 12,
+          "maximum": 61
+        },
+        "distance": {
+          "minimum": 10000,
+          "maximum": 11700
+        },
+        "carbonEmissions": {
+          "minimum": 200,
+          "maximum": 350
+        }
+      }
+    },
+    {
+      "routeNumber": 3,
+      "segments": [
+        {
+          "from": "Los Angeles, USA",
+          "to": "New York, USA",
+          "fromGeoLocation": [34.0522, -118.2437],
+          "toGeoLocation": [40.7128, -74.006],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 500],
+          "durations": [40, 6],
+          "distances": [4500, 4000],
+          "carbonEmissions": [100, 50]
+        },
+        {
+          "from": "New York, USA",
+          "to": "Madrid, Spain",
+          "fromGeoLocation": [40.7128, -74.006],
+          "toGeoLocation": [40.4168, -3.7038],
+          "transportModes": ["sea", "plane"],
+          "costs": [700, 1000],
+          "durations": [15, 5],
+          "distances": [5500, 5000],
+          "carbonEmissions": [100, 50]
+        },
+        {
+          "from": "Madrid, Spain",
+          "to": "Berlin, Germany",
+          "fromGeoLocation": [40.4168, -3.7038],
+          "toGeoLocation": [52.52, 13.405],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 400],
+          "durations": [12, 3],
+          "distances": [2500, 2000],
+          "carbonEmissions": [70, 30]
+        },
+        {
+          "from": "Berlin, Germany",
+          "to": "Warsaw, Poland",
+          "fromGeoLocation": [52.52, 13.405],
+          "toGeoLocation": [52.2297, 21.0122],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 200],
+          "durations": [6, 1],
+          "distances": [1200, 1000],
+          "carbonEmissions": [40, 20]
+        }
+      ],
+      "metrics": {
+        "cost": {
+          "minimum": 1500,
+          "maximum": 2200
+        },
+        "duration": {
+          "minimum": 15,
+          "maximum": 73
+        },
+        "distance": {
+          "minimum": 12000,
+          "maximum": 13700
+        },
+        "carbonEmissions": {
+          "minimum": 150,
+          "maximum": 310
+        }
+      }
+    },
+    {
+      "routeNumber": 4,
+      "segments": [
+        {
+          "from": "Los Angeles, USA",
+          "to": "New York, USA",
+          "fromGeoLocation": [34.0522, -118.2437],
+          "toGeoLocation": [40.7128, -74.006],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 500],
+          "durations": [40, 6],
+          "distances": [4500, 4000],
+          "carbonEmissions": [100, 50]
+        },
+        {
+          "from": "New York, USA",
+          "to": "London, UK",
+          "fromGeoLocation": [40.7128, -74.006],
+          "toGeoLocation": [51.5074, -0.1278],
+          "transportModes": ["sea", "plane"],
+          "costs": [800, 1200],
+          "durations": [7, 3],
+          "distances": [4000, 3500],
+          "carbonEmissions": [150, 100]
+        },
+        {
+          "from": "London, UK",
+          "to": "Berlin, Germany",
+          "fromGeoLocation": [51.5074, -0.1278],
+          "toGeoLocation": [52.52, 13.405],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 400],
+          "durations": [8, 2],
+          "distances": [2000, 1500],
+          "carbonEmissions": [60, 30]
+        },
+        {
+          "from": "Berlin, Germany",
+          "to": "Helsinki, Finland",
+          "fromGeoLocation": [52.52, 13.405],
+          "toGeoLocation": [60.1695, 24.9354],
+          "transportModes": ["road", "plane"],
+          "costs": [500, 400],
+          "durations": [18, 2],
+          "distances": [3000, 2500],
+          "carbonEmissions": [80, 40]
+        },
+        {
+          "from": "Helsinki, Finland",
+          "to": "Warsaw, Poland",
+          "fromGeoLocation": [60.1695, 24.9354],
+          "toGeoLocation": [52.2297, 21.0122],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 200],
+          "durations": [8, 2],
+          "distances": [1200, 1000],
+          "carbonEmissions": [40, 20]
+        }
+      ],
+      "metrics": {
+        "cost": {
+          "minimum": 2000,
+          "maximum": 2900
+        },
+        "duration": {
+          "minimum": 15,
+          "maximum": 81
+        },
+        "distance": {
+          "minimum": 12500,
+          "maximum": 14700
+        },
+        "carbonEmissions": {
+          "minimum": 240,
+          "maximum": 430
+        }
+      }
+    },
+    {
+      "routeNumber": 1,
+      "segments": [
+        {
+          "from": "Los Angeles, USA",
+          "to": "New York, USA",
+          "fromGeoLocation": [34.0522, -118.2437],
+          "toGeoLocation": [40.7128, -74.006],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 500],
+          "durations": [40, 6],
+          "distances": [4500, 4000],
+          "carbonEmissions": [100, 50]
+        },
+        {
+          "from": "New York, USA",
+          "to": "Madrid, Spain",
+          "fromGeoLocation": [40.7128, -74.006],
+          "toGeoLocation": [40.4168, -3.7038],
+          "transportModes": ["sea", "plane"],
+          "costs": [700, 1000],
+          "durations": [15, 5],
+          "distances": [5500, 5000],
+          "carbonEmissions": [100, 50]
+        },
+        {
+          "from": "Madrid, Spain",
+          "to": "Paris, France",
+          "fromGeoLocation": [40.4168, -3.7038],
+          "toGeoLocation": [48.8566, 2.3522],
+          "transportModes": ["road", "plane"],
+          "costs": [200, 300],
+          "durations": [10, 2],
+          "distances": [1500, 1200],
+          "carbonEmissions": [50, 20]
+        },
+        {
+          "from": "Paris, France",
+          "to": "Helsinki, Finland",
+          "fromGeoLocation": [48.8566, 2.3522],
+          "toGeoLocation": [60.1695, 24.9354],
+          "transportModes": ["road", "plane"],
+          "costs": [600, 500],
+          "durations": [20, 3],
+          "distances": [3500, 3000],
+          "carbonEmissions": [120, 60]
+        },
+        {
+          "from": "Helsinki, Finland",
+          "to": "Warsaw, Poland",
+          "fromGeoLocation": [60.1695, 24.9354],
+          "toGeoLocation": [52.2297, 21.0122],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 200],
+          "durations": [8, 2],
+          "distances": [1200, 1000],
+          "carbonEmissions": [40, 20]
+        }
+      ],
+      "metrics": {
+        "cost": {
+          "minimum": 1900,
+          "maximum": 2700
+        },
+        "duration": {
+          "minimum": 18,
+          "maximum": 93
+        },
+        "distance": {
+          "minimum": 14200,
+          "maximum": 16200
+        },
+        "carbonEmissions": {
+          "minimum": 200,
+          "maximum": 410
+        }
+      }
+    },
+    {
+      "routeNumber": 2,
+      "segments": [
+        {
+          "from": "Los Angeles, USA",
+          "to": "New York, USA",
+          "fromGeoLocation": [34.0522, -118.2437],
+          "toGeoLocation": [40.7128, -74.006],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 500],
+          "durations": [40, 6],
+          "distances": [4500, 4000],
+          "carbonEmissions": [100, 50]
+        },
+        {
+          "from": "New York, USA",
+          "to": "Madrid, Spain",
+          "fromGeoLocation": [40.7128, -74.006],
+          "toGeoLocation": [40.4168, -3.7038],
+          "transportModes": ["sea", "plane"],
+          "costs": [700, 1000],
+          "durations": [15, 5],
+          "distances": [5500, 5000],
+          "carbonEmissions": [100, 50]
+        },
+        {
+          "from": "Madrid, Spain",
+          "to": "Berlin, Germany",
+          "fromGeoLocation": [40.4168, -3.7038],
+          "toGeoLocation": [52.52, 13.405],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 400],
+          "durations": [12, 3],
+          "distances": [2500, 2000],
+          "carbonEmissions": [70, 30]
+        },
+        {
+          "from": "Berlin, Germany",
+          "to": "Helsinki, Finland",
+          "fromGeoLocation": [52.52, 13.405],
+          "toGeoLocation": [60.1695, 24.9354],
+          "transportModes": ["road", "plane"],
+          "costs": [500, 400],
+          "durations": [18, 2],
+          "distances": [3000, 2500],
+          "carbonEmissions": [80, 40]
+        },
+        {
+          "from": "Helsinki, Finland",
+          "to": "Warsaw, Poland",
+          "fromGeoLocation": [60.1695, 24.9354],
+          "toGeoLocation": [52.2297, 21.0122],
+          "transportModes": ["road", "plane"],
+          "costs": [300, 200],
+          "durations": [8, 2],
+          "distances": [1200, 1000],
+          "carbonEmissions": [40, 20]
+        }
+      ],
+      "metrics": {
+        "cost": {
+          "minimum": 1900,
+          "maximum": 2700
+        },
+        "duration": {
+          "minimum": 18,
+          "maximum": 93
+        },
+        "distance": {
+          "minimum": 14500,
+          "maximum": 16700
+        },
+        "carbonEmissions": {
+          "minimum": 190,
+          "maximum": 390
+        }
+      }
+    }
+  ]
+}
