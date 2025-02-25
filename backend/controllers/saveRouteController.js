@@ -2,7 +2,7 @@ const {saveRouteToDB} = require('../models/saveRouteModel');
 const { CONFIG, ERROR_MESSAGES } = require('../utils/constants');
 
 
-const saveRoute = (req, res) => {
+async function saveRoute (req, res) {
     try {
         const route = req.body;
 
@@ -14,7 +14,7 @@ const saveRoute = (req, res) => {
             });
         }
 
-        const saved = saveRouteToDB(route);
+        const saved = await saveRouteToDB(route);
 
         if (!saved) {
             return res.status(404).json({
@@ -25,7 +25,7 @@ const saveRoute = (req, res) => {
         return res.json({
             Message: "Route has been saved"
         });
-        
+
     } catch (error) {
         console.error('Route Controller Error:', error);
         return res.status(500).json({
