@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/Card";
 import { Plane, Ship, Timer, DollarSign, Route, Leaf, Truck } from "lucide-react";
 import { useMemo, useEffect } from "react";
 import { useTransport } from '@/context/transport-context';

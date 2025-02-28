@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui/card";
+import { Card } from "@/components/ui/Card";
 import { DollarSign, Leaf, Timer } from "lucide-react";
 import { useState } from "react";
 import { useTransport } from '@/context/transport-context';

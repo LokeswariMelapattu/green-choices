@@ -2,7 +2,7 @@ import { useState } from 'react';
 import RouteMap from '@/components/RouteMap';
 import RouteSelector from '@/components/RouteSelector';
 import RouteDetails from '@/components/RouteDetails';
-import { Card } from '@/components/ui/card';
+import { Card } from '@/components/ui/Card';
 import useRoutes from '../hooks/useRoutes';
 import Comparision from '../components/Comparision';
 import EmissionMeter from '../components/EmissionsMeter';
