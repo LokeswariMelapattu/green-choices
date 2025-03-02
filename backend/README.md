@@ -30,7 +30,17 @@ nvm use 22.12
 npm install
 ```
 
-### 3.Start the Development Server
+### 3.Set up environment variable in a `.env` file with follwing format.
+   ```text
+   DB_HOST=localhost
+   DB_USER=postgres
+   DB_PASSWORD=yourpassword
+   DB_NAME=greenchoices
+   DB_PORT=5432
+   PORT=3000
+   ```
+
+### 4.Start the Development Server
 
 To start the app in development mode, run:
 
