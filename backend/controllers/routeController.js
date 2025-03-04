@@ -9,7 +9,7 @@ const formatRoutes = (routes) => {
             segments: route.map(segment => ({
                 from: segment.source,
                 to: segment.destination,
-                fromGeoLocation: segment.geo_location || null,
+                fromGeoLocation: segment.source_geo_location || null,
                 toGeoLocation: segment.destination_geo_location || null,
                 transportModes: segment.mode,
                 costs: segment.cost,
@@ -41,8 +41,9 @@ const formatRoutes = (routes) => {
 
 const findRoutes = (req, res) => {
     try {
-        const { source, destination } = req.body;
-
+        const { sourceCity, destinationCity, sourceCountry, destinationCountry } = req.query;
+        const source = sourceCity + ', ' + sourceCountry;
+        const destination = destinationCity + ', ' + destinationCountry;
         if (!source || !destination) {
             return res.status(400).json({
                 error: ERROR_MESSAGES.sourceDestinationRequired

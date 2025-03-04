@@ -1,127 +1,27 @@
 #root {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Public Sans', sans-serif;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-.leaflet-routing-container.leaflet-bar.leaflet-control {
-  display: none;
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
 }
-
-.dropdown {
-  position: relative;
-  display: inline-block;
-  width: 200px;
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
 }
-
-.dropdown-toggle {
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  width: 200px;
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
 }
-
-.dropdown-menu {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  border: 1px solid #ccc;
-  background-color: #fff;
-  width: 100%;
-  z-index: 999;
-}
-
-.dropdown-menu li {
-  padding: 10px;
-  cursor: pointer;
-}
-
-.dropdown-menu li:hover {
-  background-color: #f0f0f0;
-}
-
-.map-content {
-  display: flex;
-  justify-content: space-around;
-  padding: 20px;
-  margin-left: 25%;
-  margin-right: 25%;
-}
-
-.content {
-  width: 100%;
-}
-
-.content-details {
-  display: flex;
-  justify-content: space-around;
-}
-
-.address {}
-
-.summary {}
-
-/* Optional: For the container, if you want to center the content */
-.container {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-  padding: 16px;
-  overflow-x: hidden;
-}
-
-.app-container {
-  width: 98%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 16px;
-}
-
-/* Optional: Add custom styling for your map container or card components if needed */
-.card {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-}
-
-.card-header {
-  padding: 16px;
-  font-weight: bold;
-  background-color: #f3f3f3;
-}
-
-.card-content {
-  padding: 16px;
-}
-
-/* Flexbox utility for filling available space in container */
-.flex-grow {
-  flex-grow: 1;
-}
-
-/* Optional: If you want the Map to take a full width, use this */
-.map-container {
-  height: 250px;
-  /* Adjust based on your map's needs */
-  width: 100%;
-}
-
 
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);
   }
-
   to {
     transform: rotate(360deg);
   }
@@ -139,12 +39,4 @@
 
 .read-the-docs {
   color: #888;
-}
-
-.bg-orange {
-  background-color: orange;
-}
-
-.text-white {
-  color: white;
 }

@@ -3,7 +3,8 @@ const router = express.Router();
 const { findRoutes } = require('../controllers/routeController');
 const { saveRoute } = require('../controllers/saveRouteController');
 
-router.post('/find-routes', findRoutes);
-router.post('/save-route', saveRoute);
+
+router.get('/find-routes', findRoutes);
+
 
 module.exports = router;

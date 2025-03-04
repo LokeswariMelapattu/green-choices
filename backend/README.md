@@ -30,7 +30,17 @@ nvm use 22.12
 npm install
 ```
 
-### 3.Start the Development Server
+### 3.Set up environment variable in a `.env` file with follwing format.
+   ```text
+   DB_HOST=localhost
+   DB_USER=postgres
+   DB_PASSWORD=yourpassword
+   DB_NAME=greenchoices
+   DB_PORT=5432
+   PORT=3000
+   ```
+
+### 4.Start the Development Server
 
 To start the app in development mode, run:
 
@@ -42,12 +52,14 @@ npm run dev
 
 `GET: /find-routes/` **Subjected to changes**
 
-**Request body**
+**Request Params**
 
 ```json
 {
-  "source": "Toronto, Canada",
-  "destination": "Sydney, Australia"
+  "sourceCity": "Toronto",
+  "sourceCountry": "Canada",
+  "destinationCity": "Sydney",
+  "destinationCountry": "Australia"
 }
 ```
 
@@ -65,22 +77,24 @@ npm run dev
         {
           "from": "Toronto, Canada",
           "to": "Tokyo, Japan",
+          "fromGeoLocation": [43.6511, -79.3832],
+          "toGeoLocation": [35.6895, 139.6917],
           "transportModes": ["sea", "plane"],
           "costs": [1200, 1500],
           "durations": [20, 10],
           "distances": [8500, 8000],
-          "carbonEmissions": [150, 100],
-          "geoLocation": [35.6895, 139.6917]
+          "carbonEmissions": [150, 100]
         },
         {
           "from": "Tokyo, Japan",
           "to": "Sydney, Australia",
+          "fromGeoLocation": [35.6895, 139.6917],
+          "toGeoLocation": [-33.8688, 151.2093],
           "transportModes": ["sea", "plane"],
           "costs": [600, 800],
           "durations": [5, 10],
           "distances": [3000, 3500],
-          "carbonEmissions": [80, 40],
-          "geoLocation": [-33.8688, 151.2093]
+          "carbonEmissions": [80, 40]
         }
       ],
       "metrics": {
@@ -108,22 +122,24 @@ npm run dev
         {
           "from": "Toronto, Canada",
           "to": "Singapore, Singapore",
+          "fromGeoLocation": [43.6511, -79.3832],
+          "toGeoLocation": [1.3521, 103.8198],
           "transportModes": ["sea", "plane"],
           "costs": [1800, 2000],
           "durations": [24, 12],
           "distances": [9500, 9000],
-          "carbonEmissions": [200, 150],
-          "geoLocation": [1.3521, 103.8198]
+          "carbonEmissions": [200, 150]
         },
         {
           "from": "Singapore, Singapore",
           "to": "Sydney, Australia",
+          "fromGeoLocation": [1.3521, 103.8198],
+          "toGeoLocation": [35.6895, 139.6917],
           "transportModes": ["sea", "plane"],
           "costs": [500, 700],
           "durations": [6, 8],
           "distances": [2000, 2500],
-          "carbonEmissions": [70, 40],
-          "geoLocation": [35.6895, 139.6917]
+          "carbonEmissions": [70, 40]
         }
       ],
       "metrics": {
@@ -151,32 +167,35 @@ npm run dev
         {
           "from": "Toronto, Canada",
           "to": "Tokyo, Japan",
+          "fromGeoLocation": [43.6511, -79.3832],
+          "toGeoLocation": [35.6895, 139.6917],
           "transportModes": ["sea", "plane"],
           "costs": [1200, 1500],
           "durations": [20, 10],
           "distances": [8500, 8000],
-          "carbonEmissions": [150, 100],
-          "geoLocation": [35.6895, 139.6917]
+          "carbonEmissions": [150, 100]
         },
         {
           "from": "Tokyo, Japan",
           "to": "Los Angeles, USA",
+          "fromGeoLocation": [35.6895, 139.6917],
+          "toGeoLocation": [34.0522, -118.2437],
           "transportModes": ["sea", "plane"],
           "costs": [1000, 1200],
           "durations": [20, 10],
           "distances": [8500, 8000],
-          "carbonEmissions": [300, 400],
-          "geoLocation": [34.0522, -118.2437]
+          "carbonEmissions": [300, 400]
         },
         {
           "from": "Los Angeles, USA",
           "to": "Sydney, Australia",
+          "fromGeoLocation": [34.0522, -118.2437],
+          "toGeoLocation": [-33.8688, 151.2093],
           "transportModes": ["sea", "plane"],
           "costs": [1500, 1800],
           "durations": [25, 15],
           "distances": [9000, 8500],
-          "carbonEmissions": [200, 150],
-          "geoLocation": [-33.8688, 151.2093]
+          "carbonEmissions": [200, 150]
         }
       ],
       "metrics": {

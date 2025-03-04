@@ -53,7 +53,15 @@ Make sure you have the following tools installed:
    npm install
    ```
 
-3. Set up environment variables (e.g., API keys and PORT) in a `.env` file.
+3. Set up environment variable in a `/backend` folder in `.env` file with follwing format.
+   ```text
+   DB_HOST=localhost
+   DB_USER=postgres
+   DB_PASSWORD=yourpassword
+   DB_NAME=greenchoices
+   DB_PORT=5432
+   PORT=3000
+   ```
 
 4. Start the Express server:
 
