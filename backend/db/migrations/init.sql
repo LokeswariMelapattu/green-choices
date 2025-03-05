@@ -24,6 +24,33 @@ CREATE TABLE IF NOT EXISTS User_Info_A (
     UpdatedAt TIMESTAMP
 );
 
+CREATE TABLE IF NOT EXISTS Route_Info (
+    RouteID SERIAL PRIMARY KEY,
+    OrderID INT, -- REFERENCES Order_info(OrderId), -- No Order_info yet
+    Source VARCHAR(100) NOT NULL,
+    Destination VARCHAR(100) NOT NULL,
+    CarbonEmission INT,
+    Duration INT,
+    TotalCost INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
+CREATE TABLE IF NOT EXISTS Route_Info_A (
+    LogID SERIAL PRIMARY KEY,
+    LogDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Operation CHAR(1) NOT NULL, -- 'I' for Insert, 'U' for Update, 'D' for Delete
+    RouteID INT,
+    OrderID INT,
+    Source VARCHAR(100),
+    Destination VARCHAR(100),
+    CarbonEmission INT,
+    Duration INT,
+    TotalCost INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP
+);
+
 -- Trigger function for audit
 CREATE OR REPLACE FUNCTION fn_User_Info_Audit()
 RETURNS TRIGGER AS $$
@@ -60,21 +87,78 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION fn_Route_Info_Audit()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        INSERT INTO Route_Info_A (
+            Operation, RouteID, OrderID, Source, Destination, 
+            CarbonEmission, Duration, TotalCost, LastUpdatedUserID,
+            LastUpdatedDate
+        ) VALUES (
+            'I', NEW.RouteID, NEW.OrderID, NEW.Source, NEW.Destination, 
+            NEW.CarbonEmission, NEW.Duration, NEW.TotalCost, NEW.LastUpdatedUserID,
+            NEW.LastUpdatedDate
+        );
+        RETURN NEW;
+    ELSIF (TG_OP = 'UPDATE') THEN
+        INSERT INTO Route_Info_A (
+            Operation, RouteID, OrderID, Source, Destination, 
+            CarbonEmission, Duration, TotalCost, LastUpdatedUserID,
+            LastUpdatedDate
+        ) VALUES (
+            'U', NEW.RouteID, NEW.OrderID, NEW.Source, NEW.Destination, 
+            NEW.CarbonEmission, NEW.Duration, NEW.TotalCost, NEW.LastUpdatedUserID,
+            NEW.LastUpdatedDate
+        );
+        RETURN NEW;
+    ELSIF (TG_OP = 'DELETE') THEN
+        INSERT INTO Route_Info_A (
+            Operation, RouteID, OrderID, Source, Destination, 
+            CarbonEmission, Duration, TotalCost, LastUpdatedUserID,
+            LastUpdatedDate
+        ) VALUES (
+            'D', OLD.RouteID, OLD.OrderID, OLD.Source, OLD.Destination, 
+            OLD.CarbonEmission, OLD.Duration, OLD.TotalCost, OLD.LastUpdatedUserID,
+            OLD.LastUpdatedDate
+        );
+        RETURN OLD;
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+
 -- Create triggers
-CREATE TRIGGER tr_User_Info_Insert
+CREATE OR REPLACE TRIGGER tr_User_Info_Insert
 AFTER INSERT ON User_Info
 FOR EACH ROW
 EXECUTE FUNCTION fn_User_Info_Audit();
 
-CREATE TRIGGER tr_User_Info_Update
+CREATE OR REPLACE TRIGGER tr_User_Info_Update
 AFTER UPDATE ON User_Info
 FOR EACH ROW
 EXECUTE FUNCTION fn_User_Info_Audit();
 
-CREATE TRIGGER tr_User_Info_Delete
+CREATE OR REPLACE TRIGGER tr_User_Info_Delete
 AFTER DELETE ON User_Info
 FOR EACH ROW
 EXECUTE FUNCTION fn_User_Info_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Route_Info_Insert
+AFTER INSERT ON Route_Info
+FOR EACH ROW
+EXECUTE FUNCTION fn_Route_Info_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Route_Info_Update
+AFTER UPDATE ON Route_Info
+FOR EACH ROW
+EXECUTE FUNCTION fn_Route_Info_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Route_Info_Delete
+AFTER DELETE ON Route_Info
+FOR EACH ROW
+EXECUTE FUNCTION fn_Route_Info_Audit();
 
 -- Create stored procedures
 CREATE OR REPLACE PROCEDURE sp_InsertUser(
@@ -113,6 +197,49 @@ BEGIN
         Email = p_Email,
         UpdatedAt = CURRENT_TIMESTAMP
     WHERE UserID = p_UserID;
+    
+    COMMIT;
+END;
+$$;
+
+-- Route_info SPs
+CREATE OR REPLACE PROCEDURE sp_InsertRoute(
+    p_OrderID INT,
+    p_Source VARCHAR(100),
+    p_Destination VARCHAR(100),
+    p_CarbonEmission INT,
+    p_TotalCost INT,
+    OUT p_RouteID INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Route_Info (OrderID, Source, Destination, CarbonEmission, TotalCost)
+    VALUES (p_OrderID, p_Source, p_Destination, p_CarbonEmission, p_TotalCost)
+    RETURNING RouteID INTO p_RouteID;
+
+    COMMIT;
+END;
+$$;
+
+CREATE OR REPLACE PROCEDURE sp_UpdateRoute(
+    p_RouteID INT,
+    p_OrderID INT,
+    p_Source VARCHAR(100),
+    p_Destination VARCHAR(100),
+    p_CarbonEmission INT,
+    p_TotalCost INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Route_Info
+    SET Source = p_Source,
+        Destination = p_Destination,
+        CarbonEmission = p_CarbonEmission,
+        TotalCost = p_TotalCost,
+        LastUpdatedDate = CURRENT_TIMESTAMP
+    WHERE RouteID = p_RouteID AND OrderID = p_OrderID;
     
     COMMIT;
 END;
