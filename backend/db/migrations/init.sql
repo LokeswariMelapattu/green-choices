@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS User_Info_A (
 
 CREATE TABLE IF NOT EXISTS Route_Info (
     RouteID SERIAL PRIMARY KEY,
-    OrderID INT, -- REFERENCES Order_info(OrderId), -- No Order_info yet
+    OrderID INT, -- REFERENCES Order_info(OrderID), -- No Order_info yet
     Source VARCHAR(100) NOT NULL,
     Destination VARCHAR(100) NOT NULL,
     CarbonEmission INT,
@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS Route_Info_A (
 
 CREATE TABLE IF NOT EXISTS Route_Details (
     RouteDetailID SERIAL PRIMARY KEY,
-    RouteID INT REFERENCES Route_Info(RouteId),
+    RouteID INT REFERENCES Route_Info(RouteID),
     SeqNo INT NOT NULL,
     Source VARCHAR(100) NOT NULL,
     Destination VARCHAR(100) NOT NULL,
@@ -81,6 +81,29 @@ CREATE TABLE IF NOT EXISTS Route_Details_A (
     Duration INT,
     Cost INT,
     Distance INT,
+    StatusID INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS Route_Status (
+    RouteStatusID SERIAL PRIMARY KEY,
+    RouteID INT REFERENCES Route_Info(RouteId),
+    RouteDetailID INT REFERENCES Route_Details(RouteDetailID),
+    SeqNo INT NOT NULL,
+    StatusID INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+);
+
+CREATE TABLE IF NOT EXISTS Route_Status_A (
+    LogID SERIAL PRIMARY KEY,
+    LogDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Operation CHAR(1) NOT NULL, -- 'I' for Insert, 'U' for Update, 'D' for Delete
+    RouteStatusID INT,
+    RouteID INT,
+    RouteDetailID INT,
+    SeqNo INT NOT NULL,
     StatusID INT,
     LastUpdatedUserID INT,
     LastUpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -204,6 +227,41 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+CREATE OR REPLACE FUNCTION fn_Route_Status_Audit()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        INSERT INTO Route_Status_A (
+            Operation, RouteStatusID, RouteID, RouteDetailID, SeqNo,
+            LastUpdatedUserID, LastUpdatedDate
+        ) VALUES (
+            'I', NEW.RouteStatusID, NEW.RouteID, NEW.RouteDetailID, NEW.SeqNo,
+            NEW.LastUpdatedUserID, NEW.LastUpdatedDate
+        );
+        RETURN NEW;
+    ELSIF (TG_OP = 'UPDATE') THEN
+        INSERT INTO Route_Status_A (
+            Operation, RouteStatusID, RouteID, RouteDetailID, SeqNo,
+            LastUpdatedUserID, LastUpdatedDate
+        ) VALUES (
+            'U', NEW.RouteStatusID, NEW.RouteID, NEW.RouteDetailID, NEW.SeqNo,
+            NEW.LastUpdatedUserID, NEW.LastUpdatedDate
+        );
+        RETURN NEW;
+    ELSIF (TG_OP = 'DELETE') THEN
+        INSERT INTO Route_Status_A (
+            Operation, RouteStatusID, RouteID, RouteDetailID, SeqNo,
+            LastUpdatedUserID, LastUpdatedDate
+        ) VALUES (
+            'D', OLD.RouteStatusID, OLD.RouteID, OLD.RouteDetailID, OLD.SeqNo,
+            OLD.LastUpdatedUserID, OLD.LastUpdatedDate
+        );
+        RETURN OLD;
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
 -- Create triggers
 CREATE OR REPLACE TRIGGER tr_User_Info_Insert
 AFTER INSERT ON User_Info
@@ -251,6 +309,22 @@ CREATE OR REPLACE TRIGGER tr_Route_Details_Delete
 AFTER DELETE ON Route_Details
 FOR EACH ROW
 EXECUTE FUNCTION fn_Route_Details_Audit();
+
+-- Route_Status Triggers
+CREATE OR REPLACE TRIGGER tr_Route_Status_Insert
+AFTER INSERT ON Route_Status
+FOR EACH ROW
+EXECUTE FUNCTION fn_Route_Status_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Route_Status_Update
+AFTER UPDATE ON Route_Status
+FOR EACH ROW
+EXECUTE FUNCTION fn_Route_Status_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Route_Status_Delete
+AFTER DELETE ON Route_Status
+FOR EACH ROW
+EXECUTE FUNCTION fn_Route_Status_Audit();
 
 -- Create stored procedures
 CREATE OR REPLACE PROCEDURE sp_InsertUser(
@@ -395,6 +469,48 @@ BEGIN
         LastUpdatedUserID = p_LastUpdatedUserID,
         LastUpdatedDate = CURRENT_TIMESTAMP
     WHERE RouteDetailID = p_RouteDetailID AND RouteID = p_RouteID;
+    
+    COMMIT;
+END;
+$$;
+
+-- Route_Detail SPs
+CREATE OR REPLACE PROCEDURE sp_InsertRouteStatus(
+    p_RouteID INT,
+    p_RouteDetailID INT,
+    p_SeqNo INT,
+    p_StatusID INT,
+    p_LastUpdatedUserID INT,
+    OUT p_RouteStatusID INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Route_Status (RouteID, RouteDetailID, SeqNo, StatusID, LastUpdatedUserID)
+    VALUES (p_RouteID, p_RouteDetailID, p_SeqNo, p_StatusID, p_LastUpdatedUserID)
+    RETURNING RouteStatusID INTO p_RouteStatusID;
+
+    COMMIT;
+END;
+$$;
+
+CREATE OR REPLACE PROCEDURE sp_UpdateRoute(
+    p_RouteStatusID INT,
+    p_RouteID INT,
+    p_RouteDetailID INT,
+    p_SeqNo INT,
+    p_StatusID INT,
+    p_LastUpdatedUserID INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Route_Info
+    SET SeqNo = p_SeqNo,
+        StatusID = p_StatusID,
+        LastUpdatedUserID = p_LastUpdatedUserID,
+        LastUpdatedDate = CURRENT_TIMESTAMP
+    WHERE RouteStatusID = p_RouteStatusID AND RouteID = p_RouteID AND RouteDetailID = p_RouteDetailID;
     
     COMMIT;
 END;
