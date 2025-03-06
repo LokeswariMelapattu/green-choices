@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 
-const EmissionMeter = ({ currentValue, maxValue, className = "" }) => {
+const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick, className = "" }) => {
   const [rotation, setRotation] = useState(-90);
   const [label, setLabel] = useState("");
   const [color, setColor] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const percentage = (currentValue / maxValue) * 70;
     const newRotation = (percentage / 100) * 180 - 90;
-
     // Update rotation with animation through CSS variable
     document.documentElement.style.setProperty(
       "--rotation",
@@ -102,10 +102,24 @@ const EmissionMeter = ({ currentValue, maxValue, className = "" }) => {
           <div className="inline-block bg-white px-4 py-2 rounded-full shadow-md">
             <p className="text-gray-600 font-medium">
               {label}: {currentValue.toLocaleString()} kg
+
             </p>
           </div>
         </div>
       </div>
+      {(currentValue / maxValue) * 70 > 40 && (
+        <div className="flex items-center">
+          <img src="/imgs/earth.png" className="h-[40px] w-[40px]" />
+          <p className="text-center" style={{ color: color }}>
+            A Little More CO₂ Than We'd Like … But <span
+              className="font-bold cursor-pointer"
+              onClick={onEmissionsClick}
+            >
+              Here's Why
+            </span>
+          </p>
+        </div>
+      )}
     </div>
   );
 };
