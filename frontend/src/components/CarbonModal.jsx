@@ -9,8 +9,14 @@ const CarbonModal = ({ showModal, setShowModal }) => {
 
     if (!showModal) return null;
 
+    const handleOverlayClick = (event) => {
+        if (showModal) {
+            setShowModal(false);
+        }
+    };
+
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={handleOverlayClick}>
             <div className="bg-white p-6 rounded-lg shadow-lg w-[900px] h-[500px] relative">
                 <div className="flex justify-between items-center">
                     <h3 className="text-lg font-semibold text-center w-full">Why Can't We Find More <span className="text-green-600">Sustainable</span> Routes?</h3>
