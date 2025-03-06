@@ -18,15 +18,21 @@ const useRoutes = () => {
               const minEmission = Math.min(...segment.carbonEmissions);
               return total + minEmission;
             }, 0);
+            const maxTotal = route.segments.reduce((total, segment) => {
+              const maxEmission = Math.max(...segment.carbonEmissions);
+              return total + maxEmission;
+            }, 0);
             return {
               ...route,
               segments: route.segments,
-              minTotalEmissions: minTotal
+              minTotalEmissions: minTotal,
+              maxTotalEmissions: maxTotal
             };
           });
           setTotalEmissions(sortedSegments.map(route => ({
             name: route.routeNumber,
-            minTotalEmissions: route.minTotalEmissions
+            minTotalEmissions: route.minTotalEmissions,
+            maxTotalEmissions: route.maxTotalEmissions
           })));
           setSelectedRoute(sortedSegments[0]);
         }
