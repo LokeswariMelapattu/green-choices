@@ -14,8 +14,8 @@ const Comparision = () => {
         <div>
             {totalEmissions.map((item, index) => (
                 <div key={index} className="mb-4">
-                    <div className="flex justify-between mb-1">
-                        <span>Route {item.name}</span>
+                    <div className="flex justify-between mb-6">
+                        <span>Option {index+1}</span>
                         <span>{item.minTotalEmissions.toFixed(2)} kgCO₂</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">

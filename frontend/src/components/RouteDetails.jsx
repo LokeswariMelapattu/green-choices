@@ -70,7 +70,7 @@ const RouteDetails = ({ route }) => {
 
   return (
     <Card className="p-6 bg-white/70 backdrop-blur-lg">
-      <h2 className="text-xl font-semibold mb-4">Route {route.routeNumber} Details</h2>
+      <h2 className="text-xl font-semibold mb-4">Option {route.routeNumber} Details</h2>
       
       <div className="space-y-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">

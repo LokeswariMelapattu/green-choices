@@ -3,12 +3,13 @@ import { Plane, Ship, Truck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const RouteSelector = ({ routes, selectedRoute, onRouteSelect }) => {
+  let optionIndex =1;
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-semibold mb-4">Available Routes</h2>
       
       <div className="flex overflow-x-auto flex-nowrap gap-4 pb-2">
-        {routes.map((route) => {
+        {routes.map((route,index) => {
           const transportModes = [...new Set(route.segments.flatMap(segment => segment.transportModes))];
           return (
             <Card
@@ -24,7 +25,7 @@ const RouteSelector = ({ routes, selectedRoute, onRouteSelect }) => {
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-medium">Route {route.routeNumber}</h3>
+                    <h3 className="font-medium">Option {index+1}</h3>
                     <div className="flex items-center gap-2 text-sm text-gray-600">
                       <span>{route.metrics.duration.minimum}-{route.metrics.duration.maximum} days</span>
                       <span>•</span>

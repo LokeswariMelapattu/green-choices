@@ -69,3 +69,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Gauge */
+ 
+.value-text {
+  display: none;
+}
+ 
+.gauge-pointer {
+  background-color: #fbbf24 !important; /* Your desired color */
+  border-radius: 50%;
+}
