@@ -7,24 +7,24 @@ import useRoutes from '../hooks/useRoutes';
 import Comparision from '../components/Comparision';
 import EmissionMeter from '../components/EmissionsMeter';
 import OrderSummary from '@/components/OrderSummary';
+import CarbonModal from '../components/CarbonModal';
 
 const Index = () => {
   const { routes, selectedRoute, setSelectedRoute, totalEmissions } = useRoutes();
   const [selectedModes, setSelectedModes] = useState([]);
-  
+  const [showModal, setShowModal] = useState(false);
+
   console.log(totalEmissions);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      
-
       <main className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2 space-y-6">
             <Card className="h-[400px] bg-white/70 backdrop-blur-lg">
               <RouteMap route={selectedRoute} />
             </Card>
-            
+
             {routes && (
               <Card className="p-6 bg-white/70 backdrop-blur-lg">
                 <RouteSelector
@@ -35,40 +35,45 @@ const Index = () => {
               </Card>
             )}
             <div>
-            {selectedRoute && (
-              <div>
-                <RouteDetails 
-                  route={selectedRoute} 
-                  selectedModes={selectedModes}
-                  setSelectedModes={setSelectedModes}
-                />
-              </div>
-            )}
+              {selectedRoute && (
+                <div>
+                  <RouteDetails
+                    route={selectedRoute}
+                    selectedModes={selectedModes}
+                    setSelectedModes={setSelectedModes}
+                  />
+                </div>
+              )}
             </div>
-            
+
           </div>
-          
+
           <div className="lg:col-span-1 space-y-6">
             <Card className="p-6 bg-white/70 backdrop-blur-lg">
-              <EmissionMeter 
+              <EmissionMeter
                 currentValue={
                   totalEmissions?.find(e => e.name === selectedRoute?.routeNumber)?.minTotalEmissions || 0
                 }
                 maxValue={
                   Math.max(...(totalEmissions?.map(e => e.minTotalEmissions) || []))
                 }
+                onEmissionsClick={() => setShowModal(true)}
               />
             </Card>
             <Card className="p-6 bg-white/70 backdrop-blur-lg">
               <Comparision />
             </Card>
-            
-            <OrderSummary 
+
+            <OrderSummary
               selectedRoute={selectedRoute}
               selectedModes={selectedModes}
             />
           </div>
         </div>
+
+        {showModal && (
+          <CarbonModal showModal={showModal} setShowModal={setShowModal} />
+        )}
       </main>
     </div>
   );
