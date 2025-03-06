@@ -55,7 +55,7 @@ const Checkout = () => {
           </div>
 
           <div className="lg:col-span-1 space-y-6">
-            <Card className="p-6 bg-white/70 backdrop-blur-lg"> 
+            <Card className="p-3 bg-white/70 backdrop-blur-lg"> 
               <Comparision  maxValue={500}/>
             </Card>
             <Card className="p-6 bg-white/70 backdrop-blur-lg">
