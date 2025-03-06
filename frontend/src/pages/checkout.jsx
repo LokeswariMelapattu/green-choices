@@ -5,18 +5,24 @@ import RouteDetails from '@/components/RouteDetails';
 import { Card } from '@/components/ui/Card';
 import useRoutes from '../hooks/useRoutes';
 import Comparision from '../components/Comparision';
-import EmissionMeter from '../components/EmissionsMeter';
-import OrderSummary from '@/components/OrderSummary';
-import CarbonModal from '../components/CarbonModal';
-
-const Index = () => {
+import EmissionMeter from '../components/CarbonEmissionMeter';
+// import EmissionMeter from '../components/EmissionsMeter';
+import OrderSummary from '@/components/OrderSummary'; 
+import CarbonModal from '../components/CarbonModal'; 
+import { useLocation } from "react-router-dom";
+import Header from "../components/Header";  
+ 
+const Checkout = () => {
   const { routes, selectedRoute, setSelectedRoute, totalEmissions } = useRoutes();
-  const [selectedModes, setSelectedModes] = useState([]);
+  const [selectedModes, setSelectedModes] = useState([]); 
   const [showModal, setShowModal] = useState(false);
-
-  console.log(totalEmissions);
-
+ 
+  const location = useLocation(); // Get location object
+  const totalAmount = location.state?.totalAmount; // Retrieve total amount from state (optional chaining)
+  
   return (
+    <>
+      <Header />
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <main className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -49,22 +55,22 @@ const Index = () => {
           </div>
 
           <div className="lg:col-span-1 space-y-6">
+            <Card className="p-6 bg-white/70 backdrop-blur-lg"> 
+              <Comparision  maxValue={500}/>
+            </Card>
             <Card className="p-6 bg-white/70 backdrop-blur-lg">
-              <EmissionMeter
+              <EmissionMeter 
                 currentValue={
                   totalEmissions?.find(e => e.name === selectedRoute?.routeNumber)?.minTotalEmissions || 0
-                }
-                maxValue={
-                  Math.max(...(totalEmissions?.map(e => e.minTotalEmissions) || []))
-                }
+                } maxValue={500}
+                // maxValue={
+                //   Math.max(...(totalEmissions?.map(e => e.maxTotalEmissions) || []))
+                // }
                 onEmissionsClick={() => setShowModal(true)}
               />
             </Card>
-            <Card className="p-6 bg-white/70 backdrop-blur-lg">
-              <Comparision />
-            </Card>
-
-            <OrderSummary
+            
+            <OrderSummary 
               selectedRoute={selectedRoute}
               selectedModes={selectedModes}
             />
@@ -76,7 +82,8 @@ const Index = () => {
         )}
       </main>
     </div>
+    </>
   );
 };
 
-export default Index;
+export default Checkout;

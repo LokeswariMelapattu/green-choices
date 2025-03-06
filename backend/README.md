@@ -7,7 +7,8 @@ Follow these steps to get your Express backend running using Node.js .
 ## Prerequisites
 
 - Node.js 22.12 (or later) installed on your machine
-- npm (Node Package Manager)
+- npm (Node Package Manager)-  
+- PostgreSQL 16 or later version
 
 ## Steps
 
@@ -30,7 +31,33 @@ nvm use 22.12
 npm install
 ```
 
-### 3.Set up environment variable in a `.env` file with follwing format.
+### 3.Install PostgreSQL
+
+  ## Installation
+
+- **Windows**: [Download Installer](https://www.postgresql.org/download/windows/)
+- **Mac**: Install via Homebrew  
+  ```sh
+  brew install postgresql 
+  ```
+- **Linux**:
+ ```sh
+    sudo apt update
+    sudo apt install postgresql postgresql-contrib
+  ```
+  ## Start postgresql service
+
+  - **Windows**: Start pgAdmin or run PostgreSQL service from Services.
+  - **Mac**:
+   ```sh
+   brew services start postgresql
+    ```
+ - **Linux**:
+  ```sh
+    sudo systemctl start postgresql
+    ```
+     
+### 4.Set up environment variable: Add a new file `.env` with follwing format in the root folder of backend project.
    ```text
    DB_HOST=localhost
    DB_USER=postgres
@@ -39,8 +66,15 @@ npm install
    DB_PORT=5432
    PORT=3000
    ```
+    
+### 5.Initialize the database run the below command in the root folder of backend project.
 
-### 4.Start the Development Server
+  ```
+    npm run init-db
+  ```
+
+
+### 6.Start the Development Server
 
 To start the app in development mode, run:
 
