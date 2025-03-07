@@ -71,8 +71,10 @@ const findRoutes = (req, res) => {
         }
 
         const formattedRoutes = formatRoutes(routes);
-        formattedRoutes.sort((a, b) => a.metrics.distance.minimum - b.metrics.distance.minimum);
-
+        formattedRoutes.sort((a, b) => a.metrics.carbonEmissions.minimum - b.metrics.carbonEmissions.minimum);
+        formattedRoutes.forEach((route, index) => {
+            route.routeNumber = index + 1;
+        });
         return res.json({
             source,
             destination,
