@@ -56,7 +56,7 @@ describe('RouteDetails Component', () => {
     renderWithProvider(<RouteDetails route={mockRoute} />);
 
     // Check for heading
-    expect(screen.getByText('Route 1 Details')).toBeInTheDocument();
+    expect(screen.getByText('Option 1 Details')).toBeInTheDocument();
 
     // Check for metrics
     expect(screen.getByText('Duration')).toBeInTheDocument();
