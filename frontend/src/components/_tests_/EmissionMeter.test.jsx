@@ -12,7 +12,7 @@ describe("EmissionMeter Component", () => {
 
   it("should display 'Low' label for low emission levels", () => {
     render(<EmissionMeter currentValue={10} maxValue={100} />);
-    expect(screen.getByText(/Low\s*:\s*0\s*kg/)).toBeInTheDocument();
+    expect(screen.getByText(/Low\s*:\s*10\s*kg/)).toBeInTheDocument();
   });
 
   it("should display 'Moderate' label for moderate emission levels", () => {

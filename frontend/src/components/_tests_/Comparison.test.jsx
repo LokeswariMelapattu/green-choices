@@ -43,7 +43,7 @@ describe('Comparision Component', () => {
         }));
 
         render(<Comparision />);
-        const routeElements = screen.getAllByText(/Route \d/);
+        const routeElements = screen.getAllByText(/Option \d/);
         expect(routeElements).toHaveLength(2);
     });
 
