@@ -15,7 +15,8 @@ const formatRoutes = (routes) => {
                 costs: segment.cost,
                 durations: segment.duration,
                 distances: segment.distance,
-                carbonEmissions: segment.carbon_emission
+                carbonEmissions: segment.carbon_emission,
+                emissionReasons: segment.emission_reason
             })),
             metrics: {
                 cost: {

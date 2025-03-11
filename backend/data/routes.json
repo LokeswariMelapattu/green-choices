@@ -9,7 +9,8 @@
       "distance": [5500, 5000],
       "carbon_emission": [100, 50],
       "destination_geo_location": [40.4168, -3.7038],
-      "source_geo_location": [40.7128, -74.006]
+      "source_geo_location": [40.7128, -74.006],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "London, UK",
@@ -19,7 +20,8 @@
       "distance": [4000, 3500],
       "carbon_emission": [150, 100],
       "destination_geo_location": [51.5074, -0.1278],
-      "source_geo_location": [40.7128, -74.006]
+      "source_geo_location": [40.7128, -74.006],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Paris, France",
@@ -29,7 +31,8 @@
       "distance": [4800, 4500],
       "carbon_emission": [120, 80],
       "destination_geo_location": [48.8566, 2.3522],
-      "source_geo_location": [40.7128, -74.006]
+      "source_geo_location": [40.7128, -74.006],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Los Angeles, USA": [
@@ -41,7 +44,8 @@
       "distance": [4500, 4000],
       "carbon_emission": [100, 50],
       "destination_geo_location": [40.7128, -74.006],
-      "source_geo_location": [34.0522, -118.2437]
+      "source_geo_location": [34.0522, -118.2437],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Tokyo, Japan",
@@ -51,7 +55,8 @@
       "distance": [8500, 8000],
       "carbon_emission": [150, 100],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [34.0522, -118.2437]
+      "source_geo_location": [34.0522, -118.2437],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Sydney, Australia",
@@ -61,7 +66,8 @@
       "distance": [9000, 8500],
       "carbon_emission": [200, 150],
       "destination_geo_location": [-33.8688, 151.2093],
-      "source_geo_location": [34.0522, -118.2437]
+      "source_geo_location": [34.0522, -118.2437],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Madrid, Spain": [
@@ -73,7 +79,8 @@
       "distance": [1500, 1200],
       "carbon_emission": [50, 20],
       "destination_geo_location": [48.8566, 2.3522],
-      "source_geo_location": [40.4168, -3.7038]
+      "source_geo_location": [40.4168, -3.7038],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Berlin, Germany",
@@ -83,7 +90,8 @@
       "distance": [2500, 2000],
       "carbon_emission": [70, 30],
       "destination_geo_location": [52.52, 13.405],
-      "source_geo_location": [40.4168, -3.7038]
+      "source_geo_location": [40.4168, -3.7038],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Rome, Italy",
@@ -93,7 +101,8 @@
       "distance": [2100, 1900, 1800],
       "carbon_emission": [80, 40, 20],
       "destination_geo_location": [41.9028, 12.4964],
-      "source_geo_location": [40.4168, -3.7038]
+      "source_geo_location": [40.4168, -3.7038],
+      "emission_reason": ["a", "b", "c"]
     }
   ],
   "Rome, Italy": [
@@ -105,7 +114,8 @@
       "distance": [3200, 2800],
       "carbon_emission": [100, 50],
       "destination_geo_location": [48.2082, 16.3738],
-      "source_geo_location": [41.9028, 12.4964]
+      "source_geo_location": [41.9028, 12.4964],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Paris, France": [
@@ -117,7 +127,8 @@
       "distance": [3500, 3000],
       "carbon_emission": [120, 60],
       "destination_geo_location": [60.1695, 24.9354],
-      "source_geo_location": [48.8566, 2.3522]
+      "source_geo_location": [48.8566, 2.3522],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Amsterdam, Netherlands",
@@ -127,7 +138,8 @@
       "distance": [1500, 1200],
       "carbon_emission": [50, 30],
       "destination_geo_location": [52.3676, 4.9041],
-      "source_geo_location": [48.8566, 2.3522]
+      "source_geo_location": [48.8566, 2.3522],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Brussels, Belgium",
@@ -137,7 +149,8 @@
       "distance": [1100, 1000],
       "carbon_emission": [40, 20],
       "destination_geo_location": [50.8503, 4.3517],
-      "source_geo_location": [48.8566, 2.3522]
+      "source_geo_location": [48.8566, 2.3522],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Helsinki, Finland": [
@@ -149,7 +162,8 @@
       "distance": [1200, 1000],
       "carbon_emission": [40, 20],
       "destination_geo_location": [52.2297, 21.0122],
-      "source_geo_location": [60.1695, 24.9354]
+      "source_geo_location": [60.1695, 24.9354],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Amsterdam, Netherlands": [
@@ -161,7 +175,8 @@
       "distance": [1100, 1000],
       "carbon_emission": [40, 20],
       "destination_geo_location": [50.8503, 4.3517],
-      "source_geo_location": [52.3676, 4.9041]
+      "source_geo_location": [52.3676, 4.9041],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Brussels, Belgium": [
@@ -173,7 +188,8 @@
       "distance": [1500, 1200],
       "carbon_emission": [50, 30],
       "destination_geo_location": [52.3676, 4.9041],
-      "source_geo_location": [50.8503, 4.3517]
+      "source_geo_location": [50.8503, 4.3517],
+      "emission_reason": ["a", "b"]
     }
   ],
   "London, UK": [
@@ -185,7 +201,8 @@
       "distance": [2000, 1500],
       "carbon_emission": [60, 30],
       "destination_geo_location": [52.52, 13.405],
-      "source_geo_location": [51.5074, -0.1278]
+      "source_geo_location": [51.5074, -0.1278],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Rome, Italy",
@@ -195,7 +212,8 @@
       "distance": [3000, 2700, 2500],
       "carbon_emission": [70, 40, 20],
       "destination_geo_location": [41.9028, 12.4964],
-      "source_geo_location": [51.5074, -0.1278]
+      "source_geo_location": [51.5074, -0.1278],
+      "emission_reason": ["a", "b", "c"]
     },
     {
       "destination": "Vienna, Austria",
@@ -205,7 +223,8 @@
       "distance": [3200, 2800],
       "carbon_emission": [80, 50],
       "destination_geo_location": [48.2082, 16.3738],
-      "source_geo_location": [51.5074, -0.1278]
+      "source_geo_location": [51.5074, -0.1278],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Vienna, Austria": [
@@ -217,7 +236,8 @@
       "distance": [3200, 2800],
       "carbon_emission": [100, 50],
       "destination_geo_location": [41.9028, 12.4964],
-      "source_geo_location": [48.2082, 16.3738]
+      "source_geo_location": [48.2082, 16.3738],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Berlin, Germany": [
@@ -229,7 +249,8 @@
       "distance": [3000, 2500],
       "carbon_emission": [80, 40],
       "destination_geo_location": [60.1695, 24.9354],
-      "source_geo_location": [52.52, 13.405]
+      "source_geo_location": [52.52, 13.405],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Warsaw, Poland",
@@ -239,7 +260,8 @@
       "distance": [1200, 1000],
       "carbon_emission": [40, 20],
       "destination_geo_location": [52.2297, 21.0122],
-      "source_geo_location": [52.52, 13.405]
+      "source_geo_location": [52.52, 13.405],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Prague, Czech Republic",
@@ -249,7 +271,8 @@
       "distance": [1400, 1200],
       "carbon_emission": [50, 30],
       "destination_geo_location": [50.0755, 14.4378],
-      "source_geo_location": [52.52, 13.405]
+      "source_geo_location": [52.52, 13.405],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Warsaw, Poland": [
@@ -261,7 +284,8 @@
       "distance": [1200, 1000],
       "carbon_emission": [40, 20],
       "destination_geo_location": [60.1695, 24.9354],
-      "source_geo_location": [52.2297, 21.0122]
+      "source_geo_location": [52.2297, 21.0122],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Prague, Czech Republic": [
@@ -273,7 +297,8 @@
       "distance": [3200, 2800],
       "carbon_emission": [100, 50],
       "destination_geo_location": [48.2082, 16.3738],
-      "source_geo_location": [50.0755, 14.4378]
+      "source_geo_location": [50.0755, 14.4378],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Toronto, Canada": [
@@ -285,7 +310,8 @@
       "distance": [8500, 8000],
       "carbon_emission": [150, 100],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [43.6511, -79.3832]
+      "source_geo_location": [43.6511, -79.3832],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Singapore, Singapore",
@@ -295,7 +321,8 @@
       "distance": [9500, 9000],
       "carbon_emission": [200, 150],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [43.6511, -79.3832]
+      "source_geo_location": [43.6511, -79.3832],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Hong Kong, China",
@@ -305,7 +332,8 @@
       "distance": [9000, 8500],
       "carbon_emission": [180, 120],
       "destination_geo_location": [22.3193, 114.1694],
-      "source_geo_location": [43.6511, -79.3832]
+      "source_geo_location": [43.6511, -79.3832],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Hong Kong, China": [
@@ -317,7 +345,8 @@
       "distance": [100, 50, 100],
       "carbon_emission": [20, 10, 5],
       "destination_geo_location": [39.9042, 116.4074],
-      "source_geo_location": [22.3193, 114.1694]
+      "source_geo_location": [22.3193, 114.1694],
+      "emission_reason": ["a", "b", "c"]
     }
   ],
   "Tokyo, Japan": [
@@ -329,7 +358,8 @@
       "distance": [3000, 3500],
       "carbon_emission": [80, 40],
       "destination_geo_location": [-33.8688, 151.2093],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Seoul, South Korea",
@@ -339,7 +369,8 @@
       "distance": [1500, 1800],
       "carbon_emission": [60, 30],
       "destination_geo_location": [37.5665, 126.978],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Bangkok, Thailand",
@@ -349,7 +380,8 @@
       "distance": [4000, 4500],
       "carbon_emission": [100, 50],
       "destination_geo_location": [13.7563, 100.5018],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Toronto, Canada",
@@ -359,7 +391,8 @@
       "distance": [8500, 8000],
       "carbon_emission": [450, 600],
       "destination_geo_location": [43.6511, -79.3832],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Los Angeles, USA",
@@ -369,7 +402,8 @@
       "distance": [8500, 8000],
       "carbon_emission": [300, 400],
       "destination_geo_location": [34.0522, -118.2437],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Sydney, Australia": [
@@ -381,7 +415,8 @@
       "distance": [3000, 3500],
       "carbon_emission": [80, 40],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Singapore, Singapore",
@@ -391,7 +426,8 @@
       "distance": [2000, 2500],
       "carbon_emission": [70, 40],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Jakarta, Indonesia",
@@ -401,7 +437,8 @@
       "distance": [1000, 1500],
       "carbon_emission": [50, 20],
       "destination_geo_location": [-6.2088, 106.8456],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Kuala Lumpur, Malaysia",
@@ -411,7 +448,8 @@
       "distance": [1500, 500, 1000],
       "carbon_emission": [60, 30, 15],
       "destination_geo_location": [3.139, 101.6869],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["a", "b", "c"]
     },
     {
       "destination": "New York, USA",
@@ -421,7 +459,8 @@
       "distance": [8500, 8000],
       "carbon_emission": [150, 100],
       "destination_geo_location": [40.7128, -74.006],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Los Angeles, USA",
@@ -431,7 +470,8 @@
       "distance": [9000, 8500],
       "carbon_emission": [200, 150],
       "destination_geo_location": [34.0522, -118.2437],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Seoul, South Korea": [
@@ -443,7 +483,8 @@
       "distance": [1500, 1800],
       "carbon_emission": [60, 30],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [37.5665, 126.978]
+      "source_geo_location": [37.5665, 126.978],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Bangkok, Thailand": [
@@ -455,7 +496,8 @@
       "distance": [4000, 4500],
       "carbon_emission": [100, 50],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [13.7563, 100.5018]
+      "source_geo_location": [13.7563, 100.5018],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Singapore, Singapore": [
@@ -467,7 +509,8 @@
       "distance": [2000, 2500],
       "carbon_emission": [70, 40],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [1.3521, 103.8198]
+      "source_geo_location": [1.3521, 103.8198],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Jakarta, Indonesia",
@@ -477,7 +520,8 @@
       "distance": [1000, 1500],
       "carbon_emission": [50, 20],
       "destination_geo_location": [-6.2088, 106.8456],
-      "source_geo_location": [1.3521, 103.8198]
+      "source_geo_location": [1.3521, 103.8198],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Kuala Lumpur, Malaysia",
@@ -487,7 +531,8 @@
       "distance": [1500, 500, 1000],
       "carbon_emission": [60, 30, 15],
       "destination_geo_location": [3.139, 101.6869],
-      "source_geo_location": [1.3521, 103.8198]
+      "source_geo_location": [1.3521, 103.8198],
+      "emission_reason": ["a", "b", "c"]
     }
   ],
   "Jakarta, Indonesia": [
@@ -499,7 +544,8 @@
       "distance": [1000, 1500],
       "carbon_emission": [50, 20],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [-6.2088, 106.8456]
+      "source_geo_location": [-6.2088, 106.8456],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Kuala Lumpur, Malaysia": [
@@ -511,7 +557,8 @@
       "distance": [1500, 500, 1000],
       "carbon_emission": [60, 30, 15],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [3.139, 101.6869]
+      "source_geo_location": [3.139, 101.6869],
+      "emission_reason": ["a", "b", "c"]
     }
   ],
   "Mumbai, India": [
@@ -523,7 +570,8 @@
       "distance": [12500, 12000],
       "carbon_emission": [200, 100],
       "destination_geo_location": [-33.9249, 18.4241],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Buenos Aires, Argentina",
@@ -533,7 +581,8 @@
       "distance": [14500, 14000],
       "carbon_emission": [250, 150],
       "destination_geo_location": [-34.6037, -58.3816],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Dubai, UAE",
@@ -543,7 +592,8 @@
       "distance": [3500, 3000],
       "carbon_emission": [100, 50],
       "destination_geo_location": [25.276987, 55.296249],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Jakarta, Indonesia",
@@ -553,7 +603,8 @@
       "distance": [1000, 1500],
       "carbon_emission": [50, 20],
       "destination_geo_location": [-6.2088, 106.8456],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Singapore, Singapore",
@@ -563,7 +614,8 @@
       "distance": [2000, 2500],
       "carbon_emission": [70, 40],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Hong Kong, China",
@@ -573,7 +625,8 @@
       "distance": [3500, 3000],
       "carbon_emission": [100, 50],
       "destination_geo_location": [22.3193, 114.1694],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Tokyo, Japan",
@@ -583,7 +636,8 @@
       "distance": [3000, 3500],
       "carbon_emission": [80, 40],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Dubai, UAE": [
@@ -595,7 +649,8 @@
       "distance": [3500, 3000],
       "carbon_emission": [100, 50],
       "destination_geo_location": [19.076, 72.8777],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Cape Town, South Africa",
@@ -605,7 +660,8 @@
       "distance": [12500, 12000],
       "carbon_emission": [200, 100],
       "destination_geo_location": [-33.9249, 18.4241],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Buenos Aires, Argentina",
@@ -615,7 +671,8 @@
       "distance": [14500, 14000],
       "carbon_emission": [250, 150],
       "destination_geo_location": [-34.6037, -58.3816],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "New York, USA",
@@ -625,7 +682,8 @@
       "distance": [5500, 5000],
       "carbon_emission": [100, 50],
       "destination_geo_location": [40.7128, -74.006],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "London, UK",
@@ -635,7 +693,8 @@
       "distance": [4000, 3500],
       "carbon_emission": [150, 100],
       "destination_geo_location": [51.5074, -0.1278],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Cape Town, South Africa": [
@@ -647,7 +706,8 @@
       "distance": [5000, 5500],
       "carbon_emission": [100, 50],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [-33.9249, 18.4241]
+      "source_geo_location": [-33.9249, 18.4241],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Lagos, Nigeria",
@@ -657,7 +717,8 @@
       "distance": [5000, 4000, 4500],
       "carbon_emission": [120, 60, 30],
       "destination_geo_location": [6.5244, 3.3792],
-      "source_geo_location": [-33.9249, 18.4241]
+      "source_geo_location": [-33.9249, 18.4241],
+      "emission_reason": ["a", "b", "c"]
     },
     {
       "destination": "Nairobi, Kenya",
@@ -667,7 +728,8 @@
       "distance": [4000, 3500],
       "carbon_emission": [80, 40],
       "destination_geo_location": [-1.2921, 36.8219],
-      "source_geo_location": [-33.9249, 18.4241]
+      "source_geo_location": [-33.9249, 18.4241],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Rio de Janeiro, Brazil": [
@@ -679,7 +741,8 @@
       "distance": [5000, 5500],
       "carbon_emission": [100, 50],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [-22.9068, -43.1729]
+      "source_geo_location": [-22.9068, -43.1729],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Lagos, Nigeria": [
@@ -691,7 +754,8 @@
       "distance": [5000, 4000, 4500],
       "carbon_emission": [120, 60, 30],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [6.5244, 3.3792]
+      "source_geo_location": [6.5244, 3.3792],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Nairobi, Kenya": [
@@ -703,7 +767,8 @@
       "distance": [4000, 3500],
       "carbon_emission": [80, 40],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [-1.2921, 36.8219]
+      "source_geo_location": [-1.2921, 36.8219],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Buenos Aires, Argentina": [
@@ -715,7 +780,8 @@
       "distance": [4000, 3000, 3500],
       "carbon_emission": [100, 50, 25],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [-34.6037, -58.3816]
+      "source_geo_location": [-34.6037, -58.3816],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Santiago, Chile",
@@ -725,7 +791,8 @@
       "distance": [3000, 2500],
       "carbon_emission": [80, 40],
       "destination_geo_location": [-33.4489, -70.6693],
-      "source_geo_location": [-34.6037, -58.3816]
+      "source_geo_location": [-34.6037, -58.3816],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Lima, Peru",
@@ -735,7 +802,8 @@
       "distance": [5000, 4000, 4500],
       "carbon_emission": [120, 60, 30],
       "destination_geo_location": [-12.0464, -77.0428],
-      "source_geo_location": [-34.6037, -58.3816]
+      "source_geo_location": [-34.6037, -58.3816],
+      "emission_reason": ["a", "b", "c"]
     }
   ],
   "Santiago, Chile": [
@@ -747,7 +815,8 @@
       "distance": [3000, 2500],
       "carbon_emission": [80, 40],
       "destination_geo_location": [-34.6037, -58.3816],
-      "source_geo_location": [-33.4489, -70.6693]
+      "source_geo_location": [-33.4489, -70.6693],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Lima, Peru": [
@@ -759,7 +828,8 @@
       "distance": [5000, 4000, 4500],
       "carbon_emission": [120, 60, 30],
       "destination_geo_location": [-34.6037, -58.3816],
-      "source_geo_location": [-12.0464, -77.0428]
+      "source_geo_location": [-12.0464, -77.0428],
+      "emission_reason": ["a", "b", "c"]
     }
   ],
   "Moscow, Russia": [
@@ -771,7 +841,8 @@
       "distance": [7000, 6000],
       "carbon_emission": [100, 50],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [55.7558, 37.6176]
+      "source_geo_location": [55.7558, 37.6176],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Ulaanbaatar, Mongolia",
@@ -781,7 +852,8 @@
       "distance": [8000, 7000],
       "carbon_emission": [120, 60],
       "destination_geo_location": [47.8864, 106.9057],
-      "source_geo_location": [55.7558, 37.6176]
+      "source_geo_location": [55.7558, 37.6176],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Beijing, China",
@@ -791,7 +863,8 @@
       "distance": [9000, 8000],
       "carbon_emission": [150, 80],
       "destination_geo_location": [39.9042, 116.4074],
-      "source_geo_location": [55.7558, 37.6176]
+      "source_geo_location": [55.7558, 37.6176],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Beijing, China": [
@@ -803,7 +876,8 @@
       "distance": [9000, 8000],
       "carbon_emission": [150, 80],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [39.9042, 116.4074]
+      "source_geo_location": [39.9042, 116.4074],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Hong Kong, China",
@@ -813,7 +887,8 @@
       "distance": [100, 50, 100],
       "carbon_emission": [20, 10, 5],
       "destination_geo_location": [22.3193, 114.1694],
-      "source_geo_location": [39.9042, 116.4074]
+      "source_geo_location": [39.9042, 116.4074],
+      "emission_reason": ["a", "b", "c"]
     }
   ],
   "Astana, Kazakhstan": [
@@ -825,7 +900,8 @@
       "distance": [3000, 2500, 2000],
       "carbon_emission": [60, 30],
       "destination_geo_location": [39.9042, 116.4074],
-      "source_geo_location": [51.1694, 71.4491]
+      "source_geo_location": [51.1694, 71.4491],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Moscow, Russia",
@@ -835,7 +911,8 @@
       "distance": [4000, 3000],
       "carbon_emission": [80, 40],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [51.1694, 71.4491]
+      "source_geo_location": [51.1694, 71.4491],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Ulaanbaatar, Mongolia",
@@ -845,7 +922,8 @@
       "distance": [3500, 2500],
       "carbon_emission": [70, 35],
       "destination_geo_location": [47.8864, 106.9057],
-      "source_geo_location": [51.1694, 71.4491]
+      "source_geo_location": [51.1694, 71.4491],
+      "emission_reason": ["a", "b"]
     }
   ],
   "Ulaanbaatar, Mongolia": [
@@ -857,7 +935,8 @@
       "distance": [3500, 2500],
       "carbon_emission": [70, 35],
       "destination_geo_location": [39.9042, 116.4074],
-      "source_geo_location": [47.8864, 106.9057]
+      "source_geo_location": [47.8864, 106.9057],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Moscow, Russia",
@@ -867,7 +946,8 @@
       "distance": [4500, 3500],
       "carbon_emission": [90, 45],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [47.8864, 106.9057]
+      "source_geo_location": [47.8864, 106.9057],
+      "emission_reason": ["a", "b"]
     },
     {
       "destination": "Astana, Kazakhstan",
@@ -877,7 +957,8 @@
       "distance": [4000, 3000],
       "carbon_emission": [80, 40],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [47.8864, 106.9057]
+      "source_geo_location": [47.8864, 106.9057],
+      "emission_reason": ["a", "b"]
     }
   ]
 }
