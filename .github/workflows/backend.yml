@@ -30,6 +30,4 @@ jobs:
 
       - name: Deploy Backend
         run: |
-          curl -X POST "$DEPLOY_HOOK_URL"
-        env:
-          DEPLOY_HOOK_URL: ${{ secrets.BACKEND_DEPLOY_HOOK }}
+          curl -X POST ${{ secrets.BACKEND_DEPLOY_HOOK }}
