@@ -80,8 +80,35 @@ const validateCity = (city) => {
     return Boolean(graph[city]);
 };
 
+const getRouteEmissionReasons = (metrics) => {
+    minRouteReasons = [];
+    maxRouteReasons = [];
+
+    if (metrics.minDistance > 10000 && metrics.minCarbonEmissions > 250) {
+        minRouteReasons.push("Long distance routes aren't feasible to have low carbon emissions")
+    }
+
+    if (metrics.maxDistance > 10000 && metrics.maxCarbonEmissions > 250) {
+        maxRouteReasons.push("Long distance routes aren't feasible to have low carbon emissions")
+    }
+
+    if (metrics.minDuration < 32 && metrics.minCarbonEmissions > 200) {
+        minRouteReasons.push("Fast transport methods cause more emissions than slow ones")
+    }
+
+    if (metrics.maxDuration < 32 && metrics.maxCarbonEmissions > 200) {
+        maxRouteReasons.push("Fast transport methods cause more emissions than slow ones")
+    }
+
+    return {
+        minRouteReasons: minRouteReasons,
+        maxRouteReasons: maxRouteReasons
+    };
+}
+
 module.exports = {
     findAllRoutes,
     calculateRouteMetrics,
-    validateCity
+    validateCity,
+    getRouteEmissionReasons
 };

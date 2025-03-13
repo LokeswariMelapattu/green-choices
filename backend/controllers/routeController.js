@@ -1,9 +1,10 @@
-const { findAllRoutes, calculateRouteMetrics, validateCity } = require('../models/routeModel');
+const { findAllRoutes, calculateRouteMetrics, validateCity, getRouteEmissionReasons } = require('../models/routeModel');
 const { CONFIG, ERROR_MESSAGES } = require('../utils/constants');
 
 const formatRoutes = (routes) => {
     return routes.map((route, index) => {
         const metrics = calculateRouteMetrics(route);
+        const routeEmissionReasons = getRouteEmissionReasons(metrics);
         return {
             routeNumber: index + 1,
             segments: route.map(segment => ({
@@ -35,6 +36,10 @@ const formatRoutes = (routes) => {
                     minimum: metrics.minCarbonEmissions,
                     maximum: metrics.maxCarbonEmissions
                 }
+            },
+            routeEmissionReasons: {
+                minimum: routeEmissionReasons.minRouteReasons,
+                maximum: routeEmissionReasons.maxRouteReasons
             }
         };
     });
