@@ -18,7 +18,7 @@
     },
     {
         "product_id": 2,
-        "img": "images/shoe2.jpg",
+        "img": "http://localhost:5173/imgs/sneakers.png",
         "name": "GreenStep Runners",
         "price": 59.99,
         "size": [
@@ -35,7 +35,7 @@
     },
     {
         "product_id": 3,
-        "img": "images/shoe3.jpg",
+        "img": "http://localhost:5173/imgs/sneakers.png",
         "name": "NatureWalk Loafers",
         "price": 69.99,
         "size": [
@@ -52,7 +52,7 @@
     },
     {
         "product_id": 4,
-        "img": "images/shoe4.jpg",
+        "img": "http://localhost:5173/imgs/sneakers.png",
         "name": "EarthStride Boots",
         "price": 89.99,
         "size": [
@@ -69,7 +69,7 @@
     },
     {
         "product_id": 5,
-        "img": "images/shoe5.jpg",
+        "img": "http://localhost:5173/imgs/sneakers.png",
         "name": "LeafFlex Trainers",
         "price": 54.99,
         "size": [

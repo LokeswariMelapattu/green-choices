@@ -1,31 +1,40 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import useProducts from "../hooks/useProducts";
+import Header from "../components/Header";
+import { FaGifts } from "react-icons/fa";
 
 const Home = () => {
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const handleViewCart = (e) => {
     e.preventDefault();
-    console.log("View cart button clicked"); 
-    navigate("/cart");  
+    console.log("View cart button clicked");
+    navigate("/cart");
   };
- 
+
+  const { products, loading, error } = useProducts();
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <h2 className="text-2xl font-bold text-center">
-          <span className="text-green-600">Green</span> Logistics
-        </h2>
-         
-        <div className="mt-4 text-center">
-          <a href="#" className="text-sm text-blue-600 hover:underline" onClick={handleViewCart}>
-           Go to Cart
-          </a>
+    <>
+      <Header />
+      <main className="flex min-h-screen bg-gray-100">
+        <div className="container mx-auto px-4 py-8">
+          <div className="flex flex-col justify-center gap-2 
+          bg-gradient-to-br from-[#1FAE5B] via-[#1DA154] to-[#0D4826]
+          text-white w-full h-[350px] p-6 md:p-10
+          rounded-lg shadow-md">
+            <h1 className="text-5xl md:text-6xl font-bold font-quantico">FLASH SALE!!</h1>
+            <FaGifts className="text-7xl md:text-8xl" />
+          </div>
         </div>
-        
-      </div>
-    </div>
+      </main>
+    </>
+
   );
 };
 
