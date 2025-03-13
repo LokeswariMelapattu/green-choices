@@ -82,5 +82,21 @@
         ],
         "description": "Versatile trainers made with hemp fabric and cork insoles.",
         "seller_location": "Melbourne, Australia"
+    },
+    {
+        "product_id": 6,
+        "img": "http://localhost:5173/imgs/sneakers.png",
+        "name": "EcoStride Joggers",
+        "price": 54.99,
+        "size": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+        ],
+        "description": "Eco-friendly joggers made from organic bamboo fabric, featuring cushioned soles for extra comfort.",
+        "seller_location": "Melbourne, Australia"
     }
 ]
