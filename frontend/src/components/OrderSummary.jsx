@@ -2,12 +2,19 @@ import { Card } from "@/components/ui/Card";
 import { DollarSign, Leaf, Timer } from "lucide-react";
 import { useState } from "react";
 import { useTransport } from '@/context/transport-context';
+import ActionButton from "./ui/ActionButton";
+import { useNavigate } from "react-router-dom";
 
 const OrderSummary = () => {
   const { routeTotals } = useTransport();
+  const navigate = useNavigate();
   const [promoCode, setPromoCode] = useState("");
   
   if (!routeTotals) return null;
+
+  const handlePayment = () => {
+    navigate("/paymentsuccess");
+  };
 
   return (
     <Card className="p-6 bg-white/70 backdrop-blur-lg">
@@ -54,6 +61,13 @@ const OrderSummary = () => {
               Apply
             </button>
           </div>
+        </div>
+        <div className="flex items-center justify-center min-h-[100px]">
+          <ActionButton 
+            text="Continue to Payment"
+            onClick={handlePayment}
+            className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors rounded-[12px]">    
+          </ActionButton>
         </div>
       </div>
     </Card>
