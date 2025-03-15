@@ -1,0 +1,684 @@
+.userProfile {
+    background-color: #f7fafc;
+    flex-direction: column;
+    align-items: stretch;
+    padding-bottom: 131px;
+    display: flex;
+    overflow: hidden;
+  }
+  @media (width<=991px) {
+    .userProfile {
+      padding-bottom: 100px;
+    }
+  }
+  .topSection {
+    align-items: start;
+    width: 100%;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .topSection {
+      max-width: 100%;
+    }
+  }
+  .logoContainer {
+    background-color: #f7fafc;
+    border-color: #e5e8eb;
+    border-bottom-width: 1px;
+    flex: auto;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-right: -1050px;
+    padding: 12px 40px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .logoContainer {
+      max-width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  .logoWrapper {
+    justify-content: start;
+    align-self: stretch;
+    align-items: center;
+    gap: 16px;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: flex;
+  }
+  .logoPlaceholder {
+    align-self: stretch;
+    width: 16px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .logoText {
+    color: #0d141c;
+    align-self: stretch;
+    width: 135px;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family:
+      Public Sans,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .greenText {
+    color: rgba(8, 146, 24, 1);
+  }
+  .navContainer {
+    background-color: #f7fafc;
+    flex-wrap: wrap;
+    flex: auto;
+    justify-content: end;
+    align-items: start;
+    gap: 32px;
+    min-height: 47px;
+    margin-top: 5px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .navContainer {
+      max-width: 100%;
+    }
+  }
+  .searchBox {
+    background-color: #e8edf2;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 378px;
+    min-width: 240px;
+    max-width: 480px;
+    min-height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    overflow: hidden;
+  }
+  .searchBoxInner {
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    min-width: 240px;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .searchInputWrapper {
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    padding: 2px;
+    display: flex;
+    overflow: hidden;
+  }
+  @media (width<=991px) {
+    .searchInputWrapper {
+      padding-right: 20px;
+    }
+  }
+  .searchIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    width: 16px;
+  }
+  .navigation {
+    color: #0d141c;
+    justify-content: start;
+    align-items: center;
+    gap: 36px;
+    min-width: 240px;
+    min-height: 40px;
+    font-family:
+      Public Sans,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+  }
+  .navLink {
+    white-space: nowrap;
+    align-self: stretch;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-decoration: none;
+    color: inherit;
+  }
+  @media (width<=991px) {
+    .navLink {
+      white-space: initial;
+    }
+  }
+  .iconButtons {
+    justify-content: start;
+    align-items: start;
+    gap: 8px;
+    display: flex;
+  }
+  .iconButton {
+    background-color: #e8edf2;
+    border: none;
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    width: 40px;
+    max-width: 480px;
+    height: 40px;
+    min-height: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+    display: flex;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .iconButtonInner {
+    flex: 1;
+    align-self: stretch;
+    width: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+  .buttonIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    flex: 1;
+    width: 20px;
+  }
+  .contentContainer {
+    flex-direction: column;
+    align-self: center;
+    align-items: stretch;
+    width: 100%;
+    max-width: 919px;
+    margin-top: 48px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .contentContainer {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  .profileHeader {
+    width: 100%;
+  }
+  .profileColumns {
+    gap: 20px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .profileColumns {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+  .profileColumn {
+    flex-direction: column;
+    align-items: stretch;
+    width: 29%;
+    margin-left: 0;
+    line-height: normal;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .profileColumn {
+      width: 100%;
+    }
+  }
+  .userInfoContainer {
+    flex-direction: column;
+    align-self: stretch;
+    align-items: stretch;
+    margin-top: auto;
+    margin-bottom: auto;
+    font-family:
+      Manrope,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-weight: 700;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .userInfoContainer {
+      margin-top: 40px;
+    }
+  }
+  .userName {
+    color: #0d141c;
+    align-self: start;
+    font-size: 24px;
+    line-height: 1;
+    margin: 0;
+  }
+  .userEmail {
+    color: #575a5e;
+    font-size: 16px;
+    line-height: 28px;
+    margin: 0;
+  }
+  .profileColumnWide {
+    flex-direction: column;
+    align-items: stretch;
+    width: 71%;
+    margin-left: 20px;
+    line-height: normal;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .profileColumnWide {
+      width: 100%;
+    }
+  }
+  .contactInfoContainer {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .contactInfoContainer {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  .editIcon {
+    aspect-ratio: 1.14;
+    object-fit: contain;
+    object-position: center;
+    align-self: end;
+    width: 25px;
+  }
+  @media (width<=991px) {
+    .editIcon {
+      margin-right: 10px;
+    }
+  }
+  .contactInfoBox {
+    background-color: #e8edf2;
+    border-radius: 20px;
+    margin-top: 5px;
+    padding: 16px 30px 26px;
+    overflow: hidden;
+  }
+  @media (width<=991px) {
+    .contactInfoBox {
+      max-width: 100%;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  .contactInfoColumns {
+    gap: 20px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .contactInfoColumns {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+  .contactInfoColumn {
+    flex-direction: column;
+    align-items: stretch;
+    width: 43%;
+    margin-left: 0;
+    line-height: normal;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .contactInfoColumn {
+      width: 100%;
+    }
+  }
+  .contactInfoGroup {
+    color: #575a5e;
+    flex-direction: column;
+    align-items: stretch;
+    font-family:
+      Manrope,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .contactInfoGroup {
+      margin-top: 40px;
+    }
+  }
+  .contactInfoLabel {
+    align-self: start;
+    font-size: 16px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .contactInfoValue {
+    margin-top: 6px;
+    margin: 6px 0 0;
+  }
+  .contactInfoAddress {
+    margin-top: 5px;
+    font-style: normal;
+  }
+  .statsSection {
+    margin-top: 68px;
+  }
+  @media (width<=991px) {
+    .statsSection {
+      max-width: 100%;
+      margin-top: 40px;
+    }
+  }
+  .statsColumns {
+    gap: 20px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .statsColumns {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+    }
+  }
+  .statsColumn {
+    flex-direction: column;
+    align-items: stretch;
+    width: 33%;
+    margin-left: 0;
+    line-height: normal;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .statsColumn {
+      width: 100%;
+    }
+  }
+  .statsBox {
+    background-color: #e8edf2;
+    border-radius: 20px;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: start;
+    width: 100%;
+    padding: 53px 48px 15px 20px;
+    font-family:
+      Manrope,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .statsBox {
+      margin-top: 40px;
+      padding-right: 20px;
+    }
+  }
+  .statsNumber {
+    color: #000;
+    margin-left: 22px;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1;
+    margin: 0 0 0 22px;
+  }
+  @media (width<=991px) {
+    .statsNumber {
+      margin-left: 10px;
+      font-size: 40px;
+    }
+  }
+  .statsLabel {
+    color: #949aa1;
+    margin-top: 38px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 38px 0 0;
+  }
+  .statsBoxHighlighted {
+    background-color: #e8edf2;
+    border: 2px solid #089218;
+    border-radius: 20px;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 44px 17px 15px;
+    font-family:
+      Manrope,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .statsBoxHighlighted {
+      margin-top: 40px;
+      padding-right: 20px;
+    }
+  }
+  .statsNumberWithIcon {
+    color: #000;
+    white-space: nowrap;
+    align-self: start;
+    align-items: stretch;
+    gap: 40px 63px;
+    margin-left: 14px;
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .statsNumberWithIcon {
+      white-space: initial;
+      margin-left: 10px;
+      font-size: 40px;
+    }
+  }
+  .statsIcon {
+    aspect-ratio: 1.43;
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+    width: 67px;
+  }
+  .statsLabelGreen {
+    color: #089218;
+    margin-top: 28px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+    margin: 28px 0 0;
+  }
+  .statsBoxGreen {
+    background-color: #089218;
+    border-radius: 20px;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: stretch;
+    width: 100%;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    font-family:
+      Manrope,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-weight: 700;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .statsBoxGreen {
+      margin-top: 40px;
+    }
+  }
+  .emissionsIcon {
+    aspect-ratio: 1.06;
+    object-fit: contain;
+    object-position: center;
+    align-self: end;
+    width: 36px;
+  }
+  @media (width<=991px) {
+    .emissionsIcon {
+      margin-right: 10px;
+    }
+  }
+  .emissionsContent {
+    flex-direction: column;
+    align-items: start;
+    margin-top: 4px;
+    padding-left: 16px;
+    padding-right: 41px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .emissionsContent {
+      padding-right: 20px;
+    }
+  }
+  .emissionsNumber {
+    color: #e8edf2;
+    margin-left: 11px;
+    font-size: 40px;
+    line-height: 0.7;
+    margin: 0 0 0 11px;
+  }
+  @media (width<=991px) {
+    .emissionsNumber {
+      margin-left: 10px;
+    }
+  }
+  .emissionsLabel {
+    color: #f7fafc;
+    margin-top: 42px;
+    font-size: 16px;
+    line-height: 28px;
+    margin: 42px 0 0;
+  }
+  @media (width<=991px) {
+    .emissionsLabel {
+      margin-top: 40px;
+    }
+  }
+  .milestonesSection {
+    width: 100%;
+  }
+  .milestonesTitle {
+    color: #0d141c;
+    align-self: start;
+    margin-top: 51px;
+    margin-left: 11px;
+    font-family:
+      Manrope,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1;
+    margin: 51px 0 0 11px;
+  }
+  @media (width<=991px) {
+    .milestonesTitle {
+      margin-top: 40px;
+      margin-left: 10px;
+    }
+  }
+  .milestoneCard {
+    color: #575a5e;
+    background-color: #e8edf2;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-self: center;
+    align-items: stretch;
+    gap: 20px;
+    width: 100%;
+    max-width: 896px;
+    margin-top: 21px;
+    padding: 12px 16px;
+    font-family:
+      Manrope,
+      -apple-system,
+      Roboto,
+      Helvetica,
+      sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 28px;
+    display: flex;
+    overflow: hidden;
+  }
+  @media (width<=991px) {
+    .milestoneCard {
+      max-width: 100%;
+    }
+  }
+  .milestoneInfo {
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 40px 53px;
+    display: flex;
+  }
+  @media (width<=991px) {
+    .milestoneInfo {
+      max-width: 100%;
+    }
+  }
+  .milestoneIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+    width: 38px;
+  }
+  .milestoneDescription {
+    flex: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin: auto 0;
+  }
+  @media (width<=991px) {
+    .milestoneDescription {
+      max-width: 100%;
+    }
+  }
+  .milestoneProgress {
+    margin-top: auto;
+    margin-bottom: auto;
+    margin: auto 0;
+  }
+  
