@@ -7,7 +7,7 @@ Follow these steps to get your Express backend running using Node.js .
 ## Prerequisites
 
 - Node.js 22.12 (or later) installed on your machine
-- npm (Node Package Manager)-  
+- npm (Node Package Manager)
 - PostgreSQL 16 or later version
 
 ## Steps

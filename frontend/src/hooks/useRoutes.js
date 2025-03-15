@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { VITE_APP_API_URL } from '../data/constants'
 const useRoutes = () => {
   const [routes, setRoutes] = useState(null);
   const [selectedRoute, setSelectedRoute] = useState(null);
@@ -9,7 +9,7 @@ const useRoutes = () => {
     //Default values for source and destination cities and countries please change it after implementation for checkout page and others
     const fetchRoutes = async (sourceCity = "New York", sourceCountry = "USA", destinationCity = "Warsaw", destinationCountry = "Poland") => {
       try {
-        const response = await fetch(`http://localhost:3000/find-routes/?sourceCountry=${sourceCountry}&destinationCountry=${destinationCountry}&sourceCity=${sourceCity}&destinationCity=${destinationCity}`);
+        const response = await fetch(`${VITE_APP_API_URL}find-routes/?sourceCountry=${sourceCountry}&destinationCountry=${destinationCountry}&sourceCity=${sourceCity}&destinationCity=${destinationCity}`);
         const data = await response.json();
         setRoutes(data);
         if (data.routes.length > 0) {
