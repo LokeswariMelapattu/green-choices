@@ -4,9 +4,6 @@ import Header from "../components/Header";
 import PaymentSuccess from "../components/PaymentSuccess";
 
 const Payment = () => {
-  const navigate = useNavigate(); 
-  const dispatch = useDispatch();
-    
     return (
         <>
         <Header />

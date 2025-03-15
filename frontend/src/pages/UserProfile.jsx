@@ -3,10 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";  
 import Profile from "../components/Profile";
 
-const Payment = () => {
-  const navigate = useNavigate(); 
-  const dispatch = useDispatch();
-    
+const UserProfile = () => {
     return (
         <>
         <Header />
@@ -19,4 +16,4 @@ const Payment = () => {
     );
 }
 
-export default Payment;
+export default UserProfile;
