@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "../components/Header";  
 import PaymentSuccess from "../components/PaymentSuccess";
 
-const Payment = () => {
+const Payment= () => {
     return (
         <>
         <Header />

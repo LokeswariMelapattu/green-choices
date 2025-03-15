@@ -7,7 +7,7 @@ import Cart from "./pages/cart";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
-import UserProfile from "./pages/userprofile";
+import UserProfile from "./pages/myprofile";
 import PaymentSuccess from "./pages/paymentsuccess";
 import { Provider } from "react-redux"
 import { store } from "./redux/store"

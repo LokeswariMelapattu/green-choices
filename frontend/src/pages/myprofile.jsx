@@ -1,4 +1,3 @@
-import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom"; 
 import Header from "../components/Header";  
 import Profile from "../components/Profile";
