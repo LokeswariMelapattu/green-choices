@@ -80,8 +80,45 @@ const validateCity = (city) => {
     return Boolean(graph[city]);
 };
 
+const getRouteEmissionReasons = (metrics) => {
+    minRouteReasons = [];
+    maxRouteReasons = [];
+
+    if (metrics.minDistance > CONFIG.MAX_DISTANCE && metrics.minCarbonEmissions > CONFIG.MAX_EMISSIONS_DISTANCE) {
+        minRouteReasons.push("Long distance routes aren't feasible to have low carbon emissions")
+    }
+
+    if (metrics.maxDistance > CONFIG.MAX_DISTANCE && metrics.maxCarbonEmissions > CONFIG.MAX_EMISSIONS_DISTANCE) {
+        maxRouteReasons.push("Long distance routes aren't feasible to have low carbon emissions")
+    }
+
+    if (metrics.minDuration < CONFIG.MIN_DURATION && metrics.minCarbonEmissions > CONFIG.MAX_EMISSIONS_DURATION) {
+        minRouteReasons.push("Fast transport methods cause more emissions than slow ones")
+    }
+
+    if (metrics.maxDuration < CONFIG.MIN_DURATION && metrics.maxCarbonEmissions > CONFIG.MAX_EMISSIONS_DURATION) {
+        maxRouteReasons.push("Fast transport methods cause more emissions than slow ones")
+    }
+
+    // If the emissions are high but the other options aren't the reason, then gives this reason
+    // Could be changed later if someone gets an idea for this
+    if (minRouteReasons.length === 0 && metrics.minCarbonEmissions > CONFIG.MAX_EMISSIONS) {
+        minRouteReasons.push("Emissions for this route are high for due undefined reasons")
+    }
+
+    if (maxRouteReasons.length === 0 && metrics.maxCarbonEmissions > CONFIG.MAX_EMISSIONS) {
+        maxRouteReasons.push("Emissions for this route are high for due undefined reasons")
+    }
+
+    return {
+        minRouteReasons: minRouteReasons,
+        maxRouteReasons: maxRouteReasons
+    };
+}
+
 module.exports = {
     findAllRoutes,
     calculateRouteMetrics,
-    validateCity
+    validateCity,
+    getRouteEmissionReasons
 };
