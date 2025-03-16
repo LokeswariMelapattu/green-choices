@@ -7,9 +7,10 @@
       "cost": [700, 1000],
       "duration": [15, 5],
       "distance": [5500, 5000],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [50, 100],
       "destination_geo_location": [40.4168, -3.7038],
-      "source_geo_location": [40.7128, -74.006]
+      "source_geo_location": [40.7128, -74.006],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "London, UK",
@@ -17,9 +18,10 @@
       "cost": [800, 1200],
       "duration": [7, 3],
       "distance": [4000, 3500],
-      "carbon_emission": [150, 100],
+      "carbon_emission": [100, 150],
       "destination_geo_location": [51.5074, -0.1278],
-      "source_geo_location": [40.7128, -74.006]
+      "source_geo_location": [40.7128, -74.006],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Paris, France",
@@ -27,9 +29,10 @@
       "cost": [800, 900],
       "duration": [12, 6],
       "distance": [4800, 4500],
-      "carbon_emission": [120, 80],
+      "carbon_emission": [45, 150],
       "destination_geo_location": [48.8566, 2.3522],
-      "source_geo_location": [40.7128, -74.006]
+      "source_geo_location": [40.7128, -74.006],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Los Angeles, USA": [
@@ -39,9 +42,10 @@
       "cost": [300, 500],
       "duration": [40, 6],
       "distance": [4500, 4000],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [100, 150],
       "destination_geo_location": [40.7128, -74.006],
-      "source_geo_location": [34.0522, -118.2437]
+      "source_geo_location": [34.0522, -118.2437],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Tokyo, Japan",
@@ -49,9 +53,10 @@
       "cost": [1200, 1500],
       "duration": [20, 10],
       "distance": [8500, 8000],
-      "carbon_emission": [150, 100],
+      "carbon_emission": [150, 260],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [34.0522, -118.2437]
+      "source_geo_location": [34.0522, -118.2437],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Long distance air travel causes a lot of emissions"]
     },
     {
       "destination": "Sydney, Australia",
@@ -59,9 +64,10 @@
       "cost": [1500, 1800],
       "duration": [25, 15],
       "distance": [9000, 8500],
-      "carbon_emission": [200, 150],
+      "carbon_emission": [180, 300],
       "destination_geo_location": [-33.8688, 151.2093],
-      "source_geo_location": [34.0522, -118.2437]
+      "source_geo_location": [34.0522, -118.2437],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Long distance air travel causes a lot of emissions"]
     }
   ],
   "Madrid, Spain": [
@@ -71,9 +77,10 @@
       "cost": [200, 300],
       "duration": [10, 2],
       "distance": [1500, 1200],
-      "carbon_emission": [50, 20],
+      "carbon_emission": [40, 60],
       "destination_geo_location": [48.8566, 2.3522],
-      "source_geo_location": [40.4168, -3.7038]
+      "source_geo_location": [40.4168, -3.7038],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Berlin, Germany",
@@ -81,9 +88,10 @@
       "cost": [300, 400],
       "duration": [12, 3],
       "distance": [2500, 2000],
-      "carbon_emission": [70, 30],
+      "carbon_emission": [60, 70],
       "destination_geo_location": [52.52, 13.405],
-      "source_geo_location": [40.4168, -3.7038]
+      "source_geo_location": [40.4168, -3.7038],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Rome, Italy",
@@ -91,9 +99,10 @@
       "cost": [350, 400, 500],
       "duration": [14, 11, 4],
       "distance": [2100, 1900, 1800],
-      "carbon_emission": [80, 40, 20],
+      "carbon_emission": [80, 40, 80],
       "destination_geo_location": [41.9028, 12.4964],
-      "source_geo_location": [40.4168, -3.7038]
+      "source_geo_location": [40.4168, -3.7038],
+      "emission_reason": ["", "", ""]
     }
   ],
   "Rome, Italy": [
@@ -103,9 +112,10 @@
       "cost": [600, 700],
       "duration": [8, 4],
       "distance": [3200, 2800],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [30, 50],
       "destination_geo_location": [48.2082, 16.3738],
-      "source_geo_location": [41.9028, 12.4964]
+      "source_geo_location": [41.9028, 12.4964],
+      "emission_reason": ["", ""]
     }
   ],
   "Paris, France": [
@@ -115,9 +125,10 @@
       "cost": [600, 500],
       "duration": [20, 3],
       "distance": [3500, 3000],
-      "carbon_emission": [120, 60],
+      "carbon_emission": [120, 160],
       "destination_geo_location": [60.1695, 24.9354],
-      "source_geo_location": [48.8566, 2.3522]
+      "source_geo_location": [48.8566, 2.3522],
+      "emission_reason": ["Route has the truck going on ship from Talinn to Helsinki", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Amsterdam, Netherlands",
@@ -125,9 +136,10 @@
       "cost": [300, 400],
       "duration": [8, 2],
       "distance": [1500, 1200],
-      "carbon_emission": [50, 30],
+      "carbon_emission": [40, 50],
       "destination_geo_location": [52.3676, 4.9041],
-      "source_geo_location": [48.8566, 2.3522]
+      "source_geo_location": [48.8566, 2.3522],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Brussels, Belgium",
@@ -135,9 +147,10 @@
       "cost": [250, 350],
       "duration": [6, 1],
       "distance": [1100, 1000],
-      "carbon_emission": [40, 20],
+      "carbon_emission": [40, 50],
       "destination_geo_location": [50.8503, 4.3517],
-      "source_geo_location": [48.8566, 2.3522]
+      "source_geo_location": [48.8566, 2.3522],
+      "emission_reason": ["", ""]
     }
   ],
   "Helsinki, Finland": [
@@ -147,9 +160,10 @@
       "cost": [300, 200],
       "duration": [8, 2],
       "distance": [1200, 1000],
-      "carbon_emission": [40, 20],
+      "carbon_emission": [50, 80],
       "destination_geo_location": [52.2297, 21.0122],
-      "source_geo_location": [60.1695, 24.9354]
+      "source_geo_location": [60.1695, 24.9354],
+      "emission_reason": ["", ""]
     }
   ],
   "Amsterdam, Netherlands": [
@@ -159,9 +173,10 @@
       "cost": [250, 350],
       "duration": [2, 1],
       "distance": [1100, 1000],
-      "carbon_emission": [40, 20],
+      "carbon_emission": [20, 40],
       "destination_geo_location": [50.8503, 4.3517],
-      "source_geo_location": [52.3676, 4.9041]
+      "source_geo_location": [52.3676, 4.9041],
+      "emission_reason": ["", ""]
     }
   ],
   "Brussels, Belgium": [
@@ -171,9 +186,10 @@
       "cost": [300, 400],
       "duration": [2, 1],
       "distance": [1500, 1200],
-      "carbon_emission": [50, 30],
+      "carbon_emission": [20, 40],
       "destination_geo_location": [52.3676, 4.9041],
-      "source_geo_location": [50.8503, 4.3517]
+      "source_geo_location": [50.8503, 4.3517],
+      "emission_reason": ["", ""]
     }
   ],
   "London, UK": [
@@ -183,9 +199,10 @@
       "cost": [300, 400],
       "duration": [8, 2],
       "distance": [2000, 1500],
-      "carbon_emission": [60, 30],
+      "carbon_emission": [60, 70],
       "destination_geo_location": [52.52, 13.405],
-      "source_geo_location": [51.5074, -0.1278]
+      "source_geo_location": [51.5074, -0.1278],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Rome, Italy",
@@ -193,9 +210,10 @@
       "cost": [500, 550, 600],
       "duration": [14, 10, 3],
       "distance": [3000, 2700, 2500],
-      "carbon_emission": [70, 40, 20],
+      "carbon_emission": [70, 40, 90],
       "destination_geo_location": [41.9028, 12.4964],
-      "source_geo_location": [51.5074, -0.1278]
+      "source_geo_location": [51.5074, -0.1278],
+      "emission_reason": ["", "", ""]
     },
     {
       "destination": "Vienna, Austria",
@@ -203,9 +221,10 @@
       "cost": [600, 700],
       "duration": [16, 4],
       "distance": [3200, 2800],
-      "carbon_emission": [80, 50],
+      "carbon_emission": [70, 90],
       "destination_geo_location": [48.2082, 16.3738],
-      "source_geo_location": [51.5074, -0.1278]
+      "source_geo_location": [51.5074, -0.1278],
+      "emission_reason": ["", ""]
     }
   ],
   "Vienna, Austria": [
@@ -215,9 +234,10 @@
       "cost": [600, 700],
       "duration": [8, 4],
       "distance": [3200, 2800],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [30, 50],
       "destination_geo_location": [41.9028, 12.4964],
-      "source_geo_location": [48.2082, 16.3738]
+      "source_geo_location": [48.2082, 16.3738],
+      "emission_reason": ["", ""]
     }
   ],
   "Berlin, Germany": [
@@ -227,9 +247,10 @@
       "cost": [500, 400],
       "duration": [18, 2],
       "distance": [3000, 2500],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [80, 100],
       "destination_geo_location": [60.1695, 24.9354],
-      "source_geo_location": [52.52, 13.405]
+      "source_geo_location": [52.52, 13.405],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Warsaw, Poland",
@@ -237,9 +258,10 @@
       "cost": [300, 200],
       "duration": [6, 1],
       "distance": [1200, 1000],
-      "carbon_emission": [40, 20],
+      "carbon_emission": [30, 50],
       "destination_geo_location": [52.2297, 21.0122],
-      "source_geo_location": [52.52, 13.405]
+      "source_geo_location": [52.52, 13.405],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Prague, Czech Republic",
@@ -247,9 +269,10 @@
       "cost": [350, 250],
       "duration": [7, 2],
       "distance": [1400, 1200],
-      "carbon_emission": [50, 30],
+      "carbon_emission": [30, 50],
       "destination_geo_location": [50.0755, 14.4378],
-      "source_geo_location": [52.52, 13.405]
+      "source_geo_location": [52.52, 13.405],
+      "emission_reason": ["", ""]
     }
   ],
   "Warsaw, Poland": [
@@ -259,9 +282,10 @@
       "cost": [300, 200],
       "duration": [8, 2],
       "distance": [1200, 1000],
-      "carbon_emission": [40, 20],
+      "carbon_emission": [40, 60],
       "destination_geo_location": [60.1695, 24.9354],
-      "source_geo_location": [52.2297, 21.0122]
+      "source_geo_location": [52.2297, 21.0122],
+      "emission_reason": ["", ""]
     }
   ],
   "Prague, Czech Republic": [
@@ -271,9 +295,10 @@
       "cost": [600, 700],
       "duration": [8, 2],
       "distance": [3200, 2800],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [70, 90],
       "destination_geo_location": [48.2082, 16.3738],
-      "source_geo_location": [50.0755, 14.4378]
+      "source_geo_location": [50.0755, 14.4378],
+      "emission_reason": ["", ""]
     }
   ],
   "Toronto, Canada": [
@@ -283,9 +308,10 @@
       "cost": [1200, 1500],
       "duration": [20, 10],
       "distance": [8500, 8000],
-      "carbon_emission": [150, 100],
+      "carbon_emission": [100, 240],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [43.6511, -79.3832]
+      "source_geo_location": [43.6511, -79.3832],
+      "emission_reason": ["", "Long distance air travel causes a lot of emissions"]
     },
     {
       "destination": "Singapore, Singapore",
@@ -293,9 +319,10 @@
       "cost": [1800, 2000],
       "duration": [24, 12],
       "distance": [9500, 9000],
-      "carbon_emission": [200, 150],
+      "carbon_emission": [120, 250],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [43.6511, -79.3832]
+      "source_geo_location": [43.6511, -79.3832],
+      "emission_reason": ["", "Long distance air travel causes a lot of emissions"]
     },
     {
       "destination": "Hong Kong, China",
@@ -303,9 +330,10 @@
       "cost": [1600, 1800],
       "duration": [22, 11],
       "distance": [9000, 8500],
-      "carbon_emission": [180, 120],
+      "carbon_emission": [160, 240],
       "destination_geo_location": [22.3193, 114.1694],
-      "source_geo_location": [43.6511, -79.3832]
+      "source_geo_location": [43.6511, -79.3832],
+      "emission_reason": ["Ship uses high emission fuel", "Aircraft used for this route is inefficient"]
     }
   ],
   "Hong Kong, China": [
@@ -315,9 +343,10 @@
       "cost": [1200, 600, 1600],
       "duration": [8, 12, 2],
       "distance": [100, 50, 100],
-      "carbon_emission": [20, 10, 5],
+      "carbon_emission": [40, 20, 60],
       "destination_geo_location": [39.9042, 116.4074],
-      "source_geo_location": [22.3193, 114.1694]
+      "source_geo_location": [22.3193, 114.1694],
+      "emission_reason": ["", "", ""]
     }
   ],
   "Tokyo, Japan": [
@@ -327,9 +356,10 @@
       "cost": [600, 800],
       "duration": [5, 10],
       "distance": [3000, 3500],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [80, 140],
       "destination_geo_location": [-33.8688, 151.2093],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["", "Long distance air travel causes a lot of emissions"]
     },
     {
       "destination": "Seoul, South Korea",
@@ -337,9 +367,10 @@
       "cost": [400, 600],
       "duration": [2, 4],
       "distance": [1500, 1800],
-      "carbon_emission": [60, 30],
+      "carbon_emission": [40, 100],
       "destination_geo_location": [37.5665, 126.978],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Bangkok, Thailand",
@@ -347,9 +378,10 @@
       "cost": [700, 900],
       "duration": [6, 12],
       "distance": [4000, 4500],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [80, 120],
       "destination_geo_location": [13.7563, 100.5018],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Toronto, Canada",
@@ -357,9 +389,10 @@
       "cost": [1200, 1500],
       "duration": [20, 10],
       "distance": [8500, 8000],
-      "carbon_emission": [450, 600],
+      "carbon_emission": [120, 270],
       "destination_geo_location": [43.6511, -79.3832],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Long distance air travel causes a lot of emissions"]
     },
     {
       "destination": "Los Angeles, USA",
@@ -367,9 +400,10 @@
       "cost": [1000, 1200],
       "duration": [20, 10],
       "distance": [8500, 8000],
-      "carbon_emission": [300, 400],
+      "carbon_emission": [110, 250],
       "destination_geo_location": [34.0522, -118.2437],
-      "source_geo_location": [35.6895, 139.6917]
+      "source_geo_location": [35.6895, 139.6917],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Long distance air travel causes a lot of emissions"]
     }
   ],
   "Sydney, Australia": [
@@ -379,9 +413,10 @@
       "cost": [600, 800],
       "duration": [5, 10],
       "distance": [3000, 3500],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [80, 140],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Singapore, Singapore",
@@ -389,9 +424,10 @@
       "cost": [500, 700],
       "duration": [6, 8],
       "distance": [2000, 2500],
-      "carbon_emission": [70, 40],
+      "carbon_emission": [70, 130],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Jakarta, Indonesia",
@@ -399,9 +435,10 @@
       "cost": [300, 500],
       "duration": [3, 6],
       "distance": [1000, 1500],
-      "carbon_emission": [50, 20],
+      "carbon_emission": [50, 90],
       "destination_geo_location": [-6.2088, 106.8456],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Kuala Lumpur, Malaysia",
@@ -409,9 +446,10 @@
       "cost": [300, 200, 400],
       "duration": [6, 2, 4],
       "distance": [1500, 500, 1000],
-      "carbon_emission": [60, 30, 15],
+      "carbon_emission": [60, 40, 100],
       "destination_geo_location": [3.139, 101.6869],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["", "", ""]
     },
     {
       "destination": "New York, USA",
@@ -419,9 +457,10 @@
       "cost": [1000, 1200],
       "duration": [20, 10],
       "distance": [8500, 8000],
-      "carbon_emission": [150, 100],
+      "carbon_emission": [130, 170],
       "destination_geo_location": [40.7128, -74.006],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Long distance air travel causes a lot of emissions"]
     },
     {
       "destination": "Los Angeles, USA",
@@ -429,9 +468,10 @@
       "cost": [1500, 1800],
       "duration": [25, 15],
       "distance": [9000, 8500],
-      "carbon_emission": [200, 150],
+      "carbon_emission": [120, 150],
       "destination_geo_location": [34.0522, -118.2437],
-      "source_geo_location": [-33.8688, 151.2093]
+      "source_geo_location": [-33.8688, 151.2093],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Long distance air travel causes a lot of emissions"]
     }
   ],
   "Seoul, South Korea": [
@@ -441,9 +481,10 @@
       "cost": [400, 600],
       "duration": [2, 4],
       "distance": [1500, 1800],
-      "carbon_emission": [60, 30],
+      "carbon_emission": [30, 60],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [37.5665, 126.978]
+      "source_geo_location": [37.5665, 126.978],
+      "emission_reason": ["", ""]
     }
   ],
   "Bangkok, Thailand": [
@@ -453,9 +494,10 @@
       "cost": [700, 900],
       "duration": [6, 12],
       "distance": [4000, 4500],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [100, 150],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [13.7563, 100.5018]
+      "source_geo_location": [13.7563, 100.5018],
+      "emission_reason": ["", "Aircraft used for this route is inefficient"]
     }
   ],
   "Singapore, Singapore": [
@@ -465,9 +507,10 @@
       "cost": [500, 700],
       "duration": [6, 8],
       "distance": [2000, 2500],
-      "carbon_emission": [70, 40],
+      "carbon_emission": [60, 100],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [1.3521, 103.8198]
+      "source_geo_location": [1.3521, 103.8198],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Jakarta, Indonesia",
@@ -475,9 +518,10 @@
       "cost": [300, 500],
       "duration": [3, 6],
       "distance": [1000, 1500],
-      "carbon_emission": [50, 20],
+      "carbon_emission": [50, 90],
       "destination_geo_location": [-6.2088, 106.8456],
-      "source_geo_location": [1.3521, 103.8198]
+      "source_geo_location": [1.3521, 103.8198],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Kuala Lumpur, Malaysia",
@@ -485,9 +529,10 @@
       "cost": [300, 200, 400],
       "duration": [6, 2, 4],
       "distance": [1500, 500, 1000],
-      "carbon_emission": [60, 30, 15],
+      "carbon_emission": [60, 30, 80],
       "destination_geo_location": [3.139, 101.6869],
-      "source_geo_location": [1.3521, 103.8198]
+      "source_geo_location": [1.3521, 103.8198],
+      "emission_reason": ["", "", ""]
     }
   ],
   "Jakarta, Indonesia": [
@@ -497,9 +542,10 @@
       "cost": [300, 500],
       "duration": [3, 6],
       "distance": [1000, 1500],
-      "carbon_emission": [50, 20],
+      "carbon_emission": [50, 120],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [-6.2088, 106.8456]
+      "source_geo_location": [-6.2088, 106.8456],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Kuala Lumpur, Malaysia": [
@@ -509,9 +555,10 @@
       "cost": [300, 200, 400],
       "duration": [6, 2, 4],
       "distance": [1500, 500, 1000],
-      "carbon_emission": [60, 30, 15],
+      "carbon_emission": [60, 30, 120],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [3.139, 101.6869]
+      "source_geo_location": [3.139, 101.6869],
+      "emission_reason": ["", "", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Mumbai, India": [
@@ -521,9 +568,10 @@
       "cost": [1600, 1800],
       "duration": [30, 15],
       "distance": [12500, 12000],
-      "carbon_emission": [200, 100],
+      "carbon_emission": [110, 250],
       "destination_geo_location": [-33.9249, 18.4241],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Aircraft used for this route is inefficient"]
     },
     {
       "destination": "Buenos Aires, Argentina",
@@ -531,9 +579,10 @@
       "cost": [2000, 2200],
       "duration": [536, 18],
       "distance": [14500, 14000],
-      "carbon_emission": [250, 150],
+      "carbon_emission": [210, 400],
       "destination_geo_location": [-34.6037, -58.3816],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Long distance air travel causes a lot of emissions"]
     },
     {
       "destination": "Dubai, UAE",
@@ -541,9 +590,10 @@
       "cost": [600, 800],
       "duration": [8, 4],
       "distance": [3500, 3000],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [100, 160],
       "destination_geo_location": [25.276987, 55.296249],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Jakarta, Indonesia",
@@ -551,9 +601,10 @@
       "cost": [300, 500],
       "duration": [3, 6],
       "distance": [1000, 1500],
-      "carbon_emission": [50, 20],
+      "carbon_emission": [60, 90],
       "destination_geo_location": [-6.2088, 106.8456],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Singapore, Singapore",
@@ -561,9 +612,10 @@
       "cost": [500, 700],
       "duration": [6, 8],
       "distance": [2000, 2500],
-      "carbon_emission": [70, 40],
+      "carbon_emission": [70, 100],
       "destination_geo_location": [1.3521, 103.8198],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Hong Kong, China",
@@ -571,9 +623,10 @@
       "cost": [600, 800],
       "duration": [8, 4],
       "distance": [3500, 3000],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [100, 150],
       "destination_geo_location": [22.3193, 114.1694],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Tokyo, Japan",
@@ -581,9 +634,10 @@
       "cost": [600, 800],
       "duration": [5, 10],
       "distance": [3000, 3500],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [110, 160],
       "destination_geo_location": [35.6895, 139.6917],
-      "source_geo_location": [19.076, 72.8777]
+      "source_geo_location": [19.076, 72.8777],
+      "emission_reason": ["Ship for this route has an inefficient engine", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Dubai, UAE": [
@@ -593,9 +647,10 @@
       "cost": [600, 800],
       "duration": [8, 4],
       "distance": [3500, 3000],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [100, 150],
       "destination_geo_location": [19.076, 72.8777],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Cape Town, South Africa",
@@ -603,9 +658,10 @@
       "cost": [1600, 1800],
       "duration": [30, 15],
       "distance": [12500, 12000],
-      "carbon_emission": [200, 100],
+      "carbon_emission": [160, 210],
       "destination_geo_location": [-33.9249, 18.4241],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["Ship for this route uses cheap high emission fuel", "Aircraft used for this route is inefficient"]
     },
     {
       "destination": "Buenos Aires, Argentina",
@@ -613,9 +669,10 @@
       "cost": [2000, 2200],
       "duration": [536, 18],
       "distance": [14500, 14000],
-      "carbon_emission": [250, 150],
+      "carbon_emission": [210, 300],
       "destination_geo_location": [-34.6037, -58.3816],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["Ship for this route uses cheap high emission fuel", "Aircraft used for this route is inefficient"]
     },
     {
       "destination": "New York, USA",
@@ -623,9 +680,10 @@
       "cost": [700, 1000],
       "duration": [15, 5],
       "distance": [5500, 5000],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [130, 230],
       "destination_geo_location": [40.7128, -74.006],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["Long distance sea travel still causes a lot of emissions", "Long distance air travel causes a lot of emissions"]
     },
     {
       "destination": "London, UK",
@@ -633,9 +691,10 @@
       "cost": [800, 1200],
       "duration": [7, 3],
       "distance": [4000, 3500],
-      "carbon_emission": [150, 100],
+      "carbon_emission": [100, 200],
       "destination_geo_location": [51.5074, -0.1278],
-      "source_geo_location": [25.276987, 55.296249]
+      "source_geo_location": [25.276987, 55.296249],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Cape Town, South Africa": [
@@ -645,9 +704,10 @@
       "cost": [700, 900],
       "duration": [8, 16],
       "distance": [5000, 5500],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [100, 150],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [-33.9249, 18.4241]
+      "source_geo_location": [-33.9249, 18.4241],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Lagos, Nigeria",
@@ -655,9 +715,10 @@
       "cost": [700, 600, 800],
       "duration": [18, 6, 12],
       "distance": [5000, 4000, 4500],
-      "carbon_emission": [120, 60, 30],
+      "carbon_emission": [120, 60, 130],
       "destination_geo_location": [6.5244, 3.3792],
-      "source_geo_location": [-33.9249, 18.4241]
+      "source_geo_location": [-33.9249, 18.4241],
+      "emission_reason": ["Some roads for this route aren't in the best condition", "", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Nairobi, Kenya",
@@ -665,9 +726,10 @@
       "cost": [600, 700],
       "duration": [15, 10],
       "distance": [4000, 3500],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [100, 140],
       "destination_geo_location": [-1.2921, 36.8219],
-      "source_geo_location": [-33.9249, 18.4241]
+      "source_geo_location": [-33.9249, 18.4241],
+      "emission_reason": ["Some roads for this route aren't in the best condition", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Rio de Janeiro, Brazil": [
@@ -677,9 +739,10 @@
       "cost": [700, 900],
       "duration": [8, 16],
       "distance": [5000, 5500],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [100, 150],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [-22.9068, -43.1729]
+      "source_geo_location": [-22.9068, -43.1729],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Lagos, Nigeria": [
@@ -689,9 +752,10 @@
       "cost": [700, 600, 800],
       "duration": [18, 6, 12],
       "distance": [5000, 4000, 4500],
-      "carbon_emission": [120, 60, 30],
+      "carbon_emission": [120, 60, 130],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [6.5244, 3.3792]
+      "source_geo_location": [6.5244, 3.3792],
+      "emission_reason": ["Some roads for this route aren't in the best condition", "", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Nairobi, Kenya": [
@@ -701,9 +765,10 @@
       "cost": [600, 700],
       "duration": [15, 10],
       "distance": [4000, 3500],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [80, 140],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [-1.2921, 36.8219]
+      "source_geo_location": [-1.2921, 36.8219],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Buenos Aires, Argentina": [
@@ -713,9 +778,10 @@
       "cost": [700, 600, 800],
       "duration": [21, 7, 14],
       "distance": [4000, 3000, 3500],
-      "carbon_emission": [100, 50, 25],
+      "carbon_emission": [90, 50, 110],
       "destination_geo_location": [-22.9068, -43.1729],
-      "source_geo_location": [-34.6037, -58.3816]
+      "source_geo_location": [-34.6037, -58.3816],
+      "emission_reason": ["", "", "Aircrafts cause more emissions than other transport methods"]
     },
     {
       "destination": "Santiago, Chile",
@@ -723,9 +789,10 @@
       "cost": [600, 700],
       "duration": [15, 10],
       "distance": [3000, 2500],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [80, 90],
       "destination_geo_location": [-33.4489, -70.6693],
-      "source_geo_location": [-34.6037, -58.3816]
+      "source_geo_location": [-34.6037, -58.3816],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Lima, Peru",
@@ -733,9 +800,10 @@
       "cost": [800, 700, 900],
       "duration": [18, 6, 12],
       "distance": [5000, 4000, 4500],
-      "carbon_emission": [120, 60, 30],
+      "carbon_emission": [120, 70, 130],
       "destination_geo_location": [-12.0464, -77.0428],
-      "source_geo_location": [-34.6037, -58.3816]
+      "source_geo_location": [-34.6037, -58.3816],
+      "emission_reason": ["Some roads for this route aren't in the best condition", "", "Aircrafts cause more emissions than other transport methods"]
     }
   ],
   "Santiago, Chile": [
@@ -745,9 +813,10 @@
       "cost": [600, 700],
       "duration": [15, 10],
       "distance": [3000, 2500],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [80, 90],
       "destination_geo_location": [-34.6037, -58.3816],
-      "source_geo_location": [-33.4489, -70.6693]
+      "source_geo_location": [-33.4489, -70.6693],
+      "emission_reason": ["", ""]
     }
   ],
   "Lima, Peru": [
@@ -757,9 +826,10 @@
       "cost": [800, 700, 900],
       "duration": [18, 6, 12],
       "distance": [5000, 4000, 4500],
-      "carbon_emission": [120, 60, 30],
+      "carbon_emission": [120, 70, 130],
       "destination_geo_location": [-34.6037, -58.3816],
-      "source_geo_location": [-12.0464, -77.0428]
+      "source_geo_location": [-12.0464, -77.0428],
+      "emission_reason": ["Some roads for this route aren't in the best condition", "", "Aircrafts cause more emissions than other transport methods"]
     }
   ],
   "Moscow, Russia": [
@@ -769,9 +839,10 @@
       "cost": [800, 1200],
       "duration": [24, 8],
       "distance": [7000, 6000],
-      "carbon_emission": [100, 50],
+      "carbon_emission": [100, 150],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [55.7558, 37.6176]
+      "source_geo_location": [55.7558, 37.6176],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Ulaanbaatar, Mongolia",
@@ -779,9 +850,10 @@
       "cost": [1000, 1400],
       "duration": [30, 10],
       "distance": [8000, 7000],
-      "carbon_emission": [120, 60],
+      "carbon_emission": [120, 170],
       "destination_geo_location": [47.8864, 106.9057],
-      "source_geo_location": [55.7558, 37.6176]
+      "source_geo_location": [55.7558, 37.6176],
+      "emission_reason": ["Some roads for this route aren't in the best condition", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Beijing, China",
@@ -789,9 +861,10 @@
       "cost": [1200, 1600],
       "duration": [36, 12],
       "distance": [9000, 8000],
-      "carbon_emission": [150, 80],
+      "carbon_emission": [150, 180],
       "destination_geo_location": [39.9042, 116.4074],
-      "source_geo_location": [55.7558, 37.6176]
+      "source_geo_location": [55.7558, 37.6176],
+      "emission_reason": ["Some roads for this route aren't in the best condition", "Aircraft used for this route isn't the most efficient"]
     }
   ],
   "Beijing, China": [
@@ -801,19 +874,21 @@
       "cost": [1200, 1600],
       "duration": [36, 12],
       "distance": [9000, 8000],
-      "carbon_emission": [150, 80],
+      "carbon_emission": [150, 180],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [39.9042, 116.4074]
+      "source_geo_location": [39.9042, 116.4074],
+      "emission_reason": ["Some roads for this route aren't in the best condition", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Hong Kong, China",
       "mode": ["road", "sea", "plane"],
       "cost": [1200, 600, 1600],
       "duration": [8, 12, 2],
-      "distance": [100, 50, 100],
+      "distance": [100, 50, 110],
       "carbon_emission": [20, 10, 5],
       "destination_geo_location": [22.3193, 114.1694],
-      "source_geo_location": [39.9042, 116.4074]
+      "source_geo_location": [39.9042, 116.4074],
+      "emission_reason": ["", "", "Aircrafts cause more emissions than other transport methods"]
     }
   ],
   "Astana, Kazakhstan": [
@@ -823,9 +898,10 @@
       "cost": [500, 400],
       "duration": [15, 5],
       "distance": [3000, 2500, 2000],
-      "carbon_emission": [60, 30],
+      "carbon_emission": [60, 90],
       "destination_geo_location": [39.9042, 116.4074],
-      "source_geo_location": [51.1694, 71.4491]
+      "source_geo_location": [51.1694, 71.4491],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Moscow, Russia",
@@ -833,9 +909,10 @@
       "cost": [700, 600],
       "duration": [18, 6],
       "distance": [4000, 3000],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [80, 140],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [51.1694, 71.4491]
+      "source_geo_location": [51.1694, 71.4491],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Ulaanbaatar, Mongolia",
@@ -843,9 +920,10 @@
       "cost": [600, 500],
       "duration": [15, 5],
       "distance": [3500, 2500],
-      "carbon_emission": [70, 35],
+      "carbon_emission": [70, 80],
       "destination_geo_location": [47.8864, 106.9057],
-      "source_geo_location": [51.1694, 71.4491]
+      "source_geo_location": [51.1694, 71.4491],
+      "emission_reason": ["", ""]
     }
   ],
   "Ulaanbaatar, Mongolia": [
@@ -855,9 +933,10 @@
       "cost": [600, 500],
       "duration": [18, 6],
       "distance": [3500, 2500],
-      "carbon_emission": [70, 35],
+      "carbon_emission": [70, 80],
       "destination_geo_location": [39.9042, 116.4074],
-      "source_geo_location": [47.8864, 106.9057]
+      "source_geo_location": [47.8864, 106.9057],
+      "emission_reason": ["", ""]
     },
     {
       "destination": "Moscow, Russia",
@@ -865,9 +944,10 @@
       "cost": [800, 700],
       "duration": [21, 7],
       "distance": [4500, 3500],
-      "carbon_emission": [90, 45],
+      "carbon_emission": [90, 145],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [47.8864, 106.9057]
+      "source_geo_location": [47.8864, 106.9057],
+      "emission_reason": ["", "Aircraft used for this route isn't the most efficient"]
     },
     {
       "destination": "Astana, Kazakhstan",
@@ -875,9 +955,10 @@
       "cost": [700, 600],
       "duration": [18, 6],
       "distance": [4000, 3000],
-      "carbon_emission": [80, 40],
+      "carbon_emission": [80, 90],
       "destination_geo_location": [51.1694, 71.4491],
-      "source_geo_location": [47.8864, 106.9057]
+      "source_geo_location": [47.8864, 106.9057],
+      "emission_reason": ["", ""]
     }
   ]
 }

@@ -7,6 +7,8 @@ import Cart from "./pages/cart";
 import Home from "./pages/home";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
+import UserProfile from "./pages/myprofile";
+import PaymentSuccess from "./pages/paymentsuccess";
 import { Provider } from "react-redux"
 import { store } from "./redux/store"
 
@@ -21,6 +23,8 @@ const App = () => (
             <Route path="/signup" element={<Signup />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
+            <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+            <Route path="/profile" element={<UserProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
