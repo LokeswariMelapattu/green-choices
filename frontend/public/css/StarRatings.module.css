@@ -1,0 +1,13 @@
+.starsContainer {
+    align-self: start;
+    align-items: stretch;
+    display: flex;
+  }
+  
+  .starIcon {
+    aspect-ratio: 1;
+    object-fit: contain;
+    object-position: center;
+    flex-shrink: 0;
+    width: 24px;
+  }
