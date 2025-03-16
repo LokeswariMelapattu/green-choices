@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../public/css/UserProfile.module.css";
+import styles from "../styles/UserProfile.module.css";
 
 const UserProfileMilestones = () => {
   return (

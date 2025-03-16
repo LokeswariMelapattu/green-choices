@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../public/css/ProductQuickView.module.css";
+import styles from "../styles/ProductQuickView.module.css";
 import ProductGallery from "./ProductGallery";
 import ProductDetails from "./ProductDetails";
 import ActionButton from "./ui/ActionButton";

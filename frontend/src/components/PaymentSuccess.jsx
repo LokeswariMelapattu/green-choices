@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../public/css/PaymentSuccess.module.css";
+import styles from "../styles/PaymentSuccess.module.css";
 import ActionButton from "./ui/ActionButton";
 import { useNavigate } from "react-router-dom";
 

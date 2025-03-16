@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "../../public/css/ProductDetails.module.css";
+import styles from "../styles/ProductDetails.module.css";
 import StarRating from "./ui/StarRating";
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';

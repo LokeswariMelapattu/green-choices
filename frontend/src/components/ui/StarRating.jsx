@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../../public/css/StarRatings.module.css";
+import styles from "../../styles/StarRatings.module.css";
 
 const StarRatings = ({ rating = 0 }) => {
   const totalStars = 5;
