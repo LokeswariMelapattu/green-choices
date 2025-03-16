@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import styles from "../../public/css/UserProfile.module.css";
+import styles from "../styles/UserProfile.module.css";
 import UserProfileHeader from "./ProfileDetails";
 import UserProfileStats from "./ProfileStats";
 import UserProfileMilestones from "./ProfileMilestones";
