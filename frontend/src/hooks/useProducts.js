@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { VITE_APP_API_URL } from '../data/constants'
 
 const useProducts = () => {
     const [products, setProducts] = useState([]);
@@ -8,7 +9,7 @@ const useProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const response = await fetch('http://localhost:3000/products');
+                const response = await fetch(`${VITE_APP_API_URL}products`);
                 if (!response.ok) {
                     throw new Error('Failed to fetch products');
                 }
