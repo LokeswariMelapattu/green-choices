@@ -1,7 +1,8 @@
 import { Card } from "@/components/ui/Card";
 import { Plane, Ship, Timer, DollarSign, Route, Leaf, Truck } from "lucide-react";
-import { useMemo, useEffect } from "react";
+import { useMemo, useEffect, useState } from "react";
 import { useTransport } from '@/context/transport-context';
+import { motion } from "framer-motion";
 
 // New helper component
 const MetricItem = ({ icon: Icon, label, value }) => (
@@ -36,9 +37,10 @@ const TransportIcon = ({ mode, isActive, onClick }) => {
   );
 };
 
-const RouteDetails = ({ route }) => {
+const RouteDetails = ({ route, greenestRoute  }) => {
   const { selectedModes, setSelectedModes, setCurrentRoute } = useTransport();
-
+  const [key, setKey] = useState(0); // Key to trigger re-animation
+  const [showGif, setShowGif] = useState(false);
   // Calculate initial modes based on minimum emissions while preserving order
   const initialModes = useMemo(() => 
     route?.segments.map(segment => {
@@ -51,6 +53,10 @@ const RouteDetails = ({ route }) => {
     if (route) {
       setCurrentRoute(route);
       setSelectedModes(initialModes);
+      setKey(prev => prev + 1); // Change key to trigger animation
+      setShowGif(true);
+      setTimeout(() => setShowGif(false), 3000); // Hide after 3 seconds
+      
     }
   }, [route, setCurrentRoute, setSelectedModes, initialModes]);
 
@@ -69,15 +75,38 @@ const RouteDetails = ({ route }) => {
   };
 
   return (
-    <Card className="p-6 bg-white/70 backdrop-blur-lg">
+    <motion.div
+      key={key} // Changing key re-triggers animation
+      initial={{ opacity: 0, scale: 0.95, y: 5 }}
+      animate={{ opacity: 1, scale: 1, y: 0 }}
+      exit={{ opacity: 0, scale: 0.95, y: -10 }}
+      transition={{ duration: 1, ease: "easeOut"  }} // Custom cubic bezier for smooth feel
+    >
+    <Card className="p-6 bg-white/70 backdrop-blur-lg shadow-lg transition-transform">
       <h2 className="text-xl font-semibold mb-4">Option {route.routeNumber} Details</h2>
+      {/* Conditionally render the GIF only for the greenest route */}
+      {showGif && greenestRoute.routeNumber == route.routeNumber && (
+        <img
+          src="/imgs/animation_greenroute.gif"
+          alt="Greenest Route"
+          className="absolute top-0 right-0"
+        />
+      )}
+       {/* Conditionally render the GIF only for the greenest route */}
+       {showGif && greenestRoute.routeNumber != route.routeNumber&& (
+        <img
+          src="/imgs/animation_notgreen.gif"
+          alt="Greenest Route"
+          className="absolute top-0 right-0"
+        />
+      )}
       
       <div className="space-y-6">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <MetricItem
             icon={Timer}
             label="Duration"
-            value={`${route.metrics.duration.minimum}-${route.metrics.duration.maximum} days`}
+            value={`${route.metrics.duration.maximum} days`}
           />
           <MetricItem
             icon={DollarSign}
@@ -121,6 +150,7 @@ const RouteDetails = ({ route }) => {
                         onClick={() => handleToggle(index)}
                       />
                     ))}
+                    
                   </div>
                 </div>
                 
@@ -140,6 +170,7 @@ const RouteDetails = ({ route }) => {
         </div>
       </div>
     </Card>
+    </motion.div>
   );
 };
 

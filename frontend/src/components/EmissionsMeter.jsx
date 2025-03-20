@@ -108,9 +108,9 @@ const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick, className = "
         </div>
       </div>
       {(currentValue / maxValue) * 70 > 40 && (
-        <div className="flex items-center">
+        <div className="flex items-center ">
           <img src="/imgs/earth.png" className="h-[40px] w-[40px]" />
-          <p className="text-center" style={{ color: color }}>
+          <p className="text-center " style={{ color: color }}>
             A Little More CO₂ Than We'd Like … But <span
               className="font-bold cursor-pointer"
               onClick={onEmissionsClick}
