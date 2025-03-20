@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../components/Header";  
  
 const Checkout = () => {
-  const { routes, selectedRoute, setSelectedRoute, totalEmissions } = useRoutes();
+  const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute  } = useRoutes();
   const [selectedModes, setSelectedModes] = useState([]); 
   const [showModal, setShowModal] = useState(false);
  
@@ -47,6 +47,7 @@ const Checkout = () => {
                     route={selectedRoute}
                     selectedModes={selectedModes}
                     setSelectedModes={setSelectedModes}
+                    greenestRoute={greenestRoute}
                   />
                 </div>
               )}

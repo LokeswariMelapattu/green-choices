@@ -15,19 +15,19 @@ const RouteSelector = ({ routes, selectedRoute, onRouteSelect }) => {
             <Card
               key={route.routeNumber}
               className={cn(
-                "min-w-[300px] p-4 cursor-pointer transition-all duration-200 hover:shadow-lg",
+                "min-w-[300px] p-4 cursor-pointer transition-all duration-200 hover:shadow-lg hover:scale-105 m-1",
                 selectedRoute?.routeNumber === route.routeNumber
                   ? "border-green-500 bg-green-50"
-                  : "border-gray-200 hover:border-green-300"
+                  : "border-gray-200 hover:border-green-300", "first:ml-6"
               )}
               onClick={() => onRouteSelect(route)}
             >
               <div className="space-y-3">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="font-medium">Option {index+1}</h3>
+                    <h3 className="font-medium">Option {index+1}</h3> 
                     <div className="flex items-center gap-2 text-sm text-gray-600">
-                      <span>{route.metrics.duration.minimum}-{route.metrics.duration.maximum} days</span>
+                      <span>{route.metrics.duration.maximum} days</span>
                       <span>•</span>
                       <span>{route.metrics.distance.minimum} km</span>
                     </div>
