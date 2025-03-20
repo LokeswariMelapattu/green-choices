@@ -11,7 +11,7 @@ import UserProfile from "./pages/myprofile";
 import PaymentSuccess from "./pages/paymentsuccess";
 import { Provider } from "react-redux"
 import { store } from "./redux/store"
-
+import OrderTrackingPage from "./pages/ordertracking";
 const App = () => (
   <Provider store={store}>
     <TooltipProvider>
@@ -24,6 +24,7 @@ const App = () => (
             <Route path="/cart" element={<Cart />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/paymentsuccess" element={<PaymentSuccess />} />
+            <Route path="/tracking" element={<OrderTrackingPage />} />
             <Route path="/profile" element={<UserProfile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

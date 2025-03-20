@@ -3,8 +3,9 @@ import { VITE_APP_API_URL } from '../data/constants'
 const useRoutes = () => {
   const [routes, setRoutes] = useState(null);
   const [selectedRoute, setSelectedRoute] = useState(null);
-  const [totalEmissions, setTotalEmissions] = useState([]);
-  const [greenestRoute, setGreenestRoute] = useState(null);
+  const [totalEmissions, setTotalEmissions] = useState([]); 
+  const [isLoading, setIsLoading] = useState(true); 
+  const [greenestRoute, setGreenestRoute] = useState(null); 
 
   useEffect(() => {
     //Default values for source and destination cities and countries please change it after implementation for checkout page and others
@@ -41,11 +42,15 @@ const useRoutes = () => {
       } catch (error) {
         console.error('Error fetching routes:', error);
       }
+      finally {
+        setIsLoading(false);
+      }
     };
     fetchRoutes();
   }, []);
-
-  return { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute };
+ 
+  return { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute,isLoading };
+ 
 };
 
 export default useRoutes; 
