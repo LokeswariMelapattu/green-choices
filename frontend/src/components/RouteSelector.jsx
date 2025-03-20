@@ -2,12 +2,19 @@ import { Card } from '@/components/ui/Card';
 import { Plane, Ship, Truck } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-const RouteSelector = ({ routes, selectedRoute, onRouteSelect }) => {
-  let optionIndex =1;
+const RouteSelector = ({ routes, selectedRoute, onRouteSelect,isLoading }) => {
+  if (isLoading) {
+    return (
+      <div className="w-full flex justify-center items-center p-6">
+        <div className="animate-pulse text-lg font-medium text-gray-600">
+          Loading routes...
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="space-y-4">
       <h2 className="text-xl font-semibold mb-4">Available Routes</h2>
-      
       <div className="flex overflow-x-auto flex-nowrap gap-4 pb-2">
         {routes.map((route,index) => {
           const transportModes = [...new Set(route.segments.flatMap(segment => segment.transportModes))];
@@ -51,7 +58,6 @@ const RouteSelector = ({ routes, selectedRoute, onRouteSelect }) => {
                       ${route.metrics.cost.minimum} - ${route.metrics.cost.maximum}
                     </span>
                   </div>
-                  
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Carbon Emissions</span>
                     <span className="font-medium">
