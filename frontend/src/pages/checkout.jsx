@@ -20,6 +20,7 @@ const Checkout = () => {
   const location = useLocation(); // Get location object
   const totalAmount = location.state?.totalAmount; // Retrieve total amount from state (optional chaining)
   
+      const [isLowSustainable, setIsLowSustainable] = useState("");
   return (
     <>
       <Header />
@@ -68,12 +69,14 @@ const Checkout = () => {
                 //   Math.max(...(totalEmissions?.map(e => e.maxTotalEmissions) || []))
                 // }
                 onEmissionsClick={() => setShowModal(true)}
+                setLowSustainable={setIsLowSustainable}
               />
             </Card>
             
             <OrderSummary 
               selectedRoute={selectedRoute}
               selectedModes={selectedModes}
+              isLowSustainable={isLowSustainable}
             />
           </div>
         </div>

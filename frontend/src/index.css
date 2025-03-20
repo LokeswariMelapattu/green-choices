@@ -80,3 +80,16 @@
   background-color: #fbbf24 !important; /* Your desired color */
   border-radius: 50%;
 }
+@keyframes running {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100vw); /* Moves the icon across the full width of the screen */
+  }
+}
+
+.running-icon {
+  display: inline-block;
+  animation: running 5s linear infinite; /* Runs indefinitely */
+}

@@ -150,6 +150,7 @@ const RouteDetails = ({ route, greenestRoute  }) => {
                         onClick={() => handleToggle(index)}
                       />
                     ))}
+                    
                   </div>
                 </div>
                 
