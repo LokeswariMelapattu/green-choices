@@ -54,7 +54,7 @@ const Home = () => {
             <div className="flex gap-8 overflow-x-auto no-scrollbar">
               {products.map(product => (
                 <div key={product.product_id} onClick={() => handleProductClick(product)}>
-                  <img src={product.img} alt={product.name} className="min-h-[200px] min-w-[200px] rounded-xl cursor-pointer" />
+                  <img src={product.img} alt={product.name} className="h-[200px] w-[200px] rounded-xl cursor-pointer" />
                   <h3 className="py-2">{product.name}</h3>
                   <p>${product.price}</p>
                 </div>
@@ -67,7 +67,7 @@ const Home = () => {
             <div className="flex gap-8 overflow-x-auto no-scrollbar">
               {products.map(product => (
                 <div key={product.product_id} onClick={() => handleProductClick(product)}>
-                  <img src={product.img} alt={product.name} className="min-h-[200px] min-w-[200px] rounded-xl cursor-pointer" />
+                  <img src={product.img} alt={product.name} className="h-[200px] w-[200px] rounded-xl cursor-pointer" />
                   <h3 className="py-2">{product.name}</h3>
                   <p>${product.price}</p>
                 </div>
