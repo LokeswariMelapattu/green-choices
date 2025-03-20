@@ -322,7 +322,7 @@ CREATE OR REPLACE PROCEDURE sp_InsertOrder_Detail(
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    INSERT INTO Order_Info (OrderID, ProductID, ProductQuantity, TotalPrice, LastUpdatedUserID)
+    INSERT INTO Order_Details (OrderID, ProductID, ProductQuantity, TotalPrice, LastUpdatedUserID)
     VALUES (p_OrderID, p_ProductID, p_ProductQuantity, p_TotalPrice, p_LastUpdatedUserID)
     RETURNING OrderDetailID INTO p_OrderDetailID;
     
