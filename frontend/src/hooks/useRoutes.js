@@ -4,6 +4,7 @@ const useRoutes = () => {
   const [routes, setRoutes] = useState(null);
   const [selectedRoute, setSelectedRoute] = useState(null);
   const [totalEmissions, setTotalEmissions] = useState([]);
+  const [greenestRoute, setGreenestRoute] = useState(null);
 
   useEffect(() => {
     //Default values for source and destination cities and countries please change it after implementation for checkout page and others
@@ -35,6 +36,7 @@ const useRoutes = () => {
             maxTotalEmissions: route.maxTotalEmissions
           })));
           setSelectedRoute(sortedSegments[0]);
+          setGreenestRoute(sortedSegments[0]);
         }
       } catch (error) {
         console.error('Error fetching routes:', error);
@@ -43,7 +45,7 @@ const useRoutes = () => {
     fetchRoutes();
   }, []);
 
-  return { routes, selectedRoute, setSelectedRoute, totalEmissions };
+  return { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute };
 };
 
 export default useRoutes; 
