@@ -8,9 +8,11 @@ import RouteDetails from "@/components/RouteDetails";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
+import Header from "../components/Header";  
+
 export default function OrderTrackingPage() {
   const [clicked, setClicked] = useState(false);
-  const { routes, selectedRoute, setSelectedRoute, totalEmissions, isLoading } = useRoutes();
+  const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute, isLoading } = useRoutes();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -21,6 +23,8 @@ export default function OrderTrackingPage() {
   }
 
   return (
+    <>
+    <Header />
     <div className="mx-auto p-4 md:p-6 lg:p-8">
       <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
         <div className="w-full lg:w-[25%]">
@@ -47,7 +51,8 @@ export default function OrderTrackingPage() {
                   onRouteSelect={setSelectedRoute}
                 />
               </div>
-              <RouteDetails route={selectedRoute} />
+              <RouteDetails route={selectedRoute} 
+                    greenestRoute={greenestRoute}/>
               <div className="flex flex-col md:flex-row justify-end gap-4 md:gap-6">
                 <Button
                   variant="outline"
@@ -68,6 +73,7 @@ export default function OrderTrackingPage() {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

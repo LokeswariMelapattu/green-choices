@@ -242,7 +242,7 @@ const TrackingDetails = ({ selectedRoute, isLoading }) => {
 
         {/* Homepage Button */}
         <motion.button
-          onClick={() => window.location.href = '/'}
+          onClick={() => window.location.href = '/home'}
           className="w-full mt-6 px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-lg font-semibold"
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.97 }}

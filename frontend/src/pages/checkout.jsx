@@ -13,7 +13,7 @@ import { useLocation } from "react-router-dom";
 import Header from "../components/Header";  
  
 const Checkout = () => {
-  const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute  } = useRoutes();
+  const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute,isLoading  } = useRoutes();
   const [selectedModes, setSelectedModes] = useState([]); 
   const [showModal, setShowModal] = useState(false);
  
