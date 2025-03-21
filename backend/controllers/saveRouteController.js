@@ -1,39 +1,90 @@
-const {saveRouteToDB} = require('../models/saveRouteModel');
+const saveRouteModel = require('../models/saveRouteModel');
+const { all } = require('../routes/routes');
 const { CONFIG, ERROR_MESSAGES } = require('../utils/constants');
 
-
-async function saveRoute (req, res) {
+// Saves routeInfo, routeDetails and saves routeStatus
+const saveRoute = async (req, res) => {
     try {
         const route = req.body;
 
-        // something to actually validify the route needed here
-        // using temporary one to just so it is noticed at somepoint
-        if (!route.test) {
-            return res.status(400).json({
-                error: ERROR_MESSAGES.routeNotReceived
-            });
+        const routeInfo = await saveRouteModel.saveRoute(req.body);
+
+        let allRouteDetails = [];
+
+        let i = 0;
+        for await (const segment of route.segments) {
+            const routeDetails = await saveRouteModel.saveRouteDetails(segment, routeInfo.routeid, route.lastUpdatedUserId, i);
+            allRouteDetails.push(routeDetails);
+            ++i;
         }
 
-        const saved = await saveRouteToDB(route);
+        const routeStatus = await saveRouteModel.saveRouteStatus(routeInfo.routeid, allRouteDetails[0].routedetailid,
+            allRouteDetails[0].statusid, route.lastUpdatedUserId)
 
-        if (!saved) {
-            return res.status(404).json({
-                error: ERROR_MESSAGES.routeNotSaved
-            });
-        }
-
-        return res.json({
-            Message: "Route has been saved"
+        res.status(201).json({
+            success: true,
+            message: "Route info, details and status have been saved",
+            routeInfo: routeInfo,
+            routeDetails: allRouteDetails,
+            routeStatus: routeStatus
         });
 
     } catch (error) {
         console.error('Route Controller Error:', error);
-        return res.status(500).json({
-            error: "An internal server error occurred"
+        res.status(400).json({
+            success: false,
+            message: ERROR_MESSAGES.routeNotSaved,
+            error: error.message
         });
     }
 };
 
+const updateRoute = async (req, res) => {
+    try {
+
+        const route = req.body
+
+        const routeInfo = await saveRouteModel.updateRoute(route);
+
+        let allRouteDetails = [];
+
+        let i = 0;
+        for await (const segment of route.segments) {
+            let routeDetails = await saveRouteModel.updateRouteDetails(routeInfo.routeid, i,
+                 segment, route.lastUpdatedUserId);
+            
+            // if there happens to be more segments than there were before updating
+
+            if (routeDetails === undefined) {
+                routeDetails = await saveRouteModel.saveRouteDetails(segment, routeInfo.routeid, route.lastUpdatedUserId, i);
+            }
+
+            allRouteDetails.push(routeDetails);
+            ++i;
+        }
+
+        const routeStatus = await saveRouteModel.updateRouteStatus(route.routeStatusId, routeInfo.routeid, 
+            allRouteDetails[route.currentSeqNo].routedetailid, route.currentSeqNo, allRouteDetails[route.currentSeqNo].statusid,
+            route.lastUpdatedUserId)
+        
+
+        res.status(200).json({
+            success: true,
+            message: "Route info, details and status have been updated",
+            routeInfo: routeInfo,
+            routeDetails: allRouteDetails,
+            routeStatus: routeStatus
+        });
+    } catch {
+        res.status(400).json({
+            success: false,
+            message: "Route not updated",
+            error: "error.message"
+        });
+    } 
+};
+
 module.exports = {
-    saveRoute
+    saveRoute,
+    updateRoute
 };
