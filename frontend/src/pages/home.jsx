@@ -53,8 +53,8 @@ const Home = () => {
             <h2 className="py-4 text-2xl font-semibold">Trending Now</h2>
             <div className="flex gap-8 overflow-x-auto no-scrollbar">
               {products.map(product => (
-                <div key={product.product_id}  onClick={() => handleProductClick(product)}>
-                  <img src={product.img} alt={product.name} className="min-h-[200px] min-w-[200px] rounded-xl" />
+                <div key={product.product_id} onClick={() => handleProductClick(product)}>
+                  <img src={product.img} alt={product.name} className="h-[200px] w-[200px] rounded-xl cursor-pointer" />
                   <h3 className="py-2">{product.name}</h3>
                   <p>${product.price}</p>
                 </div>
@@ -67,7 +67,7 @@ const Home = () => {
             <div className="flex gap-8 overflow-x-auto no-scrollbar">
               {products.map(product => (
                 <div key={product.product_id} onClick={() => handleProductClick(product)}>
-                  <img src={product.img} alt={product.name} className="min-h-[200px] min-w-[200px] rounded-xl" />
+                  <img src={product.img} alt={product.name} className="h-[200px] w-[200px] rounded-xl cursor-pointer" />
                   <h3 className="py-2">{product.name}</h3>
                   <p>${product.price}</p>
                 </div>
@@ -77,8 +77,8 @@ const Home = () => {
         </div>
       </main>
 
-    {/* Product Quick View Modal */}
-    {showQuickView && (
+      {/* Product Quick View Modal */}
+      {showQuickView && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           {/* Modal Backdrop */}
           <div
