@@ -1,5 +1,4 @@
 const saveRouteModel = require('../models/saveRouteModel');
-const { all } = require('../routes/routes');
 const { CONFIG, ERROR_MESSAGES } = require('../utils/constants');
 
 // Saves routeInfo, routeDetails and saves routeStatus
@@ -54,7 +53,6 @@ const updateRoute = async (req, res) => {
                  segment, route.lastUpdatedUserId);
             
             // if there happens to be more segments than there were before updating
-
             if (routeDetails === undefined) {
                 routeDetails = await saveRouteModel.saveRouteDetails(segment, routeInfo.routeid, route.lastUpdatedUserId, i);
             }
@@ -78,13 +76,51 @@ const updateRoute = async (req, res) => {
     } catch {
         res.status(400).json({
             success: false,
-            message: "Route not updated",
-            error: "error.message"
+            message: ERROR_MESSAGES.routeNotUpdated,
+            error: error.message
         });
     } 
 };
 
+const getRoute = async (req, res) => {
+
+    try {
+
+        const {orderId} = req.query;
+
+        const routeInfos = await saveRouteModel.getRouteByOrderId(orderId);
+
+        let allRouteDetails = [];
+        let allRouteStatus = [];
+
+        for await (let row of routeInfos) {
+
+            const routeDetails = await saveRouteModel.getRouteDetailsByRouteId(row.routeid);
+            const routeStatus = await saveRouteModel.getRouteStatusByRouteId(row.routeid);
+
+            allRouteDetails.push(routeDetails);
+            allRouteStatus.push(routeStatus);
+        }
+
+        res.status(200).json({
+            success: true,
+            message: "Route infos, details and statuses have been gotten",
+            routeInfos: routeInfos,
+            routeDetails: allRouteDetails,
+            routeStatus: allRouteStatus
+        });
+    } catch {
+        res.status(400).json({
+            success: false,
+            message: "Route infos, details and statuses were unable to be gotten",
+            error: error.message
+        });
+    }
+    
+};
+
 module.exports = {
     saveRoute,
-    updateRoute
+    updateRoute,
+    getRoute
 };

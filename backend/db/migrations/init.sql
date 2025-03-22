@@ -621,3 +621,65 @@ BEGIN
     WHERE u.RouteStatusID = p_RouteStatusID;
 END;
 $$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_GetRouteByOrderID(p_OrderID INT)
+RETURNS TABLE (
+    RouteID INT,
+    OrderID INT,
+    Source VARCHAR(100),
+    Destination VARCHAR(100),
+    CarbonEmission INT,
+    Duration INT,
+    TotalCost INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP 
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Info u
+    WHERE u.OrderID = p_OrderID;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_GetRouteDetailsByRouteID(p_RouteID INT)
+RETURNS TABLE (
+    RouteDetailID INT,
+    RouteID INT,
+    SeqNo INT,
+    Source VARCHAR(100),
+    Destination VARCHAR(100),
+    TransportMode VARCHAR(50),
+    CarbonEmission INT,
+    Duration INT,
+    Cost INT,
+    Distance INT,
+    StatusID INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Details u
+    WHERE u.RouteID = p_RouteID;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_GetRouteStatusByRouteID(p_RouteID INT)
+RETURNS TABLE (
+    RouteStatusID INT,
+    RouteID INT,
+    RouteDetailID INT,
+    SeqNo INT,
+    StatusID INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Status u
+    WHERE u.RouteID = p_RouteID;
+END;
+$$ LANGUAGE plpgsql;
