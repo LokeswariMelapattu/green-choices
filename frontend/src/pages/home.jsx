@@ -3,16 +3,33 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import useProducts from "../hooks/useProducts";
 import Header from "../components/Header";
+import { ToastContainer, toast } from "react-toastify";
 import { FaGifts } from "react-icons/fa";
 import ProductQuickView from "../components/ProductQuickView";
 import { useDispatch } from "react-redux";
 import { addItem } from "../redux/slices/cartSlice";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showQuickView, setShowQuickView] = useState(false);
+
+  const showToastMessage = () => {
+    toast.success(
+      <>
+        <p>Product added to cart!</p>
+        <span
+          onClick={() => navigate('/cart')}
+          className="px-1 text-blue-500 underline cursor-pointer"
+        >
+          Go to Cart
+        </span>
+      </>, {
+      position: "bottom-right"
+    });
+  };
 
   const handleProductClick = (product) => {
     if (!product) return; // Prevents null values
@@ -30,8 +47,8 @@ const Home = () => {
 
   const handleAddToCart = () => {
     dispatch(addItem(selectedProduct));
+    showToastMessage();
     handleCloseQuickView();
-    navigate("/cart");
   };
 
   const { products, loading, error } = useProducts();
@@ -43,6 +60,7 @@ const Home = () => {
   return (
     <>
       <Header />
+      <ToastContainer />
       <main className="flex min-h-screen bg-gray-100">
         <div className="container mx-auto px-4 py-8">
           <div className="flex flex-col justify-center gap-4 

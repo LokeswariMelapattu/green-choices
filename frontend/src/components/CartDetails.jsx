@@ -7,7 +7,7 @@ const CartDetails = ({ total, handleCheckout }) => {
                 <div>
                     <div className="flex justify-between border-b py-2">
                         <p className="font-semibold">Sub Total</p>
-                        <p>${total}</p>
+                        <p>${(total).toFixed(2)}</p>
                     </div>
                     <div className="flex justify-between border-b py-2">
                         <p className="font-semibold">Tax</p>
