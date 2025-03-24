@@ -5,16 +5,19 @@ import useProducts from "../hooks/useProducts";
 import Header from "../components/Header";
 import { FaGifts } from "react-icons/fa";
 import ProductQuickView from "../components/ProductQuickView";
+import { useDispatch } from "react-redux";
+import { addItem } from "../redux/slices/cartSlice";
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [showQuickView, setShowQuickView] = useState(false);
 
   const handleProductClick = (product) => {
+    if (!product) return; // Prevents null values
     setSelectedProduct(product);
     setShowQuickView(true);
-    // Add a class to prevent scrolling on the body when modal is open
     document.body.classList.add("overflow-hidden");
   };
 
@@ -26,6 +29,7 @@ const Home = () => {
   };
 
   const handleAddToCart = () => {
+    dispatch(addItem(selectedProduct));
     handleCloseQuickView();
     navigate("/cart");
   };
