@@ -1,7 +1,7 @@
 /* Flash Sale Section */
 .flashSale {
   @apply flex flex-col justify-center gap-4 bg-gradient-to-br from-[#1FAE5B] via-[#1DA154] to-[#0D4826]
-    text-white w-full h-[330px] p-6 md:p-10 rounded-lg shadow-md;
+    text-white w-full h-[250px] p-6 md:p-10 rounded-lg shadow-md;
 }
 .mainSection{
   @apply flex min-h-screen bg-gray-100
@@ -48,7 +48,7 @@
 
 /* Flash Sale Section */
 .flashSaleHeader {
-  @apply text-5xl md:text-6xl font-bold font-quantico;
+  @apply text-4xl md:text-5xl font-bold font-quantico;
 }
 
 /* Gift Icon */
