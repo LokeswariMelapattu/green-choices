@@ -109,6 +109,54 @@ CREATE TABLE IF NOT EXISTS Route_Status_A (
     LastUpdatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Create Order_Info table
+CREATE TABLE IF NOT EXISTS Order_Info (
+    OrderID SERIAL PRIMARY KEY,
+    UserID INT REFERENCES User_Info(UserID) ON DELETE CASCADE,
+    ShippingAddress TEXT NOT NULL,
+    TotalAmount DECIMAL(10,2) NOT NULL,
+    DeliveryCharge DECIMAL(10,2) NOT NULL,
+    OrderStatus VARCHAR(50) DEFAULT 'Pending', -- Added status field
+    CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UpdatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create Order_Details table
+CREATE TABLE IF NOT EXISTS Order_Details (
+    OrderDetailID SERIAL PRIMARY KEY,
+    OrderID INT REFERENCES Order_Info(OrderID) ON DELETE CASCADE,
+    ProductID INT NOT NULL,
+    Quantity INT NOT NULL,
+    Amount DECIMAL(10,2) NOT NULL
+);
+
+-- Create Order_Info_A audit table
+CREATE TABLE IF NOT EXISTS Order_Info_A (
+    LogID SERIAL PRIMARY KEY,
+    LogDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Operation CHAR(1) NOT NULL, -- 'I' for Insert, 'U' for Update, 'D' for Delete
+    OrderID INT,
+    UserID INT,
+    ShippingAddress TEXT,
+    TotalAmount DECIMAL(10,2),
+    DeliveryCharge DECIMAL(10,2),
+    OrderStatus VARCHAR(50),
+    CreatedAt TIMESTAMP,
+    UpdatedAt TIMESTAMP
+);
+
+-- Create Order_Details_A audit table
+CREATE TABLE IF NOT EXISTS Order_Details_A (
+    LogID SERIAL PRIMARY KEY,
+    LogDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    Operation CHAR(1) NOT NULL, -- 'I' for Insert, 'U' for Update, 'D' for Delete
+    OrderDetailID INT,
+    OrderID INT,
+    ProductID INT,
+    Quantity INT,
+    Amount DECIMAL(10,2)
+);
+
 -- Trigger function for audit
 CREATE OR REPLACE FUNCTION fn_User_Info_Audit()
 RETURNS TRIGGER AS $$
@@ -262,6 +310,48 @@ BEGIN
 END;
 $$ LANGUAGE plpgsql;
 
+-- Trigger function for Order_Info audit
+CREATE OR REPLACE FUNCTION fn_Order_Info_Audit()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        INSERT INTO Order_Info_A (Operation, OrderID, UserID, ShippingAddress, TotalAmount, DeliveryCharge, OrderStatus, CreatedAt, UpdatedAt)
+        VALUES ('I', NEW.OrderID, NEW.UserID, NEW.ShippingAddress, NEW.TotalAmount, NEW.DeliveryCharge, NEW.OrderStatus, NEW.CreatedAt, NEW.UpdatedAt);
+        RETURN NEW;
+    ELSIF (TG_OP = 'UPDATE') THEN
+        INSERT INTO Order_Info_A (Operation, OrderID, UserID, ShippingAddress, TotalAmount, DeliveryCharge, OrderStatus, CreatedAt, UpdatedAt)
+        VALUES ('U', NEW.OrderID, NEW.UserID, NEW.ShippingAddress, NEW.TotalAmount, NEW.DeliveryCharge, NEW.OrderStatus, NEW.CreatedAt, NEW.UpdatedAt);
+        RETURN NEW;
+    ELSIF (TG_OP = 'DELETE') THEN
+        INSERT INTO Order_Info_A (Operation, OrderID, UserID, ShippingAddress, TotalAmount, DeliveryCharge, OrderStatus, CreatedAt, UpdatedAt)
+        VALUES ('D', OLD.OrderID, OLD.UserID, OLD.ShippingAddress, OLD.TotalAmount, OLD.DeliveryCharge, OLD.OrderStatus, OLD.CreatedAt, OLD.UpdatedAt);
+        RETURN OLD;
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Trigger function for Order_Details audit
+CREATE OR REPLACE FUNCTION fn_Order_Details_Audit()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF (TG_OP = 'INSERT') THEN
+        INSERT INTO Order_Details_A (Operation, OrderDetailID, OrderID, ProductID, Quantity, Amount)
+        VALUES ('I', NEW.OrderDetailID, NEW.OrderID, NEW.ProductID, NEW.Quantity, NEW.Amount);
+        RETURN NEW;
+    ELSIF (TG_OP = 'UPDATE') THEN
+        INSERT INTO Order_Details_A (Operation, OrderDetailID, OrderID, ProductID, Quantity, Amount)
+        VALUES ('U', NEW.OrderDetailID, NEW.OrderID, NEW.ProductID, NEW.Quantity, NEW.Amount);
+        RETURN NEW;
+    ELSIF (TG_OP = 'DELETE') THEN
+        INSERT INTO Order_Details_A (Operation, OrderDetailID, OrderID, ProductID, Quantity, Amount)
+        VALUES ('D', OLD.OrderDetailID, OLD.OrderID, OLD.ProductID, OLD.Quantity, OLD.Amount);
+        RETURN OLD;
+    END IF;
+    RETURN NULL;
+END;
+$$ LANGUAGE plpgsql;
+
 -- Create triggers
 CREATE OR REPLACE TRIGGER tr_User_Info_Insert
 AFTER INSERT ON User_Info
@@ -325,6 +415,38 @@ CREATE OR REPLACE TRIGGER tr_Route_Status_Delete
 AFTER DELETE ON Route_Status
 FOR EACH ROW
 EXECUTE FUNCTION fn_Route_Status_Audit();
+
+-- Create triggers for Order_Info
+CREATE OR REPLACE TRIGGER tr_Order_Info_Insert
+AFTER INSERT ON Order_Info
+FOR EACH ROW
+EXECUTE FUNCTION fn_Order_Info_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Order_Info_Update
+AFTER UPDATE ON Order_Info
+FOR EACH ROW
+EXECUTE FUNCTION fn_Order_Info_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Order_Info_Delete
+AFTER DELETE ON Order_Info
+FOR EACH ROW
+EXECUTE FUNCTION fn_Order_Info_Audit();
+
+-- Create triggers for Order_Details
+CREATE OR REPLACE TRIGGER tr_Order_Details_Insert
+AFTER INSERT ON Order_Details
+FOR EACH ROW
+EXECUTE FUNCTION fn_Order_Details_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Order_Details_Update
+AFTER UPDATE ON Order_Details
+FOR EACH ROW
+EXECUTE FUNCTION fn_Order_Details_Audit();
+
+CREATE OR REPLACE TRIGGER tr_Order_Details_Delete
+AFTER DELETE ON Order_Details
+FOR EACH ROW
+EXECUTE FUNCTION fn_Order_Details_Audit();
 
 -- Create stored procedures
 CREATE OR REPLACE PROCEDURE sp_InsertUser(
@@ -516,6 +638,87 @@ BEGIN
 END;
 $$;
 
+
+-- Create stored procedure to insert Order_Info
+CREATE OR REPLACE PROCEDURE sp_InsertOrder(
+    p_UserID INT,
+    p_ShippingAddress TEXT,
+    p_TotalAmount DECIMAL(10,2),
+    p_DeliveryCharge DECIMAL(10,2),
+    p_OrderStatus VARCHAR(50), 
+    OUT p_OrderID INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Order_Info (UserID, ShippingAddress, TotalAmount, DeliveryCharge, OrderStatus)
+    VALUES (p_UserID, p_ShippingAddress, p_TotalAmount, p_DeliveryCharge, p_OrderStatus)
+    RETURNING OrderID INTO p_OrderID;
+    
+    COMMIT;
+END;
+$$;
+
+-- Create stored procedure to update Order_Info
+CREATE OR REPLACE PROCEDURE sp_UpdateOrder(
+    p_OrderID INT,
+    p_ShippingAddress TEXT,
+    p_TotalAmount DECIMAL(10,2),
+    p_DeliveryCharge DECIMAL(10,2),
+    p_OrderStatus VARCHAR(50)
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Order_Info
+    SET ShippingAddress = p_ShippingAddress,
+        TotalAmount = p_TotalAmount,
+        DeliveryCharge = p_DeliveryCharge,
+        OrderStatus = p_OrderStatus,
+        UpdatedAt = CURRENT_TIMESTAMP
+    WHERE OrderID = p_OrderID;
+    
+    COMMIT;
+END;
+$$;
+
+-- Create stored procedure to insert Order_Details
+CREATE OR REPLACE PROCEDURE sp_InsertOrderDetail(
+    p_OrderID INT,
+    p_ProductID INT,
+    p_Quantity INT,
+    p_Amount DECIMAL(10,2),
+    OUT p_OrderDetailID INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Order_Details (OrderID, ProductID, Quantity, Amount)
+    VALUES (p_OrderID, p_ProductID, p_Quantity, p_Amount)
+    RETURNING OrderDetailID INTO p_OrderDetailID;
+    
+    COMMIT;
+END;
+$$;
+
+-- Create stored procedure to update Order_Details
+CREATE OR REPLACE PROCEDURE sp_UpdateOrderDetail(
+    p_OrderDetailID INT,
+    p_Quantity INT,
+    p_Amount DECIMAL(10,2)
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Order_Details
+    SET Quantity = p_Quantity,
+        Amount = p_Amount
+    WHERE OrderDetailID = p_OrderDetailID;
+    
+    COMMIT;
+END;
+$$;
+
 -- Create functions for data retrieval
 CREATE OR REPLACE FUNCTION fn_GetUserByID(p_UserID INT)
 RETURNS TABLE (
@@ -550,5 +753,100 @@ BEGIN
     SELECT u.UserID, u.FirstName, u.LastName, u.Address, u.Email, u.CreatedAt, u.UpdatedAt
     FROM User_Info u
     ORDER BY u.UserID;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Create function to retrieve Order by ID
+CREATE OR REPLACE FUNCTION fn_GetOrderByID(p_OrderID INT)
+RETURNS TABLE (
+    OrderID INT,
+    UserID INT,
+    ShippingAddress TEXT,
+    TotalAmount DECIMAL(10,2),
+    DeliveryCharge DECIMAL(10,2),
+    OrderStatus VARCHAR(50),
+    CreatedAt TIMESTAMP,
+    UpdatedAt TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT o.OrderID, o.UserID, o.ShippingAddress, o.TotalAmount, o.DeliveryCharge, o.CreatedAt, o.UpdatedAt
+    FROM Order_Info o
+    WHERE o.OrderID = p_OrderID;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Create function to retrieve all Orders
+CREATE OR REPLACE FUNCTION fn_GetAllOrders()
+RETURNS TABLE (
+    OrderID INT,
+    UserID INT,
+    ShippingAddress TEXT,
+    TotalAmount DECIMAL(10,2),
+    DeliveryCharge DECIMAL(10,2),
+    OrderStatus VARCHAR(50),
+    CreatedAt TIMESTAMP,
+    UpdatedAt TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT o.OrderID, o.UserID, o.ShippingAddress, o.TotalAmount, o.DeliveryCharge, o.CreatedAt, o.UpdatedAt
+    FROM Order_Info o
+    ORDER BY o.OrderID;
+END;
+$$ LANGUAGE plpgsql;
+
+
+-- Function to Get Orders by UserID
+CREATE OR REPLACE FUNCTION fn_GetOrdersByUserID(p_UserID INT)
+RETURNS TABLE (
+    OrderID INT,
+    UserID INT,
+    ShippingAddress TEXT,
+    TotalAmount DECIMAL(10,2),
+    DeliveryCharge DECIMAL(10,2),
+    OrderStatus VARCHAR(50),
+    CreatedAt TIMESTAMP,
+    UpdatedAt TIMESTAMP,
+    OrderDetailID INT,
+    ProductID INT,
+    Quantity INT,
+    Amount DECIMAL(10,2)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT o.OrderID, o.UserID, o.ShippingAddress, o.TotalAmount, o.DeliveryCharge, o.CreatedAt, o.UpdatedAt,
+           d.OrderDetailID, d.ProductID, d.Quantity, d.Amount
+    FROM Order_Info o
+    LEFT JOIN Order_Details d ON o.OrderID = d.OrderID
+    WHERE o.UserID = p_UserID
+    ORDER BY o.CreatedAt DESC;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Function to Get Active Orders by UserID
+CREATE OR REPLACE FUNCTION fn_GetActiveOrdersByUserID(p_UserID INT)
+RETURNS TABLE (
+    OrderID INT,
+    UserID INT,
+    ShippingAddress TEXT,
+    TotalAmount DECIMAL(10,2),
+    DeliveryCharge DECIMAL(10,2),
+    OrderStatus VARCHAR(50),
+    CreatedAt TIMESTAMP,
+    UpdatedAt TIMESTAMP,
+    OrderDetailID INT,
+    ProductID INT,
+    Quantity INT,
+    Amount DECIMAL(10,2)
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT o.OrderID, o.UserID, o.ShippingAddress, o.TotalAmount, o.DeliveryCharge, o.OrderStatus, o.CreatedAt, o.UpdatedAt,
+           d.OrderDetailID, d.ProductID, d.Quantity, d.Amount
+    FROM Order_Info o
+    LEFT JOIN Order_Details d ON o.OrderID = d.OrderID
+    WHERE o.UserID = p_UserID AND o.OrderStatus NOT IN ('Canceled', 'Delivered')
+    ORDER BY o.CreatedAt DESC;
 END;
 $$ LANGUAGE plpgsql;

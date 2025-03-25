@@ -8,15 +8,32 @@ import FireIcon from "./ui/FireIcon";
 import TreeIcon from "./ui/TreeIcon";
 import ExhaustIcon from "./ui/ExhaustIcon";
 import SustainabilityMessage from "./ui/SustainabilityMessage";
+import useOrder from '../hooks/useOrder';
 
 const OrderSummary = ({ isLowSustainable }) => {
   const { routeTotals } = useTransport();
+  const { order, saveOrder, loading, error } = useOrder();
   const navigate = useNavigate();
+
+  const [orderData, setOrderData] = useState({
+    userId: -1, // Example user ID
+    shippingAddress: '',
+    totalAmount: 0,
+    deliveryCharge: 0,
+    status: 'Pending',
+    orderItems: []
+  });
 
   if (!routeTotals) return null;
 
-  const handlePayment = () => {
-    navigate("/paymentsuccess");
+  const handlePayment = async () => {
+    try {
+      await saveOrder(orderData); // Call save order API
+      alert('Order saved successfully!');
+      navigate("/paymentsuccess");
+    } catch (err) {
+      console.error('Error saving order:', err);
+    }
   };
 
   return (
