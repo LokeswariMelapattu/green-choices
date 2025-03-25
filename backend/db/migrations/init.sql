@@ -496,6 +496,7 @@ CREATE OR REPLACE PROCEDURE sp_InsertRoute(
     p_Source VARCHAR(100),
     p_Destination VARCHAR(100),
     p_CarbonEmission INT,
+    p_Duration INT,
     p_TotalCost INT,
     p_LastUpdatedUserID INT,
     OUT p_RouteID INT
@@ -503,8 +504,8 @@ CREATE OR REPLACE PROCEDURE sp_InsertRoute(
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    INSERT INTO Route_Info (OrderID, Source, Destination, CarbonEmission, TotalCost, LastUpdatedUserID)
-    VALUES (p_OrderID, p_Source, p_Destination, p_CarbonEmission, p_TotalCost, p_LastUpdatedUserID)
+    INSERT INTO Route_Info (OrderID, Source, Destination, CarbonEmission, Duration, TotalCost, LastUpdatedUserID)
+    VALUES (p_OrderID, p_Source, p_Destination, p_CarbonEmission, p_Duration, p_TotalCost, p_LastUpdatedUserID)
     RETURNING RouteID INTO p_RouteID;
 
     COMMIT;
@@ -517,6 +518,7 @@ CREATE OR REPLACE PROCEDURE sp_UpdateRoute(
     p_Source VARCHAR(100),
     p_Destination VARCHAR(100),
     p_CarbonEmission INT,
+    p_Duration INT,
     p_TotalCost INT,
     p_LastUpdatedUserID INT
 )
@@ -527,6 +529,7 @@ BEGIN
     SET Source = p_Source,
         Destination = p_Destination,
         CarbonEmission = p_CarbonEmission,
+        Duration = p_Duration,
         TotalCost = p_TotalCost,
         LastUpdatedUserID = p_LastUpdatedUserID,
         LastUpdatedDate = CURRENT_TIMESTAMP
@@ -544,6 +547,7 @@ CREATE OR REPLACE PROCEDURE sp_InsertRouteDetails(
     p_Destination VARCHAR(100),
     p_TransportMode VARCHAR(50),
     p_CarbonEmission INT,
+    p_Duration INT,
     p_Cost INT,
     p_Distance INT,
     p_StatusID INT,
@@ -554,9 +558,9 @@ LANGUAGE plpgsql
 AS $$
 BEGIN
     INSERT INTO Route_Details (RouteID, SeqNo, Source, Destination, TransportMode, 
-                                CarbonEmission, Cost, Distance, StatusID, LastUpdatedUserID)
+                                CarbonEmission, Duration, Cost, Distance, StatusID, LastUpdatedUserID)
     VALUES (p_RouteID, p_SeqNo, p_Source, p_Destination, p_TransportMode, 
-                                p_CarbonEmission, p_Cost, p_Distance, p_StatusID, p_LastUpdatedUserID)
+                                p_CarbonEmission, p_Duration, p_Cost, p_Distance, p_StatusID, p_LastUpdatedUserID)
     RETURNING RouteDetailID INTO p_RouteDetailID;
 
     COMMIT;
@@ -571,6 +575,7 @@ CREATE OR REPLACE PROCEDURE sp_UpdateRouteDetails(
     p_Destination VARCHAR(100),
     p_TransportMode VARCHAR(50),
     p_CarbonEmission INT,
+    p_Duration INT,
     p_Cost INT,
     p_Distance INT,
     p_StatusID INT,
@@ -585,6 +590,7 @@ BEGIN
         Destination = p_Destination,
         TransportMode = p_TransportMode,
         CarbonEmission = p_CarbonEmission,
+        Duration= p_Duration,
         Cost = p_Cost,
         Distance = p_Distance,
         StatusID = p_StatusID,
@@ -616,7 +622,7 @@ BEGIN
 END;
 $$;
 
-CREATE OR REPLACE PROCEDURE sp_UpdateRoute(
+CREATE OR REPLACE PROCEDURE sp_UpdateRouteStatus(
     p_RouteStatusID INT,
     p_RouteID INT,
     p_RouteDetailID INT,
@@ -627,12 +633,94 @@ CREATE OR REPLACE PROCEDURE sp_UpdateRoute(
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    UPDATE Route_Info
-    SET SeqNo = p_SeqNo,
+    UPDATE Route_Status
+    SET RouteDetailID = p_RouteDetailID,
+        SeqNo = p_SeqNo,
         StatusID = p_StatusID,
         LastUpdatedUserID = p_LastUpdatedUserID,
         LastUpdatedDate = CURRENT_TIMESTAMP
-    WHERE RouteStatusID = p_RouteStatusID AND RouteID = p_RouteID AND RouteDetailID = p_RouteDetailID;
+    WHERE RouteStatusID = p_RouteStatusID AND RouteID = p_RouteID;
+    
+    COMMIT;
+END;
+$$;
+
+
+-- Create stored procedure to insert Order_Info
+CREATE OR REPLACE PROCEDURE sp_InsertOrder(
+    p_UserID INT,
+    p_ShippingAddress TEXT,
+    p_TotalAmount DECIMAL(10,2),
+    p_DeliveryCharge DECIMAL(10,2),
+    p_OrderStatus VARCHAR(50), 
+    OUT p_OrderID INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Order_Info (UserID, ShippingAddress, TotalAmount, DeliveryCharge, OrderStatus)
+    VALUES (p_UserID, p_ShippingAddress, p_TotalAmount, p_DeliveryCharge, p_OrderStatus)
+    RETURNING OrderID INTO p_OrderID;
+    
+    COMMIT;
+END;
+$$;
+
+-- Create stored procedure to update Order_Info
+CREATE OR REPLACE PROCEDURE sp_UpdateOrder(
+    p_OrderID INT,
+    p_ShippingAddress TEXT,
+    p_TotalAmount DECIMAL(10,2),
+    p_DeliveryCharge DECIMAL(10,2),
+    p_OrderStatus VARCHAR(50)
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Order_Info
+    SET ShippingAddress = p_ShippingAddress,
+        TotalAmount = p_TotalAmount,
+        DeliveryCharge = p_DeliveryCharge,
+        OrderStatus = p_OrderStatus,
+        UpdatedAt = CURRENT_TIMESTAMP
+    WHERE OrderID = p_OrderID;
+    
+    COMMIT;
+END;
+$$;
+
+-- Create stored procedure to insert Order_Details
+CREATE OR REPLACE PROCEDURE sp_InsertOrderDetail(
+    p_OrderID INT,
+    p_ProductID INT,
+    p_Quantity INT,
+    p_Amount DECIMAL(10,2),
+    OUT p_OrderDetailID INT
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    INSERT INTO Order_Details (OrderID, ProductID, Quantity, Amount)
+    VALUES (p_OrderID, p_ProductID, p_Quantity, p_Amount)
+    RETURNING OrderDetailID INTO p_OrderDetailID;
+    
+    COMMIT;
+END;
+$$;
+
+-- Create stored procedure to update Order_Details
+CREATE OR REPLACE PROCEDURE sp_UpdateOrderDetail(
+    p_OrderDetailID INT,
+    p_Quantity INT,
+    p_Amount DECIMAL(10,2)
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Order_Details
+    SET Quantity = p_Quantity,
+        Amount = p_Amount
+    WHERE OrderDetailID = p_OrderDetailID;
     
     COMMIT;
 END;
@@ -848,5 +936,126 @@ BEGIN
     LEFT JOIN Order_Details d ON o.OrderID = d.OrderID
     WHERE o.UserID = p_UserID AND o.OrderStatus NOT IN ('Canceled', 'Delivered')
     ORDER BY o.CreatedAt DESC;
+CREATE OR REPLACE FUNCTION fn_GetRouteByID(p_RouteID INT)
+RETURNS TABLE (
+    RouteID INT,
+    OrderID INT,
+    Source VARCHAR(100),
+    Destination VARCHAR(100),
+    CarbonEmission INT,
+    Duration INT,
+    TotalCost INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP 
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Info u
+    WHERE u.RouteID = p_RouteID;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_GetRouteDetailsByID(p_RouteDetailID INT)
+RETURNS TABLE (
+    RouteDetailID INT,
+    RouteID INT,
+    SeqNo INT,
+    Source VARCHAR(100),
+    Destination VARCHAR(100),
+    TransportMode VARCHAR(50),
+    CarbonEmission INT,
+    Duration INT,
+    Cost INT,
+    Distance INT,
+    StatusID INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Details u
+    WHERE u.RouteDetailID = p_RouteDetailID;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_GetRouteStatusByID(p_RouteStatusID INT)
+RETURNS TABLE (
+    RouteStatusID INT,
+    RouteID INT,
+    RouteDetailID INT,
+    SeqNo INT,
+    StatusID INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Status u
+    WHERE u.RouteStatusID = p_RouteStatusID;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_GetRouteByOrderID(p_OrderID INT)
+RETURNS TABLE (
+    RouteID INT,
+    OrderID INT,
+    Source VARCHAR(100),
+    Destination VARCHAR(100),
+    CarbonEmission INT,
+    Duration INT,
+    TotalCost INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP 
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Info u
+    WHERE u.OrderID = p_OrderID;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_GetRouteDetailsByRouteID(p_RouteID INT)
+RETURNS TABLE (
+    RouteDetailID INT,
+    RouteID INT,
+    SeqNo INT,
+    Source VARCHAR(100),
+    Destination VARCHAR(100),
+    TransportMode VARCHAR(50),
+    CarbonEmission INT,
+    Duration INT,
+    Cost INT,
+    Distance INT,
+    StatusID INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Details u
+    WHERE u.RouteID = p_RouteID;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE FUNCTION fn_GetRouteStatusByRouteID(p_RouteID INT)
+RETURNS TABLE (
+    RouteStatusID INT,
+    RouteID INT,
+    RouteDetailID INT,
+    SeqNo INT,
+    StatusID INT,
+    LastUpdatedUserID INT,
+    LastUpdatedDate TIMESTAMP
+) AS $$
+BEGIN
+    RETURN QUERY
+    SELECT *
+    FROM Route_Status u
+    WHERE u.RouteID = p_RouteID;
 END;
 $$ LANGUAGE plpgsql;

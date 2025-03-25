@@ -1,265 +1,251 @@
-const path = require('path');
-const { CONFIG } = require('../utils/constants');
+const db = require('../config/db');
 
-const dbPath = path.resolve(__dirname, '../data/database.db');
-const routeTable = 'savedRoutes';
-
-const testRoute = {
-    "routeNumber": 3,
-    "segments": [
-        {
-            "from": "New York, USA",
-            "to": "Madrid, Spain",
-            "fromGeoLocation": [
-                40.7128,
-                -74.006
-            ],
-            "toGeoLocation": [
-                40.4168,
-                -3.7038
-            ],
-            "transportModes": [
-                "plane"
-            ],
-            "costs": [
-                700,
-                1000
-            ],
-            "durations": [
-                15,
-                5
-            ],
-            "distances": [
-                5500,
-                5000
-            ],
-            "carbonEmissions": [
-                100,
-                50
-            ]
-        },
-        {
-            "from": "Madrid, Spain",
-            "to": "Berlin, Germany",
-            "fromGeoLocation": null,
-            "toGeoLocation": [
-                52.52,
-                13.405
-            ],
-            "transportModes": [
-                "road",
-                "plane"
-            ],
-            "costs": [
-                300,
-                400
-            ],
-            "durations": [
-                12,
-                3
-            ],
-            "distances": [
-                2500,
-                2000
-            ],
-            "carbonEmissions": [
-                70,
-                30
-            ]
-        },
-        {
-            "from": "Berlin, Germany",
-            "to": "Warsaw, Poland",
-            "fromGeoLocation": null,
-            "toGeoLocation": [
-                52.2297,
-                21.0122
-            ],
-            "transportModes": [
-                "road",
-                "plane"
-            ],
-            "costs": [
-                300,
-                200
-            ],
-            "durations": [
-                6,
-                1
-            ],
-            "distances": [
-                1200,
-                1000
-            ],
-            "carbonEmissions": [
-                40,
-                20
-            ]
-        },
-        {
-            "from": "Warsaw, Poland",
-            "to": "Helsinki, Finland",
-            "fromGeoLocation": null,
-            "toGeoLocation": [
-                52.2297,
-                21.0122
-            ],
-            "transportModes": [
-                "road",
-                "plane"
-            ],
-            "costs": [
-                300,
-                200
-            ],
-            "durations": [
-                8,
-                2
-            ],
-            "distances": [
-                1200,
-                1000
-            ],
-            "carbonEmissions": [
-                40,
-                20
-            ]
-        }
-    ],
-    "metrics": {
-        "cost": {
-            "minimum": 1400,
-            "maximum": 2000
-        },
-        "duration": {
-            "minimum": 11,
-            "maximum": 41
-        },
-        "distance": {
-            "minimum": 9000,
-            "maximum": 10400
-        },
-        "carbonEmissions": {
-            "minimum": 120,
-            "maximum": 250
-        }
+/**
+ * Save a new route
+ * @param {Object} route - Route data object
+ * @param {string} route.source - Source location of the route
+ * @param {string} route.destination - Destination location of the route
+ * @param {int} route.carbonEmissions - Amount of emissions on the whole route
+ * @param {int} route.duration - Duration of the route
+ * @param {int} route.totalCost - Total cost of the route
+ * @param {int} route.orderId - OrderID connected to the route
+ * @param {int} route.lastUpdatedUserId - UserID which was used to save route
+ * @returns {Promise<Object>} - Created route object
+ */
+const saveRoute = async (route) => {
+    const {source, destination, carbonEmissions, duration, totalCost, orderId, lastUpdatedUserId} = route;
+    try {
+        const result = await db.query(
+            'CALL sp_InsertRoute($1, $2, $3, $4, $5, $6, $7, NULL)',
+            [orderId, source, destination, carbonEmissions, duration, totalCost, lastUpdatedUserId]
+        );
+        const routeResult = await db.query(
+            'SELECT * FROM Route_Info WHERE RouteID = $1',
+            [result.rows[0].p_routeid]
+        );
+        return routeResult.rows[0];
+    } catch (error) {
+        console.error('Error saving route:', error);
+        throw error;
     }
+
 };
 
-async function saveRouteToDB(route) {
+/**
+ * Update a route
+ * @param {Object} route - Route data object
+ * @param {string} route.source - Source location of the route
+ * @param {string} route.destination - Destination location of the route
+ * @param {int} route.carbonEmissions - Amount of emissions on the whole route
+ * @param {int} route.duration - Duration of the route
+ * @param {int} route.totalCost - Total cost of the route
+ * @param {int} route.routeId - RouteID of the route
+ * @param {int} route.orderId - OrderID connected to the route
+ * @param {int} route.lastUpdatedUserId - UserID which was used to update route
+ * @returns {Promise<Object>} - Updated route object
+ */
+const updateRoute = async (routeData) => {
+    const {source, destination, carbonEmissions, duration, totalCost, routeId, orderId, lastUpdatedUserId} = routeData;
+  
+  try {
+    await db.query(
+      'CALL sp_UpdateRoute($1, $2, $3, $4, $5, $6, $7, $8)',
+      [routeId, orderId, source, destination, carbonEmissions, duration, totalCost, lastUpdatedUserId]
+    );
     
-    db = await openDatabase();
+    const result = await db.query('SELECT * FROM fn_GetRouteByID($1)', [routeId]);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
 
-    if(!db) {
-        return false;
+/**
+ * Getting routes, connected to orderID
+ * @param {int} orderId - OrderID connected to the route
+ * @returns {Promise<Object>} - Searched route object
+ */
+const getRouteByOrderId = async (orderId) => {
+  try {
+    const result = await db.query('SELECT * FROM fn_GetRouteByOrderID($1)', [orderId]);
+    return result.rows;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
+
+/**
+ * Save new route details
+ * @param {Object} routeSegment - Route segment data object
+ * @param {string} routeSegment.from - Source location of the segment
+ * @param {string} routeSegment.to - Destination location of the segment
+ * @param {string} routeSegment.transportMode - Transport mode of the segment
+ * @param {int} routeSegment.carbonEmissions - Amount of emissions on the segment
+ * @param {int} routeSegment.duration - Duration of the segment
+ * @param {int} routeSegment.cost - Cost of the segment
+ * @param {int} routeSegment.distance - Distance of the segment
+ * @param {int} routeSegment.statusId - StatusID of the segment
+ * @param {int} routeId - RouteID which is used to save segment
+ * @param {int} lastUpdatedUserId - UserID which was used to save segment
+ * @param {int} seqNo - Sequence Number
+ * @returns {Promise<Object>} - Created routeDetails object
+ */
+const saveRouteDetails = async (routeSegment, routeId, lastUpdatedUserId, seqNo) => {
+    
+    const {from, to, transportMode, carbonEmissions, duration, cost, distance, statusId} = routeSegment;
+
+    try {
+
+      const result =await db.query(
+            'CALL sp_InsertRouteDetails($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, NULL)',
+            [routeId, seqNo, from, to, transportMode, carbonEmissions, duration, cost, distance, statusId, lastUpdatedUserId]
+        );
+
+      const routeDetailsResult = await db.query(
+          'SELECT * FROM Route_Details WHERE RouteDetailID = $1',
+          [result.rows[0].p_routedetailid]
+      );
+
+      return routeDetailsResult.rows[0];
+
+    } catch (error) {
+      console.error('Error saving route:', error);
+      throw error;
     }
 
-    let doesTableExist = await tableExists(db);
+};
 
-    if(!doesTableExist) {
-        tableCreated = await createRouteTable(db);
-        if(!tableCreated) {
-            return false;
-        }
-    }
+/**
+ * Save new route details
+ * @param {Object} routeSegment - Route segment data object
+ * @param {string} routeSegment.from - Source location of the segment
+ * @param {string} routeSegment.to - Destination location of the segment
+ * @param {string} routeSegment.transportMode - Transport mode of the segment
+ * @param {int} routeSegment.carbonEmissions - Amount of emissions on the segment
+ * @param {int} routeSegment.duration - Duration of the segment
+ * @param {int} routeSegment.cost - Cost of the segment
+ * @param {int} routeSegment.distance - Distance of the segment
+ * @param {int} routeSegment.statusId - StatusID of the segment
+ * @param {int} routeSegment.routeDetailId - routeDetailID to update
+ * @param {int} routeId - RouteID which is used to update segment
+ * @param {int} lastUpdatedUserId - UserID which was used to update segment
+ * @param {int} seqNo - Sequence number of the segment
+ * @returns {Promise<Object>} - Updated routeDetails object
+ */
+const updateRouteDetails = async (routeId, seqNo, routeSegment, lastUpdatedUserId) => {
 
-    isRouteSaved = await addRoute(db, route);
+  const {routeDetailId, from, to, transportMode, carbonEmissions, duration, cost, distance, statusId} = routeSegment;
 
-    return isRouteSaved;
+  try {
+    await db.query(
+      'CALL sp_UpdateRouteDetails($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)',
+      [routeDetailId, routeId, seqNo, from, to, transportMode, carbonEmissions, duration, cost, distance, statusId, lastUpdatedUserId]
+    );
 
-}
+    const result = await db.query('SELECT * FROM fn_GetRouteDetailsByID($1)', [routeDetailId]);
 
-async function openDatabase() {
-    return new Promise((resolve, reject) => {
-        const db = new sqlite3.Database(dbPath, sqlite3.OPEN_READWRITE, (err) => {
-            if (err) {
-                console.log("Error opening database: " + err.message);
-                resolve(false);
+    return result.rows[0];
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
 
-            } else {
-                console.log("Database opened successfully.");
-                resolve(db);
-            }
-        });
-    });
-}
+/**
+ * Getting routeDetails, connected to routeID
+ * @param {int} routeId - routeID connected to the routeDetails
+ * @returns {Promise<Object>} - Searched routeDetails object
+ */
+const getRouteDetailsByRouteId = async (routeId) => {
+  try {
+    const result = await db.query('SELECT * FROM fn_GetRouteDetailsByRouteID($1)', [routeId]);
+    return result.rows;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
 
-async function tableExists(db) {
-    return new Promise(async (resolve, reject) => {
-        await db.get(`SELECT name FROM sqlite_master WHERE type='table' AND name=?`, [routeTable], (err, row) => {
-            if (err) resolve(false);
-            else resolve(!!row);  // Convert row to true/false
-        });
-    });
-}
+/**
+ * Save new route details
+ * @param {int} routeId - RouteID which is used to save status
+ * @param {int} routeDetailId - RouteDetailID which is current segment
+ * @param {int} statusId - StatusID of the route
+ * @param {int} lastUpdatedUserId - UserID which was used to save status
+ * @returns {Promise<Object>} - Created routeStatus object
+ */
+const saveRouteStatus = async (routeId, routeDetailId, statusId, lastUpdatedUserId) => {
+  try {
 
-// migth at least to need to include order number so it can be connected to a possible order table
-// could also be changed to include the table name as a pram, so it could be used for making other tables 
-async function createRouteTable(db) {
-    return new Promise(async (resolve, reject) => {
-        await db.run(`CREATE TABLE ${routeTable}(id INTEGER PRIMARY KEY, routeData)`, (err) => {
-            if (err) {
-                resolve(false);
-            } else {
-                // just to check when the table is created during development
-                console.log("Table Created"); 
-                resolve(true);
-            }
-        })
-    });
-}
+      const result = await db.query(
+          'CALL sp_InsertRouteStatus($1, $2, $3, $4, $5, NULL)',
+          [routeId, routeDetailId, 0, statusId, lastUpdatedUserId]
+      );
 
-async function addRoute(db, route) {
-    routeString = JSON.stringify(route)
+      const routeStatusResult = await db.query(
+          'SELECT * FROM Route_Status WHERE RouteStatusID = $1',
+          [result.rows[0].p_routestatusid]
+      );
+      return routeStatusResult.rows[0];
+  } catch (error) {
+      console.error('Error saving route:', error);
+      throw error;
+  }
 
-    return new Promise(async (resolve, reject) => {
-        await db.run(`INSERT INTO ${routeTable}(routeData) VALUES (?)`, [routeString], (err) => {
-            if (err) {
-                console.log("Error adding data to table: " + err.message);
-                resolve(false);
-            } else {
-                resolve(true);
-            }
-        })
-    });
-}
+};
+
+/**
+ * Save new route details
+ * @param {int} routeStatusId - RouteStatusID which is to be updated
+ * @param {int} routeId - RouteID which is used to update status
+ * @param {int} routeDetailId - RouteDetailID which is current segment
+ * @param {int} seqNo - Sequence number of the current segment
+ * @param {int} statusId - StatusID of the route
+ * @param {int} lastUpdatedUserId - UserID which was used to update status
+ * @returns {Promise<Object>} - Updated routeStatus object
+ */
+const updateRouteStatus = async (routeStatusId, routeId, routeDetailId, seqNo, statusId, lastUpdatedUserId) => {
+  try {
+
+    await db.query(
+      'CALL sp_UpdateRouteStatus($1, $2, $3, $4, $5, $6)',
+      [routeStatusId, routeId, routeDetailId, seqNo, statusId, lastUpdatedUserId]
+    );
+
+    const result = await db.query('SELECT * FROM fn_GetRouteStatusByID($1)', [routeStatusId]);
+    return result.rows[0];
+
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
+
+/**
+ * Getting routeStatus, connected to routeID
+ * @param {int} routeId - routeID connected to the routeDetails
+ * @returns {Promise<Object>} - Searched routeStatus object
+ */
+const getRouteStatusByRouteId = async (routeId) => {
+  try {
+    const result = await db.query('SELECT * FROM fn_GetRouteStatusByRouteID($1)', [routeId]);
+    return result.rows;
+  } catch (error) {
+    console.error('Error updating user:', error);
+    throw error;
+  }
+};
 
 module.exports = {
-    saveRouteToDB
-};
-
-/*
-// development zone -------------------------------------------------------------------------
-// just check everything works, usefull when loading routes is going to be implemented
-async function readRouteTable() {
-    db = await openDatabase();
-
-    db.all(`SELECT * FROM ${routeTable}`, [], (err, rows) => {
-        if (err) {
-            console.log("Error reading data to table: " + err.message);
-        }
-        rows.forEach(row => {
-            console.log(`Row ID: ${row.id}`);
-            console.log(`Route data: ${row.routeData}`);
-        })
-    })
+    saveRoute,
+    updateRoute,
+    getRouteByOrderId,
+    saveRouteDetails,
+    updateRouteDetails,
+    getRouteDetailsByRouteId,
+    saveRouteStatus,
+    updateRouteStatus,
+    getRouteStatusByRouteId
 }
-
-// be carefull with this one
-// also dropping the table doesn't clear the file empty, for development usage could empty the file automatically,
-// currently needs to be done manually
-async function dropRouteTable() {
-    db = await openDatabase();
-
-    db.run(`DROP TABLE ${routeTable}`)
-    
-    // just to check when the table is dropped
-    console.log("Table Dropped"); 
-}
-//
-
-//saveRouteToDB(testRoute);
-//readRouteTable();
-//dropRouteTable()
-*/
-//saveRouteToDB(testRoute);

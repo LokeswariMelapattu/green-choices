@@ -4,6 +4,7 @@
         "img": "/imgs/sneakers.png",
         "name": "EcoStride Sneakers",
         "price": 49.99,
+        "quantity": 1,
         "size": [
             36,
             37,
@@ -21,6 +22,7 @@
         "img": "/imgs/runners.png",
         "name": "GreenStep Runners",
         "price": 59.99,
+        "quantity": 1,
         "size": [
             37,
             38,
@@ -38,6 +40,7 @@
         "img": "/imgs/loafers.png",
         "name": "NatureWalk Loafers",
         "price": 69.99,
+        "quantity": 1,
         "size": [
             38,
             39,
@@ -55,6 +58,7 @@
         "img": "/imgs/boots.png",
         "name": "EarthStride Boots",
         "price": 89.99,
+        "quantity": 1,
         "size": [
             39,
             40,
@@ -72,6 +76,7 @@
         "img": "/imgs/trainers.png",
         "name": "LeafFlex Trainers",
         "price": 54.99,
+        "quantity": 1,
         "size": [
             36,
             37,
@@ -88,6 +93,7 @@
         "img": "/imgs/joggers.png",
         "name": "EcoStride Joggers",
         "price": 54.99,
+        "quantity": 1,
         "size": [
             36,
             37,

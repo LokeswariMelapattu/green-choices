@@ -2,7 +2,7 @@ import { Card } from "@/components/ui/Card";
 import { Plane, Ship, Timer, DollarSign, Route, Leaf, Truck } from "lucide-react";
 import { useMemo, useEffect, useState } from "react";
 import { useTransport } from '@/context/transport-context';
-import { motion } from "framer-motion";
+import { motion } from "framer-motion"; 
 
 // New helper component
 const MetricItem = ({ icon: Icon, label, value }) => (
@@ -83,7 +83,17 @@ const RouteDetails = ({ route, greenestRoute  }) => {
       transition={{ duration: 1, ease: "easeOut"  }} // Custom cubic bezier for smooth feel
     >
     <Card className="p-6 bg-white/70 backdrop-blur-lg shadow-lg transition-transform">
-      <h2 className="text-xl font-semibold mb-4">Option {route.routeNumber} Details</h2>
+      
+      <div className="flex items-center gap-2">
+        
+        <h2 className="text-xl font-semibold mb-4 mr-6">Option {route.routeNumber} Details</h2>
+        {route.routeNumber ==1 && (<div>
+            <p className="text-sm font-semibold text-green-700 mb-4">Good Job! You are asaving 20% of carbon emission!</p>
+             </div> 
+         )}
+           
+          </div>
+           
       {/* Conditionally render the GIF only for the greenest route */}
       {showGif && greenestRoute.routeNumber == route.routeNumber && (
         <img
