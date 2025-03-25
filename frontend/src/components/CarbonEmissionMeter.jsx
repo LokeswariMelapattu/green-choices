@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Gauge from './Gauge';  
 import { useTransport } from '@/context/transport-context';
  
-const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick,  className = ""  }) => {
+const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick,setLowSustainable,  className = ""  }) => {
      
     // Normalize emissions for the gauge (200–1000 scale to 0–100 scale)
     const normalizedValue1 = Math.min(Math.max(((currentValue) / 600) * 100, 0), 100);
@@ -32,10 +32,12 @@ const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick,  className = 
         if(percentage > 35)
         {
             setIsLowSustainable(true);
+            setLowSustainable(true);
         }
         else
         { 
             setIsLowSustainable(false);
+            setLowSustainable(false);
         }
     // Determine label and color based on percentage
     if (percentage <= 15) {
@@ -58,7 +60,7 @@ const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick,  className = 
 );
 
     return (
-        <div className='flex items-center text-center justify-center'>
+        <div className='flex items-center text-center justify-center p-4'>
             <div>
                  <h2 className="text-2xl font-semibold text-center text-gray-800">
                     Carbon Emission
@@ -68,12 +70,14 @@ const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick,  className = 
                 <p>High: {maxValue} KgCO2</p>
                 
             { isLowSustainable && (
-            <div className="flex items-center">
-              <img src="/imgs/earth.png" className="h-[40px] w-[40px]" />
-              <p style={{ color: color }} className="mr-6 ">
+            <div className="flex items-center hover:scale-110 m-1">
+                
+              <img src="/imgs/earth.png" className="h-[40px] w-[40px] running-icon" />
+              
+              <p style={{ color: color }} className="mr-6 cursor-pointer" 
+                  onClick={onEmissionsClick}>
                 A Little More CO₂ Than We'd Like … But <span
-                  className="font-bold cursor-pointer"
-                  onClick={onEmissionsClick}
+                  className="font-bold "
                 >
                   Here's Why
                 </span>
