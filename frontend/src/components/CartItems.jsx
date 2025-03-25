@@ -19,14 +19,14 @@ const CartItems = ({ items, updateQuantity, removeItem }) => {
                         <tr key={index} className="border-b">
                             <td className="p-2 flex items-center gap-4">
                                 <img
-                                    src="/imgs/sneakers.png"
+                                    src={item.img}
                                     alt={item.name}
                                     className="rounded-[12px] object-cover h-[90px] w-[120px]"
                                 />
                                 <div>
                                     <p className="font-bold">{item.name} </p>
-                                    <p> Size: {item.size}</p>
-                                    <p> Color: {item.color}</p>
+                                    <p> Size: EU {item.size[3]}</p>
+                                    <p> Color: Black</p>
                                 </div>
                             </td>
                             <td className="p-2">${item.price}</td>

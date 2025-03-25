@@ -1,24 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    items: [
-        {
-            img: '/imgs/sneakers.png',
-            name: "Caliber Canvas - Seude",
-            size: "EU 44",
-            color: "Beige",
-            price: 80.00,
-            quantity: 1,
-        },
-        {
-            img: '/imgs/sneakers.png',
-            name: "Caliber Canvas - Seude",
-            size: "EU 44",
-            color: "Beige",
-            price: 80.00,
-            quantity: 1,
-        }
-    ],
+    items: []
 };
 
 const cartSlice = createSlice({
