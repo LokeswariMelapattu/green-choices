@@ -1,6 +1,8 @@
 import { Card } from '@/components/ui/Card';
-import { Plane, Ship, Truck } from 'lucide-react';
+import { EarthIcon, Plane, Ship, Truck } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import  TreeIcon  from './ui/TreeIcon';
+import  FireIcon  from './ui/FireIcon';
 
 const RouteSelector = ({ routes, selectedRoute, onRouteSelect,isLoading }) => {
   if (isLoading) {
@@ -40,17 +42,22 @@ const RouteSelector = ({ routes, selectedRoute, onRouteSelect,isLoading }) => {
                     </div>
                   </div>
                   <div className="flex gap-2">
-                    {transportModes.map(mode => {
+                    {/* {transportModes.map(mode => {
                       const Icon = {
                         plane: Plane,
                         sea: Ship,
                         road: Truck
                       }[mode];
                       return <Icon key={mode} className="h-4 w-4 text-gray-500" />;
-                    })}
+                    })} */}
+                   
+                      {(index==0? (<><TreeIcon iconType="1"/>  
+                      <span className="font-semibold"></span></>) 
+                      :(<><FireIcon/> <span className="font-semibold"></span></>))}
+                     
                   </div>
                 </div>
-
+                
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Cost</span>

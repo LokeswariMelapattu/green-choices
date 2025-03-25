@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'; 
-const SpinningEarthIcon = () => {
+const SpinningEarthIcon = ({ iconType }) => {
   return (
     <motion.div
       animate={{
@@ -12,7 +12,8 @@ const SpinningEarthIcon = () => {
       }}
       className="flex justify-center items-center text-3xl  "
     >
-       🌎
+      {iconType ==1? "♻️" :"🌎"}
+       
     </motion.div>
   );
 };
