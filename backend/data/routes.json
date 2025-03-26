@@ -4,6 +4,7 @@
       "destination": "Madrid, Spain",
       "geo_location": [40.7128, -74.006],
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [700, 1000],
       "duration": [15, 5],
       "distance": [5500, 5000],
@@ -15,6 +16,7 @@
     {
       "destination": "London, UK",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [800, 1200],
       "duration": [7, 3],
       "distance": [4000, 3500],
@@ -26,6 +28,7 @@
     {
       "destination": "Paris, France",
       "mode": ["sea", "plane"],
+      "fuel_type": ["natural gas", "jet fuel"],
       "cost": [800, 900],
       "duration": [12, 6],
       "distance": [4800, 4500],
@@ -39,6 +42,7 @@
     {
       "destination": "New York, USA",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 500],
       "duration": [40, 6],
       "distance": [4500, 4000],
@@ -50,6 +54,7 @@
     {
       "destination": "Tokyo, Japan",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1200, 1500],
       "duration": [20, 10],
       "distance": [8500, 8000],
@@ -61,6 +66,7 @@
     {
       "destination": "Sydney, Australia",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1500, 1800],
       "duration": [25, 15],
       "distance": [9000, 8500],
@@ -74,6 +80,7 @@
     {
       "destination": "Paris, France",
       "mode": ["road", "plane"],
+      "fuel_type": ["electric", "jet fuel"],
       "cost": [200, 300],
       "duration": [10, 2],
       "distance": [1500, 1200],
@@ -85,6 +92,7 @@
     {
       "destination": "Berlin, Germany",
       "mode": ["road", "plane"],
+      "fuel_type": ["bio fuel", "jet fuel"],
       "cost": [300, 400],
       "duration": [12, 3],
       "distance": [2500, 2000],
@@ -96,6 +104,7 @@
     {
       "destination": "Rome, Italy",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["diesel", "diesel", "jet fuel"],
       "cost": [350, 400, 500],
       "duration": [14, 11, 4],
       "distance": [2100, 1900, 1800],
@@ -109,6 +118,7 @@
     {
       "destination": "Vienna, Austria",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 700],
       "duration": [8, 4],
       "distance": [3200, 2800],
@@ -122,6 +132,7 @@
     {
       "destination": "Helsinki, Finland",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 500],
       "duration": [20, 3],
       "distance": [3500, 3000],
@@ -133,6 +144,7 @@
     {
       "destination": "Amsterdam, Netherlands",
       "mode": ["road", "plane"],
+      "fuel_type": ["electric", "jet fuel"],
       "cost": [300, 400],
       "duration": [8, 2],
       "distance": [1500, 1200],
@@ -144,6 +156,7 @@
     {
       "destination": "Brussels, Belgium",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [250, 350],
       "duration": [6, 1],
       "distance": [1100, 1000],
@@ -157,6 +170,7 @@
     {
       "destination": "Warsaw, Poland",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 200],
       "duration": [8, 2],
       "distance": [1200, 1000],
@@ -170,6 +184,7 @@
     {
       "destination": "Brussels, Belgium",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [250, 350],
       "duration": [2, 1],
       "distance": [1100, 1000],
@@ -183,6 +198,7 @@
     {
       "destination": "Amsterdam, Netherlands",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 400],
       "duration": [2, 1],
       "distance": [1500, 1200],
@@ -196,6 +212,7 @@
     {
       "destination": "Berlin, Germany",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 400],
       "duration": [8, 2],
       "distance": [2000, 1500],
@@ -207,6 +224,7 @@
     {
       "destination": "Rome, Italy",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["electric", "natural gas", "jet fuel"],
       "cost": [500, 550, 600],
       "duration": [14, 10, 3],
       "distance": [3000, 2700, 2500],
@@ -218,6 +236,7 @@
     {
       "destination": "Vienna, Austria",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 700],
       "duration": [16, 4],
       "distance": [3200, 2800],
@@ -231,6 +250,7 @@
     {
       "destination": "Rome, Italy",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 700],
       "duration": [8, 4],
       "distance": [3200, 2800],
@@ -244,6 +264,7 @@
     {
       "destination": "Helsinki, Finland",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [500, 400],
       "duration": [18, 2],
       "distance": [3000, 2500],
@@ -255,6 +276,7 @@
     {
       "destination": "Warsaw, Poland",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 200],
       "duration": [6, 1],
       "distance": [1200, 1000],
@@ -266,6 +288,7 @@
     {
       "destination": "Prague, Czech Republic",
       "mode": ["road", "plane"],
+      "fuel_type": ["electric", "jet fuel"],
       "cost": [350, 250],
       "duration": [7, 2],
       "distance": [1400, 1200],
@@ -279,6 +302,7 @@
     {
       "destination": "Helsinki, Finland",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 200],
       "duration": [8, 2],
       "distance": [1200, 1000],
@@ -292,6 +316,7 @@
     {
       "destination": "Vienna, Austria",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 700],
       "duration": [8, 2],
       "distance": [3200, 2800],
@@ -305,6 +330,7 @@
     {
       "destination": "Tokyo, Japan",
       "mode": ["sea", "plane"],
+      "fuel_type": ["natural gas", "jet fuel"],
       "cost": [1200, 1500],
       "duration": [20, 10],
       "distance": [8500, 8000],
@@ -316,6 +342,7 @@
     {
       "destination": "Singapore, Singapore",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1800, 2000],
       "duration": [24, 12],
       "distance": [9500, 9000],
@@ -327,6 +354,7 @@
     {
       "destination": "Hong Kong, China",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1600, 1800],
       "duration": [22, 11],
       "distance": [9000, 8500],
@@ -340,6 +368,7 @@
     {
       "destination": "Beijing, China",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["diesel", "diesel", "jet fuel"],
       "cost": [1200, 600, 1600],
       "duration": [8, 12, 2],
       "distance": [100, 50, 100],
@@ -353,6 +382,7 @@
     {
       "destination": "Sydney, Australia",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 800],
       "duration": [5, 10],
       "distance": [3000, 3500],
@@ -364,6 +394,7 @@
     {
       "destination": "Seoul, South Korea",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [400, 600],
       "duration": [2, 4],
       "distance": [1500, 1800],
@@ -375,6 +406,7 @@
     {
       "destination": "Bangkok, Thailand",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [700, 900],
       "duration": [6, 12],
       "distance": [4000, 4500],
@@ -386,6 +418,7 @@
     {
       "destination": "Toronto, Canada",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1200, 1500],
       "duration": [20, 10],
       "distance": [8500, 8000],
@@ -397,6 +430,7 @@
     {
       "destination": "Los Angeles, USA",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1000, 1200],
       "duration": [20, 10],
       "distance": [8500, 8000],
@@ -410,6 +444,7 @@
     {
       "destination": "Tokyo, Japan",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 800],
       "duration": [5, 10],
       "distance": [3000, 3500],
@@ -421,6 +456,7 @@
     {
       "destination": "Singapore, Singapore",
       "mode": ["sea", "plane"],
+      "fuel_type": ["natural gas", "jet fuel"],
       "cost": [500, 700],
       "duration": [6, 8],
       "distance": [2000, 2500],
@@ -432,6 +468,7 @@
     {
       "destination": "Jakarta, Indonesia",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 500],
       "duration": [3, 6],
       "distance": [1000, 1500],
@@ -442,18 +479,20 @@
     },
     {
       "destination": "Kuala Lumpur, Malaysia",
-      "mode": ["road", "sea", "plane"],
-      "cost": [300, 200, 400],
-      "duration": [6, 2, 4],
-      "distance": [1500, 500, 1000],
-      "carbon_emission": [60, 40, 100],
+      "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
+      "cost": [200, 400],
+      "duration": [2, 4],
+      "distance": [500, 1000],
+      "carbon_emission": [40, 100],
       "destination_geo_location": [3.139, 101.6869],
       "source_geo_location": [-33.8688, 151.2093],
-      "emission_reason": ["", "", ""]
+      "emission_reason": ["", ""]
     },
     {
       "destination": "New York, USA",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1000, 1200],
       "duration": [20, 10],
       "distance": [8500, 8000],
@@ -465,6 +504,7 @@
     {
       "destination": "Los Angeles, USA",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1500, 1800],
       "duration": [25, 15],
       "distance": [9000, 8500],
@@ -478,6 +518,7 @@
     {
       "destination": "Tokyo, Japan",
       "mode": ["sea", "plane"],
+      "fuel_type": ["natural gas", "jet fuel"],
       "cost": [400, 600],
       "duration": [2, 4],
       "distance": [1500, 1800],
@@ -491,6 +532,7 @@
     {
       "destination": "Tokyo, Japan",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [700, 900],
       "duration": [6, 12],
       "distance": [4000, 4500],
@@ -504,6 +546,7 @@
     {
       "destination": "Sydney, Australia",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [500, 700],
       "duration": [6, 8],
       "distance": [2000, 2500],
@@ -515,6 +558,7 @@
     {
       "destination": "Jakarta, Indonesia",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 500],
       "duration": [3, 6],
       "distance": [1000, 1500],
@@ -526,6 +570,7 @@
     {
       "destination": "Kuala Lumpur, Malaysia",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["diesel", "diesel", "jet fuel"],
       "cost": [300, 200, 400],
       "duration": [6, 2, 4],
       "distance": [1500, 500, 1000],
@@ -539,6 +584,7 @@
     {
       "destination": "Singapore, Singapore",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 500],
       "duration": [3, 6],
       "distance": [1000, 1500],
@@ -553,6 +599,7 @@
       "destination": "Singapore, Singapore",
       "mode": ["road", "sea", "plane"],
       "cost": [300, 200, 400],
+      "fuel_type": ["diesel", "jet fuel"],
       "duration": [6, 2, 4],
       "distance": [1500, 500, 1000],
       "carbon_emission": [60, 30, 120],
@@ -565,6 +612,7 @@
     {
       "destination": "Cape Town, South Africa",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1600, 1800],
       "duration": [30, 15],
       "distance": [12500, 12000],
@@ -576,6 +624,7 @@
     {
       "destination": "Buenos Aires, Argentina",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [2000, 2200],
       "duration": [536, 18],
       "distance": [14500, 14000],
@@ -587,6 +636,7 @@
     {
       "destination": "Dubai, UAE",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 800],
       "duration": [8, 4],
       "distance": [3500, 3000],
@@ -598,6 +648,7 @@
     {
       "destination": "Jakarta, Indonesia",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [300, 500],
       "duration": [3, 6],
       "distance": [1000, 1500],
@@ -609,6 +660,7 @@
     {
       "destination": "Singapore, Singapore",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [500, 700],
       "duration": [6, 8],
       "distance": [2000, 2500],
@@ -620,6 +672,7 @@
     {
       "destination": "Hong Kong, China",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 800],
       "duration": [8, 4],
       "distance": [3500, 3000],
@@ -631,6 +684,7 @@
     {
       "destination": "Tokyo, Japan",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 800],
       "duration": [5, 10],
       "distance": [3000, 3500],
@@ -644,6 +698,7 @@
     {
       "destination": "Mumbai, India",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 800],
       "duration": [8, 4],
       "distance": [3500, 3000],
@@ -655,6 +710,7 @@
     {
       "destination": "Cape Town, South Africa",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1600, 1800],
       "duration": [30, 15],
       "distance": [12500, 12000],
@@ -666,6 +722,7 @@
     {
       "destination": "Buenos Aires, Argentina",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [2000, 2200],
       "duration": [536, 18],
       "distance": [14500, 14000],
@@ -677,6 +734,7 @@
     {
       "destination": "New York, USA",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [700, 1000],
       "duration": [15, 5],
       "distance": [5500, 5000],
@@ -688,6 +746,7 @@
     {
       "destination": "London, UK",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [800, 1200],
       "duration": [7, 3],
       "distance": [4000, 3500],
@@ -701,6 +760,7 @@
     {
       "destination": "Rio de Janeiro, Brazil",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [700, 900],
       "duration": [8, 16],
       "distance": [5000, 5500],
@@ -712,6 +772,7 @@
     {
       "destination": "Lagos, Nigeria",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["gasoline", "diesel", "jet fuel"],
       "cost": [700, 600, 800],
       "duration": [18, 6, 12],
       "distance": [5000, 4000, 4500],
@@ -723,6 +784,7 @@
     {
       "destination": "Nairobi, Kenya",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [600, 700],
       "duration": [15, 10],
       "distance": [4000, 3500],
@@ -736,6 +798,7 @@
     {
       "destination": "Cape Town, South Africa",
       "mode": ["sea", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [700, 900],
       "duration": [8, 16],
       "distance": [5000, 5500],
@@ -749,6 +812,7 @@
     {
       "destination": "Cape Town, South Africa",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["gasoline", "diesel", "jet fuel"],
       "cost": [700, 600, 800],
       "duration": [18, 6, 12],
       "distance": [5000, 4000, 4500],
@@ -762,6 +826,7 @@
     {
       "destination": "Cape Town, South Africa",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [600, 700],
       "duration": [15, 10],
       "distance": [4000, 3500],
@@ -775,6 +840,7 @@
     {
       "destination": "Rio de Janeiro, Brazil",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["diesel", "diesel", "jet fuel"],
       "cost": [700, 600, 800],
       "duration": [21, 7, 14],
       "distance": [4000, 3000, 3500],
@@ -786,6 +852,7 @@
     {
       "destination": "Santiago, Chile",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [600, 700],
       "duration": [15, 10],
       "distance": [3000, 2500],
@@ -797,6 +864,7 @@
     {
       "destination": "Lima, Peru",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["diesel", "diesel", "jet fuel"],
       "cost": [800, 700, 900],
       "duration": [18, 6, 12],
       "distance": [5000, 4000, 4500],
@@ -810,6 +878,7 @@
     {
       "destination": "Buenos Aires, Argentina",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [600, 700],
       "duration": [15, 10],
       "distance": [3000, 2500],
@@ -823,6 +892,7 @@
     {
       "destination": "Buenos Aires, Argentina",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["diesel", "diesel", "jet fuel"],
       "cost": [800, 700, 900],
       "duration": [18, 6, 12],
       "distance": [5000, 4000, 4500],
@@ -836,6 +906,7 @@
     {
       "destination": "Astana, Kazakhstan",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [800, 1200],
       "duration": [24, 8],
       "distance": [7000, 6000],
@@ -847,6 +918,7 @@
     {
       "destination": "Ulaanbaatar, Mongolia",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1000, 1400],
       "duration": [30, 10],
       "distance": [8000, 7000],
@@ -858,6 +930,7 @@
     {
       "destination": "Beijing, China",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [1200, 1600],
       "duration": [36, 12],
       "distance": [9000, 8000],
@@ -871,6 +944,7 @@
     {
       "destination": "Moscow, Russia",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [1200, 1600],
       "duration": [36, 12],
       "distance": [9000, 8000],
@@ -882,6 +956,7 @@
     {
       "destination": "Hong Kong, China",
       "mode": ["road", "sea", "plane"],
+      "fuel_type": ["natural gas", "diesel", "jet fuel"],
       "cost": [1200, 600, 1600],
       "duration": [8, 12, 2],
       "distance": [100, 50, 110],
@@ -895,6 +970,7 @@
     {
       "destination": "Beijing, China",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [500, 400],
       "duration": [15, 5],
       "distance": [3000, 2500, 2000],
@@ -906,6 +982,7 @@
     {
       "destination": "Moscow, Russia",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [700, 600],
       "duration": [18, 6],
       "distance": [4000, 3000],
@@ -917,6 +994,7 @@
     {
       "destination": "Ulaanbaatar, Mongolia",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [600, 500],
       "duration": [15, 5],
       "distance": [3500, 2500],
@@ -930,6 +1008,7 @@
     {
       "destination": "Beijing, China",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [600, 500],
       "duration": [18, 6],
       "distance": [3500, 2500],
@@ -941,6 +1020,7 @@
     {
       "destination": "Moscow, Russia",
       "mode": ["road", "plane"],
+      "fuel_type": ["diesel", "jet fuel"],
       "cost": [800, 700],
       "duration": [21, 7],
       "distance": [4500, 3500],
@@ -952,6 +1032,7 @@
     {
       "destination": "Astana, Kazakhstan",
       "mode": ["road", "plane"],
+      "fuel_type": ["gasoline", "jet fuel"],
       "cost": [700, 600],
       "duration": [18, 6],
       "distance": [4000, 3000],
