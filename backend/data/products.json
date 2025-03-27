@@ -1,6 +1,6 @@
 [
     {
-        "product_id": 1,
+        "productId": 1,
         "img": "/imgs/sneakers.png",
         "name": "EcoStride Sneakers",
         "price": 49.99,
@@ -18,7 +18,7 @@
         "seller_location": "Helsinki, Finland"
     },
     {
-        "product_id": 2,
+        "productId": 2,
         "img": "/imgs/runners.png",
         "name": "GreenStep Runners",
         "price": 59.99,
@@ -36,7 +36,7 @@
         "seller_location": "Amsterdam, Netherlands"
     },
     {
-        "product_id": 3,
+        "productId": 3,
         "img": "/imgs/loafers.png",
         "name": "NatureWalk Loafers",
         "price": 69.99,
@@ -54,7 +54,7 @@
         "seller_location": "Lisbon, Portugal"
     },
     {
-        "product_id": 4,
+        "productId": 4,
         "img": "/imgs/boots.png",
         "name": "EarthStride Boots",
         "price": 89.99,
@@ -72,7 +72,7 @@
         "seller_location": "Seoul, South Korea"
     },
     {
-        "product_id": 5,
+        "productId": 5,
         "img": "/imgs/trainers.png",
         "name": "LeafFlex Trainers",
         "price": 54.99,
@@ -89,7 +89,7 @@
         "seller_location": "Melbourne, Australia"
     },
     {
-        "product_id": 6,
+        "productId": 6,
         "img": "/imgs/joggers.png",
         "name": "EcoStride Joggers",
         "price": 54.99,

@@ -1,4 +1,5 @@
 const db = require('../config/db');
+const orderDetailModel = require('./orderDetail');
 
 /**
  * Create a new order
@@ -8,26 +9,37 @@ const db = require('../config/db');
  * @param {number} orderData.totalAmount - Total amount
  * @param {number} orderData.deliveryCharge - Delivery charge
  * @param {string} orderData.orderStatus - Order orderStatus
+ * @param {Array} orderData.orderItems - Array of order items with product details
  * @returns {Promise<Object>} - Created order object
  */
 const createOrder = async (orderData) => {
-  const { userId, shippingAddress, totalAmount, deliveryCharge, orderStatus } = orderData;
-  
+  const { userId, shippingAddress, totalAmount, deliveryCharge, orderStatus, isSustainableOption, orderItems } = orderData;
+  //const client = await db.pool.connect();
   try {
+    //await client.query('BEGIN'); // Start a transaction
+
     const result = await db.query(
-      'CALL sp_InsertOrder($1, $2, $3, $4, $5, NULL)',
-      [userId, shippingAddress, totalAmount, deliveryCharge, orderStatus]
+      'CALL sp_InsertOrder($1, $2, $3, $4, $5, $6, NULL)',
+      [userId, shippingAddress, totalAmount, deliveryCharge, orderStatus, isSustainableOption]
     );
-    
-    const orderResult = await db.query(
-      'SELECT * FROM Order_Info WHERE UserID = $1 ORDER BY CreatedAt DESC LIMIT 1', 
-      [userId]
-    );
-    
-    return orderResult.rows[0];
+
+    console.log("order created: ");
+    console.log(result?.rows[0]?.p_orderid);
+
+    const orderId = result?.rows[0]?.p_orderid;
+    const orderResult = await getOrderById(orderId);
+
+    for (const item of orderItems) {
+      console.log(item);
+      const { productId, quantity, price } = item;
+      await orderDetailModel.createOrderDetail({ orderId, productId, quantity, price });
+    }
+
+    return orderResult;
   } catch (error) {
     console.error('Error creating order:', error);
     throw error;
+  } finally {
   }
 };
 
@@ -38,16 +50,16 @@ const createOrder = async (orderData) => {
  * @returns {Promise<Object>} - Updated order object
  */
 const updateOrder = async (orderId, orderData) => {
-  const { shippingAddress, totalAmount, deliveryCharge, orderStatus } = orderData;
+  const { shippingAddress, totalAmount, deliveryCharge, orderStatus, isSustainableOption } = orderData;
   
   try {
     await db.query(
-      'CALL sp_UpdateOrder($1, $2, $3, $4, $5)',
-      [orderId, shippingAddress, totalAmount, deliveryCharge, orderStatus]
+      'CALL sp_UpdateOrder($1, $2, $3, $4, $5, $6)',
+      [orderId, shippingAddress, totalAmount, deliveryCharge, orderStatus, isSustainableOption]
     );
     
-    const result = await db.query('SELECT * FROM fn_GetOrderByID($1)', [orderId]);
-    return result.rows[0];
+    const result = await getOrderById(orderId);
+    return result;
   } catch (error) {
     console.error('Error updating order:', error);
     throw error;

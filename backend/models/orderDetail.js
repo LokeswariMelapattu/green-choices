@@ -6,20 +6,20 @@ const db = require('../config/db');
  * @param {number} orderDetailData.orderId - Order ID
  * @param {number} orderDetailData.productId - Product ID
  * @param {number} orderDetailData.quantity - Quantity
- * @param {number} orderDetailData.amount - Amount
+ * @param {number} orderDetailData.price - Unit Price
  * @returns {Promise<Object>} - Created order detail object
  */
 const createOrderDetail = async (orderDetailData) => {
-  const { orderId, productId, quantity, amount } = orderDetailData;
+  const { orderId, productId, quantity, price } = orderDetailData;
   
   try {
     await db.query(
-      'CALL sp_InsertOrderDetail($1, $2, $3, $4)',
-      [orderId, productId, quantity, amount]
+      'CALL sp_InsertOrderDetail($1, $2, $3, $4, NULL)',
+      [orderId, productId, quantity, price]
     );
     
-    const result = await db.query('SELECT * FROM fn_GetOrderDetailsByOrderID($1)', [orderId]);
-    return result.rows;
+    const result = getOrderDetailsByOrderID(orderId);
+    return result;
   } catch (error) {
     console.error('Error creating order detail:', error);
     throw error;
@@ -33,16 +33,16 @@ const createOrderDetail = async (orderDetailData) => {
  * @returns {Promise<Object>} - Updated order detail object
  */
 const updateOrderDetail = async (orderDetailId, orderDetailData) => {
-  const { quantity, amount } = orderDetailData;
+  const { quantity, price } = orderDetailData;
   
   try {
     await db.query(
       'CALL sp_UpdateOrderDetail($1, $2, $3)',
-      [orderDetailId, quantity, amount]
+      [orderDetailId, quantity, price]
     );
     
-    const result = await db.query('SELECT * FROM fn_GetOrderDetailByID($1)', [orderDetailId]);
-    return result.rows[0];
+    const result = await getOrderDetailByID(orderDetailId);
+    return result;
   } catch (error) {
     console.error('Error updating order detail:', error);
     throw error;

@@ -21,7 +21,7 @@ const CartDetails = ({ total, handleCheckout }) => {
 
                 <div className="flex items-center justify-center min-h-[100px]">
                     <button
-                        onClick={handleCheckout} // Add onClick handler
+                        onClick={() => handleCheckout(total.toFixed(2), 32.00)} // Add onClick handler
                         className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors rounded-[12px]"
                     >
                         Proceed to Checkout

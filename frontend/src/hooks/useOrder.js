@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { VITE_APP_API_URL } from '../data/constants'
 
 const useOrder = () => {
   const [order, setOrder] = useState(null); // Stores order data
@@ -9,13 +10,13 @@ const useOrder = () => {
   const saveOrder = async (orderData, orderId = null) => {
     setLoading(true);
     setError(null);
-
+    console.log(orderData);
     try {
       let response;
 
       if (orderId) {
         // Update existing order
-        response = await fetch(`/api/orders/${orderId}`, {
+        response = await fetch(`${VITE_APP_API_URL}orders/${orderId}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -24,7 +25,7 @@ const useOrder = () => {
         });
       } else {
         // Create a new order
-        response = await fetch('/api/orders', {
+        response = await fetch(`${VITE_APP_API_URL}orders`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -54,7 +55,7 @@ const useOrder = () => {
     setError(null);
 
     try {
-      const response = await fetch(`/api/orders/${orderId}`);
+      const response = await fetch(`${VITE_APP_API_URL}orders/${orderId}`);
 
       if (!response.ok) {
         throw new Error(`Error fetching order: ${response.statusText}`);

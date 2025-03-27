@@ -24,9 +24,10 @@ const Cart = () => {
 
     // Function to handle checkout button click
     const handleCheckout = (totalAmount, taxAmount) => {
-        console.log('inside checkout')
+        console.log('inside checkout:');
+        const total =  Number(totalAmount) + Number(taxAmount);
         // Pass the total amount as state to the Index page
-        navigate("../checkout", { state: { totalAmount: totalAmount + taxAmount, cartItems: cartItems } });
+        navigate("../checkout", { state: { totalAmount: total, cartItems: cartItems } });
     };
 
     return (

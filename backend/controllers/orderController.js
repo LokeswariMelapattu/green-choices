@@ -79,6 +79,23 @@ const getAllOrders = async (req, res) => {
 };
 
 // Get active orders by UserID
+const getOrdersByUserId = async (req, res) => {
+  try {
+    const orders = await orderModel.getOrdersByUserId(req.params.userId);
+    res.status(200).json({
+      success: true,
+      count: orders.length,
+      data: orders
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+
+// Get active orders by UserID
 const getActiveOrdersByUserId = async (req, res) => {
   try {
     const orders = await orderModel.getActiveOrdersByUserId(req.params.userId);
@@ -117,6 +134,7 @@ module.exports = {
   updateOrder,
   getOrderById,
   getAllOrders,
+  getOrdersByUserId,
   getActiveOrdersByUserId,
   getOrderAuditHistory
 };

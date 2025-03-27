@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import RouteMap from '@/components/RouteMap';
 import RouteSelector from '@/components/RouteSelector';
 import RouteDetails from '@/components/RouteDetails';
@@ -10,16 +11,27 @@ import OrderSummary from './components/OrderSummary';
 import CarbonModal from './components/CarbonModal'; 
 import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";  
+import { setUser } from "../../redux/slices/authSlice";
  
 const Checkout = () => {
   const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute,isLoading  } = useRoutes();
   const [selectedModes, setSelectedModes] = useState([]); 
   const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
  
   const location = useLocation(); // Get location object
   const totalAmount = location.state?.totalAmount; // Retrieve total amount from state (optional chaining)
-  
-      const [isLowSustainable, setIsLowSustainable] = useState("");
+  const cartItems = location.state?.cartItems || []; // Retrieve cart items
+  const [isLowSustainable, setIsLowSustainable] = useState("");
+
+  //temporary added user, remove when user is taken from backend apis
+  useEffect(() => {
+    dispatch(setUser({ 
+      id: 1, 
+      shippingAddress: "123 Green Street, Eco City"
+    }));
+  }, [dispatch]);
+
   return (
     <>
       <Header />
@@ -76,6 +88,8 @@ const Checkout = () => {
               selectedRoute={selectedRoute}
               selectedModes={selectedModes}
               isLowSustainable={isLowSustainable}
+              totalAmount={totalAmount}
+              cartItems={cartItems}
             />
           </div>
         </div>

@@ -42,7 +42,7 @@ const updateOrderDetail = async (req, res) => {
 // Get a single order detail by ID
 const getOrderDetailById = async (req, res) => {
   try {
-    const orderDetail = await orderDetailModel.getOrderDetailById(req.params.id);
+    const orderDetail = await orderDetailModel.getOrderDetailByID(req.params.id);
     if (!orderDetail) {
       return res.status(404).json({
         success: false,
@@ -62,26 +62,26 @@ const getOrderDetailById = async (req, res) => {
 };
 
 // Get all order details
-const getAllOrderDetails = async (req, res) => {
-  try {
-    const orderDetails = await orderDetailModel.getAllOrderDetails();
-    res.status(200).json({
-      success: true,
-      count: orderDetails.length,
-      data: orderDetails
-    });
-  } catch (error) {
-    res.status(400).json({
-      success: false,
-      error: error.message
-    });
-  }
-};
+// const getAllOrderDetails = async (req, res) => {
+//   try {
+//     const orderDetails = await orderDetailModel.getAllOrderDetails();
+//     res.status(200).json({
+//       success: true,
+//       count: orderDetails.length,
+//       data: orderDetails
+//     });
+//   } catch (error) {
+//     res.status(400).json({
+//       success: false,
+//       error: error.message
+//     });
+//   }
+// };
 
 // Get order details by Order ID
 const getOrderDetailsByOrderId = async (req, res) => {
   try {
-    const orderDetails = await orderDetailModel.getOrderDetailsByOrderId(req.params.orderId);
+    const orderDetails = await orderDetailModel.getOrderDetailsByOrderID(req.params.orderId);
     res.status(200).json({
       success: true,
       count: orderDetails.length,
@@ -116,7 +116,6 @@ module.exports = {
   createOrderDetail,
   updateOrderDetail,
   getOrderDetailById,
-  getAllOrderDetails,
   getOrderDetailsByOrderId,
   getOrderDetailAuditHistory
 };

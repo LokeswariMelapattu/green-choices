@@ -3,6 +3,8 @@ const cors = require('cors')
 const routeRoutes = require('./routes/routes.js');
 const userRoutes = require('./routes/userRoutes.js');
 const productRoutes = require('./routes/productRoutes.js')
+const orderRoutes = require('./routes/orderRoutes.js');
+const orderDetailRoutes = require('./routes/orderDetailRoutes.js');
 const saveRouteRoutes = require('./routes/saveRouteRoutes.js');
 const { pool } = require('./config/db');
 require('dotenv').config();
@@ -15,6 +17,8 @@ app.use(express.json());
 app.use('/', routeRoutes);
 app.use('/user', userRoutes);
 app.use('/products', productRoutes);
+app.use('/orders', orderRoutes);
+app.use('/orderDetails', orderDetailRoutes);
 app.use('/', saveRouteRoutes);
 
 const verifyDatabaseConnection = async () => {
