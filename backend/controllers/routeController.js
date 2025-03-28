@@ -13,6 +13,7 @@ const formatRoutes = (routes) => {
                 fromGeoLocation: segment.source_geo_location || null,
                 toGeoLocation: segment.destination_geo_location || null,
                 transportModes: segment.mode,
+                fuel_types: segment.fuel_type,
                 costs: segment.cost,
                 durations: segment.duration,
                 distances: segment.distance,
