@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
+import Badge from '@mui/material/Badge';
+import { useSelector } from "react-redux";
 
 const Header = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const cartItemCount = useSelector((state) => state.cart.cartItemCount);
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
@@ -50,7 +53,9 @@ const Header = () => {
               )}
             </div>
             <Link to="/cart" className="text-gray-700 hover:text-green-600">
-              <FiShoppingCart size={20} />
+              <Badge badgeContent={cartItemCount} color="success">
+                <FiShoppingCart size={20} />
+              </Badge>
             </Link>
           </div>
         </div>
