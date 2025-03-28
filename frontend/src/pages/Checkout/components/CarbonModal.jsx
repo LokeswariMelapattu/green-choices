@@ -1,5 +1,6 @@
 import Cloud from "../../../components/ui/Cloud";
-import styles from "./OrderComponents.module.css"
+import styles from "./CarbonModal.module.css"
+
 const CarbonModal = ({ showModal, setShowModal }) => {
     const emissionReasons = [
         "Availability of only flight transport",

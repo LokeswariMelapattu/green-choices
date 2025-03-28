@@ -1,0 +1,28 @@
+.container{
+   @apply p-6 bg-white/70 backdrop-blur-lg
+}
+.heading{
+    @apply text-xl font-semibold mb-4
+}
+.section{
+    @apply space-y-4
+}
+.gridDiv{
+    @apply grid grid-cols-2 gap-4
+}
+.divSection {
+    @apply flex items-center gap-2
+}
+.leaf{
+    @apply h-5 w-5 text-gray-600
+}
+.timer{
+    @apply h-5 w-5 text-gray-600
+}
+.dollar{
+    @apply h-5 w-5 text-gray-600
+}
+.actionSection
+{
+    @apply flex items-center justify-center min-h-[100px]
+}
