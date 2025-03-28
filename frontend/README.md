@@ -30,10 +30,17 @@ nvm use 22.12
 npm install
 ```
 
-### 3.Start the Development Server
+
+### 3.Set up environment variable: Add a new file `.env` and add backend api url variable and update value to the actual api url instead of localhost.
+```text
+   VITE_APP_API_URL=localhost
+```
+
+### 4.Start the Development Server
 
 To start the app in development mode, run:
 
 ```bash
 npm run dev
 ```
+

@@ -37,7 +37,7 @@ This project is organized into two main folders:
 Make sure you have the following tools installed:
 
 - [Node.js](https://nodejs.org/) (version 22 or later)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
+- [npm](https://www.npmjs.com/)  (Node Package Manager)
 
 ### Backend Setup
 

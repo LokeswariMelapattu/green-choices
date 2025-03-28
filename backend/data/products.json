@@ -1,0 +1,108 @@
+[
+    {
+        "product_id": 1,
+        "img": "/imgs/sneakers.png",
+        "name": "EcoStride Sneakers",
+        "price": 49.99,
+        "quantity": 1,
+        "size": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41,
+            42
+        ],
+        "description": "Sustainable sneakers made from recycled materials with a stylish design.",
+        "seller_location": "Helsinki, Finland"
+    },
+    {
+        "product_id": 2,
+        "img": "/imgs/runners.png",
+        "name": "GreenStep Runners",
+        "price": 59.99,
+        "quantity": 1,
+        "size": [
+            37,
+            38,
+            39,
+            40,
+            41,
+            42,
+            43
+        ],
+        "description": "Lightweight running shoes crafted with biodegradable fabrics.",
+        "seller_location": "Amsterdam, Netherlands"
+    },
+    {
+        "product_id": 3,
+        "img": "/imgs/loafers.png",
+        "name": "NatureWalk Loafers",
+        "price": 69.99,
+        "quantity": 1,
+        "size": [
+            38,
+            39,
+            40,
+            41,
+            42,
+            43,
+            44
+        ],
+        "description": "Comfortable loafers made from vegan leather and organic cotton.",
+        "seller_location": "Lisbon, Portugal"
+    },
+    {
+        "product_id": 4,
+        "img": "/imgs/boots.png",
+        "name": "EarthStride Boots",
+        "price": 89.99,
+        "quantity": 1,
+        "size": [
+            39,
+            40,
+            41,
+            42,
+            43,
+            44,
+            45
+        ],
+        "description": "Durable boots designed with recycled rubber soles and eco-friendly suede.",
+        "seller_location": "Seoul, South Korea"
+    },
+    {
+        "product_id": 5,
+        "img": "/imgs/trainers.png",
+        "name": "LeafFlex Trainers",
+        "price": 54.99,
+        "quantity": 1,
+        "size": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+        ],
+        "description": "Versatile trainers made with hemp fabric and cork insoles.",
+        "seller_location": "Melbourne, Australia"
+    },
+    {
+        "product_id": 6,
+        "img": "/imgs/joggers.png",
+        "name": "EcoStride Joggers",
+        "price": 54.99,
+        "quantity": 1,
+        "size": [
+            36,
+            37,
+            38,
+            39,
+            40,
+            41
+        ],
+        "description": "Eco-friendly joggers made from organic bamboo fabric, featuring cushioned soles for extra comfort.",
+        "seller_location": "Melbourne, Australia"
+    }
+]

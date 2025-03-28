@@ -1,0 +1,67 @@
+/* Flash Sale Section */
+.flashSale {
+  @apply flex flex-col justify-center gap-4 bg-gradient-to-br from-[#1FAE5B] via-[#1DA154] to-[#0D4826]
+    text-white w-full h-[250px] p-6 md:p-10 rounded-lg shadow-md;
+}
+.mainSection{
+  @apply flex min-h-screen bg-gray-100
+}
+.productTitle{
+   @apply py-4 text-2xl font-semibold
+} 
+
+/* Product Grid */
+.productGrid {
+  @apply flex gap-4 overflow-x-auto no-scrollbar;
+}
+
+/* Product Card */
+.productCard {
+  @apply cursor-pointer;
+}
+
+/* Product Image */
+.productImage {
+  @apply h-[200px] w-[200px] rounded-xl cursor-pointer;
+}
+
+/* Modal Backdrop */
+.modalBackdrop {
+  @apply absolute inset-0 bg-black bg-opacity-50;
+}
+
+/* Modal Container */
+.modalContainer {
+  @apply fixed inset-0 z-50 flex items-center justify-center p-1 ;
+}
+
+/* Modal Content */
+.modalContent {
+  @apply relative z-10 w-full max-w-4xl max-h-[90vh] overflow-auto bg-white p-6 rounded-lg shadow-lg;
+}
+
+/* Close Button */
+.closeButton {
+  @apply absolute top-1 right-6 z-20 bg-transparent rounded-full p-2 shadow-md text-gray-700;
+  width: auto;  
+}
+
+/* Flash Sale Section */
+.flashSaleHeader {
+  @apply text-4xl md:text-5xl font-bold font-quantico;
+}
+
+/* Gift Icon */
+.flashSaleIcon {
+  @apply text-7xl md:text-8xl;
+}
+
+/* Product Name and Price */
+.productName {
+  @apply py-2;
+}
+
+.productPrice {
+  @apply text-sm;
+}
+

@@ -1,0 +1,24 @@
+  
+  .button {
+    @apply w-full px-4 py-2 mt-6 font-semibold text-white bg-green-600 rounded-full hover:bg-green-700;
+  }
+
+  .container {
+    @apply flex items-center justify-center min-h-screen bg-gray-100;
+  }  
+.card {
+  @apply w-full max-w-md p-6 bg-white rounded-lg shadow-md;
+} 
+.signupLink{
+  @apply mt-2 text-center text-gray-600 
+} 
+.title {
+  @apply text-2xl font-bold text-center mb-6;
+}
+.greenText {
+  @apply text-green-600;
+}
+
+.alignMiddle {
+  @apply text-center;
+}

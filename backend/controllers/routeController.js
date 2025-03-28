@@ -1,9 +1,10 @@
-const { findAllRoutes, calculateRouteMetrics, validateCity } = require('../models/routeModel');
+const { findAllRoutes, calculateRouteMetrics, validateCity, getRouteEmissionReasons } = require('../models/routeModel');
 const { CONFIG, ERROR_MESSAGES } = require('../utils/constants');
 
 const formatRoutes = (routes) => {
     return routes.map((route, index) => {
         const metrics = calculateRouteMetrics(route);
+        const routeEmissionReasons = getRouteEmissionReasons(metrics);
         return {
             routeNumber: index + 1,
             segments: route.map(segment => ({
@@ -15,7 +16,8 @@ const formatRoutes = (routes) => {
                 costs: segment.cost,
                 durations: segment.duration,
                 distances: segment.distance,
-                carbonEmissions: segment.carbon_emission
+                carbonEmissions: segment.carbon_emission,
+                emissionReasons: segment.emission_reason
             })),
             metrics: {
                 cost: {
@@ -34,6 +36,10 @@ const formatRoutes = (routes) => {
                     minimum: metrics.minCarbonEmissions,
                     maximum: metrics.maxCarbonEmissions
                 }
+            },
+            routeEmissionReasons: {
+                minimum: routeEmissionReasons.minRouteReasons,
+                maximum: routeEmissionReasons.maxRouteReasons
             }
         };
     });
@@ -71,8 +77,10 @@ const findRoutes = (req, res) => {
         }
 
         const formattedRoutes = formatRoutes(routes);
-        formattedRoutes.sort((a, b) => a.metrics.distance.minimum - b.metrics.distance.minimum);
-
+        formattedRoutes.sort((a, b) => a.metrics.carbonEmissions.minimum - b.metrics.carbonEmissions.minimum);
+        formattedRoutes.forEach((route, index) => {
+            route.routeNumber = index + 1;
+        });
         return res.json({
             source,
             destination,
