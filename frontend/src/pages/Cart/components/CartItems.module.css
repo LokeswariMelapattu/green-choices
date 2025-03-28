@@ -1,0 +1,47 @@
+
+.card {
+   @apply p-6 bg-white/70 backdrop-blur-lg min-h-[400px]
+} 
+.table{
+    @apply w-full border-collapse
+} 
+.tr{
+    @apply border-b
+}
+.th{
+    @apply text-left p-2
+}
+.td1 {
+    @apply p-2 flex items-center gap-4
+}
+.td {
+    @apply p-2 
+}
+.img{
+    @apply rounded-[12px] object-cover h-[90px] w-[120px]
+}
+.itemName{
+    @apply font-bold
+}
+
+.itemQuantity{
+    @apply text-center
+}
+.divQuantity{
+@apply flex items-center justify-between gap-2 border bg-[#F7FAFC] rounded-[20px] px-1 w-[90px]
+}
+
+.btnQuantity{
+    @apply px-2 border-r mt-0
+}
+.btnQuantityRight{
+    @apply px-2 border-l mt-0
+}
+
+
+.summary{
+    @apply flex items-center justify-between gap-4 p-1 min-w-[100px]
+}
+.delete {
+    @apply cursor-pointer text-gray-500
+}

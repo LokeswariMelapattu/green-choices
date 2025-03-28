@@ -101,7 +101,7 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
             tooltip={isLowSustainable ? "shipping-info" : ""}
             text="Continue to Payment"
             onClick={handlePayment}
-            className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors rounded-[12px]"
+            className=""
           />
           <Tooltip id="shipping-info">
             <p>🔥 This shipping option emits high CO₂.</p>

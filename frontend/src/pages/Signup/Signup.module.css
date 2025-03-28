@@ -1,0 +1,30 @@
+.container{
+    @apply flex items-center justify-center min-h-screen bg-gray-100
+}
+.section{
+    @apply w-full max-w-3xl p-6 bg-white rounded-lg shadow-md mt-4
+}
+.heading{
+    @apply text-3xl font-bold text-center mb-6
+}
+.form{
+    @apply grid grid-cols-2 gap-4
+}
+.actionDiv{
+    @apply col-span-2 flex justify-center text-center
+}
+.btn{
+    @apply w-2/5 px-4 py-2 text-white bg-green-600 rounded-full hover:bg-green-700
+}
+.loginDiv{
+    @apply mt-4 text-center
+}
+.login{
+    @apply text-gray-600
+}
+.spanLogin{
+  @apply text-blue-600 hover:underline cursor-pointer
+}
+.chkbox{
+    @apply mr-2 col-span-2 items-center
+}

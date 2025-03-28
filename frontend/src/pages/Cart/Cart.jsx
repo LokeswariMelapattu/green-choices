@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeItem, updateQuantity } from "../../redux/slices/cartSlice"
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
+import styles from "./Cart.module.css";
 
 const Cart = () => {
     const navigate = useNavigate();
@@ -33,11 +34,11 @@ const Cart = () => {
     return (
         <>
             <Header />
-            <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-                <main className="container mx-auto px-4 py-8">
-                    <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        <div className="lg:col-span-2 space-y-6">
-                            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold">Cart Details</h3>
+            <div className={styles.mainDiv}>
+                <main className={styles.main}>
+                    <div className={styles.body}>
+                        <div className={styles.cartItems}>
+                            <h3 className={styles.itemsHeading}>Cart Details</h3>
                             <CartItems
                                 items={cartItems}
                                 updateQuantity={handleUpdateQuantity}
@@ -45,8 +46,8 @@ const Cart = () => {
                             />
                         </div>
 
-                        <div className="lg:col-span-1 space-y-6">
-                            <h3 className="text-xl sm:text-2xl md:text-3xl font-semibold invisible">Details</h3>
+                        <div className={styles.cartDetails}>
+                            <h3 className={styles.detailsHeading}>Details</h3>
                             <CartDetails total={calculateTotal()} handleCheckout={handleCheckout} />
                         </div>
                     </div>

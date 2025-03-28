@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Gauge from './Gauge';  
 import { useTransport } from '@/context/transport-context';
- 
+import styles from "./OrderComponents.module.css";
 const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick,setLowSustainable,  className = ""  }) => {
      
     // Normalize emissions for the gauge (200–1000 scale to 0–100 scale)
@@ -60,9 +60,9 @@ const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick,setLowSustaina
 );
 
     return (
-        <div className='flex items-center text-center justify-center p-4'>
+        <div className={styles.meterContainer}>
             <div>
-                 <h2 className="text-2xl font-semibold text-center text-gray-800">
+                 <h2 className={styles.meterHeading}>
                     Carbon Emission
                 </h2>
                 <Gauge value={currentEmissionValue} maxValue={maxValue}  />
@@ -70,11 +70,11 @@ const EmissionMeter = ({ currentValue, maxValue, onEmissionsClick,setLowSustaina
                 <p>High: {maxValue} KgCO2</p>
                 
             { isLowSustainable && (
-            <div className="flex items-center hover:scale-110 m-1">
+            <div className={styles.imgDiv}>
                 
-              <img src="/imgs/earth.png" className="h-[40px] w-[40px] running-icon" />
+              <img src="/imgs/earth.png" className={styles.reasonImg} />
               
-              <p style={{ color: color }} className="mr-6 cursor-pointer" 
+              <p style={{ color: color }} className={styles.reasonLink}
                   onClick={onEmissionsClick}>
                 A Little More CO₂ Than We'd Like … But <span
                   className="font-bold "

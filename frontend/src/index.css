@@ -88,8 +88,3 @@
     transform: translateX(100vw); /* Moves the icon across the full width of the screen */
   }
 }
-
-.running-icon {
-  display: inline-block;
-  animation: running 5s linear infinite; /* Runs indefinitely */
-}

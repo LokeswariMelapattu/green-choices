@@ -1,17 +1,18 @@
-label {
-    @apply block text-gray-700
+label:not(.exclude-label) {
+  @apply block text-gray-700;
 }
- 
+
 a {
   @apply text-sm text-blue-600 hover:underline;
 }
-input {
-    @apply w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-green-300 focus:outline-none;
-  }
-  /* button {
-    @apply w-full px-4 py-2 mt-6 font-semibold text-white bg-green-600 rounded-full hover:bg-green-700;
-  } */
+input:not([type="checkbox"]) {
+  @apply w-full px-4 py-2 mt-2 border rounded-lg focus:ring focus:ring-green-300 focus:outline-none;
+}
 
+.btn {
+  @apply w-full px-4 py-2 mt-6 font-semibold text-white bg-green-600 rounded-full hover:bg-green-700;
+}  
+  
 .toast-success{
   @apply px-1 text-blue-500 underline cursor-pointer
 }

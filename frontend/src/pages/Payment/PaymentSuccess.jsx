@@ -2,16 +2,16 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom"; 
 import Header from "@/components/Header";  
 import PaymentSuccess from "./components/PaymentSuccess";
-
+import styles from './PaymentSuccess.module.css'
 const Payment= () => {
     return (
         <>
-        <Header />
-        <div className="flex items-center justify-center min-h-screen bg-gray-100">
-      <div className="w-full p-6 rounded-lg shadow-md">
-            <PaymentSuccess></PaymentSuccess>
-      </div>
-    </div>
+            <Header />
+            <div className={styles.section}>
+                <div className={styles.sectionDiv}>
+                        <PaymentSuccess></PaymentSuccess>
+                </div>
+            </div>
         </>
     );
 }

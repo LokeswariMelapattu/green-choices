@@ -12,7 +12,7 @@ import CarbonModal from './components/CarbonModal';
 import { useLocation } from "react-router-dom";
 import Header from "../../components/Header";  
 import { setUser } from "../../redux/slices/authSlice";
- 
+import styles from './Checkout.module.css'
 const Checkout = () => {
   const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute,isLoading  } = useRoutes();
   const [selectedModes, setSelectedModes] = useState([]); 
@@ -35,16 +35,16 @@ const Checkout = () => {
   return (
     <>
       <Header />
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
-      <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2 space-y-6">
-            <Card className="h-[400px] bg-white/70 backdrop-blur-lg">
+    <div className={styles.container}>
+      <main className={styles.main}>
+        <div className={styles.gridSection}>
+          <div className={styles.sectionLeft}>
+            <Card className={styles.mapCard}>
               <RouteMap route={selectedRoute} />
             </Card>
 
             {routes && (
-              <Card className="p-6 bg-white/70 backdrop-blur-lg">
+              <Card className={styles.routeCard}>
                 <RouteSelector
                   routes={routes.routes}
                   selectedRoute={selectedRoute}
@@ -67,11 +67,11 @@ const Checkout = () => {
 
           </div>
 
-          <div className="lg:col-span-1 space-y-6">
-            <Card className="p-3 bg-white/70 backdrop-blur-lg"> 
+          <div className={styles.sectionRight}>
+            <Card className={styles.comparision}> 
               <Comparision  maxValue={500}/>
             </Card>
-            <Card className="p-6 bg-white/70 backdrop-blur-lg">
+            <Card className={styles.emissionMeter}>
               <EmissionMeter 
                 currentValue={
                   totalEmissions?.find(e => e.name === selectedRoute?.routeNumber)?.minTotalEmissions || 0
