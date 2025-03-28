@@ -1075,3 +1075,8 @@ END;
 $$ LANGUAGE plpgsql;
 
 -- End of Create functions for data retrieval
+
+--TEMP SECTION
+INSERT INTO User_Info (FirstName, LastName, Address, Email, Password)
+VALUES ('John', 'Doe', '1234 Elm Street', 'john.doe@example.com', 'password123');
+--TEMP SECTION
