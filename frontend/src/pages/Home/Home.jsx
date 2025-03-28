@@ -73,7 +73,7 @@ const Home = () => {
             <h2 className={styles.productTitle}>Trending Now</h2>
             <div className={styles.productGrid}>
               {products.map(product => (
-                <div key={product.product_id} onClick={() => handleProductClick(product)}>
+                <div key={product.productId} onClick={() => handleProductClick(product)}>
                   <img src={product.img} alt={product.name} className={styles.productImage} />
                   <h3 className="py-2">{product.name}</h3>
                   <p>${product.price}</p>
@@ -86,7 +86,7 @@ const Home = () => {
             <h2 className={styles.productTitle}>Best Deals</h2>
             <div className={styles.productGrid}>
               {products.map(product => (
-                <div key={product.product_id} onClick={() => handleProductClick(product)}>
+                <div key={product.productId} onClick={() => handleProductClick(product)}>
                   <img src={product.img} alt={product.name} className={styles.productImage}/>
                   <h3 className="py-2">{product.name}</h3>
                   <p>${product.price}</p>

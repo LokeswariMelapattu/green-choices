@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Card } from "@/components/ui/Card";
 import { DollarSign, Leaf, Timer } from "lucide-react";
 import { useTransport } from '@/context/transport-context';
@@ -8,15 +10,42 @@ import FireIcon from "../../../components/ui/FireIcon";
 import TreeIcon from "../../../components/ui/TreeIcon";
 import ExhaustIcon from "../../../components/ui/ExhaustIcon";
 import SustainabilityMessage from "../../../components/ui/SustainabilityMessage";
+import useOrder from "../../../hooks/useOrder";
+import { setOrderData } from '../../../redux/slices/orderSlice'; 
 
-const OrderSummary = ({ isLowSustainable }) => {
+const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
   const { routeTotals } = useTransport();
+  const { saveOrder, loading, error } = useOrder();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const orderData = useSelector((state) => state.order);
+  const user = useSelector((state) => state.auth?.user || null); 
+ 
+  useEffect(() => {
+    if (routeTotals && user) {
+      console.log("isGreen : " + !isLowSustainable);
+      dispatch(setOrderData({
+        userId: user.id,
+        shippingAddress: user.shippingAddress,
+        totalAmount: (Number(totalAmount || 0) + Number(routeTotals.cost || 0)).toFixed(2),
+        deliveryCharge: Number(routeTotals.cost || 0).toFixed(2),
+        isSustainableOption : !isLowSustainable,
+        orderItems: cartItems,
+      }));
+    }
+  }, [totalAmount, routeTotals, isLowSustainable, cartItems, user, dispatch]);
 
   if (!routeTotals) return null;
 
-  const handlePayment = () => {
-    navigate("/paymentsuccess");
+  const handlePayment = async () => {
+    try {
+      console.log(orderData);
+      await saveOrder(orderData); // Call save order API
+      navigate("/paymentsuccess");
+    } catch (err) {
+      console.error('Error saving order:', err);
+    }
   };
 
   return (
@@ -51,8 +80,16 @@ const OrderSummary = ({ isLowSustainable }) => {
         <div className="flex items-center gap-2">
           <DollarSign className="h-5 w-5 text-gray-600" />
           <div>
-            <p className="text-sm text-gray-600">Total Cost</p>
-            <p className="text-2xl font-bold">${routeTotals.cost.toFixed(2)}</p>
+            <p className="text-sm text-gray-600">Subtotal</p>
+            <p className="text-[22px]">${ (Number(totalAmount || 0) + Number(routeTotals.cost || 0)).toFixed(2) }</p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-2">
+          <DollarSign className="h-5 w-5 text-gray-600" />
+          <div>
+            <p className="text-sm text-gray-600">Shipping</p>
+            <p className="text-[18px]">${ Number(routeTotals.cost || 0).toFixed(2) }</p>
           </div>
         </div>
 
