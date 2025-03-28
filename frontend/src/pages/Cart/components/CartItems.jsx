@@ -49,7 +49,7 @@ const CartItems = ({ items, updateQuantity, removeItem }) => {
                             </td>
                             <td className="p-2">
                                 <div className="flex items-center justify-between gap-4 p-1 min-w-[100px]">
-                                    <p>${item.price * item.quantity}</p>
+                                    <p>${(item.price * item.quantity).toFixed(2)}</p>
                                     <Trash2
                                         size={20}
                                         className="cursor-pointer text-gray-500"
