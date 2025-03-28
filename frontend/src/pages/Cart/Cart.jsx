@@ -8,7 +8,6 @@ import Header from "../../components/Header";
 const Cart = () => {
     const navigate = useNavigate();
     const cartItems = useSelector((state) => state.cart.items);
-    console.log(cartItems);
     const dispatch = useDispatch();
     const handleUpdateQuantity = (index, newQuantity) => {
         dispatch(updateQuantity({ index, quantity: newQuantity }));
