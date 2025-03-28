@@ -32,7 +32,7 @@
       "cost": [800, 900],
       "duration": [12, 6],
       "distance": [5900, 5800],
-      "carbon_emission": [48, 150],
+      "carbon_emission": [38, 150],
       "destination_geo_location": [48.8566, 2.3522],
       "source_geo_location": [40.7128, -74.006],
       "emission_reason": ["", "Long distance air travel causes a lot of emissions"]
@@ -254,7 +254,7 @@
       "cost": [600, 700],
       "duration": [8, 4],
       "distance": [1200, 800],
-      "carbon_emission": [18, 26],
+      "carbon_emission": [18, 27],
       "destination_geo_location": [41.9028, 12.4964],
       "source_geo_location": [48.2082, 16.3738],
       "emission_reason": ["", "For shorter flights, taking off which causes the most emissions are a larger percentage of the flight time"]
@@ -268,7 +268,7 @@
       "cost": [500, 400],
       "duration": [18, 2],
       "distance": [1600, 1100],
-      "carbon_emission": [24, 32],
+      "carbon_emission": [24, 33],
       "destination_geo_location": [60.1695, 24.9354],
       "source_geo_location": [52.52, 13.405],
       "emission_reason": ["", "For shorter flights, taking off which causes the most emissions are a larger percentage of the flight time"]
