@@ -12,6 +12,7 @@ import ExhaustIcon from "../../../components/ui/ExhaustIcon";
 import SustainabilityMessage from "../../../components/ui/SustainabilityMessage";
 import useOrder from "../../../hooks/useOrder";
 import { setOrderData } from '../../../redux/slices/orderSlice'; 
+import styles from './OrderSummary.module.css';
 
 const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
   const { routeTotals } = useTransport();
@@ -49,24 +50,24 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
   };
 
   return (
-    <Card className="p-6 bg-white/70 backdrop-blur-lg">
-      <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
+    <Card className={styles.container}>
+      <h2 className={styles.heading}>Order Summary</h2>
 
-      <div className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
-          <div className="flex items-center gap-2">
-            <Timer className="h-5 w-5 text-gray-600" />
+      <div className={styles.section}>
+        <div className={styles.gridDiv}>
+          <div className={styles.divSection}>
+            <Timer className={styles.timer} />
             <div>
-              <p className="text-sm text-gray-600">Total Duration</p>
+              <label>Total Duration</label>
               <p className="font-semibold">{routeTotals.duration} days</p>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
-            <Leaf className="h-5 w-5 text-gray-600" />
+          <div className={styles.divSection}>
+            <Leaf className={styles.leaf} />
             <div>
-              <p className="text-gray-600">Total Emissions</p>
-              <div className="flex items-center gap-2">
+              <label>Total Emissions</label>
+              <div className={styles.divSection}>
                 {/* Fire 🔥 or Tree 🌱 Icon Based on Emissions */}
                 {isLowSustainable ? <ExhaustIcon/> : <TreeIcon />}
                 <p className={`font-semibold ${isLowSustainable ? "text-red-600" : "text-green-600"}`}>
@@ -77,18 +78,18 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <DollarSign className="h-5 w-5 text-gray-600" />
+        <div className={styles.divSection}>
+          <DollarSign className={styles.dollar} />
           <div>
-            <p className="text-sm text-gray-600">Subtotal</p>
+            <label className="text-sm">Subtotal</label>
             <p className="text-[22px]">${ (Number(totalAmount || 0) + Number(routeTotals.cost || 0)).toFixed(2) }</p>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          <DollarSign className="h-5 w-5 text-gray-600" />
+        <div className={styles.divSection}>
+          <DollarSign className={styles.dollar}  />
           <div>
-            <p className="text-sm text-gray-600">Shipping</p>
+            <label className="text-sm ">Shipping</label>
             <p className="text-[18px]">${ Number(routeTotals.cost || 0).toFixed(2) }</p>
           </div>
         </div>
@@ -96,12 +97,12 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
         {/* Sustainability Encouragement Message */}
         <SustainabilityMessage isLowSustainable={isLowSustainable} />
 
-        <div className="flex items-center justify-center min-h-[100px]">
+        <div className={styles.actionSection}>
           <ActionButton 
             tooltip={isLowSustainable ? "shipping-info" : ""}
             text="Continue to Payment"
             onClick={handlePayment}
-            className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors rounded-[12px]"
+            className="btn"
           />
           <Tooltip id="shipping-info">
             <p>🔥 This shipping option emits high CO₂.</p>

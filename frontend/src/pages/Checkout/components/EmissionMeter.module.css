@@ -1,0 +1,24 @@
+
+.meterContainer{
+    @apply flex items-center text-center justify-center p-4
+}
+.meterHeading{
+    @apply text-2xl font-semibold text-center text-gray-800
+}
+.reason{
+    @apply flex items-center hover:scale-110 m-1
+}
+
+.running-icon {
+    display: inline-block;
+    animation: running 5s linear infinite; /* Runs indefinitely */
+  }
+.reasonImg{
+    @apply  h-[40px] w-[40px] running-icon
+}
+.reasonLink{
+    @apply mr-6 cursor-pointer
+}
+.imgDiv{
+    @apply flex justify-center py-1
+}

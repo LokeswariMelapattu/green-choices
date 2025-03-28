@@ -41,12 +41,12 @@ const PaymentSuccess = () =>{
           <ActionButton
             text="Go to Homepage"
             onClick={handleGoHome}
-            className="w-full px-4 py-2 mt-6 font-semibold text-white bg-green-600 rounded-full hover:bg-green-700"
+            className="btn"
           />
           <ActionButton
             text="Track your Order"
             onClick={handleTrackOrder}
-            className="w-full px-4 py-2 mt-6 font-semibold text-white bg-green-600 rounded-full hover:bg-green-700"
+            className="btn"
           />
         </div>
       </div>

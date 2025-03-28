@@ -1,4 +1,5 @@
 import Cloud from "../../../components/ui/Cloud";
+import styles from "./CarbonModal.module.css"
 
 const CarbonModal = ({ showModal, setShowModal }) => {
     const emissionReasons = [
@@ -16,13 +17,13 @@ const CarbonModal = ({ showModal, setShowModal }) => {
     };
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" onClick={handleOverlayClick}>
-            <div className="bg-white p-6 rounded-lg shadow-lg w-[900px] h-[500px] relative">
-                <div className="flex justify-between items-center">
-                    <h3 className="text-lg font-semibold text-center w-full">Why Can't We Find More <span className="text-green-600">Sustainable</span> Routes?</h3>
+        <div className={styles.container} onClick={handleOverlayClick}>
+            <div className={styles.section}>
+                <div className={styles.header}>
+                    <h3 className={styles.heading}>Why Can't We Find More <span className="text-green-600">Sustainable</span> Routes?</h3>
                     <button
                         onClick={() => setShowModal(false)}
-                        className="text-gray-500 hover:text-gray-700 text-2xl font-bold"
+                        className={styles.closeButton}
                     >
                         &times;
                     </button>
@@ -40,7 +41,7 @@ const CarbonModal = ({ showModal, setShowModal }) => {
                     <Cloud text={emissionReasons[2]} />
                 </div>
 
-                <div className="flex justify-center py-10">
+                <div className={styles.imgDiv}>
                     <img src="imgs/earth-emissions.png" alt="An earth emitting CO2" className="h-80" />
                 </div>
             </div>

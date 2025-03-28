@@ -1,28 +1,29 @@
 import { Card } from "@/components/ui/Card";
+import styles from './CartDetails.module.css'
 const CartDetails = ({ total, handleCheckout }) => {
     return (
-        <Card className="p-6 bg-white/70 backdrop-blur-lg min-h-[400px]">
-            <h2 className="text-xl font-semibold mb-4 text-center">Details</h2>
-            <div className="h-[300px] flex flex-col justify-evenly">
+        <Card className={styles.card}>
+            <h2 className={styles.heading}>Details</h2>
+            <div className={styles.cardBody}>
                 <div>
-                    <div className="flex justify-between border-b py-2">
-                        <p className="font-semibold">Sub Total</p>
+                    <div className={styles.item}>
+                        <p className={styles.itemheading}>Sub Total</p>
                         <p>${(total).toFixed(2)}</p>
                     </div>
-                    <div className="flex justify-between border-b py-2">
-                        <p className="font-semibold">Tax</p>
+                    <div className={styles.item}>
+                        <p className={styles.itemheading}>Tax</p>
                         <p>$32.00</p>
                     </div>
-                    <div className="flex justify-between border-b py-2">
-                        <p className="font-semibold">Total</p>
+                    <div className={styles.item}>
+                        <p className={styles.itemheading}>Total</p>
                         <p>${(total + 32.00).toFixed(2)}</p>
                     </div>
                 </div>
 
-                <div className="flex items-center justify-center min-h-[100px]">
+                <div className={styles.btnSection}>
                     <button
                         onClick={() => handleCheckout(total.toFixed(2), 32.00)} // Add onClick handler
-                        className="px-4 py-2 bg-green-600 text-white rounded-full hover:bg-green-700 transition-colors rounded-[12px]"
+                        className="btn"
                     >
                         Proceed to Checkout
                     </button>

@@ -1,0 +1,23 @@
+
+.card {
+   @apply p-6 bg-white/70 backdrop-blur-lg min-h-[400px]
+}
+
+.heading{
+    @apply text-xl font-semibold mb-4 text-center
+}
+
+.cardBody{
+    @apply h-[300px] flex flex-col justify-evenly
+}
+.item{
+    @apply flex justify-between border-b py-2
+}
+
+.itemheading{
+    @apply font-semibold
+}
+
+.btnSection{
+    @apply flex items-center justify-center min-h-[100px]
+}

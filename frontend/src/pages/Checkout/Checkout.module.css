@@ -1,0 +1,28 @@
+.container{
+    @apply min-h-screen bg-gradient-to-b from-gray-50 to-gray-100
+}
+.main{
+    @apply container mx-auto px-4 py-8
+}
+.gridSection{
+    @apply grid grid-cols-1 lg:grid-cols-3 gap-8
+}
+.sectionLeft{
+    @apply lg:col-span-2 space-y-6
+}
+.mapCard{
+    @apply h-[400px] bg-white/70 backdrop-blur-lg
+}
+.routeCard{
+    @apply p-6 bg-white/70 backdrop-blur-lg
+}
+.sectionRight
+{
+    @apply lg:col-span-1 space-y-6
+}
+.comparision{
+    @apply p-3 bg-white/70 backdrop-blur-lg
+}
+.emissionMeter{
+    @apply p-6 bg-white/70 backdrop-blur-lg
+}
