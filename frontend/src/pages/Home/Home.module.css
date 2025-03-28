@@ -22,7 +22,7 @@
 
 /* Product Image */
 .productImage {
-  @apply h-[200px] w-[200px] rounded-xl;
+  @apply h-[200px] w-[200px] rounded-xl cursor-pointer;
 }
 
 /* Modal Backdrop */
