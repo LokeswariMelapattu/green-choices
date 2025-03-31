@@ -109,9 +109,9 @@ const RouteDetails = ({ route, greenestRoute }) => {
             <p className="text-sm font-semibold text-green-700 mb-4">Good Job! You are asaving 20% of carbon emission!</p>
           </div>
           )}
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-gray-600">Customize</span>
-            <div className="flex-shrink-0">
+          <div className="flex items-center gap-2 flex-wrap">
+            <span className="text-sm text-gray-600 ">Customize</span>
+            <div className="absolute right-0 transform translate-x-[-75%]">
               <Switch
                 className="ml-auto"
                 checked={isCustomizing}
