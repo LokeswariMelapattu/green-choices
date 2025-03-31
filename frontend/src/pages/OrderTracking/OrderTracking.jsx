@@ -42,7 +42,7 @@ const orders = [
 ];
 export default function OrderTrackingPage() {
   //Uncomment this if you want to use the RouteSelector implementation may need some fixes
-  // const [clicked, setClicked] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute, isLoading } = useRoutes();
 
   if (isLoading) {
@@ -52,7 +52,14 @@ export default function OrderTrackingPage() {
   if (!selectedRoute) {
     return <div>No route selected</div>;
   }
+  const handleLearnMore = () => {
+    console.log('Learn more clicked');
+  };
 
+  const handleSwitchToGreen = () => {
+    console.log('Switch to green clicked');
+    setClicked(!clicked);
+  };
   return (
     <>
       <Header />
@@ -84,17 +91,13 @@ export default function OrderTrackingPage() {
             </Card>
             <div className="flex flex-col justify-center mt-4 md:mt-6">
               {/* Conditionally Render Based on Data from backend right shows for both */}
-              <EcoFriendly
-                variant="choice"
-                percentage="30%"
-                onAction={() => handleSwitchToGreen()}
-              />
-              <EcoFriendly
-                variant="confirmation"
-                secondaryText="Thank you for making a sustainable choice!"
-                actionLabel="Learn more about our efforts"
-                onSecondaryAction={() => handleLearnMore()}
-              />
+              <div className={`transition-all duration-300 ease-in-out overflow-hidden ${clicked ? 'opacity-0 max-h-0' : 'opacity-100 max-h-96'}`}>
+                <EcoFriendly
+                  variant="choice"
+                  percentage="30%"
+                  onAction={() => handleSwitchToGreen()}
+                />
+              </div>
               {/* <div className="flex flex-col md:flex-row justify-end items-center gap-4 md:gap-6 my-4">
                 <p>Need your parcel sooner?</p>
                 <Button
@@ -105,12 +108,17 @@ export default function OrderTrackingPage() {
                 </Button>
               </div> */}
             </div>
-            {/* {clicked && (
+            {clicked && (
               <div className="mt-4 md:mt-6 space-y-6">
                 <div className="">
-                  <RouteSelector />
+                  <RouteSelector
+                    routes={routes.routes}
+                    selectedRoute={selectedRoute}
+                    onRouteSelect={setSelectedRoute}
+                    isLoading={isLoading}
+                  />
                 </div>
-                <RouteDetails route={selectedRoute} />
+                <RouteDetails route={selectedRoute} greenestRoute={greenestRoute} />
                 <div className="flex flex-col md:flex-row justify-end gap-4 md:gap-6">
                   <Button
                     variant="outline"
@@ -127,7 +135,7 @@ export default function OrderTrackingPage() {
                   </Button>
                 </div>
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </div>
