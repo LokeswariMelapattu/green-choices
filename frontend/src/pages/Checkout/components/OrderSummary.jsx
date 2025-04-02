@@ -12,6 +12,7 @@ import ExhaustIcon from "../../../components/ui/ExhaustIcon";
 import SustainabilityMessage from "../../../components/ui/SustainabilityMessage";
 import useOrder from "../../../hooks/useOrder";
 import { setOrderData } from '../../../redux/slices/orderSlice'; 
+import { clearCart } from "../../../redux/slices/cartSlice"; 
 import styles from './OrderSummary.module.css';
 
 const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
@@ -43,6 +44,7 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
     try {
       console.log(orderData);
       await saveOrder(orderData); // Call save order API
+      dispatch(clearCart());
       navigate("/paymentsuccess");
     } catch (err) {
       console.error('Error saving order:', err);
