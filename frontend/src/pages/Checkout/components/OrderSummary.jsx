@@ -78,19 +78,29 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
           </div>
         </div>
 
-        <div className={styles.divSection}>
-          <DollarSign className={styles.dollar} />
-          <div>
-            <label className="text-sm">Subtotal</label>
-            <p className="text-[22px]">${ (Number(totalAmount || 0) + Number(routeTotals.cost || 0)).toFixed(2) }</p>
+        <div className={styles.gridDiv}>
+          <div className={styles.divSection}>
+          <DollarSign className={styles.dollar}  />
+            <div>
+              <label>Item(s) total</label>
+              <p className="text-[18px]">${ Number(totalAmount|| 0).toFixed(2) }</p>
+            </div>
+          </div>
+
+          <div className={styles.divSection}>
+          <DollarSign className={styles.dollar}  />
+            <div>
+              <label>Shipping</label>
+              <p className="text-[18px]">${ Number(routeTotals.cost || 0).toFixed(2) }</p>
+            </div>
           </div>
         </div>
 
         <div className={styles.divSection}>
-          <DollarSign className={styles.dollar}  />
+          <DollarSign className={styles.dollar} />
           <div>
-            <label className="text-sm ">Shipping</label>
-            <p className="text-[18px]">${ Number(routeTotals.cost || 0).toFixed(2) }</p>
+            <label className="text-sm">Order total</label>
+            <p className="text-[22px] font-semibold">${ (Number(totalAmount || 0) + Number(routeTotals.cost || 0)).toFixed(2) }</p>
           </div>
         </div>
 

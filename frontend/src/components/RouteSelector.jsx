@@ -61,7 +61,7 @@ const RouteSelector = ({ routes, selectedRoute, onRouteSelect,isLoading }) => {
                 <div className="space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-gray-600">Cost</span>
-                    <span className="font-medium">
+                    <span>
                       ${route.metrics.cost.minimum} - ${route.metrics.cost.maximum}
                     </span>
                   </div>

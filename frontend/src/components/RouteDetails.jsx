@@ -128,7 +128,7 @@ const RouteDetails = ({ route, greenestRoute }) => {
           <img
             src="/imgs/animation_greenroute.gif"
             alt="Greenest Route"
-            className="absolute top-0 right-0"
+            className="absolute top-8 right-2 w-32"
           />
         )}
         {/* Conditionally render the GIF only for the greenest route */}
@@ -136,7 +136,7 @@ const RouteDetails = ({ route, greenestRoute }) => {
           <img
             src="/imgs/animation_notgreen.gif"
             alt="Greenest Route"
-            className="absolute top-0 right-0"
+            className="absolute top-10 right-0"
           />
         )}
 
