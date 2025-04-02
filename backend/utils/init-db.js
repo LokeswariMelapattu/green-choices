@@ -22,7 +22,9 @@ const initializeDatabase = async () => {
     `, [process.env.DB_NAME]);
     
     const dbExists = dbCheckResult.rows[0].exists;
-    await pgPool.query(`insert into user_info values(1,"loki",null,null,null);`);
+    
+    // ** This request causes failure of the init-db **
+    //await pgPool.query(`insert into user_info values(1,"loki",null,null,null);`);
      
     if (!dbExists) {
       console.log(`Database '${process.env.DB_NAME}' does not exist. Creating it now...`);
