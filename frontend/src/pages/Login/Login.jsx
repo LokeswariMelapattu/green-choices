@@ -8,6 +8,7 @@ const Login = () => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [pain, setPain] = useState(false);
   let {user, checkCredentials} = useUser();
 
   // Handle input changes
@@ -18,13 +19,14 @@ const Login = () => {
 
     e.preventDefault();
     console.log("Login button clicked");
-    // check username and password arent empty, causes error
 
     user = await checkCredentials(username, password);
 
     if (user.success) {
-      navigate("/home")
+      navigate("/home");
+      setPain(false);
     } else {
+      setPain(true);
       navigate("/");
     }
   };
@@ -61,6 +63,9 @@ const Login = () => {
             value={password}
             onChange={handlePasswordChange} 
             />
+          </div>
+          <div>
+            <label style={{display: pain ? "block" : "none", color: "red"}}> Incorrect Email or Password </label>
           </div>
           <button type="submit" className={styles.button}>
             Login
