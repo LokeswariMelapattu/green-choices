@@ -1,14 +1,32 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useUser from '../../hooks/useUser';
 import styles from "./Login.module.css"; // Import CSS Module
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  let {user, checkCredentials} = useUser();
+
+  // Handle input changes
+  const handleUsernameChange = (e) => setUsername(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  const handleLogin = async (e) => {
+
     e.preventDefault();
     console.log("Login button clicked");
-    navigate("/home");
+    // check username and password arent empty, causes error
+
+    user = await checkCredentials(username, password);
+
+    if (user.success) {
+      navigate("/home")
+    } else {
+      navigate("/");
+    }
   };
 
   const handleForgotPassword = () => {
@@ -30,11 +48,19 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <div>
             <label>Username</label>
-            <input type="text" placeholder="Username" />
+            <input type="text" 
+            placeholder="Username" 
+            value={username}
+            onChange={handleUsernameChange} 
+            />
           </div>
           <div>
             <label>Password</label>
-            <input type="password" placeholder="Password" />
+            <input type="password" 
+            placeholder="Password" 
+            value={password}
+            onChange={handlePasswordChange} 
+            />
           </div>
           <button type="submit" className={styles.button}>
             Login

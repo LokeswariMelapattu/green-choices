@@ -74,6 +74,28 @@ const getUserById = async (userId) => {
 };
 
 /**
+ * Get user by ID
+ * @param {number} userId - User ID
+ * @returns {Promise<Object>} - User object
+ */
+const getUserByCredentials = async (email, password) => {
+  try {
+    const user = await db.query('SELECT * FROM User_Info WHERE Email = $1', [email]);
+    
+    let correctPassword = await bcrypt.compare(password, user.rows[0].password);
+
+    if (correctPassword) {
+      delete user.rows[0].password;
+      return user.rows[0];
+    }
+
+  } catch (error) {
+    console.error('Error getting user by ID:', error);
+    throw error;
+  }
+};
+
+/**
  * Get all users
  * @returns {Promise<Array>} - Array of user objects
  */
@@ -106,6 +128,7 @@ module.exports = {
   createUser,
   updateUser,
   getUserById,
+  getUserByCredentials,
   getAllUsers,
   getUserAuditHistory
 };
