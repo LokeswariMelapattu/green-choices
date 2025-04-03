@@ -19,7 +19,9 @@ const SustainabilityMessage = ({ isLowSustainable }) => {
             <p className="text-lg font-semibold text-green-700 mt-2">Great! You've made an eco-friendly choice!</p>
             <LeafIcon />
           </div>
-          <div> <p className="text-sm text-green-600">You're helping reduce CO₂ emissions and protect the planet!</p>
+          
+          <div className="flex items-center gap-2"> 
+            <p className="text-sm text-green-600">You're helping reduce CO₂ emissions and protect the planet!</p>
    
         </div>
         </div>

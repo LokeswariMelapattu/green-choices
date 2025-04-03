@@ -16,3 +16,8 @@ input:not([type="checkbox"]) {
 .toast-success{
   @apply px-1 text-blue-500 underline cursor-pointer
 }
+
+.btn-red {
+  @apply w-full px-4 py-2 mt-6 font-semibold text-red-700  bg-red-200 rounded-full hover:bg-red-300;
+}  
+  

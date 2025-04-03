@@ -3,11 +3,12 @@
 }
 
 .section{
-    @apply bg-white p-6 rounded-lg shadow-lg w-[900px] h-[500px] relative
+    @apply bg-white p-6 rounded-lg shadow-lg w-[750px] h-[400px] relative bg-gradient-to-b from-[#A7F6B1] via-[#C5DEC8] to-[#E9FBEB] 
+    font-[Public_Sans] font-semibold text-base leading-6 tracking-normal
 }
 
 .header{
-    @apply flex justify-between items-center
+    @apply flex justify-between items-center mb-4
 }
 .heading{
     @apply text-lg font-semibold text-center w-full
@@ -17,4 +18,58 @@
 }
 .imgDiv{
     @apply flex justify-center py-1
+}
+.earthImg{
+    @apply absolute left-1/2 top-1/2 transform 
+    -translate-x-1/2 -translate-y-1/2 w-[483px] h-[280px] opacity-30 pointer-events-none
+} 
+
+.item1{
+    @apply flex items-start gap-2
+}
+.itemImage1{
+    @apply  w-20 h-20 p-1 rounded-md
+}
+.itemContent1{
+    @apply text-gray-700 text-sm mt-4
+}
+.item2{
+    @apply flex items-start
+}
+.itemImage2{
+    @apply w-[200px] h-[135px] p-1 rounded-md justify-center
+}
+.itemContent2{
+    @apply text-gray-700 text-sm mt-6
+}
+.item3{
+    @apply flex items-start gap-4 mb-4
+}
+.itemImage3{
+    @apply w-20 h-20 p-1 rounded-md
+}
+.itemContent3{
+    @apply text-sm text-gray-700 
+}
+.btnPetition{
+    @apply bg-green-600 text-white px-4 py-1 rounded-lg hover:bg-green-700
+}
+.greenText{
+    @apply text-green-600 font-semibold
+}
+.greenerShipping{
+    @apply text-green-700 font-semibold cursor-pointer hover:underline
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999; /* Ensure it's above other content */
 }
