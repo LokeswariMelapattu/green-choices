@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import { FiUser, FiShoppingCart } from "react-icons/fi";
 import Badge from '@mui/material/Badge';
 import { useSelector } from "react-redux";
+import useUser from '../hooks/useUser';
 
 const Header = () => {
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const cartItemCount = useSelector((state) => state.cart.cartItemCount);
+  const {logout} = useUser();
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between py-4 px-6">
@@ -46,6 +48,7 @@ const Header = () => {
                   <Link
                     to="/"
                     className="block px-4 py-2 text-gray-700 hover:bg-green-100"
+                    onClick={logout}
                   >
                     Sign Out
                   </Link>

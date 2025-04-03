@@ -1,14 +1,17 @@
 import React from "react";
 import styles from "../UserProfile.module.css";
+import useUser from '../../../hooks/useUser';
 
 const ProfileDetails =() => {
+  const {user} = useUser();
+
   return (
     <div className={styles.profileHeader}>
       <div className={styles.profileColumns}>
         <div className={styles.profileColumn}>
           <div className={styles.userInfoContainer}>
-            <h2 className={styles.userName}>John Doe</h2>
-            <p className={styles.userEmail}>Jhondoe@greenlogistics.com</p>
+            <h2 className={styles.userName}>{user?.data.username || "No name"}</h2>
+            <p className={styles.userEmail}>{user?.data.email || "No email"}</p>
           </div>
         </div>
         <div className={styles.profileColumnWide}>
@@ -32,9 +35,9 @@ const ProfileDetails =() => {
                       Shipping Address:
                     </h3>
                     <address className={styles.contactInfoAddress}>
-                      Orivedenkatu, Tampere
+                      {user?.data.address || "No address"}
                       <br />
-                      Finland
+                      
                     </address>
                   </div>
                 </div>
