@@ -18,6 +18,9 @@ const useUser = () => {
         try {
             const response = await fetch(`${VITE_APP_API_URL}user/check/credentials?email=${email}&password=${password}`);
             const user = await response.json();
+            if (user) {
+                user.data.username = user.data.firstname + " " + user.data.lastname;
+            }
             setUser(user);
             localStorage.setItem("user", JSON.stringify(user));
             return user;
