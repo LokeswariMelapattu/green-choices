@@ -5,7 +5,7 @@ const useUser = () => {
     const [user, setUser] = useState(() => {
         // Load user from localStorage when the hook initializes
         const storedUser = localStorage.getItem("user");
-        return storedUser ? JSON.parse(storedUser) : null;
+        return storedUser ? JSON.parse(storedUser) : {success: false};
       }); // Stores user data
     const [loading, setLoading] = useState(false); // To track loading state
     const [error, setError] = useState(null); // To track any errors during request
@@ -18,7 +18,7 @@ const useUser = () => {
         try {
             const response = await fetch(`${VITE_APP_API_URL}user/check/credentials?email=${email}&password=${password}`);
             const user = await response.json();
-            if (user) {
+            if (user.success) {
                 user.data.username = user.data.firstname + " " + user.data.lastname;
             }
             setUser(user);
