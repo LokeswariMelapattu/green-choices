@@ -6,7 +6,7 @@ import styles from "./Login.module.css"; // Import CSS Module
 const Login = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
+  const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [pain, setPain] = useState(false);
   let {user, checkCredentials} = useUser();
@@ -20,7 +20,7 @@ const Login = () => {
     e.preventDefault();
     console.log("Login button clicked");
 
-    user = await checkCredentials(username, password);
+    user = await checkCredentials(email, password);
 
     if (user.success) {
       navigate("/home");
@@ -49,10 +49,10 @@ const Login = () => {
         </h2>
         <form onSubmit={handleLogin}>
           <div>
-            <label>Username</label>
+            <label>Email</label>
             <input type="text" 
-            placeholder="Username" 
-            value={username}
+            placeholder="Email" 
+            value={email}
             onChange={handleUsernameChange} 
             />
           </div>

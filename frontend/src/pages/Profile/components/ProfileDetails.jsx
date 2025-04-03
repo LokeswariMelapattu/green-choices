@@ -1,13 +1,15 @@
 import React from "react";
 import styles from "../UserProfile.module.css";
+import useUser from '../../../hooks/useUser';
 
 const ProfileDetails =() => {
+  const {user} = useUser();
   return (
     <div className={styles.profileHeader}>
       <div className={styles.profileColumns}>
         <div className={styles.profileColumn}>
           <div className={styles.userInfoContainer}>
-            <h2 className={styles.userName}>John Doe</h2>
+            <h2 className={styles.userName}>{user?.data.firstname || "No name"}</h2>
             <p className={styles.userEmail}>Jhondoe@greenlogistics.com</p>
           </div>
         </div>

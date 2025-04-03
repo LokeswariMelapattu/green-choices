@@ -2,7 +2,11 @@ import { useState, useEffect } from 'react';
 import { VITE_APP_API_URL } from '../data/constants'
 
 const useUser = () => {
-    const [user, setUser] = useState(null); // Stores user data
+    const [user, setUser] = useState(() => {
+        // Load user from localStorage when the hook initializes
+        const storedUser = localStorage.getItem("user");
+        return storedUser ? JSON.parse(storedUser) : null;
+      }); // Stores user data
     const [loading, setLoading] = useState(false); // To track loading state
     const [error, setError] = useState(null); // To track any errors during request
 
@@ -15,17 +19,32 @@ const useUser = () => {
             const response = await fetch(`${VITE_APP_API_URL}user/check/credentials?email=${email}&password=${password}`);
             const user = await response.json();
             setUser(user);
+            localStorage.setItem("user", JSON.stringify(user));
             return user;
 
         } catch (error) {
-            console.error('Error fetching user: ', error);
+            console.error('Error checking user credentials: ', error);
         }
         finally {
             setLoading(false);
         }
     };
 
-    return {user, loading, error, checkCredentials};
+    const logout = async () => {
+        setLoading(true);
+        setError(null);
+
+        try {
+            setUser(null);
+            localStorage.setItem("user", null);
+        } catch (error) {
+            console.error('Error login out user: ', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return {user, loading, error, checkCredentials, logout};
     
 };
 
