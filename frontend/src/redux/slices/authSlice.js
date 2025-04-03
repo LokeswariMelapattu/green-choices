@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   user: {
     id: 1,  // Default user ID
+    userName: "Logistics User",  // Default user ID
     shippingAddress: "123 Default St, City, Country" // Default Address
   },
   isAuthenticated: false,

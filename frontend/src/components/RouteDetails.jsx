@@ -37,8 +37,7 @@ const TransportIcon = ({ mode, isActive, onClick, disabled }) => {
     road: Truck,
     sea: Ship,
     plane: Plane,
-  }[mode];
-  console.log('Button disabled:', disabled);
+  }[mode]; 
   return (
     <div
       role="button"
@@ -105,13 +104,14 @@ const RouteDetails = ({ route, greenestRoute }) => {
 
           <h2 className="text-xl font-semibold mb-4 mr-6">Option {route.routeNumber} Details</h2>
 
-          {route.routeNumber == 1 && (<div>
-            <p className="text-sm font-semibold text-green-700 mb-4">Good Job! You are asaving 20% of carbon emission!</p>
-          </div>
+          {route.routeNumber == 1 && (<div className="rounded-lg shadow-md text-center bg-green-100">
+          <p className="text-sm font-semibold text-green-700 mr-2 ml-2 mb-2 mt-2 text-center">Good Job! You are saving 20% of carbon emission!</p>
+        </div>
+
           )}
           <div className="flex items-center gap-2">
             <div className="absolute right-0 inline-flex space-x-2 transform translate-x-[-25%]">
-            <span className="text-sm text-gray-600 ">Customize</span>
+            <span className="text-sm text-gray-600 ">Customize Route</span>
               <Switch
                 className="ml-auto"
                 checked={isCustomizing}
@@ -196,7 +196,7 @@ const RouteDetails = ({ route, greenestRoute }) => {
                     </div>
                   </div>
 
-                  <div className="mt-3 grid grid-cols-2 gap-4 text-sm">
+                  <div className="mt-3 grid grid-cols-3 gap-4 text-sm">
                     <div>
                       <span className="text-gray-600">Cost Range:</span>
                       <p className="font-medium">${segment.costs[modeIndex]}</p>
@@ -204,6 +204,35 @@ const RouteDetails = ({ route, greenestRoute }) => {
                     <div>
                       <span className="text-gray-600">Emissions:</span>
                       <p className="font-medium">{segment.carbonEmissions[modeIndex]} kg</p>
+                    </div>
+                    <div className="flex items-center space-x-2">                      
+                      <div className="">
+                        <span className="text-gray-600">Fuel Type:</span>
+                        <p className="font-medium">{segment.fuel_types[modeIndex]}</p>
+                      </div>
+                      <div className="flex items-center">
+                        <img
+                          className="w-6 h-6"
+                          alt="Fuel Type Icon"
+                          src={
+                            segment.fuel_types[modeIndex] === "Bio Fuel"
+                              ? "/imgs/bio-fuel.png"
+                              : segment.fuel_types[modeIndex] === "Jet Fuel"
+                              ? "/imgs/jet-fuel.png"
+                              : segment.fuel_types[modeIndex] === "Gasoline"
+                              ? "/imgs/gasoline.png"
+                              : segment.fuel_types[modeIndex] === "Diesel"
+                              ? "/imgs/diesel.png"
+                              : segment.fuel_types[modeIndex] === "Natural Gas"
+                              ? "/imgs/natural-gas.png"
+                              : segment.fuel_types[modeIndex] === "Electric (Fossil)"
+                              ? "/imgs/electric.png"
+                              : segment.fuel_types[modeIndex] === "Electric (Renewable)"
+                              ? "/imgs/electric.png"
+                              : ""
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
                 </Card>
