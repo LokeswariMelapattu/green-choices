@@ -17,7 +17,6 @@ const Cloud = ({ text }) => (
                     width: '100%',
                     height: '75px',
                     background: '#ffffff',
-                    zIndex: 1,
                     borderBottom: '2px solid #000000',
                     borderLeft: '2px solid #000000',
                     borderRight: '2px solid #000000'

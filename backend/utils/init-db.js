@@ -19,8 +19,8 @@ const initializeDatabase = async () => {
       SELECT EXISTS (
         SELECT FROM pg_database WHERE datname = $1
       );
-    `, [process.env.DB_NAME]);
-    
+    `, [process.env.DB_NAME]); 
+     
     const dbExists = dbCheckResult.rows[0].exists; 
      
     if (!dbExists) {
