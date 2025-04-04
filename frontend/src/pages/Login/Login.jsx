@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useUser from '../../hooks/useUser';
 import styles from "./Login.module.css"; // Import CSS Module
 
 const Login = () => {
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const [email, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [pain, setPain] = useState(false);
+  let {user, checkCredentials} = useUser();
+
+  // Handle input changes
+  const handleUsernameChange = (e) => setUsername(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+
+  const handleLogin = async (e) => {
+
     e.preventDefault();
     console.log("Login button clicked");
-    navigate("/home");
+
+    user = await checkCredentials(email, password);
+
+    if (user.success) {
+      navigate("/home");
+      setPain(false);
+    } else {
+      setPain(true);
+      navigate("/");
+    }
   };
 
   const handleForgotPassword = () => {
@@ -29,12 +49,23 @@ const Login = () => {
         </h2>
         <form onSubmit={handleLogin}>
           <div>
-            <label>Username</label>
-            <input type="text" placeholder="Username" />
+            <label>Email</label>
+            <input type="text" 
+            placeholder="Email" 
+            value={email}
+            onChange={handleUsernameChange} 
+            />
           </div>
           <div>
             <label>Password</label>
-            <input type="password" placeholder="Password" />
+            <input type="password" 
+            placeholder="Password" 
+            value={password}
+            onChange={handlePasswordChange} 
+            />
+          </div>
+          <div>
+            <label style={{display: pain ? "block" : "none", color: "red"}}> Incorrect Email or Password </label>
           </div>
           <button type="submit" className={styles.button}>
             Login

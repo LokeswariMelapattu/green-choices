@@ -84,8 +84,11 @@ Make sure you have the following tools installed:
    ```bash
    npm install
    ```
-
-3. Start the React development server:
+3. Set up environment variable in a `/frontend` folder in `.env` file with follwing format.
+   ```text
+   VITE_APP_API_URL=http://localhost:3000/
+   ```
+4. Start the React development server:
 
    ```bash
    npm run dev

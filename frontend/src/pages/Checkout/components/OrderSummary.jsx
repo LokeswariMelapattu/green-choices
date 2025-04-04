@@ -22,11 +22,11 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
   const dispatch = useDispatch();
 
   const orderData = useSelector((state) => state.order);
-  const user = useSelector((state) => state.auth?.user || null); 
+  const user = useSelector((state) => state.auth?.user || null);  
  
   useEffect(() => {
     if (routeTotals && user) {
-      console.log("isGreen : " + !isLowSustainable);
+      console.log("isGreen : " + !isLowSustainable); 
       dispatch(setOrderData({
         userId: user.id,
         shippingAddress: user.shippingAddress,
@@ -114,12 +114,13 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
             tooltip={isLowSustainable ? "shipping-info" : ""}
             text="Continue to Payment"
             onClick={handlePayment}
-            className="btn"
+            className= {isLowSustainable ? "btn-red":"btn"}
           />
-          <Tooltip id="shipping-info">
-            <p>🔥 This shipping option emits high CO₂.</p>
-            <p>Consider eco-friendly alternatives for a **greener** 🌱 option.</p>
-          </Tooltip>
+         <Tooltip id="shipping-info" className={styles.tooltip}> 
+          <p>Hi {user.userName},</p>
+          <p>🚨 This shipping option is basically a smoke machine for the planet. 🌍💨</p>
+          <p>Why not go for a greener choice? Your future self will thank you! 🌱</p> 
+        </Tooltip>
         </div>
       </div>
     </Card>
