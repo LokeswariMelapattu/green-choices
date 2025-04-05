@@ -95,7 +95,7 @@ const TrackingDetails = ({ selectedRoute, isLoading }) => {
   return (
     <div className="max-w-2xl mx-auto flex flex-col mt-4 md:mt-6">
       <motion.div
-        className="space-y-6 bg-white rounded-xl"
+        className="space-y-6 bg-white rounded-xl pb-8"
         initial="hidden"
         animate="visible"
         variants={containerVariants}
@@ -116,7 +116,7 @@ const TrackingDetails = ({ selectedRoute, isLoading }) => {
         <motion.div variants={itemVariants}>
           <h2 className="text-xl md:text-2xl font-bold mb-6">Tracking Details</h2>
 
-          <div className="space-y-6">
+          <div className="space-y-24">
             {segments.map((segment, index) => (
               <motion.div
                 key={index}
@@ -172,7 +172,7 @@ const TrackingDetails = ({ selectedRoute, isLoading }) => {
                     <motion.div
                       className="absolute top-10 left-1/2 w-0.5 h-12 bg-gray-300 -translate-x-1/2"
                       initial={{ height: 0 }}
-                      animate={{ height: 48 }}
+                      animate={{ height: 100 }}
                       transition={{ duration: 0.5 }}
                     />
                   )}
@@ -251,7 +251,7 @@ const TrackingDetails = ({ selectedRoute, isLoading }) => {
           Go to Homepage
         </motion.button>
       </motion.div>
-    </div>
+    </div >
   );
 };
 
