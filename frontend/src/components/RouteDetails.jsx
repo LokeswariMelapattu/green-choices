@@ -37,7 +37,7 @@ const TransportIcon = ({ mode, isActive, onClick, disabled }) => {
     road: Truck,
     sea: Ship,
     plane: Plane,
-  }[mode]; 
+  }[mode];
   return (
     <div
       role="button"
@@ -53,7 +53,7 @@ const TransportIcon = ({ mode, isActive, onClick, disabled }) => {
   );
 };
 
-const RouteDetails = ({ route, greenestRoute }) => {
+const RouteDetails = ({ route, greenestRoute, disableCustomization = false }) => {
   const { selectedModes, setSelectedModes, setCurrentRoute } = useTransport();
   const [key, setKey] = useState(0); // Key to trigger re-animation
   const [showGif, setShowGif] = useState(false);
@@ -92,26 +92,27 @@ const RouteDetails = ({ route, greenestRoute }) => {
 
   return (
     <motion.div
+      className="w-full"
       key={key} // Changing key re-triggers animation
       initial={{ opacity: 0, scale: 0.95, y: 5 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95, y: -10 }}
       transition={{ duration: 1, ease: "easeOut" }} // Custom cubic bezier for smooth feel
     >
-      <Card className="p-6 bg-white/70 backdrop-blur-lg shadow-lg transition-transform">
+      <Card className="p-6 bg-white/70 backdrop-blur-lg shadow-lg transition-transform w-full">
 
         <div className="flex items-center gap-2">
 
           <h2 className="text-xl font-semibold mb-4 mr-6">Option {route.routeNumber} Details</h2>
 
           {route.routeNumber == 1 && (<div className="rounded-lg shadow-md text-center bg-green-100">
-          <p className="text-sm font-semibold text-green-700 mr-2 ml-2 mb-2 mt-2 text-center">Good Job! You are saving 20% of carbon emission!</p>
-        </div>
+            <p className="text-sm font-semibold text-green-700 mr-2 ml-2 mb-2 mt-2 text-center">Good Job! You are saving 20% of carbon emission!</p>
+          </div>
 
           )}
-          <div className="flex items-center gap-2">
+          {!disableCustomization && (<div className="flex items-center gap-2">
             <div className="absolute right-0 inline-flex space-x-2 transform translate-x-[-25%]">
-            <span className="text-sm text-gray-600 ">Customize Route</span>
+              <span className="text-sm text-gray-600 ">Customize Route</span>
               <Switch
                 className="ml-auto"
                 checked={isCustomizing}
@@ -119,7 +120,7 @@ const RouteDetails = ({ route, greenestRoute }) => {
                 aria-label="Toggle customization mode"
               />
             </div>
-          </div>
+          </div>)}
         </div>
 
 
@@ -189,7 +190,7 @@ const RouteDetails = ({ route, greenestRoute }) => {
                             mode={mode}
                             isActive={selectedModes[index] === mode}
                             onClick={() => handleToggle(index)}
-                            disabled={!isCustomizing}
+                            disabled={disableCustomization ? !isCustomizing : false}
                           />
                         ))}
 
@@ -205,7 +206,7 @@ const RouteDetails = ({ route, greenestRoute }) => {
                       <span className="text-gray-600">Emissions:</span>
                       <p className="font-medium">{segment.carbonEmissions[modeIndex]} kg</p>
                     </div>
-                    <div className="flex items-center space-x-2">                      
+                    <div className="flex items-center space-x-2">
                       <div className="">
                         <span className="text-gray-600">Fuel Type:</span>
                         <p className="font-medium">{segment.fuel_types[modeIndex]}</p>
@@ -218,18 +219,18 @@ const RouteDetails = ({ route, greenestRoute }) => {
                             segment.fuel_types[modeIndex] === "Bio Fuel"
                               ? "/imgs/bio-fuel.png"
                               : segment.fuel_types[modeIndex] === "Jet Fuel"
-                              ? "/imgs/jet-fuel.png"
-                              : segment.fuel_types[modeIndex] === "Gasoline"
-                              ? "/imgs/gasoline.png"
-                              : segment.fuel_types[modeIndex] === "Diesel"
-                              ? "/imgs/diesel.png"
-                              : segment.fuel_types[modeIndex] === "Natural Gas"
-                              ? "/imgs/natural-gas.png"
-                              : segment.fuel_types[modeIndex] === "Electric (Fossil)"
-                              ? "/imgs/electric.png"
-                              : segment.fuel_types[modeIndex] === "Electric (Renewable)"
-                              ? "/imgs/electric.png"
-                              : ""
+                                ? "/imgs/jet-fuel.png"
+                                : segment.fuel_types[modeIndex] === "Gasoline"
+                                  ? "/imgs/gasoline.png"
+                                  : segment.fuel_types[modeIndex] === "Diesel"
+                                    ? "/imgs/diesel.png"
+                                    : segment.fuel_types[modeIndex] === "Natural Gas"
+                                      ? "/imgs/natural-gas.png"
+                                      : segment.fuel_types[modeIndex] === "Electric (Fossil)"
+                                        ? "/imgs/electric.png"
+                                        : segment.fuel_types[modeIndex] === "Electric (Renewable)"
+                                          ? "/imgs/electric.png"
+                                          : ""
                           }
                         />
                       </div>
