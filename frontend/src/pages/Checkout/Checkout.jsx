@@ -89,6 +89,7 @@ const Checkout = () => {
               selectedRoute={selectedRoute}
               selectedModes={selectedModes}
               isLowSustainable={isLowSustainable}
+              greenestRoute={greenestRoute}
               totalAmount={totalAmount}
               cartItems={cartItems}
             />

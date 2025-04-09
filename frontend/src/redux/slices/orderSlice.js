@@ -7,7 +7,7 @@ const initialState = {
   deliveryCharge: 0,
   orderStatus: 'Pending',
   isSustainableOption: true,
-  orderItems: [],
+  orderItems: []
 };
 
 const orderSlice = createSlice({

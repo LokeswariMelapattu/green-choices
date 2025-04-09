@@ -542,14 +542,14 @@ END;
 $$;
 
 CREATE OR REPLACE PROCEDURE sp_UpdateRoute(
-    p_RouteID INT,
     p_OrderID INT,
     p_Source VARCHAR(100),
     p_Destination VARCHAR(100),
     p_CarbonEmission INT,
     p_Duration INT,
     p_TotalCost INT,
-    p_LastUpdatedUserID INT
+    p_LastUpdatedUserID INT,
+    OUT p_RouteID INT
 )
 LANGUAGE plpgsql
 AS $$
@@ -562,7 +562,8 @@ BEGIN
         TotalCost = p_TotalCost,
         LastUpdatedUserID = p_LastUpdatedUserID,
         LastUpdatedDate = CURRENT_TIMESTAMP
-    WHERE RouteID = p_RouteID AND OrderID = p_OrderID;
+    WHERE OrderID = p_OrderID
+    RETURNING RouteID INTO p_RouteID;
     
     COMMIT;
 END;
@@ -711,6 +712,20 @@ BEGIN
         DeliveryCharge = p_DeliveryCharge,
         OrderStatus = p_OrderStatus,
         IsSustainableOption = p_IsSustainableOption,
+        UpdatedAt = CURRENT_TIMESTAMP
+    WHERE OrderID = p_OrderID;
+END;
+$$;
+
+CREATE OR REPLACE PROCEDURE sp_UpdateOrderSustainability(
+    p_OrderID INT,
+    p_IsSustainableOption BOOLEAN
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    UPDATE Order_Info
+    SET IsSustainableOption = p_IsSustainableOption,
         UpdatedAt = CURRENT_TIMESTAMP
     WHERE OrderID = p_OrderID;
 END;

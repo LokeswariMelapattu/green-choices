@@ -1,5 +1,6 @@
 // controllers/orderController.js
 const orderModel = require('../models/order');
+const saveRouteModel = require('../models/saveRouteModel');
 
 // Create a new order
 const createOrder = async (req, res) => {
@@ -112,6 +113,40 @@ const getActiveOrdersByUserId = async (req, res) => {
   }
 };
 
+const getActiveOrdersWithRouteInfo = async (req, res) => {
+  try {
+      const { userId } = req.params;
+
+      const activeOrders = await orderModel.getActiveOrdersByUserId(userId);
+      const activeOrdersWithRouteInfo = [];
+
+      for (const order of activeOrders) {
+        const routeInfo = await saveRouteModel.getRouteByOrderId(order.orderid);
+      
+        activeOrdersWithRouteInfo.push({
+          ...order,
+          routeInfo,
+        });
+      }
+
+      
+
+      // Step 4: Return the combined data (active orders with route info)
+      return res.status(200).json({
+          success: true,
+          message: "Active orders with route info fetched successfully",
+          data: activeOrdersWithRouteInfo,
+      });
+  } catch (error) {
+      // If any error occurs, send error response
+      return res.status(400).json({
+          success: false,
+          message: "Error fetching active orders with route info",
+          error: error.message,
+      });
+  }
+};
+
 // Get order audit history
 const getOrderAuditHistory = async (req, res) => {
   try {
@@ -136,5 +171,6 @@ module.exports = {
   getAllOrders,
   getOrdersByUserId,
   getActiveOrdersByUserId,
+  getActiveOrdersWithRouteInfo,
   getOrderAuditHistory
 };

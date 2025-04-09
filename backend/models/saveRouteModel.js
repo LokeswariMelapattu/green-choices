@@ -1,5 +1,6 @@
 const db = require('../config/db');
 
+
 /**
  * Save a new route
  * @param {Object} route - Route data object
@@ -12,8 +13,9 @@ const db = require('../config/db');
  * @param {int} route.lastUpdatedUserId - UserID which was used to save route
  * @returns {Promise<Object>} - Created route object
  */
-const saveRoute = async (route) => {
-    const {source, destination, carbonEmissions, duration, totalCost, orderId, lastUpdatedUserId} = route;
+const saveRoute = async (route, orderId) => {
+    const {source, destination, carbonEmissions, duration, totalCost, lastUpdatedUserId} = route;
+
     try {
         const result = await db.query(
             'CALL sp_InsertRoute($1, $2, $3, $4, $5, $6, $7, NULL)',
@@ -45,16 +47,23 @@ const saveRoute = async (route) => {
  * @returns {Promise<Object>} - Updated route object
  */
 const updateRoute = async (routeData) => {
-    const {source, destination, carbonEmissions, duration, totalCost, routeId, orderId, lastUpdatedUserId} = routeData;
+    const {source, destination, carbonEmissions, duration, totalCost, orderId, lastUpdatedUserId} = routeData;
   
   try {
-    await db.query(
-      'CALL sp_UpdateRoute($1, $2, $3, $4, $5, $6, $7, $8)',
-      [routeId, orderId, source, destination, carbonEmissions, duration, totalCost, lastUpdatedUserId]
+    const result = await db.query(
+      'CALL sp_UpdateRoute($1, $2, $3, $4, $5, $6, $7, NULL)',
+      [orderId, source, destination, carbonEmissions, duration, totalCost, lastUpdatedUserId]
     );
     
-    const result = await db.query('SELECT * FROM fn_GetRouteByID($1)', [routeId]);
-    return result.rows[0];
+    const routeId = result?.rows[0]?.p_routeid;
+
+    await db.query(
+      'CALL sp_UpdateOrderSustainability($1, $2)',
+      [orderId, true]
+    );
+
+    const routeResult = await db.query('SELECT * FROM fn_GetRouteByID($1)', [routeId]);
+    return routeResult.rows[0];
   } catch (error) {
     console.error('Error updating user:', error);
     throw error;
@@ -69,7 +78,7 @@ const updateRoute = async (routeData) => {
 const getRouteByOrderId = async (orderId) => {
   try {
     const result = await db.query('SELECT * FROM fn_GetRouteByOrderID($1)', [orderId]);
-    return result.rows;
+    return result.rows[0];
   } catch (error) {
     console.error('Error updating user:', error);
     throw error;

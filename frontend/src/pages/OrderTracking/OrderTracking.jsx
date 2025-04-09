@@ -8,9 +8,13 @@ import OrderCard from "./components/OrderCard";
 import EcoFriendly from "./components/EcoFriendly";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import CarbonEmissionBar from "./components/CarbonEmissionBar";
+import { useParams } from 'react-router-dom';
+import useOrder from "../../hooks/useOrder";
+import { useTransport } from '@/context/transport-context';
 
 /// Mock data for orders
 // This should be replaced with actual data from your API or state management and also please Send Props for Each order here
@@ -19,9 +23,30 @@ export default function OrderTrackingPage({ }) {
     //Uncomment this if you want to use the RouteSelector implementation may need some fixes
     const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute, isLoading } = useRoutes();
     const navigate = useNavigate();
-    const handleUpdateRoute = (route) => {
+    const { orderId } = useParams();
+    const { routeTotals } = useTransport();
+    const { updateOrderRoute, loading, error } = useOrder();
+    const user = useSelector((state) => state.auth?.user || null); 
+
+    const handleUpdateRoute = async (route) => {
         console.log('Update route clicked', route);
-        // Add your update logic here
+        try {
+            const routeInfo = {
+                orderId: orderId,
+                source: route?.source,  // assuming selectedRoute has source
+                destination: route?.destination,
+                carbonEmissions: routeTotals.emissions,
+                duration: routeTotals.duration,
+                totalCost: routeTotals.cost,
+                lastUpdatedUserId: user.id
+              };
+            const updated = await updateOrderRoute(routeInfo);
+            console.log('Route updated successfully:', updated);
+            navigate("/orders");
+            // Optionally refresh orders or show success UI
+          } catch (err) {
+            console.error('Failed to update route:', err);
+          }
     }
     if (isLoading) {
         return <div>Loading...</div>;
@@ -37,7 +62,7 @@ export default function OrderTrackingPage({ }) {
             <div className="mx-auto p-4 md:p-6 lg:p-8">
                 <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
                     <div className="w-full lg:w-[25%]">
-                        <TrackingDetails selectedRoute={selectedRoute} isLoading={isLoading} />
+                        <TrackingDetails selectedRoute={selectedRoute} orderId={orderId} isLoading={isLoading} />
                     </div>
                     <div className="w-full lg:w-[75%]">
 
