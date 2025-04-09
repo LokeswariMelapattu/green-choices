@@ -13,7 +13,7 @@ const PaymentSuccess = () =>{
   const handleTrackOrder = () => {
     // Navigation to order tracking
     console.log("Navigating to order tracking");
-    navigate("/tracking");
+    navigate("/orders");
   };
 
   return (
