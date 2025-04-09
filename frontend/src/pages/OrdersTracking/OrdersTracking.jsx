@@ -76,7 +76,14 @@ export default function OrdersTrackingPage() {
     }
   }, [activeOrders]);
 
-  console.log("Active Orders from Redux:", activeOrders, selectedOrder?.orderid); 
+  useEffect(() => {
+    if (selectedOrder) {
+      const route = selectedOrder?.routeInfo;
+      //setSelectedRoute(route);
+    }
+  }, [selectedOrder]);
+
+  //console.log("rourte : ", selectedRoute, routes); 
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -107,8 +114,12 @@ export default function OrdersTrackingPage() {
       <div className="mx-auto p-4 md:p-6 lg:p-8">
         <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
           <div className="w-full lg:w-[25%]">
-          {activeOrders?.length > 0 && (
+          {activeOrders?.length > 0 ? (
             <TrackingDetails selectedRoute={selectedRoute} orderId={selectedOrder?.orderid} isLoading={isLoading} />
+          ) : (
+            <div className="p-6 my-8 text-center text-gray-700 bg-gray-100 rounded-xl shadow-sm text-lg font-semibold">
+              No order selected.
+            </div>
           )}
           </div>
           <div className="w-full lg:w-[75%]">
@@ -123,15 +134,15 @@ export default function OrdersTrackingPage() {
                     key={index}
                     orderId={order.orderid}
                     arrivalDate={order?.createdat ? 
-                      calculateArrivalDate(order.createdat, order.routeInfo.duration).toLocaleDateString('en-US', { 
+                      calculateArrivalDate(order.createdat, order?.routeInfo?.duration).toLocaleDateString('en-US', { 
                           month: 'short', 
                           day: 'numeric', 
                           year: 'numeric' 
                         }) 
                         : null}
-                    emissions={`${order.routeInfo.carbonemission} kg CO₂`}
-                    isSustainable={order.issustainableoption}
-                    isGreenDelivery={!order.issustainableoption}
+                    emissions={`${order?.routeInfo?.carbonemission} kg CO₂`}
+                    isSustainable={order?.issustainableoption}
+                    isGreenDelivery={!order?.issustainableoption}
                     isSelected={selectedOrder === order}
                     onClick={() => setSelectedOrder(order)}
                   />
