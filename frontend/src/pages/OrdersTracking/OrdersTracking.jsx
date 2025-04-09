@@ -57,7 +57,6 @@ export default function OrdersTrackingPage() {
   useEffect(() => {
     const fetchOrders = async () => {
       try {
-        console.log(userId);
         const orders = await getActiveOrders(userId); // Fetch orders from the API
         console.log(orders);
         dispatch(setActiveOrders(orders)); // Dispatch to Redux to update the state
@@ -78,12 +77,13 @@ export default function OrdersTrackingPage() {
 
   useEffect(() => {
     if (selectedOrder) {
-      const route = selectedOrder?.routeInfo;
-      //setSelectedRoute(route);
+      const routeNumber =  selectedOrder?.routeInfo?.routenumber;
+      const route = routes?.routes?.find(route => route.routeNumber === routeNumber);
+      setSelectedRoute(route !== null ? route : selectedRoute);
     }
   }, [selectedOrder]);
 
-  //console.log("rourte : ", selectedRoute, routes); 
+ 
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -113,17 +113,16 @@ export default function OrdersTrackingPage() {
       <Header />
       <div className="mx-auto p-4 md:p-6 lg:p-8">
         <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
-          <div className="w-full lg:w-[25%]">
-          {activeOrders?.length > 0 ? (
-            <TrackingDetails selectedRoute={selectedRoute} orderId={selectedOrder?.orderid} isLoading={isLoading} />
-          ) : (
-            <div className="p-6 my-8 text-center text-gray-700 bg-gray-100 rounded-xl shadow-sm text-lg font-semibold">
-              No order selected.
+          
+          
+            <div className="w-full lg:w-[25%]">
+            {activeOrders?.length > 0 && (
+              <TrackingDetails selectedRoute={selectedRoute} orderId={selectedOrder?.orderid} isLoading={isLoading} />
+            )}
             </div>
-          )}
-          </div>
+          
           <div className="w-full lg:w-[75%]">
-            <h1 className="mb-3 text-2xl font-bold text-gray-900 md:text-3xl">
+            <h1 className="mb-3 text-2xl font-bold text-gray-900 md:text-3xl px-12">
               Active Orders
             </h1>
             <div className="flex overflow-x-auto scrollbar-hide gap-4 bg-white/70 backdrop-blur-lg border-none my-3 px-5 p-4
@@ -148,14 +147,15 @@ export default function OrdersTrackingPage() {
                   />
                 ))
             ) : (
-              <div className="p-6 my-8 text-center text-gray-700 bg-gray-100 rounded-xl shadow-sm text-lg font-semibold">
+              <div className="p-6 my-8 text-gray-700 bg-gray-100 rounded-xl shadow-sm text-lg font-semibold">
                 No active orders at the moment.
               </div>
             )}
             </div>
+            {activeOrders?.length > 0 && (
             <Card className="h-[300px] md:h-[400px] bg-white/70 backdrop-blur-lg">
               <RouteMap route={activeOrders?.length > 0 ? selectedRoute : null} />
-            </Card>
+            </Card>)}
             <div className="flex flex-col justify-center mt-4 md:mt-6">
               {/* Conditionally Render Based on Data from backend right shows for both */}
               <div className={`transition-all duration-300 ease-in-out overflow-hidden`}>
@@ -166,7 +166,7 @@ export default function OrdersTrackingPage() {
                   onAction={() => handleSwitchToGreen(selectedOrder?.orderid)}
                 />
               )}
-              </div>
+              </div> 
               {/* <div className="flex flex-col md:flex-row justify-end items-center gap-4 md:gap-6 my-4">
                 <p>Need your parcel sooner?</p>
                 <Button

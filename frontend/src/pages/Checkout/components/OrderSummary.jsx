@@ -35,6 +35,7 @@ const OrderSummary = ({selectedRoute, isLowSustainable, greenestRoute, totalAmou
         destination: selectedRoute?.destination,
         carbonEmissions: routeTotals.emissions,
         duration: routeTotals.duration,
+        routeNumber: selectedRoute?.routeNumber,
         totalCost: routeTotals.cost,
         lastUpdatedUserId: user.id
       };

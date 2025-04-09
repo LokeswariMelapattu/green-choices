@@ -29,6 +29,7 @@ CREATE TABLE IF NOT EXISTS Route_Info (
     OrderID INT, -- REFERENCES Order_info(OrderID), -- No Order_info yet
     Source VARCHAR(100) NOT NULL,
     Destination VARCHAR(100) NOT NULL,
+    RouteNumber INT,
     CarbonEmission INT,
     Duration INT,
     TotalCost INT,
@@ -44,6 +45,7 @@ CREATE TABLE IF NOT EXISTS Route_Info_A (
     OrderID INT,
     Source VARCHAR(100),
     Destination VARCHAR(100),
+    RouteNumber INT,
     CarbonEmission INT,
     Duration INT,
     TotalCost INT,
@@ -209,33 +211,33 @@ RETURNS TRIGGER AS $$
 BEGIN
     IF (TG_OP = 'INSERT') THEN
         INSERT INTO Route_Info_A (
-            Operation, RouteID, OrderID, Source, Destination, 
+            Operation, RouteID, OrderID, Source, Destination, RouteNumber,
             CarbonEmission, Duration, TotalCost, LastUpdatedUserID,
             LastUpdatedDate
         ) VALUES (
-            'I', NEW.RouteID, NEW.OrderID, NEW.Source, NEW.Destination, 
+            'I', NEW.RouteID, NEW.OrderID, NEW.Source, NEW.Destination, NEW.RouteNumber,
             NEW.CarbonEmission, NEW.Duration, NEW.TotalCost, NEW.LastUpdatedUserID,
             NEW.LastUpdatedDate
         );
         RETURN NEW;
     ELSIF (TG_OP = 'UPDATE') THEN
         INSERT INTO Route_Info_A (
-            Operation, RouteID, OrderID, Source, Destination, 
+            Operation, RouteID, OrderID, Source, Destination, RouteNumber, 
             CarbonEmission, Duration, TotalCost, LastUpdatedUserID,
             LastUpdatedDate
         ) VALUES (
-            'U', NEW.RouteID, NEW.OrderID, NEW.Source, NEW.Destination, 
+            'U', NEW.RouteID, NEW.OrderID, NEW.Source, NEW.Destination, NEW.RouteNumber,
             NEW.CarbonEmission, NEW.Duration, NEW.TotalCost, NEW.LastUpdatedUserID,
             NEW.LastUpdatedDate
         );
         RETURN NEW;
     ELSIF (TG_OP = 'DELETE') THEN
         INSERT INTO Route_Info_A (
-            Operation, RouteID, OrderID, Source, Destination, 
+            Operation, RouteID, OrderID, Source, Destination, RouteNumber,
             CarbonEmission, Duration, TotalCost, LastUpdatedUserID,
             LastUpdatedDate
         ) VALUES (
-            'D', OLD.RouteID, OLD.OrderID, OLD.Source, OLD.Destination, 
+            'D', OLD.RouteID, OLD.OrderID, OLD.Source, OLD.Destination, NEW.RouteNumber,
             OLD.CarbonEmission, OLD.Duration, OLD.TotalCost, OLD.LastUpdatedUserID,
             OLD.LastUpdatedDate
         );
@@ -526,6 +528,7 @@ CREATE OR REPLACE PROCEDURE sp_InsertRoute(
     p_Destination VARCHAR(100),
     p_CarbonEmission INT,
     p_Duration INT,
+    p_RouteNumber INT,
     p_TotalCost INT,
     p_LastUpdatedUserID INT,
     OUT p_RouteID INT
@@ -533,8 +536,8 @@ CREATE OR REPLACE PROCEDURE sp_InsertRoute(
 LANGUAGE plpgsql
 AS $$
 BEGIN
-    INSERT INTO Route_Info (OrderID, Source, Destination, CarbonEmission, Duration, TotalCost, LastUpdatedUserID)
-    VALUES (p_OrderID, p_Source, p_Destination, p_CarbonEmission, p_Duration, p_TotalCost, p_LastUpdatedUserID)
+    INSERT INTO Route_Info (OrderID, Source, Destination, CarbonEmission, Duration, RouteNumber, TotalCost, LastUpdatedUserID)
+    VALUES (p_OrderID, p_Source, p_Destination, p_CarbonEmission, p_Duration, p_RouteNumber, p_TotalCost, p_LastUpdatedUserID)
     RETURNING RouteID INTO p_RouteID;
 
     COMMIT;
@@ -547,6 +550,7 @@ CREATE OR REPLACE PROCEDURE sp_UpdateRoute(
     p_Destination VARCHAR(100),
     p_CarbonEmission INT,
     p_Duration INT,
+    p_RouteNumber INT,
     p_TotalCost INT,
     p_LastUpdatedUserID INT,
     OUT p_RouteID INT
@@ -559,6 +563,7 @@ BEGIN
         Destination = p_Destination,
         CarbonEmission = p_CarbonEmission,
         Duration = p_Duration,
+        RouteNumber = p_RouteNumber,
         TotalCost = p_TotalCost,
         LastUpdatedUserID = p_LastUpdatedUserID,
         LastUpdatedDate = CURRENT_TIMESTAMP
@@ -853,6 +858,7 @@ RETURNS TABLE (
     OrderID INT,
     Source VARCHAR(100),
     Destination VARCHAR(100),
+    RouteNumber INT,
     CarbonEmission INT,
     Duration INT,
     TotalCost INT,
@@ -915,6 +921,7 @@ RETURNS TABLE (
     OrderID INT,
     Source VARCHAR(100),
     Destination VARCHAR(100),
+    RouteNumber INT,
     CarbonEmission INT,
     Duration INT,
     TotalCost INT,

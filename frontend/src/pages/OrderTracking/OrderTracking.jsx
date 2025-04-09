@@ -37,6 +37,7 @@ export default function OrderTrackingPage({ }) {
                 destination: route?.destination,
                 carbonEmissions: routeTotals.emissions,
                 duration: routeTotals.duration,
+                routeNumber: route.routeNumber,
                 totalCost: routeTotals.cost,
                 lastUpdatedUserId: user.id
               };
