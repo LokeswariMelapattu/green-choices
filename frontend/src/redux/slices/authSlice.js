@@ -16,8 +16,11 @@ const authSlice = createSlice({
     setUser: (state, action) => {
       state.user = action.payload;
     },
+    setActiveOrders: (state, action) => {
+      state.user.activeOrders = action.payload; // Update active orders within the user object
+    },
   },
 });
 
-export const { setUser } = authSlice.actions;
+export const { setUser, setActiveOrders } = authSlice.actions;
 export default authSlice.reducer;
