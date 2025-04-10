@@ -158,15 +158,23 @@ export default function OrdersTrackingPage() {
             </Card>)}
             <div className="flex flex-col justify-center mt-4 md:mt-6">
               {/* Conditionally Render Based on Data from backend right shows for both */}
-              <div className={`transition-all duration-300 ease-in-out overflow-hidden`}>
-              {activeOrders?.length > 0 && !selectedOrder?.issustainableoption && (
-                <EcoFriendly
-                  variant="choice"
-                  percentage="30%"
-                  onAction={() => handleSwitchToGreen(selectedOrder?.orderid)}
-                />
-              )}
-              </div> 
+              <div className="transition-all duration-300 ease-in-out overflow-hidden">
+                {activeOrders?.length > 0 ? (
+                  !selectedOrder?.issustainableoption ? (
+                    <EcoFriendly
+                      variant="choice"
+                      percentage="30%"
+                      onAction={() => handleSwitchToGreen(selectedOrder?.orderid)}
+                    />
+                  ) : (
+                    <EcoFriendly
+                      variant="confirmation"
+                      percentage="70%"
+                      onAction={() => handleLearnMore()}
+                    />
+                  )
+                ) : null}
+              </div>
               {/* <div className="flex flex-col md:flex-row justify-end items-center gap-4 md:gap-6 my-4">
                 <p>Need your parcel sooner?</p>
                 <Button
