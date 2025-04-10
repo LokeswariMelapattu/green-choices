@@ -71,30 +71,17 @@ export default function OrderTrackingPage({ }) {
                             <RouteMap route={selectedRoute} />
                         </Card>
                         <div className="mt-4 md:mt-6 space-y-6">
-                            <div className="">
-                                <RouteSelector
-                                    routes={routes.routes}
-                                    selectedRoute={selectedRoute}
-                                    onRouteSelect={setSelectedRoute}
-                                    isLoading={isLoading}
-                                    displayFirstOnly={true}
-                                />
-                            </div>
-                            {/* <div className="flex flex-col md:flex-row md:w-full gap-3">
-                                <div className="flex !grow-1">
-                                    <RouteDetails route={selectedRoute} greenestRoute={greenestRoute} disableCustomization={true} />
+                            <div className="flex flex-col md:flex-row justify-between items-end">
+                                <div className="flex flex-col md:flex-row grow-[1]"> 
+                                    <RouteSelector
+                                        routes={routes.routes}
+                                        selectedRoute={selectedRoute}
+                                        onRouteSelect={setSelectedRoute}
+                                        isLoading={isLoading}
+                                        displayFirstOnly={true}
+                                    />
                                 </div>
-                                <div className="flex flex-col !grow-1">
-                                    <div className="p-4 bg-white/70 backdrop-blur-lg rounded-lg shadow-md border border-gray-200">
-                                        <CarbonEmissionBar value={-500} maxValue={1000} />
-                                    </div>
-                                </div>
-                            </div> */}
-                            <div className="flex flex-col md:flex-row gap-3 justify-between items-end">
-                                <div className="flex flex-col md:flex-row gap-3 grow-[3]">
-                                    <RouteDetails route={selectedRoute} greenestRoute={greenestRoute} disableCustomization={true} />
-                                </div>
-                                <div className="flex flex-col items-center p-4 bg-white/70 backdrop-blur-lg rounded-lg shadow-md border border-gray-200 grow-[1]">
+                                 <div className="flex flex-col items-center p-4 bg-white/70 backdrop-blur-lg rounded-lg shadow-md border border-gray-200 grow-[1]">
                                     <div className="text-center">
                                         <h3 className="text-lg font-bold text-green-600">Great Choice!</h3>
                                         <p className="text-sm text-gray-600">
@@ -109,6 +96,23 @@ export default function OrderTrackingPage({ }) {
                                         <CarbonEmissionBar value={-500} maxValue={1000} />
                                     </div>
                                 </div>
+                            </div>
+
+                            {/* <div className="flex flex-col md:flex-row md:w-full gap-3">
+                                <div className="flex !grow-1">
+                                    <RouteDetails route={selectedRoute} greenestRoute={greenestRoute} disableCustomization={true} />
+                                </div>
+                                <div className="flex flex-col !grow-1">
+                                    <div className="p-4 bg-white/70 backdrop-blur-lg rounded-lg shadow-md border border-gray-200">
+                                        <CarbonEmissionBar value={-500} maxValue={1000} />
+                                    </div>
+                                </div>
+                            </div> */}
+                            <div className="flex flex-col md:flex-row gap-3 justify-between items-end">
+                                <div className="flex flex-col md:flex-row gap-3 grow-[3]">
+                                    <RouteDetails route={selectedRoute} greenestRoute={greenestRoute} disableCustomization={true} />
+                                </div>
+                               
                             </div>
                             <div className="flex flex-col md:flex-row justify-end gap-4 md:gap-6">
                                 <Button
