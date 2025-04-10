@@ -31,6 +31,7 @@ const Header = () => {
             {/* Profile with Dropdown */}
             <div
               className="relative"
+              data-testid="user-menu-container"
               onMouseEnter={() => setIsDropdownVisible(true)}
               onMouseLeave={() => setIsDropdownVisible(false)}
             >
