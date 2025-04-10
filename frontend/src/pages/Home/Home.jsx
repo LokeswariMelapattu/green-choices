@@ -64,10 +64,10 @@ const Home = () => {
       <ToastContainer />
       <main className={styles.mainSection}>
         <div className="container mx-auto px-4 py-8">
-        <div className={styles.flashSale}>
-          <h1 className={styles.flashSaleHeader}>FLASH SALE!!</h1>
-          <FaGifts className={styles.flashSaleIcon} />
-        </div>
+          <div className={styles.flashSale}>
+            <h1 className={styles.flashSaleHeader}>FLASH SALE!!</h1>
+            <FaGifts className={styles.flashSaleIcon} />
+          </div>
 
           <div className="py-6">
             <h2 className={styles.productTitle}>Trending Now</h2>
@@ -87,7 +87,7 @@ const Home = () => {
             <div className={styles.productGrid}>
               {products.map(product => (
                 <div key={product.productId} onClick={() => handleProductClick(product)}>
-                  <img src={product.img} alt={product.name} className={styles.productImage}/>
+                  <img src={product.img} alt={product.name} className={styles.productImage} />
                   <h3 className="py-2">{product.name}</h3>
                   <p>${product.price}</p>
                 </div>
