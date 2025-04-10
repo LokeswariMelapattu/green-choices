@@ -42,6 +42,14 @@ vi.mock('@/hooks/useUser', () => ({
     }),
 }));
 
+vi.mock('@/hooks/useOrder', () => ({
+    default: () => ({
+      order: null,
+      loading: false,
+      error: null
+    }),
+}));
+
 describe("Homepage", () => {
 
     beforeEach(async () => {
@@ -241,11 +249,17 @@ describe("Homepage", () => {
             fireEvent.click(home);
             expect(screen.getByRole('heading', {level: 1, name: /FLASH SALE!!/})).toBeInTheDocument();
 
+            // Note: maybe be removed if the shop option is removed
             const shop = screen.getByText("Shop");
             fireEvent.click(shop);
             expect(screen.getByRole('heading', {level: 1, name: /FLASH SALE!!/})).toBeInTheDocument();
 
-            // order history test case, not working in my branch currently, need to pull main
+            const order = screen.getByText("Order History");
+            fireEvent.click(order);
+            // No clue why this one needs to be waited for to work like the others, but okay.
+            await waitFor(() => {
+                expect(screen.getByRole('heading', { level: 1, name: /Active Orders/ })).toBeInTheDocument();
+            });
 
             window.history.pushState({}, "", "/home");
             const userMenu1 = screen.getByTestId('user-menu-container');
