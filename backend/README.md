@@ -33,46 +33,48 @@ npm install
 
 ### 3.Install PostgreSQL
 
-  ## Installation
+## Installation
 
 - **Windows**: [Download Installer](https://www.postgresql.org/download/windows/)
-- **Mac**: Install via Homebrew  
+- **Mac**: Install via Homebrew
   ```sh
-  brew install postgresql 
+  brew install postgresql
   ```
 - **Linux**:
- ```sh
-    sudo apt update
-    sudo apt install postgresql postgresql-contrib
-  ```
-  ## Start postgresql service
 
-  - **Windows**: Start pgAdmin or run PostgreSQL service from Services.
-  - **Mac**:
-   ```sh
-   brew services start postgresql
-    ```
- - **Linux**:
-  ```sh
-    sudo systemctl start postgresql
-    ```
-     
+```sh
+   sudo apt update
+   sudo apt install postgresql postgresql-contrib
+```
+
+## Start postgresql service
+
+- **Windows**: Start pgAdmin or run PostgreSQL service from Services.
+- **Mac**:
+
+```sh
+brew services start postgresql
+```
+- **Linux**:
+```sh
+ sudo systemctl start postgresql
+```
+
 ### 4.Set up environment variable: Add a new file `.env` with follwing format in the root folder of backend project.
-   ```text
-   DB_HOST=localhost
-   DB_USER=postgres
-   DB_PASSWORD=yourpassword
-   DB_NAME=greenchoices
-   DB_PORT=5432
-   PORT=3000
-   ```
-    
+```text
+DB_HOST=localhost
+DB_USER=postgres
+DB_PASSWORD=yourpassword
+DB_NAME=greenchoices
+DB_PORT=5432
+PORT=3000
+````
+
 ### 5.Initialize the database run the below command in the root folder of backend project.
 
-  ```
-    npm run init-db
-  ```
-
+```
+  npm run init-db
+```
 
 ### 6.Start the Development Server
 
@@ -82,175 +84,12 @@ To start the app in development mode, run:
 npm run dev
 ```
 
-## API Planned Endpoints
+## Steps to Run Test for backend
 
-`GET: /find-routes/` **Subjected to changes**
+To test the backend service, run:
 
-**Request Params**
-
-```json
-{
-  "sourceCity": "Toronto",
-  "sourceCountry": "Canada",
-  "destinationCity": "Sydney",
-  "destinationCountry": "Australia"
-}
+```bash
+npm run test
 ```
 
-**Response Body**
-
-```json
-{
-  "source": "Toronto, Canada",
-  "destination": "Sydney, Australia",
-  "routesFound": 3,
-  "routes": [
-    {
-      "routeNumber": 1,
-      "segments": [
-        {
-          "from": "Toronto, Canada",
-          "to": "Tokyo, Japan",
-          "fromGeoLocation": [43.6511, -79.3832],
-          "toGeoLocation": [35.6895, 139.6917],
-          "transportModes": ["sea", "plane"],
-          "costs": [1200, 1500],
-          "durations": [20, 10],
-          "distances": [8500, 8000],
-          "carbonEmissions": [150, 100]
-        },
-        {
-          "from": "Tokyo, Japan",
-          "to": "Sydney, Australia",
-          "fromGeoLocation": [35.6895, 139.6917],
-          "toGeoLocation": [-33.8688, 151.2093],
-          "transportModes": ["sea", "plane"],
-          "costs": [600, 800],
-          "durations": [5, 10],
-          "distances": [3000, 3500],
-          "carbonEmissions": [80, 40]
-        }
-      ],
-      "metrics": {
-        "cost": {
-          "minimum": 1800,
-          "maximum": 2300
-        },
-        "duration": {
-          "minimum": 15,
-          "maximum": 30
-        },
-        "distance": {
-          "minimum": 11000,
-          "maximum": 12000
-        },
-        "carbonEmissions": {
-          "minimum": 140,
-          "maximum": 230
-        }
-      }
-    },
-    {
-      "routeNumber": 3,
-      "segments": [
-        {
-          "from": "Toronto, Canada",
-          "to": "Singapore, Singapore",
-          "fromGeoLocation": [43.6511, -79.3832],
-          "toGeoLocation": [1.3521, 103.8198],
-          "transportModes": ["sea", "plane"],
-          "costs": [1800, 2000],
-          "durations": [24, 12],
-          "distances": [9500, 9000],
-          "carbonEmissions": [200, 150]
-        },
-        {
-          "from": "Singapore, Singapore",
-          "to": "Sydney, Australia",
-          "fromGeoLocation": [1.3521, 103.8198],
-          "toGeoLocation": [35.6895, 139.6917],
-          "transportModes": ["sea", "plane"],
-          "costs": [500, 700],
-          "durations": [6, 8],
-          "distances": [2000, 2500],
-          "carbonEmissions": [70, 40]
-        }
-      ],
-      "metrics": {
-        "cost": {
-          "minimum": 2300,
-          "maximum": 2700
-        },
-        "duration": {
-          "minimum": 18,
-          "maximum": 32
-        },
-        "distance": {
-          "minimum": 11000,
-          "maximum": 12000
-        },
-        "carbonEmissions": {
-          "minimum": 190,
-          "maximum": 270
-        }
-      }
-    },
-    {
-      "routeNumber": 2,
-      "segments": [
-        {
-          "from": "Toronto, Canada",
-          "to": "Tokyo, Japan",
-          "fromGeoLocation": [43.6511, -79.3832],
-          "toGeoLocation": [35.6895, 139.6917],
-          "transportModes": ["sea", "plane"],
-          "costs": [1200, 1500],
-          "durations": [20, 10],
-          "distances": [8500, 8000],
-          "carbonEmissions": [150, 100]
-        },
-        {
-          "from": "Tokyo, Japan",
-          "to": "Los Angeles, USA",
-          "fromGeoLocation": [35.6895, 139.6917],
-          "toGeoLocation": [34.0522, -118.2437],
-          "transportModes": ["sea", "plane"],
-          "costs": [1000, 1200],
-          "durations": [20, 10],
-          "distances": [8500, 8000],
-          "carbonEmissions": [300, 400]
-        },
-        {
-          "from": "Los Angeles, USA",
-          "to": "Sydney, Australia",
-          "fromGeoLocation": [34.0522, -118.2437],
-          "toGeoLocation": [-33.8688, 151.2093],
-          "transportModes": ["sea", "plane"],
-          "costs": [1500, 1800],
-          "durations": [25, 15],
-          "distances": [9000, 8500],
-          "carbonEmissions": [200, 150]
-        }
-      ],
-      "metrics": {
-        "cost": {
-          "minimum": 3700,
-          "maximum": 4500
-        },
-        "duration": {
-          "minimum": 35,
-          "maximum": 65
-        },
-        "distance": {
-          "minimum": 24500,
-          "maximum": 26000
-        },
-        "carbonEmissions": {
-          "minimum": 550,
-          "maximum": 750
-        }
-      }
-    }
-  ]
-}
-```
+**Soon Report Generation will be Implemented**
