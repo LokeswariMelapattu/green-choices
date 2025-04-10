@@ -15,35 +15,6 @@ import useOrder from "../../hooks/useOrder";
 import Header from "../../components/Header";
 import { useNavigate } from "react-router-dom";
 
-/// Mock data for orders
-// This should be replaced with actual data from your API or state management
-// const orders = [
-//   {
-//     orderId: "123",
-//     arrivalDate: "Mar 23, 2025",
-//     emissions: "1500 kg CO₂",
-//     isGreenDelivery: true,
-//   },
-//   {
-//     orderId: "123",
-//     arrivalDate: "Mar 23, 2025",
-//     emissions: "1500 kg CO₂",
-//     isSustainable: true,
-//   },
-//   {
-//     orderId: "123",
-//     arrivalDate: "Mar 23, 2025",
-//     emissions: "1500 kg CO₂",
-//     isGreenDelivery: true,
-//   },
-//   {
-//     orderId: "123",
-//     arrivalDate: "Mar 23, 2025",
-//     emissions: "1500 kg CO₂",
-//     isGreenDelivery: true,
-//   },
-
-// ];
 export default function OrdersTrackingPage() {
   //Uncomment this if you want to use the RouteSelector implementation may need some fixes
   const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute, isLoading } = useRoutes();
@@ -51,7 +22,7 @@ export default function OrdersTrackingPage() {
   const [selectedOrder, setSelectedOrder] = useState(null);
   const dispatch = useDispatch();
   const { getActiveOrders } = useOrder();
-  const userId = useSelector((state) => state.auth.user.id);
+  const userId = useSelector((state) => state.auth.user.id || 1);
   const activeOrders = useSelector((state) => state.auth.user.activeOrders);
 
   useEffect(() => {
@@ -82,8 +53,6 @@ export default function OrdersTrackingPage() {
       setSelectedRoute(route !== null ? route : selectedRoute);
     }
   }, [selectedOrder]);
-
- 
 
   if (isLoading) {
     return <div>Loading...</div>;
