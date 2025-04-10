@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, waitFor, within, fireEvent, cleanup } from "@testing-library/react";
-import { describe, it, expect, vi, beforeEach, afterEach } from "vitest";
+import { describe, it, expect, vi, beforeEach} from "vitest";
 import "@testing-library/jest-dom/vitest";
 import App from "../../../App.jsx";
 import styles from "../Home.module.css";
