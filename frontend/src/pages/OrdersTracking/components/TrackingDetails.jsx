@@ -5,7 +5,7 @@ import useRoutes from '../../../hooks/useRoutes';
 import { format, isValid } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
-const TrackingDetails = ({ selectedRoute, isLoading }) => {
+const TrackingDetails = ({ selectedRoute, orderId, isLoading }) => {
   const navigate = useNavigate();
   const controls = useAnimation();
   // console.log('useRoutes data:', { selectedRoute, isLoading });
@@ -105,7 +105,7 @@ const TrackingDetails = ({ selectedRoute, isLoading }) => {
           <motion.h1
             className="text-2xl md:text-3xl font-bold text-green-600"
           >
-            Order #{selectedRoute.routeNumber || '123456'}
+            Order #{orderId || '1'}
           </motion.h1>
           <p className="text-md md:text-lg text-blue-600 mt-2">
             Arriving {dateRange}

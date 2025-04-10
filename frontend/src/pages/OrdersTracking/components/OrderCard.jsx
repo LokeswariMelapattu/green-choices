@@ -8,10 +8,13 @@ const OrderCard = ({
   emissions,
   isSustainable,
   isGreenDelivery,
+  isSelected,
+  onClick
 }) => {
   return (
-    <div className={`rounded-xl min-w-[300px] border p-4 shadow-sm transition-all duration-200 hover:shadow-md relative overflow-hidden
-      ${isSustainable ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'}`}>
+    <div onClick={onClick} className={`rounded-xl min-w-[300px] border p-4 shadow-sm transition-all duration-200 transform 
+    hover:shadow-lg hover:scale-105 relative overflow-hidden cursor-pointer
+      ${isSelected ? 'border-green-800 ring-2 ring-green-200' : isSustainable ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'}`}>
       {/* Background Icons */}
       <div className="absolute -bottom-2 -right-2 transform rotate-12">
         {isSustainable && (

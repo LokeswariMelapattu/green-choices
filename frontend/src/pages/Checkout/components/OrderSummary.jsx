@@ -15,7 +15,7 @@ import { setOrderData } from '../../../redux/slices/orderSlice';
 import { clearCart } from "../../../redux/slices/cartSlice"; 
 import styles from './OrderSummary.module.css';
 
-const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
+const OrderSummary = ({selectedRoute, isLowSustainable, greenestRoute, totalAmount, cartItems}) => {
   const { routeTotals } = useTransport();
   const { saveOrder, loading, error } = useOrder();
   const navigate = useNavigate();
@@ -23,10 +23,25 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
 
   const orderData = useSelector((state) => state.order);
   const user = useSelector((state) => state.auth?.user || null);  
- 
+  isLowSustainable = selectedRoute?.routeNumber !== greenestRoute?.routeNumber;
+
+  console.log("route " + selectedRoute);
+  console.log("isSustainableOption " ,selectedRoute?.routeNumber === greenestRoute?.routeNumber);
+
   useEffect(() => {
     if (routeTotals && user) {
-      console.log("isGreen : " + !isLowSustainable); 
+      const routeInfo = {
+        source: selectedRoute?.source,  // assuming selectedRoute has source
+        destination: selectedRoute?.destination,
+        carbonEmissions: routeTotals.emissions,
+        duration: routeTotals.duration,
+        routeNumber: selectedRoute?.routeNumber,
+        totalCost: routeTotals.cost,
+        lastUpdatedUserId: user.id
+      };
+
+      console.log("route info" + routeInfo.source);
+
       dispatch(setOrderData({
         userId: user.id,
         shippingAddress: user.shippingAddress,
@@ -34,9 +49,10 @@ const OrderSummary = ({ isLowSustainable, totalAmount, cartItems}) => {
         deliveryCharge: Number(routeTotals.cost || 0).toFixed(2),
         isSustainableOption : !isLowSustainable,
         orderItems: cartItems,
+        routeInfo: routeInfo
       }));
     }
-  }, [totalAmount, routeTotals, isLowSustainable, cartItems, user, dispatch]);
+  }, [totalAmount, routeTotals, selectedRoute, isLowSustainable, cartItems, user, dispatch]);
 
   if (!routeTotals) return null;
 

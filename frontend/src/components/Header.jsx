@@ -23,7 +23,7 @@ const Header = () => {
           <nav className="hidden md:flex space-x-6">
             <Link to="/home" className="text-gray-700 hover:text-green-600">Home</Link>
             <Link to="/home" className="text-gray-700 hover:text-green-600">Shop</Link>
-            <Link to="/order-history" className="text-gray-700 hover:text-green-600">Order History</Link>
+            <Link to="/orders" className="text-gray-700 hover:text-green-600">Order History</Link>
           </nav>
 
           {/* Icons */}
