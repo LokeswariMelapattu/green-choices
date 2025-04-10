@@ -22,11 +22,7 @@ const OrderSummary = ({selectedRoute, isLowSustainable, greenestRoute, totalAmou
   const dispatch = useDispatch();
 
   const orderData = useSelector((state) => state.order);
-  const user = useSelector((state) => state.auth?.user || null);  
-  isLowSustainable = selectedRoute?.routeNumber !== greenestRoute?.routeNumber;
-
-  console.log("route " + selectedRoute);
-  console.log("isSustainableOption " ,selectedRoute?.routeNumber === greenestRoute?.routeNumber);
+  const user = useSelector((state) => state.auth?.user || null);    
 
   useEffect(() => {
     if (routeTotals && user) {
@@ -35,6 +31,7 @@ const OrderSummary = ({selectedRoute, isLowSustainable, greenestRoute, totalAmou
         destination: selectedRoute?.destination,
         carbonEmissions: routeTotals.emissions,
         duration: routeTotals.duration,
+        routeNumber: selectedRoute?.routeNumber,
         totalCost: routeTotals.cost,
         lastUpdatedUserId: user.id
       };

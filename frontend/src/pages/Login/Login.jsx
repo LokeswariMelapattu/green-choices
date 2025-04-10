@@ -9,7 +9,7 @@ const Login = () => {
   const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [pain, setPain] = useState(false);
-  let {user, checkCredentials} = useUser();
+  let { user, checkCredentials } = useUser();
 
   // Handle input changes
   const handleUsernameChange = (e) => setUsername(e.target.value);
@@ -50,22 +50,22 @@ const Login = () => {
         <form onSubmit={handleLogin}>
           <div>
             <label>Email</label>
-            <input type="text" 
-            placeholder="Email" 
-            value={email}
-            onChange={handleUsernameChange} 
+            <input type="text"
+              placeholder="Email"
+              value={email}
+              onChange={handleUsernameChange}
             />
           </div>
           <div>
             <label>Password</label>
-            <input type="password" 
-            placeholder="Password" 
-            value={password}
-            onChange={handlePasswordChange} 
+            <input type="password"
+              placeholder="Password"
+              value={password}
+              onChange={handlePasswordChange}
             />
           </div>
           <div>
-            <label style={{display: pain ? "block" : "none", color: "red"}}> Incorrect Email or Password </label>
+            <label style={{ display: pain ? "block" : "none", color: "red" }}> Incorrect Email or Password </label>
           </div>
           <button type="submit" className={styles.button}>
             Login

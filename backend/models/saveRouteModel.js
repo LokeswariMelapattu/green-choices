@@ -14,12 +14,12 @@ const db = require('../config/db');
  * @returns {Promise<Object>} - Created route object
  */
 const saveRoute = async (route, orderId) => {
-    const {source, destination, carbonEmissions, duration, totalCost, lastUpdatedUserId} = route;
+    const {source, destination, carbonEmissions, duration, routeNumber, totalCost, lastUpdatedUserId} = route;
 
     try {
         const result = await db.query(
-            'CALL sp_InsertRoute($1, $2, $3, $4, $5, $6, $7, NULL)',
-            [orderId, source, destination, carbonEmissions, duration, totalCost, lastUpdatedUserId]
+            'CALL sp_InsertRoute($1, $2, $3, $4, $5, $6, $7, $8, NULL)',
+            [orderId, source, destination, carbonEmissions, duration, routeNumber, totalCost, lastUpdatedUserId]
         );
         const routeResult = await db.query(
             'SELECT * FROM Route_Info WHERE RouteID = $1',
@@ -47,12 +47,12 @@ const saveRoute = async (route, orderId) => {
  * @returns {Promise<Object>} - Updated route object
  */
 const updateRoute = async (routeData) => {
-    const {source, destination, carbonEmissions, duration, totalCost, orderId, lastUpdatedUserId} = routeData;
+    const {source, destination, carbonEmissions, duration, routeNumber, totalCost, orderId, lastUpdatedUserId} = routeData;
   
   try {
     const result = await db.query(
-      'CALL sp_UpdateRoute($1, $2, $3, $4, $5, $6, $7, NULL)',
-      [orderId, source, destination, carbonEmissions, duration, totalCost, lastUpdatedUserId]
+      'CALL sp_UpdateRoute($1, $2, $3, $4, $5, $6, $7, $8, NULL)',
+      [orderId, source, destination, carbonEmissions, duration, routeNumber, totalCost, lastUpdatedUserId]
     );
     
     const routeId = result?.rows[0]?.p_routeid;
