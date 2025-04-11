@@ -84,54 +84,47 @@ describe('RouteDetails Component', () => {
     expect(screen.getByText('52-217 kg')).toBeInTheDocument();
 
     // Check for transport mode buttons
-
     expect(screen.getAllByLabelText('Select sea transport')).toHaveLength(1);
     expect(screen.getAllByLabelText('Select road transport')).toHaveLength(2);
 
     // Check for Segment 1
+    const routeDetailsCard = screen.getByTestId('routeDetails');
 
     expect(screen.getByText('New York, USA → Madrid, Spain')).toBeInTheDocument();
     expect(screen.getByText('5900 km')).toBeInTheDocument();
     expect(screen.getByText('15 days')).toBeInTheDocument();
-
-    // Span is causing an error
-    // expect(screen.getByText('Cost Range:')).toBeInTheDocument();
-    // expect(screen.getByText('$59')).toBeInTheDocument();
-    // expect(screen.getByText('Emissions:')).toBeInTheDocument();
-    // expect(screen.getByText('30 kg')).toBeInTheDocument();
-    // expect(screen.getByText('Fuel Type:')).toBeInTheDocument();
-    // expect(screen.getByText('Bio Fuel')).toBeInTheDocument();
-
+    expect(routeDetailsCard).toHaveTextContent('Cost Range:');
+    expect(routeDetailsCard).toHaveTextContent('$59');
+    expect(routeDetailsCard).toHaveTextContent('Emissions:');
+    expect(routeDetailsCard).toHaveTextContent('30 kg');
+    expect(routeDetailsCard).toHaveTextContent('Fuel Type:');
+    expect(routeDetailsCard).toHaveTextContent('Bio Fuel');
 
     // Check for Segment 2
     expect(screen.getByText('Madrid, Spain → Berlin, Germany')).toBeInTheDocument();
     expect(screen.getByText('2000 km')).toBeInTheDocument();
     expect(screen.getByText('12 days')).toBeInTheDocument();
-
-    // Span is causing an error
-    // expect(screen.getByText('Cost Range:')).toBeInTheDocument();
-    // expect(screen.getByText('$59')).toBeInTheDocument();
-    // expect(screen.getByText('Emissions:')).toBeInTheDocument();
-    // expect(screen.getByText('14 kg')).toBeInTheDocument();
-    // expect(screen.getByText('Fuel Type:')).toBeInTheDocument();
-    // expect(screen.getByText('Electric (Renewable)')).toBeInTheDocument();
+    expect(routeDetailsCard).toHaveTextContent('Cost Range:');
+    expect(routeDetailsCard).toHaveTextContent('$59');
+    expect(routeDetailsCard).toHaveTextContent('Emissions:');
+    expect(routeDetailsCard).toHaveTextContent('14 kg');
+    expect(routeDetailsCard).toHaveTextContent('Fuel Type:');
+    expect(routeDetailsCard).toHaveTextContent('Electric (Renewable)');
 
     // Check for Segment 3
     expect(screen.getByText('Berlin, Germany → Warsaw, Poland')).toBeInTheDocument();
     expect(screen.getByText('500 km')).toBeInTheDocument();
     expect(screen.getByText('6 days')).toBeInTheDocument();
-
-    // Span is causing an error
-    // expect(screen.getByText('Cost Range:')).toBeInTheDocument();
-    // expect(screen.getByText('$59')).toBeInTheDocument();
-    // expect(screen.getByText('Emissions:')).toBeInTheDocument();
-    // expect(screen.getByText('8 kg')).toBeInTheDocument();
-    // expect(screen.getByText('Fuel Type:')).toBeInTheDocument();
-    // expect(screen.getByText('Diesel')).toBeInTheDocument();
+    expect(routeDetailsCard).toHaveTextContent('Cost Range:');
+    expect(routeDetailsCard).toHaveTextContent('$59');
+    expect(routeDetailsCard).toHaveTextContent('Emissions:');
+    expect(routeDetailsCard).toHaveTextContent('8 kg');
+    expect(routeDetailsCard).toHaveTextContent('Fuel Type:');
+    expect(routeDetailsCard).toHaveTextContent('Diesel');
   });
 
-  // it('does not render anything if no route provided', () => {
-  //   const { container } = renderWithProvider(<RouteDetails route={null} />);
-  //   expect(container).toBeEmptyDOMElement();
-  // });
+  it('does not render anything if no route provided', () => {
+    const { container } = renderWithProvider(<RouteDetails route={null} />);
+    expect(container).toBeEmptyDOMElement();
+  });
 });
