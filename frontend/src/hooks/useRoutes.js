@@ -13,6 +13,13 @@ const useRoutes = () => {
       try {
         const response = await fetch(`${VITE_APP_API_URL}find-routes/?sourceCountry=${sourceCountry}&destinationCountry=${destinationCountry}&sourceCity=${sourceCity}&destinationCity=${destinationCity}`);
         const data = await response.json();
+        const rawRoutes = data.routes || [];
+        const updatedRoutes = rawRoutes.map(route => ({
+          ...route,
+          source: `${sourceCity}, ${sourceCountry}`,
+          destination: `${destinationCity}, ${destinationCountry}`,
+        }));
+        data.routes = updatedRoutes;
         setRoutes(data);
         if (data.routes.length > 0) {
           const sortedSegments = data.routes.map(route => {
@@ -26,6 +33,8 @@ const useRoutes = () => {
             }, 0);
             return {
               ...route,
+              source: `${sourceCity}, ${sourceCountry}`,
+              destination: `${destinationCity}, ${destinationCountry}`,
               segments: route.segments,
               minTotalEmissions: minTotal,
               maxTotalEmissions: maxTotal

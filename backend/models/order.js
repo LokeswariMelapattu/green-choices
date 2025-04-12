@@ -1,5 +1,6 @@
 const db = require('../config/db');
 const orderDetailModel = require('./orderDetail');
+const saveRouteModel = require('./saveRouteModel');
 
 /**
  * Create a new order
@@ -13,7 +14,7 @@ const orderDetailModel = require('./orderDetail');
  * @returns {Promise<Object>} - Created order object
  */
 const createOrder = async (orderData) => {
-  const { userId, shippingAddress, totalAmount, deliveryCharge, orderStatus, isSustainableOption, orderItems } = orderData;
+  const { userId, shippingAddress, totalAmount, deliveryCharge, orderStatus, isSustainableOption, orderItems, routeInfo } = orderData;
   //const client = await db.pool.connect();
   try {
     //await client.query('BEGIN'); // Start a transaction
@@ -30,9 +31,12 @@ const createOrder = async (orderData) => {
     const orderResult = await getOrderById(orderId);
 
     for (const item of orderItems) {
-      console.log(item);
       const { productId, quantity, price } = item;
       await orderDetailModel.createOrderDetail({ orderId, productId, quantity, price });
+    }
+
+    if (routeInfo) {
+      await saveRouteModel.saveRoute(routeInfo, orderId);
     }
 
     return orderResult;

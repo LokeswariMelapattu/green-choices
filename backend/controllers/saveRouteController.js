@@ -38,6 +38,28 @@ const saveRoute = async (req, res) => {
     }
 };
 
+const updateRouteInfo = async (req, res) => {
+  try {
+    const route = req.body;
+    const routeInfo = await saveRouteModel.updateRoute(route);
+    if (!routeInfo) {
+      return res.status(404).json({
+        success: false,
+        error: 'Route not found'
+      });
+    }
+    res.status(200).json({
+      success: true,
+      data: routeInfo
+    });
+  } catch (error) {
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+};
+
 const updateRoute = async (req, res) => {
     try {
 
@@ -73,6 +95,7 @@ const updateRoute = async (req, res) => {
             routeDetails: allRouteDetails,
             routeStatus: routeStatus
         });
+
     } catch (error) {
         console.error('Route Update Error:', error);
         res.status(400).json({
@@ -110,6 +133,7 @@ const getRoute = async (req, res) => {
             routeDetails: allRouteDetails,
             routeStatus: allRouteStatus
         });
+
     } catch (error) {
         console.error('Route Get Error:', error);
         res.status(400).json({
@@ -124,5 +148,6 @@ const getRoute = async (req, res) => {
 module.exports = {
     saveRoute,
     updateRoute,
+    updateRouteInfo,
     getRoute
 };
