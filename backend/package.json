@@ -5,6 +5,7 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
+    "test:html-report": "jest --reporters=jest-html-reporter && open ./test-reports/test-report.html",
     "start": "node server.js",
     "dev": "nodemon server.js",
     "init-db": "node utils/init-db.js"
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
+    "jest-html-reporter": "^4.1.0",
     "nodemon": "^3.1.9",
     "supertest": "^7.1.0"
   },
@@ -32,6 +34,19 @@
     "testEnvironment": "node",
     "coveragePathIgnorePatterns": [
       "/node_modules/"
+    ],
+    "collectCoverage": false,
+    "reporters": [
+      "default",
+      [
+        "./node_modules/jest-html-reporter",
+        {
+          "pageTitle": "Green Choices API Test Report",
+          "outputPath": "./test-reports/test-report.html",
+          "includeFailureMsg": true,
+          "includeConsoleLog": true
+        }
+      ]
     ]
   }
 }
