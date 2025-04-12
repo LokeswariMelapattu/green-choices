@@ -81,8 +81,8 @@ const validateCity = (city) => {
 };
 
 const getRouteEmissionReasons = (metrics) => {
-    minRouteReasons = [];
-    maxRouteReasons = [];
+    let minRouteReasons = [];
+    let maxRouteReasons = [];
 
     if (metrics.minDistance > CONFIG.MAX_DISTANCE && metrics.minCarbonEmissions > CONFIG.MAX_EMISSIONS_DISTANCE) {
         minRouteReasons.push("Long distance routes aren't feasible to have low carbon emissions")
