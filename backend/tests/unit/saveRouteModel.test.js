@@ -89,6 +89,7 @@ describe('Save Route Model', () => {
                 destination: 'Paris, France',
                 carbonEmissions: 150,
                 duration: 8,
+                routeNumber: 1,
                 totalCost: 600,
                 lastUpdatedUserId: 3
             };
@@ -96,8 +97,10 @@ describe('Save Route Model', () => {
 
             db.query.mockImplementation((query, params) => {
                 if (query.includes('sp_UpdateRoute')) {
+                    return { rows: [{ p_routeid: 1 }] };
+                } else if (query.includes('sp_UpdateOrderSustainability')) {
                     return { rows: [] };
-                } else {
+                } else if (query.includes('fn_GetRouteByID')) {
                     return {
                         rows: [{
                             routeid: 1,
@@ -106,6 +109,7 @@ describe('Save Route Model', () => {
                             destination: 'Paris, France',
                             carbonemissions: 150,
                             duration: 8,
+                            routenumber: 1,
                             totalcost: 600,
                             lastupdatedby: 3,
                             lastupdatedon: new Date().toISOString()
@@ -118,9 +122,9 @@ describe('Save Route Model', () => {
             const result = await saveRouteModel.updateRoute(routeData);
 
 
-            expect(db.query).toHaveBeenCalledTimes(2);
+            expect(db.query).toHaveBeenCalledTimes(3);
             expect(result).toBeDefined();
-            expect(result.routeid).toBe(routeData.routeId);
+            expect(result.routeid).toBe(1);
             expect(result.source).toBe(routeData.source);
             expect(result.destination).toBe(routeData.destination);
         });
@@ -134,6 +138,7 @@ describe('Save Route Model', () => {
                 destination: 'Paris, France',
                 carbonEmissions: 150,
                 duration: 8,
+                routeNumber: 1,
                 totalCost: 600,
                 lastUpdatedUserId: 3
             };
@@ -152,27 +157,26 @@ describe('Save Route Model', () => {
         test('should get routes by order ID successfully', async () => {
 
             const orderId = 1;
-            const expectedRoutes = [
-                {
-                    routeid: 1,
-                    orderid: 1,
-                    source: 'New York, USA',
-                    destination: 'London, UK',
-                    carbonemissions: 100,
-                    duration: 7,
-                    totalcost: 500
-                }
-            ];
+            const expectedRoute = {
+                routeid: 1,
+                orderid: 1,
+                source: 'New York, USA',
+                destination: 'London, UK',
+                carbonemissions: 100,
+                duration: 7,
+                totalcost: 500
+            };
 
 
-            db.query.mockResolvedValueOnce({ rows: expectedRoutes });
+            db.query.mockResolvedValueOnce({ rows: [expectedRoute] });
 
 
             const result = await saveRouteModel.getRouteByOrderId(orderId);
 
 
             expect(db.query).toHaveBeenCalledTimes(1);
-            expect(result).toEqual(expectedRoutes);
+            expect(db.query).toHaveBeenCalledWith('SELECT * FROM fn_GetRouteByOrderID($1)', [orderId]);
+            expect(result).toEqual(expectedRoute);
         });
 
         test('should throw error when get operation fails', async () => {
