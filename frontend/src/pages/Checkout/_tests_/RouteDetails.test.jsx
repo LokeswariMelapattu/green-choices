@@ -4,7 +4,6 @@ import { describe, it, expect, vi, beforeEach } from 'vitest';
 import '@testing-library/jest-dom/vitest';
 import { TransportProvider } from '@/context/transport-context';
 import RouteDetails from '@/components/RouteDetails';
-import { prettyDOM } from '@testing-library/react'
 
 // Mock route data
 const mockRoute = {
