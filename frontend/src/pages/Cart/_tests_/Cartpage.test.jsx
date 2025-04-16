@@ -79,7 +79,7 @@ const mockCartItems2 = [
 
 describe("Cartpage", () => {
 
-  //TC-XXX NO numbers currently existing, fill these in once numbering is set
+  //TC-052
   it("Should render Cart page", async () => {
     window.history.pushState({}, "", "/cart");
     render(<App/>);
@@ -88,7 +88,7 @@ describe("Cartpage", () => {
     });
   })
 
-  //TC-XXX+1
+  //TC-053
   it("Should render cart items correctly", () => {
     // 1st test items
     renderWithCart(mockCartItems1);
@@ -121,7 +121,7 @@ describe("Cartpage", () => {
     )).toBeInTheDocument();
   });
 
-  //TC-XXX+2
+  //TC-054
   it("Should calculate product totals correctly", () => {
     renderWithCart(mockCartItems1);
 
@@ -136,7 +136,7 @@ describe("Cartpage", () => {
     expect(screen.getByText("$71.00")).toBeInTheDocument(); // 2*35.50=71
   });
 
-  //TC-XXX+3
+  //TC-055
   it("Should calculate sub-total and total correctly", () => {
     renderWithCart(mockCartItems1);
 
@@ -149,7 +149,7 @@ describe("Cartpage", () => {
     expect(screen.getByText("$192.97")).toBeInTheDocument();
   });
 
-  //TC-XXX+4
+  //TC-056
   it("Should handle no items in the cart", () => {
     renderWithCart([]);
 
@@ -161,7 +161,7 @@ describe("Cartpage", () => {
 
   });
 
-  //TC-XXX+5
+  //TC-057
   it("Should proceed to checkout page", async () => {
     render(
       <Provider store={mockStore}>
