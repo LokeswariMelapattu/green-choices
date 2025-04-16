@@ -43,7 +43,7 @@ function renderWithCart(cartItems) {
     );
 }
 
-const mockCartItems = [
+const mockCartItems1 = [
   {
     name: "Cool Hat",
     price: 25.00,
@@ -54,6 +54,23 @@ const mockCartItems = [
   {
     name: "Fancy Shoes",
     price: 50.00,
+    quantity: 2,
+    img: "/shoes.jpg",
+    size: 3
+  },
+];
+
+const mockCartItems2 = [
+  {
+    name: "Cooler Hat",
+    price: 29.99,
+    quantity: 3,
+    img: "/hat.jpg",
+    size: 3
+  },
+  {
+    name: "Regular Shoes",
+    price: 35.50,
     quantity: 2,
     img: "/shoes.jpg",
     size: 3
@@ -73,7 +90,8 @@ describe("Cartpage", () => {
 
   //TC-XXX+1
   it("Should render cart items correctly", () => {
-    renderWithCart(mockCartItems);
+    // 1st test items
+    renderWithCart(mockCartItems1);
 
     // Product name check
     expect(screen.getByText("Cool Hat")).toBeInTheDocument();
@@ -86,23 +104,49 @@ describe("Cartpage", () => {
     expect(screen.getAllByRole("cell").find((cell) =>
         cell.textContent?.replace(/\s+/g, "") === "$50"
     )).toBeInTheDocument();
+
+    // 2nd test items
+    renderWithCart(mockCartItems2);
+
+    // Product name check
+    expect(screen.getByText("Cooler Hat")).toBeInTheDocument();
+    expect(screen.getByText("Regular Shoes")).toBeInTheDocument();
+
+    // Base Price check
+    expect(screen.getAllByRole("cell").find((cell) =>
+        cell.textContent?.replace(/\s+/g, "") === "$29.99"
+    )).toBeInTheDocument();
+    expect(screen.getAllByRole("cell").find((cell) =>
+        cell.textContent?.replace(/\s+/g, "") === "$35.5"
+    )).toBeInTheDocument();
   });
 
   //TC-XXX+2
   it("Should calculate product totals correctly", () => {
-    renderWithCart(mockCartItems);
+    renderWithCart(mockCartItems1);
 
     // Total Price check for each product
     expect(screen.getByText("$25.00")).toBeInTheDocument();
     expect(screen.getByText("$100.00")).toBeInTheDocument(); // 2*50=100
+
+    renderWithCart(mockCartItems2);
+
+    // Total Price check for each product
+    expect(screen.getByText("$89.97")).toBeInTheDocument();
+    expect(screen.getByText("$71.00")).toBeInTheDocument(); // 2*35.50=71
   });
 
   //TC-XXX+3
   it("Should calculate sub-total and total correctly", () => {
-    renderWithCart(mockCartItems);
+    renderWithCart(mockCartItems1);
 
     expect(screen.getByText("$125.00")).toBeInTheDocument();
     expect(screen.getByText("$157.00")).toBeInTheDocument();
+
+    renderWithCart(mockCartItems2);
+
+    expect(screen.getByText("$160.97")).toBeInTheDocument();
+    expect(screen.getByText("$192.97")).toBeInTheDocument();
   });
 
   //TC-XXX+4
