@@ -72,8 +72,8 @@ const updateRoute = async (req, res) => {
         let i = 0;
         for await (const segment of route.segments) {
             let routeDetails = await saveRouteModel.updateRouteDetails(routeInfo.routeid, i,
-                 segment, route.lastUpdatedUserId);
-            
+                segment, route.lastUpdatedUserId);
+
             // if there happens to be more segments than there were before updating
             if (routeDetails === undefined) {
                 routeDetails = await saveRouteModel.saveRouteDetails(segment, routeInfo.routeid, route.lastUpdatedUserId, i);
@@ -83,10 +83,10 @@ const updateRoute = async (req, res) => {
             ++i;
         }
 
-        const routeStatus = await saveRouteModel.updateRouteStatus(route.routeStatusId, routeInfo.routeid, 
+        const routeStatus = await saveRouteModel.updateRouteStatus(route.routeStatusId, routeInfo.routeid,
             allRouteDetails[route.currentSeqNo].routedetailid, route.currentSeqNo, allRouteDetails[route.currentSeqNo].statusid,
             route.lastUpdatedUserId)
-        
+
 
         res.status(200).json({
             success: true,
@@ -95,20 +95,22 @@ const updateRoute = async (req, res) => {
             routeDetails: allRouteDetails,
             routeStatus: routeStatus
         });
-    } catch(error) {
+
+    } catch (error) {
+        console.error('Route Update Error:', error);
         res.status(400).json({
             success: false,
             message: ERROR_MESSAGES.routeNotUpdated,
             error: error.message
         });
-    } 
+    }
 };
 
 const getRoute = async (req, res) => {
 
     try {
 
-        const {orderId} = req.query;
+        const { orderId } = req.query;
 
         const routeInfos = await saveRouteModel.getRouteByOrderId(orderId);
 
@@ -131,14 +133,16 @@ const getRoute = async (req, res) => {
             routeDetails: allRouteDetails,
             routeStatus: allRouteStatus
         });
-    } catch(error)  {
+
+    } catch (error) {
+        console.error('Route Get Error:', error);
         res.status(400).json({
             success: false,
             message: "Route infos, details and statuses were unable to be gotten",
             error: error.message
         });
     }
-    
+
 };
 
 module.exports = {
