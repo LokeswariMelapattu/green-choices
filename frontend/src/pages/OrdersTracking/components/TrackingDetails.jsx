@@ -5,10 +5,10 @@ import useRoutes from '../../../hooks/useRoutes';
 import { format, isValid } from 'date-fns';
 import { useNavigate } from 'react-router-dom';
 
-const TrackingDetails = ({ selectedRoute, orderId, isLoading }) => {
+const TrackingDetails = ({ selectedRoute, order, arrivalDate, isLoading }) => {
   const navigate = useNavigate();
   const controls = useAnimation();
-  // console.log('useRoutes data:', { selectedRoute, isLoading });
+  console.log('useRoutes data:', { selectedRoute, isLoading });
   useEffect(() => {
     if (!isLoading && selectedRoute) {
       controls.start("visible");
@@ -63,8 +63,29 @@ const TrackingDetails = ({ selectedRoute, orderId, isLoading }) => {
     dateRange = `${startDate} - ${endDate}`;
   }
 
-  // Determine current step for progress visualization
-  const currentStep = segments.findIndex(segment => segment.status !== 'completed') || 1;
+  const calculateArrivalDate = (departureDate, durationInDays) => {
+    const createdDateObj = new Date(departureDate);
+    createdDateObj.setDate(createdDateObj.getDate() + durationInDays);
+    return createdDateObj;
+  };
+
+  const now = new Date();
+  const segmentsWithArrival = segments.map((segment, index) => {
+    const totalDurationUpToCurrent = segments
+      .slice(0, index + 1)
+      .reduce((sum, seg) => sum + (seg.durations[0] || 0), 0);
+
+    const arrivalTime = calculateArrivalDate(order?.createdat, totalDurationUpToCurrent);
+
+    return {
+      ...segment,
+      calculatedArrivalTime: arrivalTime
+    };
+  });
+
+  console.log(segmentsWithArrival);
+  const currentStep = segmentsWithArrival.findIndex(seg => seg.calculatedArrivalTime > now);
+  console.log(currentStep);
 
   // Animation variants
   const containerVariants = {
@@ -105,10 +126,10 @@ const TrackingDetails = ({ selectedRoute, orderId, isLoading }) => {
           <motion.h1
             className="text-2xl md:text-3xl font-bold text-green-600"
           >
-            Order #{orderId || '1'}
+            Order #{order?.orderid || '1'}
           </motion.h1>
           <p className="text-md md:text-lg text-blue-600 mt-2">
-            Arriving {dateRange}
+            Arriving before {arrivalDate}
           </p>
         </motion.div>
 
@@ -117,7 +138,15 @@ const TrackingDetails = ({ selectedRoute, orderId, isLoading }) => {
           <h2 className="text-xl md:text-2xl font-bold mb-6">Tracking Details</h2>
 
           <div className="space-y-6">
-            {segments.map((segment, index) => (
+            {segments.map((segment, index) => {
+              const totalDurationUpToCurrent = segments
+              .slice(0, index + 1)
+              .reduce((sum, seg) => sum + seg.durations[0], 0);
+          
+            // Calculate the segment's arrival date
+            const arrivalDate = calculateArrivalDate(order?.createdat, totalDurationUpToCurrent);
+          
+              return (
               <motion.div
                 key={index}
                 className="flex items-start"
@@ -207,12 +236,13 @@ const TrackingDetails = ({ selectedRoute, orderId, isLoading }) => {
                       )}
                     </p>
                     <p className="text-sm text-gray-500">
-                      {formatDate(segment.departureTime || segment.arrivalTime || '')}
+                      {formatDate(arrivalDate)}
                     </p>
                   </div>
                 </div>
               </motion.div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
 

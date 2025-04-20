@@ -20,10 +20,13 @@ export default function OrdersTrackingPage() {
   const { routes, selectedRoute, setSelectedRoute, totalEmissions, greenestRoute, isLoading } = useRoutes();
   const navigate = useNavigate();
   const [selectedOrder, setSelectedOrder] = useState(null);
+  const [isOrderLoading, setIsOrderLoading] = useState(null);
+
   const dispatch = useDispatch();
   const { getActiveOrders } = useOrder();
   const userId = useSelector((state) => state.auth.user.id || 1);
   const activeOrders = useSelector((state) => state.auth.user.activeOrders);
+  console.log(selectedRoute);
 
   useEffect(() => {
     const fetchOrders = async () => {
@@ -62,11 +65,26 @@ export default function OrdersTrackingPage() {
     return <div>No route selected</div>;
   }
 
-  const calculateArrivalDate = (orderedDate, durationInDays) => {
-    const createdDateObj = new Date(orderedDate);
+  const calculateArrivalDate = (order) => {
+    const createdDateObj = new Date(order?.createdat);
+    const routeNumber =  order?.routeInfo?.routenumber;
+    const route = routes?.routes?.find(route => route.routeNumber === routeNumber);
+
+    const totalDurationAllSegments = route?.segments.reduce(
+      (sum, seg) => sum + (seg.durations?.[0] || 0),
+      0
+    );
     // Adding duration in days to the created date
-    createdDateObj.setDate(createdDateObj.getDate() + durationInDays);
+    createdDateObj.setDate(createdDateObj.getDate() + totalDurationAllSegments);
     return createdDateObj;
+  };
+
+  const calculateSavings = (currentEmission, sustainableEmission) => {
+    if (typeof currentEmission !== 'number' || typeof sustainableEmission !== 'number') return 0;
+    if (currentEmission <= 0 || sustainableEmission < 0 || sustainableEmission >= currentEmission) return 0;
+  
+    const savings = ((currentEmission - sustainableEmission) / currentEmission) * 100;
+    return parseFloat(savings.toFixed(2));
   };
 
   const handleLearnMore = () => {
@@ -77,6 +95,17 @@ export default function OrdersTrackingPage() {
     console.log('Switch to green clicked');
     navigate(`/orders/${orderId}`);
   };
+
+  const onOrderClick =(order) => {
+    setIsOrderLoading(true);
+    setSelectedOrder(order);
+    
+    // Simulate loading or wait for actual fetch logic if needed
+    setTimeout(() => {
+      setIsOrderLoading(false);
+    }, 500);
+  };
+
   return (
     <>
       <Header />
@@ -86,7 +115,17 @@ export default function OrdersTrackingPage() {
           
             <div className="w-full lg:w-[25%]">
             {activeOrders?.length > 0 && (
-              <TrackingDetails selectedRoute={selectedRoute} orderId={selectedOrder?.orderid} isLoading={isLoading} />
+              <TrackingDetails 
+              selectedRoute={selectedRoute} 
+              order={selectedOrder} 
+              arrivalDate={selectedOrder?.createdat ? 
+                calculateArrivalDate(selectedOrder).toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric', 
+                    year: 'numeric' 
+                  }) 
+                  : null} 
+              isLoading={isLoading} />
             )}
             </div>
           
@@ -102,7 +141,7 @@ export default function OrdersTrackingPage() {
                     key={index}
                     orderId={order.orderid}
                     arrivalDate={order?.createdat ? 
-                      calculateArrivalDate(order.createdat, order?.routeInfo?.duration).toLocaleDateString('en-US', { 
+                      calculateArrivalDate(order).toLocaleDateString('en-US', { 
                           month: 'short', 
                           day: 'numeric', 
                           year: 'numeric' 
@@ -112,7 +151,8 @@ export default function OrdersTrackingPage() {
                     isSustainable={order?.issustainableoption}
                     isGreenDelivery={!order?.issustainableoption}
                     isSelected={selectedOrder === order}
-                    onClick={() => setSelectedOrder(order)}
+                    isLoading={selectedOrder?.orderid === order.orderid && isOrderLoading}
+                    onClick={() => onOrderClick(order)}
                   />
                 ))
             ) : (
@@ -132,13 +172,15 @@ export default function OrdersTrackingPage() {
                   !selectedOrder?.issustainableoption ? (
                     <EcoFriendly
                       variant="choice"
-                      percentage="30%"
+                      percentage={`${calculateSavings(
+                        selectedOrder?.routeInfo?.carbonemission,
+                        greenestRoute?.minTotalEmissions
+                      )}%`}
                       onAction={() => handleSwitchToGreen(selectedOrder?.orderid)}
                     />
                   ) : (
                     <EcoFriendly
                       variant="confirmation"
-                      percentage="70%"
                       onAction={() => handleLearnMore()}
                     />
                   )

@@ -15,6 +15,8 @@ import CarbonEmissionBar from "./components/CarbonEmissionBar";
 import { useParams } from 'react-router-dom';
 import useOrder from "../../hooks/useOrder";
 import { useTransport } from '@/context/transport-context';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 /// Mock data for orders
 // This should be replaced with actual data from your API or state management and also please Send Props for Each order here
@@ -43,12 +45,30 @@ export default function OrderTrackingPage({ }) {
               };
             const updated = await updateOrderRoute(routeInfo);
             console.log('Route updated successfully:', updated);
-            navigate("/orders");
-            // Optionally refresh orders or show success UI
+            showToastMessage();
+            //navigate("/orders");
           } catch (err) {
             console.error('Failed to update route:', err);
           }
-    }
+    };
+
+      const showToastMessage = () => {
+        toast.success(
+            <div className="flex items-center justify-between gap-4">
+            <p>Route updated successfully!</p>
+            <span
+              onClick={() => navigate('/orders')}
+              className="toast-success"
+            >
+              Go to Order History
+            </span>
+            </div>, {
+          position: "bottom-right",
+          style: { width: '500px' },
+          onClose: () => navigate('/orders')
+        });
+      };
+
     if (isLoading) {
         return <div>Loading...</div>;
     }
@@ -60,6 +80,7 @@ export default function OrderTrackingPage({ }) {
     return (
         <>
             <Header />
+            <ToastContainer />
             <div className="mx-auto p-4 md:p-6 lg:p-8">
                 <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
                     <div className="w-full lg:w-[25%]">
