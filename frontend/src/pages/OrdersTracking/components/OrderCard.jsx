@@ -26,7 +26,7 @@ const OrderCard = ({
 
       {/* Spinner overlay */}
       {isLoading && (
-        <div className="absolute inset-0 z-20 bg-white/30 flex items-center justify-center rounded-xl">
+        <div className="absolute inset-0 z-20 bg-white/30 flex items-center justify-center rounded-xl" role="status" aria-label="Loading">
           <div className="w-6 h-6 border-4 border-green-500 border-t-transparent rounded-full animate-spin" />
         </div>
       )}
