@@ -62,6 +62,8 @@ function CustomCard({ route, index, selectedRoute, onRouteSelect }) {
 }
 
 const RouteSelector = ({ routes, selectedRoute, onRouteSelect, isLoading, displayFirstOnly = false }) => {
+  if (!routes || routes.length === 0) return null;
+
   if (isLoading) {
     return (
       <div className="w-full flex justify-center items-center p-6">

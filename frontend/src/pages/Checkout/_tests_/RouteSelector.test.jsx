@@ -84,6 +84,10 @@ describe("RouteSelector Component", () => {
     ],
   };
 
+  it('does not render anything if no route is provided', () => {
+    const { container } = render(<RouteSelector routes={null} selectedRoute={null} onRouteSelect={() => { }} />);
+    expect(container).toBeEmptyDOMElement();
+  });
 
   it("should select the first delivery option by default", () => {
     render(<RouteSelector routes={mockRoutes} selectedRoute={mockRoutes[0]} onRouteSelect={() => { }} />);

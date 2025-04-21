@@ -122,7 +122,7 @@ describe('RouteDetails Component', () => {
     expect(routeDetailsCard).toHaveTextContent('Diesel');
   });
 
-  it('does not render anything if no route provided', () => {
+  it('does not render anything if no route is provided', () => {
     const { container } = renderWithProvider(<RouteDetails route={null} />);
     expect(container).toBeEmptyDOMElement();
   });
