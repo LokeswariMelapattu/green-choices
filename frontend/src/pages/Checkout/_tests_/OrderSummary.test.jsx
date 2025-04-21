@@ -1,6 +1,5 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { describe, test, expect, vi } from 'vitest';
 import { useTransport } from '../../../context/transport-context';
 import OrderSummary from '../components/OrderSummary';
@@ -22,14 +21,6 @@ vi.mock('lucide-react', () => ({
   Leaf: () => <div>LeafIcon</div>,
   DollarSign: () => <div>DollarSignIcon</div>,
 }));
-
-// const renderWithProviders = (ui) => {
-//   return render(
-//     <Provider store={mockStore}>
-//       <MemoryRouter>{ui}</MemoryRouter>
-//     </Provider>
-//   );
-// };
 
 const renderWithProviders = (ui, { preloadedState } = {}) => {
   const store = configureStore({
@@ -74,19 +65,19 @@ describe('OrderSummary', () => {
       cost: 258.99,
     };
 
-    beforeEach(() => {
-      // Mock the context with valid routeTotals
-      //(useTransport as vi.Mock).mockReturnValue({
+    const mockUpdatedRouteTotals = {
+      duration: 21,
+      emissions: 75,
+      cost: 298.99,
+    };
+
+    test('renders order summary with correct data', () => {
       vi.mocked(useTransport).mockReturnValue({
         routeTotals: mockRouteTotals,
       });
-    });
-
-    test('renders order summary with correct data', () => {
       renderWithProviders(<OrderSummary />);
 
       // Check headings and data
-      screen.debug();
       expect(screen.getByText('Order Summary')).toBeInTheDocument();
       expect(screen.getByText('Total Duration')).toBeInTheDocument();
       expect(
@@ -99,6 +90,28 @@ describe('OrderSummary', () => {
       expect(screen.getByText('Order total')).toBeInTheDocument();
       expect(
         screen.getAllByText(`$${mockRouteTotals.cost}`).length
+      ).toBeGreaterThan(0);
+    });
+
+    test('renders order summary with updated data', () => {
+      vi.mocked(useTransport).mockReturnValue({
+        routeTotals: mockUpdatedRouteTotals,
+      });
+      renderWithProviders(<OrderSummary />);
+
+      // Check headings and data
+      expect(screen.getByText('Order Summary')).toBeInTheDocument();
+      expect(screen.getByText('Total Duration')).toBeInTheDocument();
+      expect(
+        screen.getByText(`${mockUpdatedRouteTotals.duration} days`)
+      ).toBeInTheDocument();
+      expect(screen.getByText('Total Emissions')).toBeInTheDocument();
+      expect(
+        screen.getByText(`${mockUpdatedRouteTotals.emissions} kg`)
+      ).toBeInTheDocument();
+      expect(screen.getByText('Order total')).toBeInTheDocument();
+      expect(
+        screen.getAllByText(`$${mockUpdatedRouteTotals.cost}`).length
       ).toBeGreaterThan(0);
     });
   });
