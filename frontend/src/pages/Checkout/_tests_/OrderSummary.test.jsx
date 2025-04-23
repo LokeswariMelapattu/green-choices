@@ -114,5 +114,18 @@ describe('OrderSummary', () => {
         screen.getAllByText(`$${mockUpdatedRouteTotals.cost}`).length
       ).toBeGreaterThan(0);
     });
+
+    test('Continue to payment button is enabled', () => {
+      vi.mocked(useTransport).mockReturnValue({
+        routeTotals: mockRouteTotals,
+      });
+      renderWithProviders(<OrderSummary />);
+
+      const button = screen.getByRole('button', { name: /continue to payment/i });
+      expect(button).toBeEnabled();
+
+    });
+
+
   });
 });
