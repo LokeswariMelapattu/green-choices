@@ -5,16 +5,20 @@ const {
     getAllOrders,
     getOrdersByUserId,
     getActiveOrdersByUserId,
+    getActiveOrdersWithRouteInfo,
     getOrderAuditHistory
 } = require('../../controllers/orderController');
 const orderModel = require('../../models/order');
+const saveRouteModel = require('../../models/saveRouteModel');
 
 
 jest.mock('../../models/order');
+jest.mock('../../models/saveRouteModel');
 
 describe('Order Controller', () => {
     let req;
     let res;
+
 
     beforeEach(() => {
 
@@ -43,6 +47,7 @@ describe('Order Controller', () => {
             status: jest.fn().mockReturnThis(),
             json: jest.fn()
         };
+
     });
 
     describe('createOrder', () => {
@@ -295,6 +300,57 @@ describe('Order Controller', () => {
             });
         });
     });
+
+    describe('getActiveOrdersWithRouteInfo', () => {
+        test('should get active orders and the routes for them by user id and return 200 status', async () => {
+
+            const mockOrders = [
+                { orderId: 1, userId: 1, totalAmount: 100, orderStatus: 'pending' }
+            ];
+            orderModel.getActiveOrdersByUserId.mockResolvedValue(mockOrders);
+
+            const mockRoutes = [
+                { orderId: 1, routeId: 1, source: "source", destination: "destination", carbonEmission: 123, duration: 1, routeNumber: 1,
+                  distance: 12, totalCost: 123, lastUpdateduserId: 1 
+                }
+            ];
+            saveRouteModel.getRouteByOrderId.mockResolvedValue(mockRoutes);
+
+            const mockData = [{
+                ...mockOrders[0],
+                routeInfo: mockRoutes
+            }];
+
+            await getActiveOrdersWithRouteInfo(req, res);
+
+            expect(orderModel.getActiveOrdersByUserId).toHaveBeenCalledWith(req.params.userId);
+            expect(saveRouteModel.getRouteByOrderId).toHaveBeenCalledWith(req.params.orderId);
+            expect(res.status).toHaveBeenCalledWith(200);
+            expect(res.json).toHaveBeenCalledWith({
+                success: true,
+                message: "Active orders with route info fetched successfully",
+                data: mockData
+            });
+
+        })
+
+        test('should handle errors and return 400 status', async () => {
+
+            const error = new Error('Failed to get active orders by user id');
+            orderModel.getActiveOrdersByUserId.mockRejectedValue(error);
+
+
+            await getActiveOrdersWithRouteInfo(req, res);
+
+
+            expect(res.status).toHaveBeenCalledWith(400);
+            expect(res.json).toHaveBeenCalledWith({
+                success: false,
+                message: "Error fetching active orders with route info",
+                error: error.message
+            });
+        });
+    })
 
     describe('getOrderAuditHistory', () => {
         test('should get order audit history and return 200 status', async () => {

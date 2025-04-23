@@ -1,5 +1,6 @@
 const {
     saveRoute,
+    updateRouteInfo,
     updateRoute,
     getRoute
 } = require('../../controllers/saveRouteController');
@@ -155,6 +156,60 @@ describe('Save Route Controller', () => {
             });
         });
     });
+
+    describe('updateRouteInfo', () => {
+        test('should update route info and return 200 status', async () => {
+            const mockRouteInfo = {
+                routeid: 1,
+                orderid: 1,
+                source: 'New York',
+                destination: 'Los Angeles',
+                carbonemissions: 500,
+                duration: 120,
+                totalcost: 300
+            };
+
+            saveRouteModel.updateRoute.mockResolvedValue(mockRouteInfo);
+
+            await updateRouteInfo(req, res);
+
+            expect(saveRouteModel.updateRoute).toHaveBeenCalledWith(req.body);
+            expect(res.status).toHaveBeenCalledWith(200);
+            expect(res.json).toHaveBeenCalledWith({
+                success: true,
+                data: mockRouteInfo
+            });
+
+        })
+
+        test('should handle if route to be updated is not found and return 404 status', async () => {
+            saveRouteModel.updateRoute.mockResolvedValue(undefined);
+
+            await updateRouteInfo(req, res);
+
+            expect(saveRouteModel.updateRoute).toHaveBeenCalledWith(req.body);
+            expect(res.status).toHaveBeenCalledWith(404);
+            expect(res.json).toHaveBeenCalledWith({
+                success: false,
+                error: "Route not found"
+            });
+
+        })
+
+        test('should handle errors and return 400 status', async () => {
+            const error = new Error('Failed to update route');
+            saveRouteModel.updateRoute.mockRejectedValue(error);
+
+            await updateRouteInfo(req, res);
+
+            expect(res.status).toHaveBeenCalledWith(400);
+            expect(res.json).toHaveBeenCalledWith({
+                success: false,
+                error: error.message
+            });
+
+        })
+    })
 
     describe('updateRoute', () => {
         test('should update a route and return 200 status', async () => {

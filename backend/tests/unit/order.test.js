@@ -1,10 +1,12 @@
 const orderModel = require('../../models/order');
 const orderDetailModel = require('../../models/orderDetail');
 const db = require('../../config/db');
+const saveRouteModel = require('../../models/saveRouteModel');
 
 
 jest.mock('../../config/db');
 jest.mock('../../models/orderDetail');
+jest.mock('../../models/saveRouteModel')
 
 describe('Order Model', () => {
 
@@ -23,7 +25,12 @@ describe('Order Model', () => {
             orderItems: [
                 { productId: 1, quantity: 2, price: 25.00 },
                 { productId: 2, quantity: 1, price: 50.50 }
-            ]
+            ],
+            routeInfo: [{
+                source: "source", destination: "destination", carbonEmission: 123, duration: 1, routeNumber: 1,
+                distance: 12, totalCost: 123, lastUpdateduserId: 1 
+                  
+            }]
         };
 
         test('should create an order successfully', async () => {
@@ -46,7 +53,7 @@ describe('Order Model', () => {
 
 
             orderDetailModel.createOrderDetail.mockResolvedValue({});
-
+            saveRouteModel.saveRoute.mockResolvedValue({});
 
             const result = await orderModel.createOrder(mockOrderData);
 
@@ -64,6 +71,9 @@ describe('Order Model', () => {
             );
 
             expect(db.query).toHaveBeenCalledWith('SELECT * FROM fn_GetOrderByID($1)', [orderId]);
+
+            expect(saveRouteModel.saveRoute).toHaveBeenCalledTimes(1);
+            expect(saveRouteModel.saveRoute).toHaveBeenCalledWith(mockOrderData.routeInfo, orderId)
 
             expect(orderDetailModel.createOrderDetail).toHaveBeenCalledTimes(2);
             expect(orderDetailModel.createOrderDetail).toHaveBeenCalledWith({
