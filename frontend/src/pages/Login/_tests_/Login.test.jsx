@@ -12,7 +12,7 @@ const testCreds = {
     falsePassw: 'incorrect'
 }
 
-// Mock for TC-014
+// Mock for TC-014...015
 vi.mock('@/hooks/useUser', () => ({
     default: () => ({
         user: null,
@@ -91,6 +91,62 @@ describe('Loginpage', () => {
             //expect(checkCredentials).toHaveBeenCalledWith(testCreds.trueEmail, testCreds.truePassw);
             expect(window.location.href).toContain('/home');
         });
+    });
+    
+    //TC-015 TODO extra?
+    it.skip("Should display error on incorrect username or password", async () => {     
+        
+        render(<App/>);
+
+        let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
+        let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
+        await act(async () => {
+            await fireEvent.change(usernamePrompt, {target:{value: testCreds.falseEmail}});
+            await fireEvent.change(passwordPrompt, {target:{value: testCreds.falsePassw}});
+            expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Incorrect Email or Password')).toBeInTheDocument();
+            expect(window.location.href).toContain('/login');
+        });
+    });
+    
+    //TC-016
+    it("Should have a functional 'Forgot password' -link", async () => {
+    
+        render(<App/>);
+        let linkToClick = await screen.getByRole('link', {name: 'Forgot Password?'});
+        await act(async () => {
+            await fireEvent.click(linkToClick);
+        });
+        await waitFor(() => {
+            expect(window.location.href).toContain('/forgot-password');
+        });
+    });
+    
+    //TC-017
+    it("Should have a functional 'Signup' -link", async () => {
+    
+        render(<App/>);
+        let linkToClick = await screen.getByRole('link', {name: 'Sign up'});
+        await act(async () => {
+            await fireEvent.click(linkToClick);
+        });
+        await waitFor(() => {
+            expect(window.location.href).toContain('/signup');
+        });
+    });
+    
+    //TC-018
+    it("Should mask text in password field", async () => {
+    
+        render(<App/>);
+        
+        await waitFor(() => {
+            expect(screen.getByPlaceholderText('Password', {selector: 'input'}))
+                .toHaveProperty('type', 'password');
+        });
+        
     });
     
 })
