@@ -1100,6 +1100,9 @@ $$ LANGUAGE plpgsql;
 
 --TEMP SECTION
 INSERT INTO User_Info (FirstName, LastName, Address, Email, Password)
-VALUES ('John', 'Doe', '1234 Elm Street', 'john.doe@example.com', '$2a$12$XDSm/0G.HZ.hHPoFKHwtG.EdB.8AA0u4Ivj1X2hyjDnoFkZ7dJ7sm');
+SELECT 'John', 'Doe', '1234 Elm Street', 'john.doe@example.com', '$2a$12$XDSm/0G.HZ.hHPoFKHwtG.EdB.8AA0u4Ivj1X2hyjDnoFkZ7dJ7sm'
+WHERE NOT EXISTS (
+    SELECT 1 FROM User_Info WHERE Email = 'john.doe@example.com'
+);
 --password: password123
 --TEMP SECTION
