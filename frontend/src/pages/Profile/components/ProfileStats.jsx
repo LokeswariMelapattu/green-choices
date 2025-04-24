@@ -21,7 +21,7 @@ const UserProfileStats = () => {
         <div className={styles.statsColumn}>
           <div className={styles.statsBox}>
             <div className={styles.statsNumberWithIcon}>
-              <p className={styles.statsNumber}>8</p>
+              <p className={styles.statsNumber}>5</p>
               <img
                 src="/imgs/delivery.png"
                 className={styles.statsIcon}

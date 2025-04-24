@@ -74,23 +74,34 @@ const getUserById = async (userId) => {
 };
 
 /**
- * Get user by ID
- * @param {number} userId - User ID
- * @returns {Promise<Object>} - User object
+ * Get user by credentials
+ * @param {string} email - User email
+ * @param {string} password - User password
+ * @returns {Promise<Object|undefined>} - User object or undefined if credentials are invalid
  */
 const getUserByCredentials = async (email, password) => {
   try {
     const user = await db.query('SELECT * FROM User_Info WHERE Email = $1', [email]);
     
+    // Check if user exists
+    if (user.rows.length === 0) {
+      return undefined;
+    }
+    
     let correctPassword = await bcrypt.compare(password, user.rows[0].password);
 
     if (correctPassword) {
-      delete user.rows[0].password;
-      return user.rows[0];
+      // Create a new object without the password
+      const userWithoutPassword = { ...user.rows[0] };
+      delete userWithoutPassword.password;
+      return userWithoutPassword;
     }
+    
+    // Explicitly return undefined for invalid password
+    return undefined;
 
   } catch (error) {
-    console.error('Error getting user by ID:', error);
+    console.error('Error getting user by credentials:', error);
     throw error;
   }
 };

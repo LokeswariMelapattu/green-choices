@@ -36,7 +36,7 @@ const OrderSummary = ({selectedRoute, isLowSustainable, greenestRoute, totalAmou
         lastUpdatedUserId: user.id
       };
 
-      console.log("route info" + routeInfo.source);
+      //console.log("route info" + selectedRoute);
 
       dispatch(setOrderData({
         userId: user.id,

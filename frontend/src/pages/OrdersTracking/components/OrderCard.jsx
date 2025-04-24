@@ -9,12 +9,28 @@ const OrderCard = ({
   isSustainable,
   isGreenDelivery,
   isSelected,
+  isLoading,
   onClick
 }) => {
   return (
     <div onClick={onClick} className={`rounded-xl min-w-[300px] border p-4 shadow-sm transition-all duration-200 transform 
     hover:shadow-lg hover:scale-105 relative overflow-hidden cursor-pointer
-      ${isSelected ? 'border-green-800 ring-2 ring-green-200' : isSustainable ? 'border-green-500 bg-green-50' : 'border-gray-200 bg-white'}`}>
+    ${isSelected 
+      ? (isSustainable 
+          ? 'border-green-800 ring-2 ring-green-200 bg-green-100'  // Selected and Sustainable
+          : 'border-green-800 ring-2 ring-green-200 bg-amber-50') // Selected and Not Sustainable
+      : (isSustainable 
+          ? 'border-green-500 bg-green-50'   // Not selected but Sustainable
+          : 'border-gray-200 bg-white')}`
+      }>
+
+      {/* Spinner overlay */}
+      {isLoading && (
+        <div className="absolute inset-0 z-20 bg-white/30 flex items-center justify-center rounded-xl" role="status" aria-label="Loading">
+          <div className="w-6 h-6 border-4 border-green-500 border-t-transparent rounded-full animate-spin" />
+        </div>
+      )}
+
       {/* Background Icons */}
       <div className="absolute -bottom-2 -right-2 transform rotate-12">
         {isSustainable && (
@@ -39,7 +55,7 @@ const OrderCard = ({
         
         <div className="mt-2 space-y-2">
           <p className="text-sm text-gray-600">
-            Arrives {arrivalDate}
+            Arrives before {arrivalDate}
           </p>
           <div className="flex items-center gap-1.5 text-sm text-gray-600">
             <Truck className="h-5 w-5" />

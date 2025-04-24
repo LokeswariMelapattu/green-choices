@@ -73,6 +73,7 @@ const EcoFriendly = ({
               {onSecondaryAction && (
                 <button 
                   onClick={onSecondaryAction}
+                  role="button"
                   className="ml-1 text-green-600 hover:text-green-700 hover:underline focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
                 >
                   {actionLabel || currentVariant.defaultAction}

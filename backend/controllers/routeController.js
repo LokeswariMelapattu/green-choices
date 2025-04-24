@@ -49,13 +49,16 @@ const formatRoutes = (routes) => {
 const findRoutes = (req, res) => {
     try {
         const { sourceCity, destinationCity, sourceCountry, destinationCountry } = req.query;
-        const source = sourceCity + ', ' + sourceCountry;
-        const destination = destinationCity + ', ' + destinationCountry;
-        if (!source || !destination) {
+
+        // Check if any required parameters are missing
+        if (!sourceCity || !destinationCity || !sourceCountry || !destinationCountry) {
             return res.status(400).json({
                 error: ERROR_MESSAGES.sourceDestinationRequired
             });
         }
+
+        const source = sourceCity + ', ' + sourceCountry;
+        const destination = destinationCity + ', ' + destinationCountry;
 
         if (!validateCity(source)) {
             return res.status(404).json({
