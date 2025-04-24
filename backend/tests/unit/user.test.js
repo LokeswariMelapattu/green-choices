@@ -196,6 +196,19 @@ describe('User Model', () => {
             expect(result).toEqual(expectedReturnedUser);
         });
 
+        it('should return undefined with invalid email', async () => {
+            const email = 'wrong@email.com';
+            const password = 'password';
+            db.query.mockResolvedValue({rows: []});
+
+            // Call the function
+            const result = await userModel.getUserByCredentials(email, password);
+
+            // Assertions
+            expect(result).toBeUndefined();
+
+        })
+
         it('should return undefined with invalid credentials', async () => {
             // Mock data
             const email = 'john@example.com';
