@@ -44,7 +44,13 @@ const updateOrder = async (req, res) => {
 const getOrderById = async (req, res) => {
   try {
     const order = await orderModel.getOrderById(req.params.id);
-    if (!order) {
+    const routeInfo = await saveRouteModel.getRouteByOrderId(order.orderid);
+    const orderWithRouteInfo = {
+      ...order,
+      routeInfo,
+    };
+
+    if (!orderWithRouteInfo) {
       return res.status(404).json({
         success: false,
         error: 'Order not found'
@@ -52,7 +58,7 @@ const getOrderById = async (req, res) => {
     }
     res.status(200).json({
       success: true,
-      data: order
+      data: orderWithRouteInfo
     });
   } catch (error) {
     res.status(400).json({
@@ -128,8 +134,6 @@ const getActiveOrdersWithRouteInfo = async (req, res) => {
           routeInfo,
         });
       }
-
-      
 
       // Step 4: Return the combined data (active orders with route info)
       return res.status(200).json({

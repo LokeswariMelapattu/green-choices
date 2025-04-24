@@ -7,7 +7,7 @@ import TrackingDetails from "./components/TrackingDetails";
 import OrderCard from "./components/OrderCard";
 import EcoFriendly from "./components/EcoFriendly";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
@@ -27,8 +27,44 @@ export default function OrderTrackingPage({ }) {
     const navigate = useNavigate();
     const { orderId } = useParams();
     const { routeTotals } = useTransport();
-    const { updateOrderRoute, loading, error } = useOrder();
+    const { updateOrderRoute, getOrderById, loading, error } = useOrder();
     const user = useSelector((state) => state.auth?.user || null); 
+    const [selectedOrder, setSelectedOrder] = useState(null);
+    const [savings, setSavings] = useState(null);
+
+    useEffect(() => {
+        const fetchOrderbyId = async () => {
+          try {
+            const order = await getOrderById(orderId); // Fetch orders from the API
+            console.log(order);
+            setSelectedOrder(order);
+          } catch (error) {
+            console.error('Error fetching active orders:', error);
+          }
+        };
+    
+        fetchOrderbyId(); // Fetch order
+      }, [orderId]);
+
+      const calculateArrivalDate = (order) => {
+        const createdDateObj = new Date(order?.createdat);
+        const totalDurationAllSegments = selectedRoute?.segments.reduce(
+          (sum, seg) => sum + (seg.durations?.[0] || 0),
+          0
+        );
+        // Adding duration in days to the created date
+        createdDateObj.setDate(createdDateObj.getDate() + totalDurationAllSegments);
+        return createdDateObj;
+      };
+
+      const calculateSavings = (currentEmission, sustainableEmission) => {
+        if (typeof currentEmission !== 'number' || typeof sustainableEmission !== 'number') return 0;
+        if (currentEmission <= 0 || sustainableEmission < 0 || sustainableEmission >= currentEmission) return 0;
+      
+        const savings = (currentEmission - sustainableEmission);
+        return parseFloat(savings.toFixed(2));
+      };
+    
 
     const handleUpdateRoute = async (route) => {
         console.log('Update route clicked', route);
@@ -77,6 +113,8 @@ export default function OrderTrackingPage({ }) {
         return <div>No route selected</div>;
     }
 
+    const emissionSaved = calculateSavings(selectedOrder?.routeInfo?.carbonemission, selectedRoute?.minTotalEmissions);
+
     return (
         <>
             <Header />
@@ -84,7 +122,16 @@ export default function OrderTrackingPage({ }) {
             <div className="mx-auto p-4 md:p-6 lg:p-8">
                 <div className="flex flex-col lg:flex-row gap-4 md:gap-6">
                     <div className="w-full lg:w-[25%]">
-                        <TrackingDetails selectedRoute={selectedRoute} orderId={orderId} isLoading={isLoading} />
+                        <TrackingDetails 
+                        selectedRoute={selectedRoute} 
+                        order={selectedOrder} 
+                        arrivalDate={selectedOrder?.createdat ? 
+                        calculateArrivalDate(selectedOrder).toLocaleDateString('en-US', { 
+                            month: 'short', 
+                            day: 'numeric', 
+                            year: 'numeric' 
+                        }) : null}  
+                  isLoading={isLoading} />
                     </div>
                     <div className="w-full lg:w-[75%]">
 
@@ -106,7 +153,7 @@ export default function OrderTrackingPage({ }) {
                                     <div className="text-center">
                                         <h3 className="text-lg font-bold text-green-600">Great Choice!</h3>
                                         <p className="text-sm text-gray-600">
-                                            This Option saves 500 kg more CO2. It is equivalent to planting 2 trees
+                                            This Option saves {emissionSaved} kg more CO2. It is equivalent to planting 2 trees
                                         </p>
                                     </div>
                                     <div className="flex flex-col items-start w-full mt-4">
@@ -114,7 +161,7 @@ export default function OrderTrackingPage({ }) {
                                             <span className="text-sm font-medium text-gray-700">CO2 Emission</span>
                                             <span className="text-sm font-medium text-gray-700">-500 Kg</span>
                                         </div>
-                                        <CarbonEmissionBar value={-500} maxValue={1000} />
+                                        <CarbonEmissionBar value={-emissionSaved} maxValue={1000} />
                                     </div>
                                 </div>
                             </div>
