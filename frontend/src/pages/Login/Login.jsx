@@ -53,7 +53,7 @@ const Login = () => {
             <input type="text"
               placeholder="Email"
               value={email}
-              onChange={handleUsernameChange}
+              onChange={handleUsernameChange} 
             />
           </div>
           <div>
@@ -61,13 +61,16 @@ const Login = () => {
             <input type="password"
               placeholder="Password"
               value={password}
-              onChange={handlePasswordChange}
+              onChange={handlePasswordChange}  
             />
           </div>
           <div>
             <label style={{ display: pain ? "block" : "none", color: "red" }}> Incorrect Email or Password </label>
           </div>
-          <button type="submit" className={styles.button}>
+          <button 
+            type="submit" 
+            className={styles.button} 
+            disabled={!email || !password} >
             Login
           </button>
         </form>
