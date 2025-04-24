@@ -39,7 +39,7 @@ const UserProfileStats = () => {
               alt="CO2"
             />
             <div className={styles.emissionsContent}>
-              <p className={styles.emissionsNumber}>3,000 g</p>
+              <p className={styles.emissionsNumber}>2,785 g</p>
               <p className={styles.emissionsLabel}>CO2 Emissions Saved</p>
             </div>
           </div>

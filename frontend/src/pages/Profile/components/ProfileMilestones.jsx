@@ -19,7 +19,7 @@ const UserProfileMilestones = () => {
           </p>
         </div>
         <p className={styles.milestoneProgress}>
-          <span className={styles.greenText}>5</span> / 5
+          <span className={styles.greenText}>5</span> / 10
         </p>
       </div>
 
@@ -31,7 +31,7 @@ const UserProfileMilestones = () => {
             alt="Milestone"
           />
           <p className={styles.milestoneDescription}>
-            Choose 15 Economic Deliveries to get 30 % off on your next purchase
+            Choose 12 Economic Deliveries to get 30 % off on your next purchase
             !
           </p>
         </div>

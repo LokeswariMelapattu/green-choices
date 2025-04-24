@@ -28,7 +28,7 @@ const Checkout = () => {
   useEffect(() => {
     dispatch(setUser({ 
       id: 1, 
-      userName: "Logistics User",
+      userName: "John Doe",
       shippingAddress: "123 Green Street, Eco City"
     }));
   }, [dispatch]);
