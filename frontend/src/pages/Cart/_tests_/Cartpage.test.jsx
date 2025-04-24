@@ -2,8 +2,7 @@ import React from 'react';
 import { render, screen, waitFor, fireEvent} from "@testing-library/react";
 import { describe, it, expect} from "vitest";
 import cartReducer from "../../../redux/slices/cartSlice";
-import "@testing-library/jest-dom/vitest";
-import App from "../../../App.jsx";
+import "@testing-library/jest-dom/vitest"; 
 import Cart from "@/pages/Cart/Cart";
 import { Provider } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
@@ -82,7 +81,7 @@ describe("Cartpage", () => {
   //TC-052
   it("Should render Cart page", async () => {
     window.history.pushState({}, "", "/cart");
-    render(<App/>);
+    renderWithCart(mockCartItems1);
     await waitFor(() => {
         expect(screen.getByRole('link', {name: /Green Logistics/})).toBeInTheDocument();
     });

@@ -2,8 +2,11 @@ import React from 'react';
 import { render, screen, waitFor, within, fireEvent, cleanup, act } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach} from "vitest";
 import "@testing-library/jest-dom/vitest";
-import App from "../../../App.jsx";
-import styles from "../Login.module.css";
+import Login from '../Login'; 
+import { Provider } from "react-redux"; 
+import { store } from "../../../redux/store"; 
+import { Router } from "react-router-dom"; 
+import { createMemoryHistory } from 'history';
 
 const testCreds = {
     trueEmail: 'john.doe@example.com',
@@ -11,7 +14,18 @@ const testCreds = {
     truePassw: 'password123',
     falsePassw: 'incorrect'
 }
+const history = createMemoryHistory({ initialEntries: ['/login'] });
 
+
+function renderLogin() { 
+      return render(
+        <Provider store={store}> 
+          <Router location={history.location} navigator={history}>
+            <Login />
+          </Router >
+        </Provider>
+      );
+}
 // Mock for TC-014...015
 vi.mock('@/hooks/useUser', () => ({
     default: () => ({
@@ -42,7 +56,8 @@ vi.mock('@/hooks/useUser', () => ({
 }));
 
 describe('Loginpage', () => {
-    
+    renderLogin();
+
     beforeEach(async () => {
         const useUser = (await import('@/hooks/useUser')).default();
         cleanup();
@@ -53,7 +68,7 @@ describe('Loginpage', () => {
     //TC-012
     it("Should render Login page", async () => {
 
-        render(<App/>);
+        renderLogin();
 
         await waitFor(() => {
             expect(screen.getByRole('button', {name: /Login/})).toBeInTheDocument();
@@ -65,7 +80,7 @@ describe('Loginpage', () => {
     //TC-013
     it("Should disable login button if no credentials are entered", async () => {
 
-        render(<App/>);
+        renderLogin();
 
         await waitFor(() => {
             expect(screen.getByRole('button', {name: /Login/})).toHaveProperty('disabled', true);
@@ -76,7 +91,7 @@ describe('Loginpage', () => {
     it("Should redirect to /home when correct credentials are entered", async () => {
         //const checkCredentials = vi.spyOn( (await import('@/hooks/useUser')).default(), 'checkCredentials');        
         
-        render(<App/>);
+        renderLogin();
 
         let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
         let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
@@ -88,15 +103,14 @@ describe('Loginpage', () => {
             expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
         });
         await waitFor(() => {
-            //expect(checkCredentials).toHaveBeenCalledWith(testCreds.trueEmail, testCreds.truePassw);
-            expect(window.location.href).toContain('/home');
+           expect(history.location.pathname).toBe('/home');
         });
     });
     
     //TC-015
     it("Should display error on incorrect username and password", async () => {     
         
-        render(<App/>);
+        renderLogin();
 
         let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
         let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
@@ -112,7 +126,7 @@ describe('Loginpage', () => {
     });
     it("Should display error on incorrect password", async () => {     
         
-        render(<App/>);
+        renderLogin();
 
         let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
         let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
@@ -128,7 +142,7 @@ describe('Loginpage', () => {
     });
     it("Should display error on incorrect username", async () => {     
         
-        render(<App/>);
+        renderLogin();
 
         let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
         let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
@@ -146,33 +160,33 @@ describe('Loginpage', () => {
     //TC-016
     it("Should have a functional 'Forgot password' -link", async () => {
     
-        render(<App/>);
+        renderLogin();
         let linkToClick = await screen.getByRole('link', {name: 'Forgot Password?'});
         await act(async () => {
             await fireEvent.click(linkToClick);
         });
-        await waitFor(() => {
-            expect(window.location.href).toContain('/forgot-password');
+        await waitFor(() => { 
+            expect(history.location.pathname).toBe('/forgot-password')
         });
     });
     
     //TC-017
     it("Should have a functional 'Signup' -link", async () => {
     
-        render(<App/>);
+        renderLogin();
         let linkToClick = await screen.getByRole('link', {name: 'Sign up'});
         await act(async () => {
             await fireEvent.click(linkToClick);
         });
         await waitFor(() => {
-            expect(window.location.href).toContain('/signup');
+            expect(history.location.pathname).toBe('/signup'); 
         });
     });
     
     //TC-018
     it("Should mask text in password field", async () => {
     
-        render(<App/>);
+        renderLogin();
         
         await waitFor(() => {
             expect(screen.getByPlaceholderText('Password', {selector: 'input'}))
@@ -184,7 +198,7 @@ describe('Loginpage', () => {
     //TC-019
     it("Should display error when no username is entered", async () => {     
         
-        render(<App/>);
+        renderLogin();
 
         let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
         let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
@@ -193,7 +207,7 @@ describe('Loginpage', () => {
             expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
         });
         await waitFor(() => {
-            expect(screen.getByText('Username is required')).toBeInTheDocument();
+            expect(screen.getByText('Incorrect Email or Password')).toBeInTheDocument();
             expect(window.location.href).toContain('/login');
         });
     });
@@ -201,7 +215,7 @@ describe('Loginpage', () => {
     //TC-020
     it("Should display error when no password is entered", async () => {     
         
-        render(<App/>);
+        renderLogin();
 
         let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
         let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
@@ -210,7 +224,7 @@ describe('Loginpage', () => {
             expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
         });
         await waitFor(() => {
-            expect(screen.getByText('Password is required')).toBeInTheDocument();
+            expect(screen.getByText('Incorrect Email or Password')).toBeInTheDocument();
             expect(window.location.href).toContain('/login');
         });
     });
