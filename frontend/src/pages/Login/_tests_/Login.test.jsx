@@ -63,7 +63,7 @@ describe('Loginpage', () => {
     });
     
     //TC-013
-    it.skip("Should disable login button if no credentials are entered", async () => {
+    it("Should disable login button if no credentials are entered", async () => {
 
         render(<App/>);
 
@@ -93,8 +93,8 @@ describe('Loginpage', () => {
         });
     });
     
-    //TC-015 TODO extra?
-    it.skip("Should display error on incorrect username or password", async () => {     
+    //TC-015
+    it("Should display error on incorrect username and password", async () => {     
         
         render(<App/>);
 
@@ -103,6 +103,38 @@ describe('Loginpage', () => {
         await act(async () => {
             await fireEvent.change(usernamePrompt, {target:{value: testCreds.falseEmail}});
             await fireEvent.change(passwordPrompt, {target:{value: testCreds.falsePassw}});
+            expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Incorrect Email or Password')).toBeInTheDocument();
+            expect(window.location.href).toContain('/login');
+        });
+    });
+    it("Should display error on incorrect password", async () => {     
+        
+        render(<App/>);
+
+        let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
+        let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
+        await act(async () => {
+            await fireEvent.change(usernamePrompt, {target:{value: testCreds.trueEmail}});
+            await fireEvent.change(passwordPrompt, {target:{value: testCreds.falsePassw}});
+            expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Incorrect Email or Password')).toBeInTheDocument();
+            expect(window.location.href).toContain('/login');
+        });
+    });
+    it("Should display error on incorrect username", async () => {     
+        
+        render(<App/>);
+
+        let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
+        let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
+        await act(async () => {
+            await fireEvent.change(usernamePrompt, {target:{value: testCreds.falseEmail}});
+            await fireEvent.change(passwordPrompt, {target:{value: testCreds.truePassw}});
             expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
         });
         await waitFor(() => {
@@ -149,4 +181,37 @@ describe('Loginpage', () => {
         
     });
     
+    //TC-019
+    it("Should display error when no username is entered", async () => {     
+        
+        render(<App/>);
+
+        let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
+        let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
+        await act(async () => {
+            await fireEvent.change(passwordPrompt, {target:{value: testCreds.truePassw}});
+            expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Username is required')).toBeInTheDocument();
+            expect(window.location.href).toContain('/login');
+        });
+    });
+    
+    //TC-020
+    it("Should display error when no password is entered", async () => {     
+        
+        render(<App/>);
+
+        let usernamePrompt = await screen.getByPlaceholderText('Email', {selector: 'input'});
+        let passwordPrompt = await screen.getByPlaceholderText('Password', {selector: 'input'});
+        await act(async () => {
+            await fireEvent.change(usernamePrompt, {target:{value: testCreds.trueEmail}});
+            expect(await fireEvent.click(screen.getByRole('button', {name: /Login/}))).toBeTruthy();
+        });
+        await waitFor(() => {
+            expect(screen.getByText('Password is required')).toBeInTheDocument();
+            expect(window.location.href).toContain('/login');
+        });
+    });
 })
