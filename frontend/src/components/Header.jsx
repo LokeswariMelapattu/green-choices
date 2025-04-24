@@ -38,7 +38,7 @@ const Header = () => {
               <FiUser size={20} className="text-gray-700 hover:text-green-600 cursor-pointer" />
               {isDropdownVisible && (
                 <div
-                  className="absolute -right-12 mt-0 w-32 bg-white shadow-md rounded-md border border-gray-200"
+                  className="absolute -right-12 mt-0 w-32 bg-white shadow-md rounded-md border border-gray-200 z-10"
                 >
                   <Link
                     to="/profile"

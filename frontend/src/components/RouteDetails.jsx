@@ -99,7 +99,7 @@ const RouteDetails = ({ route, greenestRoute, disableCustomization = false }) =>
       exit={{ opacity: 0, scale: 0.95, y: -10 }}
       transition={{ duration: 1, ease: "easeOut" }} // Custom cubic bezier for smooth feel
     >
-      <Card className="p-6 bg-white/70 backdrop-blur-lg shadow-lg transition-transform w-full">
+      <Card className="p-6 bg-white/70 backdrop-blur-lg shadow-lg transition-transform w-full" data-testid="routeDetails">
 
         <div className="flex items-center gap-2">
 
