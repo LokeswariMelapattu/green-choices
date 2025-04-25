@@ -44,18 +44,19 @@ const updateOrder = async (req, res) => {
 const getOrderById = async (req, res) => {
   try {
     const order = await orderModel.getOrderById(req.params.id);
+    
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        error: 'Order not found'
+      });
+    }
     const routeInfo = await saveRouteModel.getRouteByOrderId(order.orderid);
     const orderWithRouteInfo = {
       ...order,
       routeInfo,
     };
 
-    if (!orderWithRouteInfo) {
-      return res.status(404).json({
-        success: false,
-        error: 'Order not found'
-      });
-    }
     res.status(200).json({
       success: true,
       data: orderWithRouteInfo
