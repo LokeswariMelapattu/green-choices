@@ -84,7 +84,17 @@ const TrackingDetails = ({ selectedRoute, order, arrivalDate, isLoading }) => {
   });
 
   console.log(segmentsWithArrival);
-  const currentStep = segmentsWithArrival.findIndex(seg => seg.calculatedArrivalTime > now);
+
+  const virtualStartSegment = {
+    to: segments[0]?.from || 'Origin',
+    calculatedArrivalTime: new Date(order?.createdat),
+    virtualStart: true,
+    durations: [0,0]
+  };
+
+  const displaySegments = [virtualStartSegment, ...segments];
+  const displaySegmentsWithArrival = [virtualStartSegment, ...segmentsWithArrival];
+  const currentStep = displaySegmentsWithArrival.findIndex(seg => seg.calculatedArrivalTime > now);
   console.log(currentStep);
 
   // Animation variants
@@ -138,13 +148,13 @@ const TrackingDetails = ({ selectedRoute, order, arrivalDate, isLoading }) => {
           <h2 className="text-xl md:text-2xl font-bold mb-6">Tracking Details</h2>
 
           <div className="space-y-6">
-            {segments.map((segment, index) => {
-              const totalDurationUpToCurrent = segments
+            {displaySegments.map((segment, index) => {
+              const totalDurationUpToCurrent = displaySegments
               .slice(0, index + 1)
               .reduce((sum, seg) => sum + seg.durations[0], 0);
           
             // Calculate the segment's arrival date
-            const arrivalDate = calculateArrivalDate(order?.createdat, totalDurationUpToCurrent);
+            const arrivalDate =  calculateArrivalDate(order?.createdat, totalDurationUpToCurrent);
           
               return (
               <motion.div
@@ -181,7 +191,7 @@ const TrackingDetails = ({ selectedRoute, order, arrivalDate, isLoading }) => {
                           ? "text-blue-600"
                           : "text-gray-400"
                         }`} />
-                    ) : index === segments.length - 1 ? (
+                    ) : index === displaySegments.length - 1 ? (
                       <MapPin className={`h-5 w-5 ${index < currentStep
                         ? "text-green-600"
                         : index === currentStep
@@ -197,7 +207,7 @@ const TrackingDetails = ({ selectedRoute, order, arrivalDate, isLoading }) => {
                         }`} />
                     )}
                   </motion.div>
-                  {index !== segments.length - 1 && (
+                  {index !== displaySegments.length - 1 && (
                     <motion.div
                       className="absolute top-10 left-1/2 w-0.5 h-12 bg-gray-300 -translate-x-1/2"
                       initial={{ height: 0 }}
@@ -209,7 +219,7 @@ const TrackingDetails = ({ selectedRoute, order, arrivalDate, isLoading }) => {
 
                 <div className="ml-4 flex-1">
                   <h3 className="text-base md:text-lg font-semibold">
-                    {segment.from || `Location ${index + 1}`}
+                    {segment.to || `Location ${index + 1}`}
                   </h3>
                   <div className="flex items-center justify-between">
                     <p className={`text-sm md:text-md ${index < currentStep
@@ -271,7 +281,7 @@ const TrackingDetails = ({ selectedRoute, order, arrivalDate, isLoading }) => {
         </motion.div>
 
         {/* Homepage Button */}
-        <motion.button
+        {/* <motion.button
           onClick={() => window.location.href = '/home'}
           className="w-full mt-6 px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors text-lg font-semibold"
           whileHover={{ scale: 1.03 }}
@@ -279,7 +289,16 @@ const TrackingDetails = ({ selectedRoute, order, arrivalDate, isLoading }) => {
           variants={itemVariants}
         >
           Go to Homepage
-        </motion.button>
+        </motion.button> */}
+
+        <div className="flex items-center justify-center min-h-[100px]">
+          <button
+              onClick={() => window.location.href = '/home'} // Add onClick handler
+              className="btn"
+          >
+              Go to Homepage
+          </button>
+      </div>
       </motion.div>
     </div>
   );
