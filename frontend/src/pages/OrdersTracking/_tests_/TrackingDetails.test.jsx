@@ -28,18 +28,21 @@ vi.mock('react-router-dom', async () => {
     segments: [
       {
         from: 'Warehouse',
+        to: "Distribution Center",
         durations: [1],
         departureTime: '2025-04-10T00:00:00Z',
         arrivalTime: '2025-04-11T00:00:00Z',
       },
       {
         from: 'Distribution Center',
+        to: "Destination Hub",
         durations: [2],
         departureTime: '2025-04-11T00:00:00Z',
         arrivalTime: '2025-04-13T00:00:00Z',
       },
       {
         from: 'Destination Hub',
+        to: "Local Depot",
         durations: [1],
         departureTime: '2025-04-13T00:00:00Z',
         arrivalTime: '2025-04-14T00:00:00Z',
@@ -61,41 +64,41 @@ vi.mock('react-router-dom', async () => {
     );
 
     describe('TrackingDetails Component', () => {
-        it('renders order information correctly', () => {
-          renderComponent();
-      
-          expect(screen.getByText(/Order #123/i)).toBeInTheDocument();
-          expect(screen.getByText(/Arriving before Apr 14, 2025/i)).toBeInTheDocument();
-          expect(screen.getByText(/Tracking number/i)).toBeInTheDocument();
-          expect(screen.getByText(/EcoCarrier/)).toBeInTheDocument();
-        });
-      
-        it('renders segment details', () => {
-          renderComponent();
-      
-          expect(screen.getByText('Warehouse')).toBeInTheDocument();
-          expect(screen.getByText('Distribution Center')).toBeInTheDocument();
-          expect(screen.getByText('Destination Hub')).toBeInTheDocument();
-        });
-      
-        it('navigates to home on button click', async () => {
-          renderComponent();
-      
-          const button = screen.getByRole('button', { name: /Go to Homepage/i });
-          expect(button).toBeInTheDocument();
-        });
-      
-        it('renders fallback message when selectedRoute is missing', () => {
-            render(
-              <TrackingDetails
-                selectedRoute={null}
-                order={{}}
-                arrivalDate="May 5, 2025"
-                isLoading={false}
-              />
-            );
-        
-            expect(mockNavigate).toHaveBeenCalledWith('/');
-          });
+      it('renders order information correctly', () => {
+        renderComponent();
+    
+        expect(screen.getByText(/Order #123/i)).toBeInTheDocument();
+        expect(screen.getByText(/Arriving before Apr 14, 2025/i)).toBeInTheDocument();
+        expect(screen.getByText(/Tracking number/i)).toBeInTheDocument();
+        expect(screen.getByText(/EcoCarrier/)).toBeInTheDocument();
       });
-      
+    
+      it('renders segment details', () => {
+        renderComponent();
+    
+        expect(screen.getByText((content) => content.includes('Warehouse'))).toBeInTheDocument();
+        expect(screen.getByText((content) => content.includes('Distribution Center'))).toBeInTheDocument();
+        expect(screen.getByText((content) => content.includes('Destination Hub'))).toBeInTheDocument();
+      });
+    
+      it('navigates to home on button click', async () => {
+        renderComponent();
+    
+        const button = screen.getByRole('button', { name: /Go to Homepage/i });
+        expect(button).toBeInTheDocument();
+      });
+    
+      it('renders fallback message when selectedRoute is missing', () => {
+        render(
+          <TrackingDetails
+            selectedRoute={null}
+            order={{}}
+            arrivalDate="May 5, 2025"
+            isLoading={false}
+          />
+        );
+    
+        expect(mockNavigate).toHaveBeenCalledWith('/');
+      });
+    });
+    
